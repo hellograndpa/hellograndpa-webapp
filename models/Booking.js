@@ -1,0 +1,47 @@
+const mongoose = require('mongoose');
+
+const { Schema } = mongoose;
+
+const sevicesArray = ['llevar al medico'];
+
+const BookingSchema = new Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    house: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'House',
+      required: true,
+    },
+    dateIn: Date,
+    dateOut: Date,
+    status: {
+      type: String,
+      enum: ['reserve', 'pay', 'cancel'],
+    },
+    priceInit: Number,
+    discount: Number,
+    priceEnd: Number,
+    sevicestoHosterCompromise: [
+      {
+        servicesnecessary: {
+          typesevice: {
+            type: String,
+            enum: sevicesArray,
+          },
+          points: Number,
+          requirement: Boolean,
+          mandatory: Boolean,
+        },
+      },
+    ],
+  },
+  { timestamps: true },
+);
+
+const Booking = mongoose.model('Booking', BookingSchema);
+
+module.exports = Booking;
