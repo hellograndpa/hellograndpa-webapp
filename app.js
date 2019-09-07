@@ -1,14 +1,14 @@
-/* eslint-disable import/no-unresolved */
 const createError = require('http-errors');
-
 const express = require('express');
-
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+
+mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
 
 const app = express();
 

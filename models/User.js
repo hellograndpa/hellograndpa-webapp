@@ -28,7 +28,7 @@ const UserSchema = new Schema(
       index: true,
     },
     bio: String,
-    avatar: String,
+    avatar: { tuype: String, default: '../images/avatardefault.jpg' },
     birthday: Date,
     gender: {
       type: String,
@@ -37,7 +37,7 @@ const UserSchema = new Schema(
     address: {
       street: String,
       city: String,
-      estate: String,
+      state: String,
       country: String,
       zip: Number,
     },
