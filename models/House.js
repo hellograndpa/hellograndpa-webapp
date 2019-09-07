@@ -2,41 +2,12 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const sevicesArray = ['llevar al medico'];
-
-const featuresArray = [
-  'Calefaccion',
-  'A/C',
-  'Piscina',
-  'Terraza',
-  'Ascensor',
-  'WIFI',
-];
-
-const electroArray = [
-  'cocina',
-  'nevera',
-  'lavadora',
-  'secadora',
-  'secador de pelo',
-  'horno',
-  'microondas',
-  'aspiradora',
-  'batidora',
-  'tostadora',
-];
-
-const seviciosIncludedArray = [
-  'Agua',
-  'agua caliene',
-  'Electricidad',
-  'Internet',
-  'Utensilios baño',
-  'desayuno',
-  'cenas',
-  'Utensilios cocina',
-  'Cama',
-];
+const {
+  sevicesArray,
+  featuresArray,
+  electroArray,
+  seviciosIncludedArray,
+} = require('../middlewares/enumerables');
 
 const HouseSchema = new Schema(
   {
@@ -74,7 +45,7 @@ const HouseSchema = new Schema(
         },
       },
     ],
-    seviciosincluded: [
+    sevicesincluded: [
       {
         servicetype: {
           type: String,

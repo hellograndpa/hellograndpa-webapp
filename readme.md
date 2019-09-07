@@ -45,8 +45,8 @@ Rooms booking platform for desktop, from older people for youth in exchange of a
 | Profile              | GET  | /users/:id              |     |                 |                                  |
 | Create House Form    | GET  | /houses/create          |     |                 |                                  |
 | Create House         | POST | /houses                 |     | /houses/:id     |                                  |
-| Bookings FORM        | GET  | /bookings?              |     |                 | Parámetros por get de mes y casa |
-| Create Booking       | POST | /bookings               |     | /users/bookings |                                  |
+| Bookings FORM        | GET  | /booking?               |     |                 | Parámetros por get de mes y casa |
+| Create Booking       | POST | /booking                |     | /users/bookings |                                  |
 | List my Bookings     | GET  | /users/bookings         |     |                 | El id del user va por session    |
 | My booking detail    | GET  | /users/bookings/:id     |     |                 |                                  |
 | MY bookings R&R FORM | GET  | /users/bookings/:id/r&r |     |                 |                                  |

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const sevicesArray = ['llevar al medico'];
+const { sevicesArray } = require('../middlewares/enumerables');
 
 const BookingSchema = new Schema(
   {
