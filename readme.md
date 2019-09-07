@@ -2,7 +2,7 @@
 
 ## Description
 
-Rooms booking platform from older people for youth in exchange of accompaniment services.
+Rooms booking platform for desktop, from older people for youth in exchange of accompaniment services.
 
 ## User Stories
 
@@ -166,65 +166,7 @@ const HouseSchema = new Schema(
       window: {
         type: String,
         enum: ['uno', 'dos', 'tres'],
-      },const mongoose = require('mongoose');
-
-const { Schema } = mongoose;
-
-const UserSchema = new Schema(
-  {
-    username: {
-      firstname: {
-        type: String,
-        lowercase: true,
-        required: [true, "can't be blank"],
-        match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
-        index: true,
       },
-      lastname: {
-        type: String,
-        lowercase: true,
-        required: [true, "can't be blank"],
-        match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
-        index: true,
-      },
-    },
-    email: {
-      type: String,
-      lowercase: true,
-      required: [true, "can't be blank"],
-      match: [/\S+@\S+\.\S+/, 'is invalid'],
-      index: true,
-    },
-    bio: String,
-    avatar: String,
-    birthday: Date,
-    gender: {
-      type: String,
-      enum: ['male', 'female'],
-    },
-    address: {
-      street: String,
-      city: String,
-      estate: String,
-      country: String,
-      zip: Number,
-    },
-    admin: Boolean,
-    hashpass: String,
-    dni: Number,
-    tel: [Number],
-    created: {
-      type: Date,
-      default: Date.now,
-    },
-    active: Boolean,
-  },
-  { timestamps: true },
-);
-
-const User = mongoose.model('User', UserSchema);
-
-module.exports = User;
       balcony: Boolean,
       heat: Boolean,
       ac: Boolean,
@@ -273,6 +215,7 @@ module.exports = User;
 const House = mongoose.model('House', HouseSchema);
 
 module.exports = House;
+
 ```
 
 ### USER
@@ -308,7 +251,7 @@ const UserSchema = new Schema(
       index: true,
     },
     bio: String,
-    avatar: String,
+    avatar: { tuype: String, default: '../images/avatardefault.jpg' },
     birthday: Date,
     gender: {
       type: String,
@@ -317,14 +260,16 @@ const UserSchema = new Schema(
     address: {
       street: String,
       city: String,
-      estate: String,
+      state: String,
       country: String,
       zip: Number,
     },
-    admin: Boolean,
+    adminUser: Boolean,
+    mentorUser: Boolean,
+    basicUser: Boolean,
     hashpass: String,
-    dni: Number,
-    tel: [Number],
+    idCard: String,
+    phone: [Number],
     created: {
       type: Date,
       default: Date.now,
@@ -337,6 +282,7 @@ const UserSchema = new Schema(
 const User = mongoose.model('User', UserSchema);
 
 module.exports = User;
+
 ```
 
 ### BOOKINGS
