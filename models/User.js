@@ -7,15 +7,15 @@ const UserSchema = new Schema(
     username: {
       firstname: {
         type: String,
-        lowercase: true,
-        required: [true, "can't be blank"],
+        required: true,
+        // required: [true, "can't be blank"],
         match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
         index: true,
       },
       lastname: {
         type: String,
-        lowercase: true,
-        required: [true, "can't be blank"],
+        required: true,
+        // required: [true, "can't be blank"],
         match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
         index: true,
       },
@@ -23,13 +23,18 @@ const UserSchema = new Schema(
     email: {
       type: String,
       lowercase: true,
-      required: [true, "can't be blank"],
+      // required: [true, "can't be blank"],
+      required: true,
       match: [/\S+@\S+\.\S+/, 'is invalid'],
       index: true,
     },
     bio: String,
-    avatar: { tuype: String, default: '../images/avatardefault.jpg' },
-    birthday: Date,
+    avatar: String,
+    birthday: {
+      type: String,
+      required: true,
+      // required: [true, "can't be blank"],
+    },
     gender: {
       type: String,
       enum: ['male', 'female'],
@@ -41,9 +46,18 @@ const UserSchema = new Schema(
       country: String,
       zip: Number,
     },
-    adminUser: Boolean,
-    mentorUser: Boolean,
-    basicUser: Boolean,
+    adminUser: {
+      type: Boolean,
+      default: false,
+    },
+    mentorUser: {
+      type: Boolean,
+      default: false,
+    },
+    basicUser: {
+      type: Boolean,
+      default: true,
+    },
     hashpass: String,
     idCard: String,
     phone: [Number],
@@ -51,7 +65,10 @@ const UserSchema = new Schema(
       type: Date,
       default: Date.now,
     },
-    active: Boolean,
+    active: {
+      type: Boolean,
+      default: true,
+    },
   },
   { timestamps: true },
 );
