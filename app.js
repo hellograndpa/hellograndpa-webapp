@@ -9,12 +9,10 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const { notifications } = require('./middlewares/nofifications');
 
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const housesRouter = require('./routes/houses');
 const bookingsRouter = require('./routes/bookings');
-
 
 mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
@@ -31,6 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(flash());
 
 // cookies and sessions
 app.use(
@@ -47,8 +46,6 @@ app.use(
     },
   }),
 );
-
-app.use(flash());
 
 app.use((req, res, next) => {
   app.locals.currentUser = req.session.currentUser;

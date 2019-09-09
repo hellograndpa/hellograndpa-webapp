@@ -1,15 +1,15 @@
 const checkfieldsEmpty = (req, res, next) => {
-  const {
-    email, firstname, lastname, month, day, year, pass,
-  } = req.body;
+  const { email, firstname, lastname, month, day, year, pass } = req.body;
 
-  if (email === ''
-  || firstname === ''
-  || lastname === ''
-  || month === ''
-  || day === ''
-  || year === ''
-  || pass === '') {
+  if (
+    email === '' ||
+    firstname === '' ||
+    lastname === '' ||
+    month === '' ||
+    day === '' ||
+    year === '' ||
+    pass === ''
+  ) {
     req.flash('error', 'los campos no pueden estar vacios');
     res.redirect('/signup');
   } else {
@@ -36,7 +36,6 @@ const checkCorretFormatEmail = (req, res, next) => {
     res.redirect('/signup');
   }
 };
-
 
 module.exports = {
   checkfieldsEmpty,
