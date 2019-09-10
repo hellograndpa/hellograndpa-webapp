@@ -1,4 +1,10 @@
-const sevicesArray = ['llevar al medico'];
+const sevicesArray = [
+  { type: 'ad', points: 10 },
+  { type: 'ab', points: 20 },
+  { type: 'af', points: 30 },
+  { type: 'ag', points: 40 },
+  { type: 'az', points: 50 },
+];
 
 const featuresArray = [
   'Calefaccion',
@@ -22,7 +28,7 @@ const electroArray = [
   'tostadora',
 ];
 
-const seviciosIncludedArray = [
+const sevicesIncludedArray = [
   'Agua',
   'agua caliene',
   'Electricidad',
@@ -38,5 +44,5 @@ module.exports = {
   sevicesArray,
   featuresArray,
   electroArray,
-  seviciosIncludedArray,
+  sevicesIncludedArray,
 };
