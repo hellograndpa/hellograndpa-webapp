@@ -4,9 +4,13 @@ const { logIn } = require('../middlewares/logIn');
 
 const router = express.Router();
 
+const House = require('../models/House');
+
 // Get home page
-router.get('/', (req, res) => {
-  res.render('index');
+router.get('/', async (req, res) => {
+  await House.find().distinct('address.city', (error, cities) => {
+    res.render('index', { cities });
+  });
 });
 
 // LogOut

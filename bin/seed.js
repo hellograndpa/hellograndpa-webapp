@@ -20,7 +20,10 @@ const {
 mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
 
 const users = Array.from({ length: 50 }, () => ({
-  username: { firstname: faker.name.firstName(), lastname: faker.name.lastName() },
+  username: {
+    firstname: faker.name.firstName(),
+    lastname: faker.name.lastName(),
+  },
   email: faker.internet.email(),
   bio: faker.lorem.paragraph(2),
   avatar: '/images/avatars/avatar.jpg',
@@ -47,14 +50,14 @@ User.collection
   .then(() => {
     console.log('deleted db');
   })
-  .catch((err) => {
+  .catch(err => {
     console.log(err);
   })
   .then(() => User.insertMany(users))
   .then(() => {
     console.log('inserted data');
     User.find()
-      .then((usersBd) => {
+      .then(usersBd => {
         House.collection.drop();
         for (const u of usersBd) {
           House.create({
@@ -64,7 +67,7 @@ User.collection
             description: faker.lorem.paragraph(2),
             address: {
               street: faker.address.streetName(),
-              city: faker.address.city(),
+              city: 'Barcelona',
               state: faker.address.state(),
               country: 'España',
               zip: faker.address.zipCode('#####'),
@@ -157,17 +160,17 @@ User.collection
             .then(() => {
               console.log('house inserted', u._id);
             })
-            .catch((err) => {
+            .catch(err => {
               console.log(err);
             });
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.log('error', err);
         mongoose.connection.close();
       });
   })
-  .catch((err) => {
+  .catch(err => {
     console.log(err);
     mongoose.connection.close();
   });
