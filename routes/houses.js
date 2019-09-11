@@ -1,5 +1,6 @@
 const express = require('express');
 const { isLogged } = require('../middlewares/logIn');
+const { checkUserTypeGranpa, checkUserHaveOneHouse } = require('../middlewares/validationsign');
 const User = require('../models/User');
 const House = require('../models/House');
 
@@ -14,7 +15,7 @@ router.get('/', (req, res) => {
 });
 
 // insert a house (if logged)
-router.post('/',
+router.post('/', isLogged, checkUserTypeGranpa,
   async (req, res, next) => {
     const {
       rooms,
@@ -123,7 +124,7 @@ router.post('/',
 
 
 // Show form to create a house (if logged)
-router.get('/create', (req, res) => {
+router.get('/create', isLogged, checkUserTypeGranpa, checkUserHaveOneHouse, (req, res) => {
   res.render('houses/create');
 });
 
