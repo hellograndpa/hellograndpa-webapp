@@ -53,6 +53,7 @@ const HouseSchema = new Schema(
         points: Number,
         requirement: Boolean,
         mandatory: Boolean,
+        description: String,
       },
     ],
     photos: [String],

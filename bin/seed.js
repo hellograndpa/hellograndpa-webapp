@@ -20,19 +20,21 @@ const {
 mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
 
 const users = Array.from({ length: 50 }, () => ({
-  username: { firstname: faker.name.firstName, lastname: faker.name.lastName },
+  username: { firstname: faker.name.firstName(), lastname: faker.name.lastName() },
   email: faker.internet.email(),
   bio: faker.lorem.paragraph(2),
-  avatar: '/images/avatars/victorcamarenaballester.jpg',
+  avatar: '/images/avatars/avatar.jpg',
   birthday: '19-01-1981',
   gender: 'male',
   address: {
-    street: faker.address.streetName,
-    city: faker.address.city,
-    state: faker.address.state,
+    street: faker.address.streetName(),
+    city: faker.address.city(),
+    state: faker.address.state(),
     country: 'España',
     zip: faker.address.zipCode(),
   },
+  idCard: faker.random.alphaNumeric(10),
+  phone: [faker.phone.phoneNumberFormat()],
   adminUser: false,
   mentorUser: false,
   basicUser: true,
@@ -45,26 +47,27 @@ User.collection
   .then(() => {
     console.log('deleted db');
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
   })
   .then(() => User.insertMany(users))
   .then(() => {
     console.log('inserted data');
     User.find()
-      .then(usersBd => {
-        for (let u of usersBd) {
+      .then((usersBd) => {
+        House.collection.drop();
+        for (const u of usersBd) {
           House.create({
             user: u._id,
             rooms: faker.random.number({ max: 9 }),
-            m2: faker.random.number({ min: 50, max: 200 }),
+            m2: faker.random.number({ min: 50, max: 500 }),
             description: faker.lorem.paragraph(2),
             address: {
-              street: faker.address.streetName,
-              city: faker.address.city,
-              state: faker.address.state,
+              street: faker.address.streetName(),
+              city: faker.address.city(),
+              state: faker.address.state(),
               country: 'España',
-              zip: faker.address.zipCode(),
+              zip: faker.address.zipCode('#####'),
             },
             features: [
               'Calefaccion',
@@ -103,30 +106,35 @@ User.collection
                 points: 10,
                 requirement: true,
                 mandatory: true,
+                description: faker.lorem.paragraph(2),
               },
               {
                 typesevice: 'ab',
                 points: 20,
                 requirement: true,
                 mandatory: true,
+                description: faker.lorem.paragraph(2),
               },
               {
                 typesevice: 'af',
                 points: 30,
                 requirement: true,
                 mandatory: false,
+                description: faker.lorem.paragraph(2),
               },
               {
                 typesevice: 'ag',
                 points: 40,
                 requirement: true,
                 mandatory: false,
+                description: faker.lorem.paragraph(2),
               },
               {
                 typesevice: 'az',
                 points: 50,
                 requirement: true,
                 mandatory: false,
+                description: faker.lorem.paragraph(2),
               },
             ],
             photos: ['/images/photo1.jpg', '/images/photo2.jpg'],
@@ -149,17 +157,17 @@ User.collection
             .then(() => {
               console.log('house inserted', u._id);
             })
-            .catch(err => {
+            .catch((err) => {
               console.log(err);
             });
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log('error', err);
         mongoose.connection.close();
       });
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
     mongoose.connection.close();
   });
