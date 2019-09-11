@@ -1,16 +1,18 @@
 const checkfieldsEmpty = (req, res, next) => {
-  const { email, firstname, lastname, month, day, year, pass } = req.body;
+  const {
+ email, firstname, lastname, month, day, year, pass 
+} = req.body;
 
   if (
-    email === '' ||
-    firstname === '' ||
-    lastname === '' ||
-    month === '' ||
-    day === '' ||
-    year === '' ||
-    pass === ''
+    email === ''
+    || firstname === ''
+    || lastname === ''
+    || month === ''
+    || day === ''
+    || year === ''
+    || pass === ''
   ) {
-    req.flash('error', 'los campos no pueden estar vacios');
+    req.flash('error', 'los campos con * no pueden estar vacios');
     res.redirect('/signup');
   } else {
     res.locals.auth = req.body;

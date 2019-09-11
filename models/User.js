@@ -54,9 +54,9 @@ const UserSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    basicUser: {
+    grandpaUser: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     hashpass: String,
     idCard: String,

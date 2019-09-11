@@ -37,7 +37,7 @@ const users = Array.from({ length: 50 }, () => ({
   phone: [faker.phone.phoneNumberFormat()],
   adminUser: false,
   mentorUser: false,
-  basicUser: true,
+  grandpaUser: false,
   hashpass: bcrypt.hashSync('1234', bcrypt.genSaltSync(bcryptSalt)),
   active: true,
 }));

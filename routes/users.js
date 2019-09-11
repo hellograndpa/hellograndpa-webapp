@@ -15,9 +15,17 @@ const bcryptSalt = 10;
 // Get profile (if logged)
 // de hecho si esta loggeado no necesitamos el id por la url
 // lo pillamos de la sessión
-router.get('/', isLogged, (req, res, next) => {
-  res.render('user/show');
-});
+router.get('/', isLogged,
+  async (req, res, next) => {
+    try {
+      const user = await User.findById(req.session.currentUser._id);
+      req.flash('info', 'Usuario ok');
+      res.render('user/show', { user });
+    } catch (error) {
+      çreq.flash('error', 'Some error happen - Please try again');
+      res.render('/');
+    }
+  });
 
 // Create a new user
 router.post(
@@ -60,5 +68,58 @@ router.post(
     }
   },
 );
+// update the data  // use req.body
+router.post('/update',
+  async (req, res, next) => {
+    const {
+      firstname,
+      lastname,
+      month,
+      day,
+      year,
+      bio,
+      gender,
+      street,
+      city,
+      state,
+      country,
+      zip,
+      idCard,
+      phone,
+      typeUser,
+    } = req.body;
+    try {
+      let grandpaUser = false;
+      let mentorUser = false;
+      if (typeUser === 'Grandpa') {
+        grandpaUser = true;
+      } else if (typeUser === 'Mentor') {
+        mentorUser = true;
+      } else if (typeUser === 'Normal') {
+        grandpaUser = false;
+        mentorUser = false;
+      }
+      await User.findByIdAndUpdate(req.session.currentUser._id, {
+        username: { firstname, lastname },
+        month,
+        day,
+        year,
+        bio,
+        gender,
+        adress: {
+          street, city, state, country, zip,
+        },
+        idCard,
+        phone,
+        grandpaUser,
+        mentorUser,
+      });
+      req.flash('info', `user ${req.session.currentUser._id} has been update`);
+      res.redirect('/user');
+    } catch (error) {
+      req.flash('error', 'Some error happen - Please try again');
+      res.redirect('/user');
+    }
+  });
 
 module.exports = router;
