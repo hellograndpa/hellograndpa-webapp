@@ -3,8 +3,9 @@
 <form method="GET" action="/houses">
     City:
     <select name="city">
-        <option value="Barcelona">Barcelona</option>
-        <option value="Madrid">Madrid</option>
+        {{#each cities}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
     </select>
     <br />
     Month

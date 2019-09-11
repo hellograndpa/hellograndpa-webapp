@@ -31,7 +31,7 @@ const users = Array.from({ length: 50 }, () => ({
   gender: 'male',
   address: {
     street: faker.address.streetName(),
-    city: 'faker.address.city()',
+    city: faker.address.city(),
     state: faker.address.state(),
     country: 'España',
     zip: faker.address.zipCode(),
@@ -67,7 +67,7 @@ User.collection
             description: faker.lorem.paragraph(2),
             address: {
               street: faker.address.streetName(),
-              city: faker.address.city(),
+              city: 'Barcelona',
               state: faker.address.state(),
               country: 'España',
               zip: faker.address.zipCode('#####'),

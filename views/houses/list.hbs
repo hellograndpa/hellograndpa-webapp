@@ -1,10 +1,39 @@
 <h1>List of available houses</h1>
+<div style="display:flex; justify-content:center; flex-wrap: wrap;">
+    {{#each houses}}
+    <div style=" padding: 10px; width:30%">
+        <h3>House</h3>
+        <div><img src="/images/pictures/photo1.jpg" width="150" alt="Foto"></div>
+        <div>user: {{this.user.username.firstname}} {{this.user.username.lastname}}</div>
+        <div>rooms: {{ this.rooms }}</div>
+        <div>m2: {{ this.m2 }}</div>
+        <div>description:{{ this.description }}</div>
+        <hr>
+        <div>ADDRESS:</div>
+        <div>state:{{ this.address.state }}</div>
+        <div>city:{{ this.address.city }}</div>
+        <div>street:{{ this.address.street }}</div>
+        <div>zip:{{ this.address.zip }}</div>
+        <hr>
+        <div>FEATURES</div>
+        <ul>
+            {{#each this.features}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+        <div>ELECTRO</div>
+        <ul>
+            {{#each this.electro}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+        <div>sevicesincluded</div>
+        <ul>
+            {{#each this.sevicesincluded}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
 
-{{#each houses}}
-<div>
-    <h3>House</h3>
-    <div>user: {{this.user}}</div>
-    <div>rooms: {{ this.rooms }}</div>
-    <div>m2: {{ this.m2 }}</div>
+    </div>
+    {{/each}}
 </div>
-{{/each}}

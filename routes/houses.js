@@ -7,10 +7,12 @@ const router = express.Router();
 
 // Get a list of houses available
 router.get('/', async (req, res, next) => {
-  const { city } = req.body;
+  const { city } = req.query;
 
   try {
-    const houses = await House.find().populate('mentor user');
+    const houses = await House.find({
+      'address.city': city,
+    }).populate('mentor user');
     res.render('houses/list', { houses });
   } catch (error) {
     next(error);
