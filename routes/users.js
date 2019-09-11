@@ -1,11 +1,12 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const { isLogged } = require('../middlewares/logIn');
 
+const { isLogged } = require('../middlewares/logIn');
 const {
   checkfieldsEmpty,
   checkCorretFormatEmail,
 } = require('../middlewares/validationsign');
+
 const User = require('../models/User');
 
 const router = express.Router();
