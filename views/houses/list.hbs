@@ -1,1 +1,10 @@
 <h1>List of available houses</h1>
+
+{{#each houses}}
+<div>
+    <h3>House</h3>
+    <div>user: {{this.user}}</div>
+    <div>rooms: {{ this.rooms }}</div>
+    <div>m2: {{ this.m2 }}</div>
+</div>
+{{/each}}
