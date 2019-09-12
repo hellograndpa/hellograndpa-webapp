@@ -1,5 +1,6 @@
 const express = require('express');
 const { isLogged } = require('../middlewares/logIn');
+const { checkUserTypeGranpa, checkUserHaveOneHouse } = require('../middlewares/validationsign');
 const User = require('../models/User');
 const House = require('../models/House');
 
@@ -12,8 +13,8 @@ router.get('/', async (req, res, next) => {
 
   try {
     const houses = await House.find({
-      'address.city': city
-    }).populate('mentor user popu');
+      'address.city': city,
+    }).populate('mentor user');
     res.render('houses/list', { houses });
   } catch (error) {
     next(error);
@@ -21,7 +22,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // insert a house (if logged)
-router.post('/', async (req, res, next) => {
+router.post('/', checkUserTypeGranpa, checkUserHaveOneHouse, async (req, res, next) => {
   const {
     rooms,
     m2,
@@ -56,7 +57,7 @@ router.post('/', async (req, res, next) => {
     table,
     chair,
     costpermonth,
-    othersThings
+    othersThings,
   } = req.body;
   try {
     const user = req.session.currentUser._id;
@@ -71,7 +72,7 @@ router.post('/', async (req, res, next) => {
         city,
         state,
         country,
-        zip
+        zip,
       },
       features,
       electro,
@@ -81,32 +82,32 @@ router.post('/', async (req, res, next) => {
           typesevice: 'ad',
           points: 10,
           requirement: adr,
-          mandatory: adm
+          mandatory: adm,
         },
         {
           typesevice: 'ab',
           points: 20,
           requirement: abr,
-          mandatory: abm
+          mandatory: abm,
         },
         {
           typesevice: 'af',
           points: 30,
           requirement: afr,
-          mandatory: afm
+          mandatory: afm,
         },
         {
           typesevice: 'ag',
           points: 40,
           requirement: agr,
-          mandatory: agm
+          mandatory: agm,
         },
         {
           typesevice: 'az',
           points: 50,
           requirement: azr,
-          mandatory: azm
-        }
+          mandatory: azm,
+        },
       ],
       restricciones,
       rentroom: {
@@ -120,9 +121,9 @@ router.post('/', async (req, res, next) => {
         tv,
         table,
         chair,
-        costpermonth
+        costpermonth,
       },
-      othersThings
+      othersThings,
     });
     req.flash('info', 'house created');
     res.redirect('/');
@@ -133,7 +134,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // Show form to create a house (if logged)
-router.get('/create', (req, res) => {
+router.get('/create', isLogged, checkUserTypeGranpa, checkUserHaveOneHouse, (req, res) => {
   res.render('houses/create');
 });
 
@@ -157,6 +158,7 @@ router.get('/:id', async (req, res, next) => {
     next(error);
   }
   // send info to view
+  res.render('houses/show');
 });
 
 module.exports = router;

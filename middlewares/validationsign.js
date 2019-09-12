@@ -1,7 +1,10 @@
+const User = require('../models/User');
+const House = require('../models/House');
+
 const checkfieldsEmpty = (req, res, next) => {
   const {
- email, firstname, lastname, month, day, year, pass 
-} = req.body;
+    email, firstname, lastname, month, day, year, pass,
+  } = req.body;
 
   if (
     email === ''
@@ -39,7 +42,32 @@ const checkCorretFormatEmail = (req, res, next) => {
   }
 };
 
+const checkUserTypeGranpa = async (req, res, next) => {
+  const user = await User.findById(req.session.currentUser._id);
+  if (user.grandpaUser) {
+    req.flash('info', 'it is grandpa');
+    next();
+  } else {
+    req.flash('error', `you are not a grandpa ${user._id} ${user.grandpaUser}`);
+    res.redirect('/user');
+  }
+};
+
+const checkUserHaveOneHouse = async (req, res, next) => {
+  const HaveHouse = await House.findOne({ user: req.session.currentUser._id });
+  if (HaveHouse) {
+    req.flash('error', 'you have One House please edit your house');
+    res.redirect('/user');
+  } else {
+    req.flash('info', `it is grandpa ${HaveHouse}`);
+    next();
+  }
+};
+
+
 module.exports = {
   checkfieldsEmpty,
   checkCorretFormatEmail,
+  checkUserTypeGranpa,
+  checkUserHaveOneHouse,
 };
