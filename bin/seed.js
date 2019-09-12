@@ -17,7 +17,10 @@ const {
   seviciosIncludedArray,
 } = require('../middlewares/enumerables');
 
-mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
+mongoose.connect(
+  'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
+  { useNewUrlParser: true },
+);
 
 const users = Array.from({ length: 50 }, () => ({
   username: {
@@ -50,14 +53,14 @@ User.collection
   .then(() => {
     console.log('deleted db');
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
   })
   .then(() => User.insertMany(users))
   .then(() => {
     console.log('inserted data');
     User.find()
-      .then(usersBd => {
+      .then((usersBd) => {
         House.collection.drop();
         for (const u of usersBd) {
           House.create({
@@ -160,17 +163,17 @@ User.collection
             .then(() => {
               console.log('house inserted', u._id);
             })
-            .catch(err => {
+            .catch((err) => {
               console.log(err);
             });
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log('error', err);
         mongoose.connection.close();
       });
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
     mongoose.connection.close();
   });
