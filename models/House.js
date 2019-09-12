@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
@@ -6,19 +6,19 @@ const {
   sevicesArray,
   featuresArray,
   electroArray,
-  sevicesIncludedArray,
-} = require('../middlewares/enumerables');
+  sevicesIncludedArray
+} = require("../middlewares/enumerables");
 
 const HouseSchema = new Schema(
   {
     mentor: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User"
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
+      ref: "User",
+      required: true
     },
     rooms: Number,
     m2: Number,
@@ -27,25 +27,25 @@ const HouseSchema = new Schema(
       street: String,
       city: String,
       state: String,
-      zip: Number,
+      zip: Number
     },
     features: [
       {
         type: String,
-        enum: featuresArray,
-      },
+        enum: featuresArray
+      }
     ],
     electro: [
       {
         type: String,
-        enum: electroArray,
-      },
+        enum: electroArray
+      }
     ],
     sevicesincluded: [
       {
         type: String,
-        enum: sevicesIncludedArray,
-      },
+        enum: sevicesIncludedArray
+      }
     ],
     sevicestohoster: [
       {
@@ -53,8 +53,8 @@ const HouseSchema = new Schema(
         points: Number,
         requirement: Boolean,
         mandatory: Boolean,
-        description: String,
-      },
+        description: String
+      }
     ],
     photos: [String],
     restricciones: String,
@@ -62,18 +62,18 @@ const HouseSchema = new Schema(
       m2: Number,
       wardrobes: {
         type: String,
-        enum: ['uno', 'dos', 'tres'],
+        enum: ["uno", "dos", "tres"]
       },
       window: {
         type: String,
-        enum: ['uno', 'dos', 'tres'],
+        enum: ["uno", "dos", "tres"]
       },
       balcony: Boolean,
       heat: Boolean,
       ac: Boolean,
       wc: {
         type: String,
-        enum: ['private bathroom', 'share bathroom'],
+        enum: ["private bathroom", "share bathroom"]
       },
       tv: Boolean,
       table: Boolean,
@@ -82,37 +82,37 @@ const HouseSchema = new Schema(
       othersThings: String,
       booking: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Booking',
+        ref: "Booking"
       },
       rateandreview: [
         {
           user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-            required: true,
+            ref: "User",
+            required: true
           },
           detail: String,
           ratings: [
             {
               ratetype: {
                 type: String,
-                enum: ['uno', 'dos'],
+                enum: ["uno", "dos"]
               },
-              valuerate: Number,
-            },
+              valuerate: Number
+            }
           ],
           created: {
             type: Date,
-            default: Date.now,
+            default: Date.now
           },
-          active: Boolean,
-        },
-      ],
-    },
+          active: Boolean
+        }
+      ]
+    }
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
-const House = mongoose.model('House', HouseSchema);
+const House = mongoose.model("House", HouseSchema);
 
 module.exports = House;
