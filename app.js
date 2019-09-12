@@ -1,3 +1,4 @@
+const process = require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -8,14 +9,18 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const { notifications } = require('./middlewares/nofifications');
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const housesRouter = require('./routes/houses');
 const bookingsRouter = require('./routes/bookings');
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
+
+//mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
+mongoose.connect(
+  'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
+  { useNewUrlParser: true },
+);
 
 const app = express();
 

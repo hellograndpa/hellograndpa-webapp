@@ -17,8 +17,11 @@ const {
   seviciosIncludedArray,
 } = require('../middlewares/enumerables');
 
-mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
-
+//mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
+mongoose.connect(
+  'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
+  { useNewUrlParser: true },
+);
 const users = Array.from({ length: 50 }, () => ({
   username: {
     firstname: faker.name.firstName(),
