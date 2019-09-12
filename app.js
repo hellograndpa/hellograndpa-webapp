@@ -15,7 +15,10 @@ const housesRouter = require('./routes/houses');
 const bookingsRouter = require('./routes/bookings');
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
+mongoose.connect(
+  'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
+  { useNewUrlParser: true },
+);
 
 const app = express();
 
