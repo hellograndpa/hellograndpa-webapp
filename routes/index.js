@@ -1,15 +1,23 @@
 const express = require('express');
 
+const { logIn } = require('../middlewares/logIn');
+
 const router = express.Router();
 
+const House = require('../models/House');
+
 // Get home page
-router.get('/', (req, res) => {
-  res.render('index');
+router.get('/', async (req, res) => {
+  await House.find().distinct('address.city', (error, cities) => {
+    res.render('index', { cities });
+  });
 });
 
 // LogOut
-router.post('/logout', (req, res) => {
-  res.render('/');
+router.get('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/login');
+  });
 });
 
 // get form to sign up
@@ -32,9 +40,18 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-// login post
-router.post('/login', (req, res) => {
-  res.redirect('/user');
+router.get('/login', (req, res) => {
+  res.render('login');
+});
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    logIn(email, password, req, res);
+  } catch (error) {
+    req.flash('error', error.message);
+    res.redirect('/login');
+  }
 });
 
 module.exports = router;

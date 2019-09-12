@@ -1,2 +1,18 @@
-<h1>HELLO GRAND FUCK*** PA</h1>
+<h1>HELLO GRANDPA</h1>
 <p>Welcome home</p>
+<form method="GET" action="/houses">
+    City:
+    <select name="city">
+        {{#each cities}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+    <br />
+    Month
+    <select name="month">
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+    </select>
+    <input type="submit" value="Search">
+</form>

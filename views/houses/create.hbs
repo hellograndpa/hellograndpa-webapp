@@ -1,1 +1,114 @@
 <h1>HOUSE create form</h1>
+<h2>TELL US ABOUT YOUR HOUSE</h2>
+<form id="form" action="/houses" method="POST">
+  <label for="firtname">Number of rooms</label>
+  <input type="radio" name="rooms" value="1" checked> 1 <br>
+  <input type="radio" name="rooms" value="2"> 2<br>
+  <input type="radio" name="rooms" value="3"> 3<br>
+  <input type="radio" name="rooms" value="4"> +4 or more<br>
+  <br>
+  <label for="m2">M2</label>
+  <input type="text" name="house-m2" placeholder="house-m2" value="">
+  <br>
+  <label for="description">Description</label><br>
+  <textarea rows="5" cols="33" name="description"></textarea><br>
+  <h2>ADDRESS</h2>
+  <label for="street">Street</label>
+  <input type="text" name="street" placeholder=" Name of street " value=""><br>
+  <label for="city">City</label>
+  <input type="text" name="city" placeholder="Name of city" value=""><br>
+  <label for="state">state</label>
+  <input type="text" name="state" placeholder="Name of state" value=""><br>
+  <label for="country">country</label>
+  <input type="text" name="country" placeholder="Name of Country" value=""><br>
+  <label for="zip">Zip Code</label>
+  <input type="text" name="zip" placeholder="00000" value=""><br>
+
+  <label for="firtname">features</label>
+  <input type="checkbox" name="features" value="calfaccion"> Calefaccion <br>
+  <input type="checkbox" name="features" value="A/C"> A/C <br>
+  <input type="checkbox" name="features" value="Piscina"> Piscina <br>
+  <input type="checkbox" name="features" value="Terraza"> Terraza <br>
+  <input type="checkbox" name="features" value="Ascensor"> Ascensor <br>
+  <input type="checkbox" name="features" value="calfaccion"> WIFI <br>
+  <br>
+
+  <label for="firtname">electro</label>
+  <input type="checkbox" name="electro" value="cocina"> cocina <br>
+  <input type="checkbox" name="electro" value="nevera"> nevera <br>
+  <input type="checkbox" name="electro" value="lavadora"> lavadora <br>
+  <input type="checkbox" name="electro" value="secadora"> secadora <br>
+  <input type="checkbox" name="electro" value="secador de pelo"> secador de pelo <br>
+  <input type="checkbox" name="electro" value="microondas"> microondas <br>
+  <input type="checkbox" name="electro" value="batidora"> batidora <br>
+  <input type="checkbox" name="electro" value="aspiradora"> aspiradora <br>
+  <input type="checkbox" name="electro" value="tostadora"> tostadora <br>
+  <br>
+
+  <label for="firtname">Services Included</label>
+  <input type="checkbox" name="sevicesincluded" value="Agua"> Agua <br>
+  <input type="checkbox" name="sevicesincluded" value="agua caliene"> agua caliene <br>
+  <input type="checkbox" name="sevicesincluded" value="Electricidad"> Electricidad <br>
+  <input type="checkbox" name="sevicesincluded" value="Internet"> Internet <br>
+  <input type="checkbox" name="sevicesincluded" value="Utensilios baño"> Utensilios baño <br>
+  <input type="checkbox" name="sevicesincluded" value="desayuno"> desayuno <br>
+  <input type="checkbox" name="sevicesincluded" value="cenas"> cenas <br>
+  <input type="checkbox" name="sevicesincluded" value="Utensilios cocina"> Utensilios cocina <br>
+  <input type="checkbox" name="sevicesincluded" value="Cama"> Cama <br>
+  <br>
+
+  <label for="firtname">Services for the Grandpa</label>
+  <h3>AD</h3>
+  <input type="checkbox" name="adr" value="true"> ad requeriment<br>
+  <input type="checkbox" name="adm" value="true"> ad mantdatory <br>
+
+  <h3>AB</h3>
+  <input type="checkbox" name="abr" value="true"> ab requeriment<br>
+  <input type="checkbox" name="abm" value="true"> ab mantdatory <br>
+
+  <h3>AF</h3>
+  <input type="checkbox" name="afr" value="true"> af requeriment<br>
+  <input type="checkbox" name="afm" value="true"> af mantdatoriy <br>
+
+  <h3>AG</h3>
+  <input type="checkbox" name="agr" value="true"> ag requeriment<br>
+  <input type="checkbox" name="agm" value="true"> ag mantdatoriy <br>
+
+  <h3>AZ</h3>
+  <input type="checkbox" name="azr" value="true"> az requeriment<br>
+  <input type="checkbox" name="azm" value="true"> az mantdatoriy <br>
+  <br>
+  <br>
+  <label for="restricciones">Restricciones</label><br>
+  <textarea rows="5" cols="33" name="restricciones"></textarea><br>
+
+  <h2>ROOM</h2>
+  <h3>AG</h3><br>
+  <label for="roomm2">M2 Room</label>
+  <input type="text" name="room-m2" placeholder="000" value="">
+  <br>
+  <label for="wardrobes">wardrobes</label><br>
+  <input type="radio" name="wardrobes" value="uno"> uno<br>
+  <input type="radio" name="wardrobes" value="dos"> dos<br><br>
+  <label for="window">window</label><br>
+  <input type="radio" name="window" value="uno"> uno<br>
+  <input type="radio" name="window" value="dos"> dos<br><br>
+  <label for="window">wc</label><br>
+  <input type="radio" name="wc" value="private bathroom"> private bathroom<br>
+  <input type="radio" name="wc" value="share bathroom"> share bathroom<br><br>
+  <input type="checkbox" name="balcony" value="true"> have a balcony<br>
+  <input type="checkbox" name="heat" value="true"> have a heat<br>
+  <input type="checkbox" name="ac" value="true"> have a ac<br>
+  <input type="checkbox" name="tv" value="true"> have a tv<br>
+  <input type="checkbox" name="table" value="true"> have a tabe<br>
+  <input type="checkbox" name="chair" value="true"> have a chair<br>
+  <label for="othersThings">Others Things</label><br>
+  <textarea rows="5" cols="33" name="othersThings"></textarea><br>
+  <br>
+  <label for="m2">Cost</label>
+  <input type="text" name="costpermonth" placeholder="0000" value="">
+  <br>
+  <p>
+    <button type="submit">Save the house</button>
+  </p>
+</form>

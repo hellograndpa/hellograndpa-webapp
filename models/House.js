@@ -6,7 +6,7 @@ const {
   sevicesArray,
   featuresArray,
   electroArray,
-  seviciosIncludedArray,
+  sevicesIncludedArray,
 } = require('../middlewares/enumerables');
 
 const HouseSchema = new Schema(
@@ -31,39 +31,29 @@ const HouseSchema = new Schema(
     },
     features: [
       {
-        featuretype: {
-          type: String,
-          enum: featuresArray,
-        },
+        type: String,
+        enum: featuresArray,
       },
     ],
     electro: [
       {
-        electrotype: {
-          type: String,
-          enum: electroArray,
-        },
+        type: String,
+        enum: electroArray,
       },
     ],
     sevicesincluded: [
       {
-        servicetype: {
-          type: String,
-          enum: seviciosIncludedArray,
-        },
+        type: String,
+        enum: sevicesIncludedArray,
       },
     ],
     sevicestohoster: [
       {
-        servicesnecessary: {
-          typesevice: {
-            type: String,
-            enum: sevicesArray,
-          },
-          points: Number,
-          requirement: Boolean,
-          mandatory: Boolean,
-        },
+        typesevice: String,
+        points: Number,
+        requirement: Boolean,
+        mandatory: Boolean,
+        description: String,
       },
     ],
     photos: [String],

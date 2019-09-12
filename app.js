@@ -4,12 +4,17 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const flash = require('connect-flash');
+const { notifications } = require('./middlewares/nofifications');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const housesRouter = require('./routes/houses');
 const bookingsRouter = require('./routes/bookings');
 
+mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
 
 const app = express();
@@ -24,6 +29,33 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(flash());
+
+// cookies and sessions
+app.use(
+  session({
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24 * 60 * 60, // 1 day
+    }),
+    secret: 'ironhack',
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  }),
+);
+
+app.use((req, res, next) => {
+  app.locals.currentUser = req.session.currentUser;
+  next();
+});
+
+// Notifications
+app.use(notifications(app));
+
+// Routes
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/houses', housesRouter);

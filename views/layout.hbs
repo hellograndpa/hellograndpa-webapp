@@ -7,6 +7,12 @@
 </head>
 
 <body>
+  {{#if infoMessages}}
+  <p class="info">{{infoMessages}}</p>
+  {{/if}}
+  {{#if errorMessages }}
+  <p class="error">{{ errorMessages }}</p>
+  {{/if }}
   <div>
     <a href="/">Home</a>
     |
@@ -29,7 +35,10 @@
     <a href="/user/bookings/1234">User booking details</a>
     |
     <a href="/user/bookings/1234/r&r">New Review</a>
+    <a href="/logout">Logout</a>
   </div>
+
+
   {{{body}}}
 </body>
 

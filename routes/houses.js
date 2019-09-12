@@ -1,20 +1,135 @@
 const express = require('express');
+const { isLogged } = require('../middlewares/logIn');
+const User = require('../models/User');
+const House = require('../models/House');
 
 const router = express.Router();
 const HouseDetails = require('../models/House');
 
 // Get a list of houses available
-router.get('/', (req, res) => {
-  // get params from querystring
-  // Get info from ddbb and sendit to the view
-  res.render('houses/list');
+router.get('/', async (req, res, next) => {
+  const { city } = req.query;
+
+  try {
+    const houses = await House.find({
+      'address.city': city,
+    }).populate('mentor user');
+    res.render('houses/list', { houses });
+  } catch (error) {
+    next(error);
+  }
 });
 
 // insert a house (if logged)
-router.post('/', (req, res) => {
-  // get parameters from body
-  // insert into ddbb
-  res.redirect('/houses/:id');
+router.post('/', async (req, res, next) => {
+  const {
+    rooms,
+    m2,
+    description,
+    street,
+    city,
+    state,
+    country,
+    zip,
+    features,
+    electro,
+    sevicesincluded,
+    adr,
+    abr,
+    afr,
+    agr,
+    azr,
+    adm,
+    abm,
+    afm,
+    agm,
+    azm,
+    restricciones,
+    roomm2,
+    wardrobes,
+    window,
+    wc,
+    balcony,
+    heat,
+    ac,
+    tv,
+    table,
+    chair,
+    costpermonth,
+    othersThings,
+  } = req.body;
+  try {
+    const user = req.session.currentUser._id;
+    // create house
+    await House.create({
+      user,
+      rooms,
+      m2,
+      description,
+      address: {
+        street,
+        city,
+        state,
+        country,
+        zip,
+      },
+      features,
+      electro,
+      sevicesincluded,
+      sevicestohoster: [
+        {
+          typesevice: 'ad',
+          points: 10,
+          requirement: adr,
+          mandatory: adm,
+        },
+        {
+          typesevice: 'ab',
+          points: 20,
+          requirement: abr,
+          mandatory: abm,
+        },
+        {
+          typesevice: 'af',
+          points: 30,
+          requirement: afr,
+          mandatory: afm,
+        },
+        {
+          typesevice: 'ag',
+          points: 40,
+          requirement: agr,
+          mandatory: agm,
+        },
+        {
+          typesevice: 'az',
+          points: 50,
+          requirement: azr,
+          mandatory: azm,
+        },
+      ],
+      restricciones,
+      rentroom: {
+        m2: roomm2,
+        wardrobes,
+        window,
+        wc,
+        balcony,
+        heat,
+        ac,
+        tv,
+        table,
+        chair,
+        costpermonth,
+      },
+      othersThings,
+    });
+    req.flash('info', 'house created');
+    res.redirect('/');
+  } catch (error) {
+    req.flash('error', `Some error happen - Please try again  ${window} ${wc}`);
+    res.redirect('/');
+  }
 });
 
 // Show form to create a house (if logged)
