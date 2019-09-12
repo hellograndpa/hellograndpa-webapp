@@ -1,27 +1,27 @@
-const express = require('express');
-const { isLogged } = require('../middlewares/logIn');
-const User = require('../models/User');
-const House = require('../models/House');
+const express = require("express");
+const { isLogged } = require("../middlewares/logIn");
+const User = require("../models/User");
+const House = require("../models/House");
 
 const router = express.Router();
-const HouseDetails = require('../models/House');
+const HouseDetails = require("../models/House");
 
 // Get a list of houses available
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   const { city } = req.query;
 
   try {
     const houses = await House.find({
-      'address.city': city,
-    }).populate('mentor user');
-    res.render('houses/list', { houses });
+      "address.city": city
+    }).populate("mentor user");
+    res.render("houses/list", { houses });
   } catch (error) {
     next(error);
   }
 });
 
 // insert a house (if logged)
-router.post('/', async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   const {
     rooms,
     m2,
@@ -56,7 +56,7 @@ router.post('/', async (req, res, next) => {
     table,
     chair,
     costpermonth,
-    othersThings,
+    othersThings
   } = req.body;
   try {
     const user = req.session.currentUser._id;
@@ -71,42 +71,42 @@ router.post('/', async (req, res, next) => {
         city,
         state,
         country,
-        zip,
+        zip
       },
       features,
       electro,
       sevicesincluded,
       sevicestohoster: [
         {
-          typesevice: 'ad',
+          typesevice: "ad",
           points: 10,
           requirement: adr,
-          mandatory: adm,
+          mandatory: adm
         },
         {
-          typesevice: 'ab',
+          typesevice: "ab",
           points: 20,
           requirement: abr,
-          mandatory: abm,
+          mandatory: abm
         },
         {
-          typesevice: 'af',
+          typesevice: "af",
           points: 30,
           requirement: afr,
-          mandatory: afm,
+          mandatory: afm
         },
         {
-          typesevice: 'ag',
+          typesevice: "ag",
           points: 40,
           requirement: agr,
-          mandatory: agm,
+          mandatory: agm
         },
         {
-          typesevice: 'az',
+          typesevice: "az",
           points: 50,
           requirement: azr,
-          mandatory: azm,
-        },
+          mandatory: azm
+        }
       ],
       restricciones,
       rentroom: {
@@ -120,34 +120,34 @@ router.post('/', async (req, res, next) => {
         tv,
         table,
         chair,
-        costpermonth,
+        costpermonth
       },
-      othersThings,
+      othersThings
     });
-    req.flash('info', 'house created');
-    res.redirect('/');
+    req.flash("info", "house created");
+    res.redirect("/");
   } catch (error) {
-    req.flash('error', `Some error happen - Please try again  ${window} ${wc}`);
-    res.redirect('/');
+    req.flash("error", `Some error happen - Please try again  ${window} ${wc}`);
+    res.redirect("/");
   }
 });
 
 // Show form to create a house (if logged)
-router.get('/create', (req, res) => {
-  res.render('houses/create');
+router.get("/create", (req, res) => {
+  res.render("houses/create");
 });
 
 // Show details of a house
 // Get id from url
-router.get('/:id', async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   // get info from ddbb
   const { id } = req.params;
   try {
-    const house = await HouseDetails.findById(id);
+    const house = await HouseDetails.findById(id).populate('user');
     if (house) {
-      res.render('houseDetail', house);
+      res.render("houses/show", { house });
     } else {
-      const error = new Error('Error 404');
+      const error = new Error("Error 404");
       Error.status = 404;
       // next(error);
       throw error;
@@ -156,8 +156,6 @@ router.get('/:id', async (req, res, next) => {
     next(error);
   }
   // send info to view
-
-  res.render('houses/show');
 });
 
 module.exports = router;
