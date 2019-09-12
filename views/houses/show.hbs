@@ -1,1 +1,43 @@
 <h1>House details</h1>
+<img src="{{ image }}" alt="">
+
+
+<h3>{{title}}</h3>
+<!-- <h4>Mentor: {{mentor.userName.firstName}}</h4> -->
+<h3>User: {{user}}</h3>
+
+<h3>House specs:</h3>
+<ul>
+  <li>Number of rooms: {{ rooms }}</li>
+  <li>Meters: {{ m2 }}</li>
+  <li>Address: {{ address.street }}</li>
+  <li>{{ address.city }}</li>
+  <li>{{ address.state }}</li>
+  <li>{{ address.zip }}</li>
+
+<h4>Features:</h4>
+  <li>Electro: {{ electro }}</li>
+  <li>Services included: {{sevicesincluded:}}</li>
+  <li>Services hoster: {{ sevicestohoster }}</li>
+</ul>
+<h4>Photos: {{ photos }}</h4>
+<h4>Restrictions: {{ restricciones }}</h4>
+
+<h3>Room specs:</h3>
+<ul>
+  <li>Rent room: {{ rentroom }}</li>
+  <li>Window: {{ window }}</li>
+  <li>Balcony: {{ balcony }}</li>
+  <li>Heat: {{ heat }}</li>
+  <li>AC: {{ ac }}</li>
+  <li>WC: {{ wc }}</li>
+  <li>Tv: {{ tv }}</li>
+  <li>Table: {{ table }}</li>
+  <li>Chair: {{ chair }}</li>
+  <li>Cost per month: {{ costpermonth }}</li>
+  <li>Others: {{ otherThings }}</li>
+</ul>
+
+<h3>Booking:</h3>
+<h4>Reviews: {{ rateandreview }}</h4>
+<a href="/houses/">Back</a>

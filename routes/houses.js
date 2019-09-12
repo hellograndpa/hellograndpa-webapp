@@ -1,6 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
+const HouseDetails = require('../models/House');
 
 // Get a list of houses available
 router.get('/', (req, res) => {
@@ -22,10 +23,25 @@ router.get('/create', (req, res) => {
 });
 
 // Show details of a house
-router.get('/:id', (req, res) => {
-  // Get id from url
+// Get id from url
+router.get('/:id', async (req, res, next) => {
   // get info from ddbb
+  const { id } = req.params;
+  try {
+    const house = await HouseDetails.findById(id);
+    if (house) {
+      res.render('houseDetail', house);
+    } else {
+      const error = new Error('Error 404');
+      Error.status = 404;
+      // next(error);
+      throw error;
+    }
+  } catch (error) {
+    next(error);
+  }
   // send info to view
+
   res.render('houses/show');
 });
 
