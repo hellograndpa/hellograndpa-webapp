@@ -1,6 +1,6 @@
 <h1>House details</h1>
 <img src="{{ image }}" alt="">
-
+<h1>Jofre</h1>
 
 <h3>{{title}}</h3>
 <!-- <h4>Mentor: {{mentor.userName.firstName}}</h4> -->
@@ -15,10 +15,13 @@
   <li>{{ house.address.state }}</li>
   <li>{{ house.address.zip }}</li>
 
-  <h4>Features:</h4>
-  <li>Electro: {{ electro }}</li>
+  <h4>Features:{{#each house.features}}
+    <li>{{this}}</li>
+    {{/each}}
+  </h4>
+  <!-- <li>Electro: {{ electro }}</li>
   <li>Services included: {{sevicesincluded:}}</li>
-  <li>Services hoster: {{ sevicestohoster }}</li>
+  <li>Services hoster: {{ sevicestohoster }}</li> -->
 </ul>
 <h4>Photos: {{ house.photos }}</h4>
 <h4>Restrictions: {{ house.restricciones }}</h4>
