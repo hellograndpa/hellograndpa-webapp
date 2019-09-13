@@ -158,7 +158,7 @@ router.get('/:id', async (req, res, next) => {
     next(error);
   }
   // send info to view
-  res.render('houses/show');
+  //res.render('houses/show');
 });
 
 module.exports = router;
