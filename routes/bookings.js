@@ -1,10 +1,16 @@
 const express = require('express');
-
+const Booking = require('../models/Booking');
 const router = express.Router();
 
 // get a list of my bookings
-router.get('/', (req, res, next) => {
-  res.render('bookings/list');
+router.get('/', async (req, res, next) => {
+  const query = { 'user.id': req.session.currentUser._id };
+
+  const bookings = await Booking.find(query);
+
+  console.log(bookings);
+
+  res.render('bookings/list', { bookings });
 });
 
 // details one of my bookings

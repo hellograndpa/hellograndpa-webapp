@@ -1,44 +1,51 @@
-
+<style>
+    input[type="checkbox"][readonly] {
+        pointer-events: none;
+    }
+</style>
 <h1>Make Yor Booking</h1>
 <h2>
     House Details:
 </h2>
-<div>{{house.title}}</div>
-<div>{{house.address.street}}</div>
-<div>{{house.address.zip}}, {{house.address.city}}</div>
-<h2>Dates:</h2>
-<div>In Date:<br>
-<input type="month" id="dateIn" name="dateIn" min="2019-10" value="{{dateIn}}">
-</div>
-<div>Out Date:<br>
-<input type="month" id="dateOut" name="dateOut" min="2019-10" value="{{dateOut}}">
-</div>
-<h2>Services to hoster:</h2>
-<h3>Mandatory services</h3>
-<ul>
-{{#each mandatoryServices }}
-    <li>
-        <input type="checkbox" disabled="true" class="services" checked="true" name="{{this.typesevice}}" value="{{this.points}}">{{this.typesevice}}        
-        <span>{{this.points}}</span>
-    </li>
-{{/each}}
-</ul>
-<h3>Optional services</h3>
-<ul>
-{{#each optionalServices }}
-    <li>
-        <input type="checkbox" class="services" name="{{this.typesevice}}" value="{{this.points}}">{{this.typesevice}}
-        <span>{{this.points}}</span>
-    </li>
-{{/each}}
-</ul>
-<h3>Prices</h3>
-<div>Initial Price: <span id="totalAmount">{{house.rentroom.costpermonth}}</span> €/ Montly</div>
-<div>Discounts: <span id="discountPrice">{{sumPointsMandatory}}</span> €/ Montly</div>
-<div>Final Price: <span id="finalPrice">{{finalFisrtPrice}}</span> €/ Montly</div>
-<input type="hidden" name="priceInitHidden" id="priceInitHidden" value="{{house.rentroom.costpermonth}}">
-<input type="hidden" name="discountHidden" id="discountHidden">
-<input type="hidden" name="priceEndHidden" id="priceEndHidden">
-
-
+<form method="POST" action="">
+    <div>{{house.title}}</div>
+    <div>{{house.address.street}}</div>
+    <div>{{house.address.zip}}, {{house.address.city}}</div>
+    <h2>Dates:</h2>
+    <div>In Date:<br>
+        <input type="month" id="dateIn" name="dateIn" min="2019-10" value="{{dateIn}}">
+    </div>
+    <div>Out Date:<br>
+        <input type="month" id="dateOut" name="dateOut" min="2019-10" value="{{dateOut}}">
+    </div>
+    <h2>Services to hoster:</h2>
+    <h3>Mandatory services</h3>
+    <ul>
+        {{#each mandatoryServices }}
+        <li>
+            <input type="checkbox" readonly class="services" checked="true" name="{{this.typesevice}}"
+                value="{{this.points}}">{{this.typesevice}}
+            <span>{{this.points}}</span>
+        </li>
+        {{/each}}
+    </ul>
+    <h3>Optional services</h3>
+    <ul>
+        {{#each optionalServices }}
+        <li>
+            <input type="checkbox" class="services" name="{{this.typesevice}}"
+                value="{{this.points}}">{{this.typesevice}}
+            <span>{{this.points}}</span>
+        </li>
+        {{/each}}
+    </ul>
+    <h3>Prices</h3>
+    <div>Initial Price: <span id="totalAmount">{{house.rentroom.costpermonth}}</span> €/ Montly</div>
+    <div>Discounts: <span id="discountPrice">{{sumPointsMandatory}}</span> €/ Montly</div>
+    <div>Final Price: <span id="finalPrice">{{finalFisrtPrice}}</span> €/ Montly</div>
+    <input type="hidden" name="priceInitHidden" id="priceInitHidden" value="{{house.rentroom.costpermonth}}">
+    <input type="hidden" name="discountHidden" id="discountHidden">
+    <input type="hidden" name="priceEndHidden" id="priceEndHidden">
+    <input type="submit" value="Enviar Petición">
+</form>
 <script src="/js/bookings.js"></script>

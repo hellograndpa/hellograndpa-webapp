@@ -1,6 +1,8 @@
 function recalcPrices() {
   const arrCheks = Array.from(document.getElementsByClassName('services'));
-  const totalAmount = parseFloat(document.getElementById('totalAmount').innerText);
+  const totalAmount = parseFloat(
+    document.getElementById('totalAmount').innerText,
+  );
   let totalDiscount = 0;
 
   arrCheks.forEach((curEl) => {
@@ -12,6 +14,9 @@ function recalcPrices() {
 
   document.getElementById('discountPrice').innerText = totalDiscount;
   document.getElementById('finalPrice').innerText = totalAmount - totalDiscount;
+
+  document.getElementById('discountHidden').value = totalDiscount;
+  document.getElementById('priceEndHidden').value = totalAmount - totalDiscount;
 }
 function init() {
   const checks = document.getElementsByClassName('services');
