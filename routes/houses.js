@@ -1,7 +1,9 @@
 const express = require('express');
 const { isLogged } = require('../middlewares/logIn');
 const { checkUserTypeGranpa, checkUserHaveOneHouse } = require('../middlewares/validationsign');
+
 const User = require('../models/User');
+
 const House = require('../models/House');
 
 const router = express.Router();
@@ -158,7 +160,7 @@ router.get('/:id', async (req, res, next) => {
     next(error);
   }
   // send info to view
-  res.render('houses/show');
+  // res.render('houses/show');
 });
 
 module.exports = router;

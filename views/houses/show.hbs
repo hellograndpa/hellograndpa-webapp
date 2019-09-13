@@ -1,6 +1,5 @@
 <h1>House details</h1>
 <img src="{{ image }}" alt="">
-<h1>Jofre</h1>
 
 <h3>{{title}}</h3>
 <!-- <h4>Mentor: {{mentor.userName.firstName}}</h4> -->
@@ -15,22 +14,68 @@
   <li>{{ house.address.state }}</li>
   <li>{{ house.address.zip }}</li>
 
-  <h4>Features:{{#each house.features}}
+  <h4>Features:{{#each house.features}}</h4>
     <li>{{this}}</li>
     {{/each}}
-  </h4>
-  <!-- <li>Electro: {{ electro }}</li>
-  <li>Services included: {{sevicesincluded:}}</li>
-  <li>Services hoster: {{ sevicestohoster }}</li> -->
+  <h4>Electro:{{#each house.electro}}</h4>
+    <li>{{this}}</li>
+    {{/each}}
+  
+  <h4>Services included:{{#each house.sevicesincluded}}</h4>
+    <li>{{this}}</li>
+    {{/each}}
+  <h4>Services to hoster:{{#each house.sevicestohoster}}</h4>
+    <li>{{typesevice}}</li>
+    <li>{{points}}</li>
+    <li>{{mandatory}}</li>
+    <li>{{description}}</li>
+    {{/each}} 
 </ul>
 <h4>Photos: {{ house.photos }}</h4>
-<h4>Restrictions: {{ house.restricciones }}</h4>
+<h4>Restrictions:</h4>
+<p>{{ house.restricciones }}</p>
 
-<h3>Room specs:</h3>
+<h3>Rent room:</h3>
 <ul>
-  <li>Rent room: {{ house.rentroom }}</li>
+  <li>M2: {{ house.rentroom.m2 }}</li>
+  <li>Wardrobes: {{ house.rentroom.wardrobes }}</li>
+  <li>Window: {{ house.rentroom.window }}</li>
+  <li>Balcony: {{ house.rentroom.balcony }}</li>
+  <li>Heat: {{ house.rentroom.heat }}</li>
+  <li>AC: {{ house.rentroom.ac }}</li>
+  <li>WC: {{ house.rentroom.wc }}</li>
+  <li>TV: {{ house.rentroom.tv }}</li>
+  <li>Table: {{ house.rentroom.table }}</li>
+  <li>Chair: {{ house.rentroom.chair }}</li>
+  <li>Cost per month: {{ house.rentroom.costpermonth }}</li>
+  <li>Other things: {{ house.rentroom.otherthings }}</li>
 </ul>
 
 <h3>Booking:</h3>
-<h4>Reviews: {{ house.rateandreview }}</h4>
+<ul>
+  <li>{{house.rentroom.booking}}</li>
+</ul>
+<h3>Reviews:{{#each house.rateandreview }}
+  <li>{{this}}</li>
+  {{/each}}
+</h3>
+
+<br>
+
+<h3>BOOK THIS HOUSE:</h3>
+Hi: {{currentUser.username.firstname}}<br/>
+{{#if currentUser}}
+<form name="BookingForm" method="GET" action="/booking/{{house._id}}">
+<div>From when you whant to in?</div>
+<input type="month" id="dateIn" name="dateIn" min="2019-10" value="">
+<div>Until?</div>
+<input type="month" id="dateOut" name="dateOut" min="2019-10" value="">
+<input type="submit" value="Book!">
+</form>
+ {{else}}
+    <h3>Must be logged to book!</h3>
+{{/if}}
+
+<br/><br/>
+
 <a href="/houses/">Back</a>

@@ -20,6 +20,7 @@ const HouseSchema = new Schema(
       ref: 'User',
       required: true,
     },
+    title: String,
     rooms: Number,
     m2: Number,
     description: String,
