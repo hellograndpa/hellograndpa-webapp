@@ -12,7 +12,9 @@ const { notifications } = require('./middlewares/nofifications');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const housesRouter = require('./routes/houses');
+const bookingRouter = require('./routes/booking');
 const bookingsRouter = require('./routes/bookings');
+
 
 mongoose.set('useCreateIndex', true);
 mongoose.connect(
@@ -62,6 +64,7 @@ app.use(notifications(app));
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/houses', housesRouter);
+app.use('/booking', bookingRouter);
 app.use('/user/bookings', bookingsRouter);
 
 // catch 404 and forward to error handler

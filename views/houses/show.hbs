@@ -59,4 +59,23 @@
   <li>{{this}}</li>
   {{/each}}
 </h3>
+
+<br>
+
+<h3>BOOK THIS HOUSE:</h3>
+Hi: {{currentUser.username.firstname}}<br/>
+{{#if currentUser}}
+<form name="BookingForm" method="GET" action="/booking/{{house._id}}">
+<div>From when you whant to in?</div>
+<input type="month" id="dateIn" name="dateIn" min="2019-10" value="">
+<div>Until?</div>
+<input type="month" id="dateOut" name="dateOut" min="2019-10" value="">
+<input type="submit" value="Book!">
+</form>
+ {{else}}
+    <h3>Must be logged to book!</h3>
+{{/if}}
+
+<br/><br/>
+
 <a href="/houses/">Back</a>
