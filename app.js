@@ -1,3 +1,4 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -15,10 +16,7 @@ const housesRouter = require('./routes/houses');
 const bookingsRouter = require('./routes/bookings');
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect(
-  'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
-  { useNewUrlParser: true },
-);
+mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
 
 const app = express();
 
