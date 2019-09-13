@@ -3,7 +3,7 @@
     {{#each houses}}
     <div style=" padding: 10px; width:30%">
         <h3>House</h3>
-        <div><img src="/images/pictures/photo1.jpg" width="150" alt="Foto"></div>
+        <div><a href="houses/{{this._id}}"><img src="/images/pictures/photo1.jpg" width="150" alt="Foto"></a></div>
         <div>user: {{this.user.username.firstname}} {{this.user.username.lastname}}</div>
         <div>rooms: {{ this.rooms }}</div>
         <div>m2: {{ this.m2 }}</div>
