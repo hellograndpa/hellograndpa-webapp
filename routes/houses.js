@@ -1,4 +1,8 @@
 const express = require('express');
+const formidable = require('formidable');
+const fs = require('fs');
+
+
 const { isLogged } = require('../middlewares/logIn');
 const {
   checkUserTypeGranpa,
@@ -58,7 +62,7 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
       });
       req.flash('info', `Address house CREATE ${house}`);
     }
-    res.redirect('/houses/create/step-2');
+    res.redirect('/houses/create/step-upload');
   } catch (error) {
     req.flash('error', `Some error happen - Please try again  ${window} ${wc}`);
     res.redirect('/');
@@ -186,10 +190,45 @@ router.post('/create/step-3', checkUserTypeGranpa, async (req, res, next) => {
   }
 });
 
+router.post('/create/step-upload', isLogged, checkUserTypeGranpa, async (req, res) => {
+  const { ObjectId } = require('mongoose').Types;
+  const query = { user: new ObjectId(req.session.currentUser._id) };
+  const house = await House.findOne(query);
+  const { photos } = house;
+  const form = new formidable.IncomingForm();
+
+  form.parse(req);
+
+  form.on('fileBegin', (name, file) => {
+    file.path = `${__dirname}/../public/images/pictures/${house.id}_house_${photos.length + 1}`;
+  });
+
+  form.on('file', async (name, file) => {
+    console.log(`Uploaded ${file.name}`);
+    req.flash('info', 'upload ');
+
+    photos.push(`/images/pictures/${house.id}_house_1${photos.length + 1}`);
+    console.log(photos);
+    await House.findByIdAndUpdate(house._id,
+      { photos });
+    res.redirect('/houses/create/step-upload');
+  });
+
+  form.on('error', (err) => {
+    console.log('an error has occured with form upload');
+    console.log(err);
+    request.resume();
+  });
+
+  form.on('aborted', () => {
+    console.log('user aborted upload');
+  });
+});
+
 // Show form to create a house (if logged)
-// router.get('/create', isLogged, checkUserTypeGranpa, checkUserHaveOneHouse, (req, res) => {
-//   res.render('houses/create');
-// });
+router.get('/create', isLogged, checkUserTypeGranpa, checkUserHaveOneHouse, (req, res) => {
+  res.render('houses/create');
+});
 router.get('/create/step-1', isLogged, checkUserTypeGranpa, async (req, res, next) => {
   const house = await House.findOne({ user: req.session.currentUser._id });
   req.flash('info', `house created  ${house}`);
@@ -205,6 +244,12 @@ router.get('/create/step-3', isLogged, checkUserTypeGranpa, async (req, res) => 
   req.flash('info', `house created  ${house} `);
   res.render('houses/create/step-3', { house });
 });
+router.get('/create/step-upload', isLogged, checkUserTypeGranpa, async (req, res) => {
+  const house = await House.findOne({ user: req.session.currentUser._id });
+  req.flash('info', `house created  ${house.photos} `);
+  res.render('houses/create/step-upload', { house });
+});
+
 
 // Show details of a house
 // Get id from url

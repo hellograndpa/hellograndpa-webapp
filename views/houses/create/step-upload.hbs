@@ -1,0 +1,18 @@
+<h1>HOUSE create form</h1>
+<h2>TELL US ABOUT YOUR HOUSE</h2>
+{{#each house.photos}}
+<img src="{{this}}" alt="" width="300px" height="300px">
+{{/each}}
+
+<form action="/houses/create/step-upload" enctype="multipart/form-data" method="post">
+  <!-- Field to choose the files to be uploaded -->
+  <label class="up_styles">
+    <input type="file" name="upload" multiple />
+  </label>
+  <br>
+  <!-- Button to upload the choosed files -->
+  <input class="sub" type="submit" value="Upload">
+</form>
+<script>
+
+</script>
