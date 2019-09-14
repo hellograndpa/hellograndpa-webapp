@@ -1,7 +1,12 @@
 const express = require('express');
 const { isLogged } = require('../middlewares/logIn');
-const { checkUserTypeGranpa, checkUserHaveOneHouse } = require('../middlewares/validationsign');
+const {
+  checkUserTypeGranpa,
+  checkUserHaveOneHouse,
+} = require('../middlewares/validationsign');
+
 const User = require('../models/User');
+
 const House = require('../models/House');
 
 const router = express.Router();

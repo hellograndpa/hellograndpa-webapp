@@ -1,3 +1,4 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -12,19 +13,12 @@ const { notifications } = require('./middlewares/nofifications');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const housesRouter = require('./routes/houses');
+const bookingRouter = require('./routes/booking');
 const bookingsRouter = require('./routes/bookings');
 
-mongoose.set('useCreateIndex', true);
-// mongoose.connect(
-//   'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
-//   { useNewUrlParser: true },
-// );
 
-mongoose.connect('mongodb://localhost/hellogranpa', {
-  keepAlive: true,
-  useNewUrlParser: true,
-  reconnectTries: Number.MAX_VALUE,
-});
+mongoose.set('useCreateIndex', true);
+mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
 
 const app = express();
 
@@ -68,6 +62,7 @@ app.use(notifications(app));
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/houses', housesRouter);
+app.use('/booking', bookingRouter);
 app.use('/user/bookings', bookingsRouter);
 
 // catch 404 and forward to error handler

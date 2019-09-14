@@ -1,3 +1,8 @@
+<div class="housedetails">
+
+
+
+</div>
 <h1>House details</h1>
 <img src="{{ image }}" alt="">
 
@@ -6,7 +11,7 @@
 <h3>User: {{house.user.username.firstname}}</h3>
 
 <h3>House specs:</h3>
-<ul>
+<ul class="housespecs">
   <li>Number of rooms: {{ house.rooms }}</li>
   <li>Meters: {{ house.m2 }}</li>
   <li>Address: {{ house.address.street }}</li>
@@ -59,4 +64,26 @@
   <li>{{this}}</li>
   {{/each}}
 </h3>
+<<<<<<< HEAD
+=======
+
+<br>
+
+<h3>BOOK THIS HOUSE:</h3>
+Hi: {{currentUser.username.firstname}}<br />
+{{#if currentUser}}
+<form name="BookingForm" method="GET" action="/booking/{{house._id}}">
+  <div>From when you whant to in?</div>
+  <input type="month" id="dateIn" name="dateIn" min="2019-10" value="">
+  <div>Until?</div>
+  <input type="month" id="dateOut" name="dateOut" min="2019-10" value="">
+  <input type="submit" value="Book!">
+</form>
+{{else}}
+<h3>Must be logged to book!</h3>
+{{/if}}
+
+<br /><br />
+
+>>>>>>> dev
 <a href="/houses/">Back</a>

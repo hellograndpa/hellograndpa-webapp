@@ -1,11 +1,6 @@
 const express = require('express');
-
+const Booking = require('../models/Booking');
 const router = express.Router();
-
-// get a list of my bookings
-router.get('/', (req, res, next) => {
-  res.render('bookings/list');
-});
 
 // details one of my bookings
 router.get('/:id', (req, res, next) => {

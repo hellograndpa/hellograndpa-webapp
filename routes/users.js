@@ -22,7 +22,7 @@ router.get('/', isLogged,
       req.flash('info', 'Usuario ok');
       res.render('user/show', { user });
     } catch (error) {
-      çreq.flash('error', 'Some error happen - Please try again');
+      req.flash('error', 'Some error happen - Please try again');
       res.render('/');
     }
   });

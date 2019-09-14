@@ -20,22 +20,15 @@ const BookingSchema = new Schema(
     dateOut: Date,
     status: {
       type: String,
-      enum: ['reserve', 'pay', 'cancel'],
+      enum: ['pending', 'reserve', 'pay', 'cancel'],
     },
     priceInit: Number,
     discount: Number,
     priceEnd: Number,
     sevicestoHosterCompromise: [
       {
-        servicesnecessary: {
-          typesevice: {
-            type: String,
-            enum: sevicesArray,
-          },
-          points: Number,
-          requirement: Boolean,
-          mandatory: Boolean,
-        },
+        typesevice: String,
+        points: Number,
       },
     ],
   },
