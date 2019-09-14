@@ -109,6 +109,9 @@ const HouseSchema = new Schema(
         },
       ],
     },
+    dateStart: { month: String, year: String },
+    visibleByUsers: Boolean,
+    active: Boolean,
   },
   { timestamps: true },
 );

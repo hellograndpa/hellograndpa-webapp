@@ -17,10 +17,15 @@ const {
   seviciosIncludedArray,
 } = require('../middlewares/enumerables');
 
-mongoose.connect(
-  'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
-  { useNewUrlParser: true },
-);
+// mongoose.connect(
+//   'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
+//   { useNewUrlParser: true },
+// );
+mongoose.connect('mongodb://localhost/hellogranpa', {
+  keepAlive: true,
+  useNewUrlParser: true,
+  reconnectTries: Number.MAX_VALUE,
+});
 
 const users = Array.from({ length: 50 }, () => ({
   username: {
@@ -159,6 +164,9 @@ User.collection
               costpermonth: 500,
               othersThings: faker.lorem.paragraph(2),
             },
+            dateStart: { month: 'January', year: '2019' },
+            visibleByUsers: true,
+            active: true,
           })
             .then(() => {
               console.log('house inserted', u._id);

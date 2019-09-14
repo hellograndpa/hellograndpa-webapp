@@ -15,10 +15,16 @@ const housesRouter = require('./routes/houses');
 const bookingsRouter = require('./routes/bookings');
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect(
-  'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
-  { useNewUrlParser: true },
-);
+// mongoose.connect(
+//   'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
+//   { useNewUrlParser: true },
+// );
+
+mongoose.connect('mongodb://localhost/hellogranpa', {
+  keepAlive: true,
+  useNewUrlParser: true,
+  reconnectTries: Number.MAX_VALUE,
+});
 
 const app = express();
 
