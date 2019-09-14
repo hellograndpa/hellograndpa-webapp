@@ -1,8 +1,8 @@
 <h1>HOUSE create form</h1>
-<h2>TELL US ABOUT YOUR HOUSE</h2>
+<h2>TELL US ABOUT YOUR HOUSE SETP 1 OF 4</h2>
 <form id="form" action="/houses/create/step-1" method="POST">
   <h2>ADDRESS</h2>
-  {{house}} <br><br>
+  <br><br>
   <label for="street">Street</label>
   <input type="text" name="street" placeholder=" Name of street " value="{{ house.address.street }}"><br>
   <label for="city">City</label>
@@ -14,5 +14,5 @@
   <label for="zip">Zip Code</label>
   <input type="text" name="zip" placeholder="00000" value="{{ house.address.zip }}"><br>
   <br>
-  <button type="submit">Save the house</button>
+  <button type="submit">Save the STEP 1</button>
 </form>

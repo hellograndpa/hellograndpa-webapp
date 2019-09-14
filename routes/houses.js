@@ -52,7 +52,7 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
         },
       });
 
-      req.flash('info', `Address house UUPDATE ${house} ${street} ${city} ${state} ${country} ${zip}`);
+      req.flash('info', 'Address house UUPDATE');
     } else {
       await House.create({
         user,
@@ -60,11 +60,11 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
           street, city, state, country, zip,
         },
       });
-      req.flash('info', `Address house CREATE ${house}`);
+      req.flash('info', 'Address house CREATE');
     }
     res.redirect('/houses/create/step-upload');
   } catch (error) {
-    req.flash('error', `Some error happen - Please try again  ${window} ${wc}`);
+    req.flash('error', 'Some error happen - Please try again');
     res.redirect('/');
   }
 });
@@ -118,10 +118,10 @@ router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
         },
         othersThings,
       });
-    req.flash('info', `Address house created ${house} ${house._id}`);
+    req.flash('info', 'FEATURES house created');
     res.redirect('/houses/create/step-3');
   } catch (error) {
-    req.flash('error', `Address house created ${house} ${house.id}`);
+    req.flash('error', 'Some error happen - Please try again');
     res.redirect('/houses/create/step-2');
   }
 });
@@ -182,7 +182,7 @@ router.post('/create/step-3', checkUserTypeGranpa, async (req, res, next) => {
         ],
         restricciones,
       });
-    req.flash('info', `house created  ${house}`);
+    req.flash('info', 'SERVICES HSOTER CREATED');
     res.redirect(`/houses/${house._id}`);
   } catch (error) {
     req.flash('error', 'Some error happen - Please try again');
@@ -190,36 +190,36 @@ router.post('/create/step-3', checkUserTypeGranpa, async (req, res, next) => {
   }
 });
 
+// UPLOAD FILES
 router.post('/create/step-upload', isLogged, checkUserTypeGranpa, async (req, res) => {
   const { ObjectId } = require('mongoose').Types;
   const query = { user: new ObjectId(req.session.currentUser._id) };
   const house = await House.findOne(query);
   const { photos } = house;
+
+  // formidable is a npm package
   const form = new formidable.IncomingForm();
 
   form.parse(req);
-
+  // you need control where you put the file
   form.on('fileBegin', (name, file) => {
-    file.path = `${__dirname}/../public/images/pictures/${house.id}_house_${photos.length + 1}`;
+    file.path = `${__dirname}/../public/images/pictures/${house.id}_house_${photos.length + 1}`;// __dirname now is the router path
   });
 
+  // save the file path into de date base
   form.on('file', async (name, file) => {
-    console.log(`Uploaded ${file.name}`);
     req.flash('info', 'upload ');
-
-    photos.push(`/images/pictures/${house.id}_house_1${photos.length + 1}`);
-    console.log(photos);
+    photos.push(`/images/pictures/${house.id}_house_${photos.length + 1}`);// the path estart inside of public/
     await House.findByIdAndUpdate(house._id,
       { photos });
     res.redirect('/houses/create/step-upload');
   });
-
+  // error control
   form.on('error', (err) => {
-    console.log('an error has occured with form upload');
-    console.log(err);
-    request.resume();
+    req.resume();
+    req.flash('error', `Some error happen ${err}`);
   });
-
+  // aborted control
   form.on('aborted', () => {
     console.log('user aborted upload');
   });
@@ -231,22 +231,22 @@ router.get('/create', isLogged, checkUserTypeGranpa, checkUserHaveOneHouse, (req
 });
 router.get('/create/step-1', isLogged, checkUserTypeGranpa, async (req, res, next) => {
   const house = await House.findOne({ user: req.session.currentUser._id });
-  req.flash('info', `house created  ${house}`);
+  req.flash('info', 'house created step 1');
   res.render('houses/create/step-1', { house });
 });
 router.get('/create/step-2', isLogged, checkUserTypeGranpa, async (req, res) => {
   const house = await House.findOne({ user: req.session.currentUser._id });
-  req.flash('info', `house created  ${house} `);
+  req.flash('info', 'house created step 2');
   res.render('houses/create/step-2', { house });
 });
 router.get('/create/step-3', isLogged, checkUserTypeGranpa, async (req, res) => {
   const house = await House.findOne({ user: req.session.currentUser._id });
-  req.flash('info', `house created  ${house} `);
+  req.flash('info', 'house created step 3');
   res.render('houses/create/step-3', { house });
 });
 router.get('/create/step-upload', isLogged, checkUserTypeGranpa, async (req, res) => {
   const house = await House.findOne({ user: req.session.currentUser._id });
-  req.flash('info', `house created  ${house.photos} `);
+  req.flash('info', 'photo uploaded');
   res.render('houses/create/step-upload', { house });
 });
 

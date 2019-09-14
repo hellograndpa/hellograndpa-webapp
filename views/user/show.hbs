@@ -100,16 +100,21 @@
   <input type="text" name="zip" placeholder="00000" value="{{ user.address.zip }}"><br>
   <br>
   <h2>USER TYPE</h2>
+
+
   {{#if user.grandpaUser }}
-  <label><input type="radio" name="typeUser" value="Normla"> <span>Normla</span> </label><br>
   <label><input type="radio" name="typeUser" value="Grandpa" checked> <span>Grandpa</span></label><br>
-  <label><input type="radio" name="typeUser" value="Mentor"> <span>Mentor</span></label><br>
   {{else}}
-  <label><input type="radio" name="typeUser" value="Normla" checked> <span>Normla</span>
-  </label><br>
   <label><input type="radio" name="typeUser" value="Grandpa"> <span>Grandpa</span></label><br>
+  {{/if}}
+
+  {{#if user.mentorUser }}
+  <label><input type="radio" name="typeUser" value="Mentor" checked> <span>Mentor</span></label><br>
+  {{else}}
   <label><input type="radio" name="typeUser" value="Mentor"> <span>Mentor</span><br></label>
   {{/if}}
+  <label><input type="radio" name="typeUser" value="Normla"> <span>Ninguno de ellos</span></label><br>
+
   <p>
     <button type="submit">Save modifications</button>
   </p>

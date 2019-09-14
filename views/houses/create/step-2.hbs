@@ -1,73 +1,80 @@
 <h1>HOUSE create form</h1>
-<h2>TELL US ABOUT YOUR HOUSE</h2>
+<h2>TELL US ABOUT YOUR HOUSE STEP 3 OF 4</h2>
 <form id="form" action="/houses/create/step-2" method="POST">
-  <label for="firtname">Number of rooms</label><br>
-  <input type="radio" name="rooms" value="1" checked> 1 <br>
-  <input type="radio" name="rooms" value="2"> 2<br>
-  <input type="radio" name="rooms" value="3"> 3<br>
-  <input type="radio" name="rooms" value="4"> +4 or more<br>
+  <h5>Number of rooms</h5>
+  <label><input type="radio" name="rooms" value="1" checked> <span>1</span> </label><br>
+  <label><input type="radio" name="rooms" value="2"> <span>2</span> </label><br>
+  <label><input type="radio" name="rooms" value="3"> <span>3</span></label><br>
+  <label><input type="radio" name="rooms" value="4"> <span>+4 or more</span></label><br>
   <br>
-  <label for="m2">M2</label><br>
+  <label for="m2">M2</label>
   <input type="text" name="house-m2" placeholder="house-m2" value="">
   <br>
   <label for="description">Description</label><br>
   <textarea rows="5" cols="33" name="description"></textarea><br>
 
-  <label for="firtname">features</label><br>
-  <input type="checkbox" name="features" value="calfaccion"> Calefaccion <br>
-  <input type="checkbox" name="features" value="A/C"> A/C <br>
-  <input type="checkbox" name="features" value="Piscina"> Piscina <br>
-  <input type="checkbox" name="features" value="Terraza"> Terraza <br>
-  <input type="checkbox" name="features" value="Ascensor"> Ascensor <br>
-  <input type="checkbox" name="features" value="calfaccion"> WIFI <br>
+  <h5>features</h5><br>
+  <label><input type="checkbox" name="features" value="calfaccion"> <span>Calefaccion</span></label><br>
+  <label><input type="checkbox" name="features" value="A/C"> <span>A/C </span></label><br>
+  <label><input type="checkbox" name="features" value="Piscina"> <span>Piscina</span> </label><br>
+  <label><input type="checkbox" name="features" value="Terraza"> <span>Terraza</span></label> <br>
+  <label><input type="checkbox" name="features" value="Ascensor"> <span>Ascensor</span> </label><br>
+  <label><input type="checkbox" name="features" value="calfaccion"> <span> WIFI </span></label><br>
   <br>
 
-  <label for="firtname">electro</label><br>
-  <input type="checkbox" name="electro" value="cocina"> cocina <br>
-  <input type="checkbox" name="electro" value="nevera"> nevera <br>
-  <input type="checkbox" name="electro" value="lavadora"> lavadora <br>
-  <input type="checkbox" name="electro" value="secadora"> secadora <br>
-  <input type="checkbox" name="electro" value="secador de pelo"> secador de pelo <br>
-  <input type="checkbox" name="electro" value="microondas"> microondas <br>
-  <input type="checkbox" name="electro" value="batidora"> batidora <br>
-  <input type="checkbox" name="electro" value="aspiradora"> aspiradora <br>
-  <input type="checkbox" name="electro" value="tostadora"> tostadora <br>
+  <h5>electro</h5>
+  <label><input type="checkbox" name="electro" value="nevera"> <span>nevera </span></label><br>
+  <label><input type="checkbox" name="electro" value="lavadora"> <span>lavadora </span></label><br>
+  <label><input type="checkbox" name="electro" value="cocina"> <span>cocina </span></label><br>
+  <label><input type="checkbox" name="electro" value="secadora"> <span>secadora</span></label> <br>
+  <label><input type="checkbox" name="electro" value="secador de pelo"> <span>secador de pelo</span></label> <br>
+  <label><input type="checkbox" name="electro" value="microondas"> <span>microondas</span></label> <br>
+  <label><input type="checkbox" name="electro" value="batidora"> <span> batidora </span></label><br>
+  <label><input type="checkbox" name="electro" value="aspiradora"> <span>aspiradora</span></label> <br>
+  <label><input type="checkbox" name="electro" value="tostadora"> <span>tostadora </span></label><br>
   <br>
 
-  <label for="firtname">Services Included</label><br>
-  <input type="checkbox" name="sevicesincluded" value="Agua"> Agua <br>
-  <input type="checkbox" name="sevicesincluded" value="agua caliene"> agua caliene <br>
-  <input type="checkbox" name="sevicesincluded" value="Electricidad"> Electricidad <br>
-  <input type="checkbox" name="sevicesincluded" value="Internet"> Internet <br>
-  <input type="checkbox" name="sevicesincluded" value="Utensilios baño"> Utensilios baño <br>
-  <input type="checkbox" name="sevicesincluded" value="desayuno"> desayuno <br>
-  <input type="checkbox" name="sevicesincluded" value="cenas"> cenas <br>
-  <input type="checkbox" name="sevicesincluded" value="Utensilios cocina"> Utensilios cocina <br>
-  <input type="checkbox" name="sevicesincluded" value="Cama"> Cama <br>
+  <h5>Services Included</h5>
+  <label><input type="checkbox" name="sevicesincluded" value="Agua"> <span>Agua</span></label> <br>
+  <label><input type="checkbox" name="sevicesincluded" value="agua caliene"> <span>agua caliene</span></label> <br>
+  <label><input type="checkbox" name="sevicesincluded" value="Electricidad"> <span>Electricidad</span></label> <br>
+  <label><input type="checkbox" name="sevicesincluded" value="Internet"> <span>Internet</span></label> <br>
+  <label><input type="checkbox" name="sevicesincluded" value="Utensilios baño"> <span>Utensilios baño </span></label>
   <br>
-  <h2> && THE ROOM</h2>
-  <h3>AG</h3><br>
-  <label for="roomm2">M2 Room</label><br>
+  <label><input type="checkbox" name="sevicesincluded" value="desayuno"> <span>desayuno</span></label> <br>
+  <label><input type="checkbox" name="sevicesincluded" value="cenas"> <span>cenas</span></label> <br>
+  <label><input type="checkbox" name="sevicesincluded" value="Utensilios cocina"> <span>Utensilios cocina</span></label>
+  <br>
+  <label><input type="checkbox" name="sevicesincluded" value="Cama"> <span>Cama</span></label> <br>
+
+  <br>
+  <h5> && THE ROOM</h5>
+  <label for="roomm2">M2 Room</label>
   <input type="text" name="room-m2" placeholder="000" value="">
   <br>
   <label for="wardrobes">wardrobes</label><br>
-  <input type="radio" name="wardrobes" value="uno"> uno<br>
-  <input type="radio" name="wardrobes" value="dos"> dos<br><br>
-  <label for="window">window</label><br>
-  <input type="radio" name="window" value="uno"> uno<br>
-  <input type="radio" name="window" value="dos"> dos<br><br>
-  <label for="window">wc</label><br>
-  <input type="radio" name="wc" value="private bathroom"> private bathroom<br>
-  <input type="radio" name="wc" value="share bathroom"> share bathroom<br><br>
-  <input type="checkbox" name="balcony" value="true"> have a balcony<br>
-  <input type="checkbox" name="heat" value="true"> have a heat<br>
-  <input type="checkbox" name="ac" value="true"> have a ac<br>
-  <input type="checkbox" name="tv" value="true"> have a tv<br>
-  <input type="checkbox" name="table" value="true"> have a tabe<br>
-  <input type="checkbox" name="chair" value="true"> have a chair<br>
+  <label><input type="radio" name="wardrobes" value="uno"> <span>uno</span></label><br>
+  <label><input type="radio" name="wardrobes" value="dos"> <span>dos</span></label><br><br>
+  <label>window</label><br>
+  <label><input type="radio" name="window" value="uno"> <span>uno</span></label><br>
+  <label><input type="radio" name="window" value="dos"> <span>dos</span></label><br><br>
+  <label>wc</label><br>
+  <label><input type="radio" name="wc" value="private bathroom"> <span>private bathroom</span></label><br>
+  <label><input type="radio" name="wc" value="share bathroom"> <span>share bathroom</span></label><br><br>
+
+  <label><input type="checkbox" name="balcony" value="true"> <span>have a balcony</span></label><br>
+  <label><input type="checkbox" name="heat" value="true"> <span>have a heat</span></label><br>
+  <label><input type="checkbox" name="ac" value="true"> <span>have a ac</span></label><br>
+  <label><input type="checkbox" name="tv" value="true"> <span>have a tv</span></label><br>
+  <label><input type="checkbox" name="table" value="true"> <span>have a tabe</span></label><br>
+  <label><input type="checkbox" name="chair" value="true"> <span>have a chair</span></label><br>
   <label for="othersThings">Others Things</label><br>
   <textarea rows="5" cols="33" name="othersThings"></textarea><br>
+  <br>
+  <label for="m2">Cost</label>
+  <input type="text" name="costpermonth" placeholder="0000" value="">
+  <br>
   <p>
-    <button type="submit">Save the house</button>
+    <button type="submit">Save the house GO TO THE STEP 4</button>
   </p>
 </form>
