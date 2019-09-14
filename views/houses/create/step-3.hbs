@@ -1,0 +1,68 @@
+<h1>HOUSE create form</h1>
+<h2>YOUR CONDITIONS </h2>
+<form id="form" action="/houses/create/step-3" method="POST">
+  <h2>SEVICES MANDATOY OR OPTATIVE</h2 <label for="firtname">Services for the Grandpa</label>
+  <h3>AD</h3>
+  <input type="checkbox" name="adr" value="true"> ad requeriment<br>
+  <input type="checkbox" name="adm" value="true"> ad mantdatory <br>
+
+  <h3>AB</h3>
+  <input type="checkbox" name="abr" value="true"> ab requeriment<br>
+  <input type="checkbox" name="abm" value="true"> ab mantdatory <br>
+
+  <h3>AF</h3>
+  <input type="checkbox" name="afr" value="true"> af requeriment<br>
+  <input type="checkbox" name="afm" value="true"> af mantdatoriy <br>
+
+  <h3>AG</h3>
+  <input type="checkbox" name="agr" value="true"> ag requeriment<br>
+  <input type="checkbox" name="agm" value="true"> ag mantdatoriy <br>
+
+  <h3>AZ</h3>
+  <input type="checkbox" name="azr" value="true"> az requeriment<br>
+  <input type="checkbox" name="azm" value="true"> az mantdatoriy <br>
+  <br>
+  <br>
+  <h2>OTHER RESTICTIONS</h2>
+  <label for="restricciones">Restricctions</label><br>
+  <textarea rows="5" cols="33" name="restricciones"></textarea><br>
+
+  +<h2>START AVAILABLE </h2>
+  <label for="monthStart">Month Start</label><br>
+  <select name="month">
+    <option>January</option>
+    <option>February</option>
+    <option>March</option>
+    <option>April</option>
+    <option>May</option>
+    <option>June</option>
+    <option>July</option>
+    <option>August</option>
+    <option>September</option>
+    <option>October</option>
+    <option>November</option>
+    <option>December</option>
+  </select><br>
+  <label for="yearStart">Year Start</label><br>
+  <select name="year">
+    <option>2009</option>
+    <option>2010</option>
+    <option>2011</option>
+    <option>2012</option>
+    <option>2013</option>
+    <option>2014</option>
+    <option>2015</option>
+    <option>2016</option>
+    <option>2017</option>
+    <option>2018</option>
+  </select><br><br>
+
+
+  <h2>YOUR PRICE</h2>
+  <label for="m2">Cost</label>
+  <input type="text" name="costpermonth" placeholder="0000" value="">
+  <br>
+  <p>
+    <button type="submit">Save the house</button>
+  </p>
+</form>
