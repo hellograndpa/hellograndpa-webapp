@@ -1,18 +1,18 @@
 <h1>HOUSE create form</h1>
 <h2>TELL US ABOUT YOUR HOUSE</h2>
 <form id="form" action="/houses" method="POST">
-  <label for="firtname">Number of rooms</label>
-  <input type="radio" name="rooms" value="1" checked> 1 <br>
-  <input type="radio" name="rooms" value="2"> 2<br>
-  <input type="radio" name="rooms" value="3"> 3<br>
-  <input type="radio" name="rooms" value="4"> +4 or more<br>
+  <h5>Number of rooms</h5>
+  <label><input type="radio" name="rooms" value="1" checked> <span>1</span> </label><br>
+  <label><input type="radio" name="rooms" value="2"> <span>2</span> </label><br>
+  <label><input type="radio" name="rooms" value="3"> <span>3</span></label><br>
+  <label><input type="radio" name="rooms" value="4"> <span>+4 or more</span></label><br>
   <br>
   <label for="m2">M2</label>
   <input type="text" name="house-m2" placeholder="house-m2" value="">
   <br>
   <label for="description">Description</label><br>
   <textarea rows="5" cols="33" name="description"></textarea><br>
-  <h2>ADDRESS</h2>
+  <h5>ADDRESS</h5>
   <label for="street">Street</label>
   <input type="text" name="street" placeholder=" Name of street " value=""><br>
   <label for="city">City</label>
@@ -24,84 +24,88 @@
   <label for="zip">Zip Code</label>
   <input type="text" name="zip" placeholder="00000" value=""><br>
 
-  <label for="firtname">features</label>
-  <input type="checkbox" name="features" value="calfaccion"> Calefaccion <br>
-  <input type="checkbox" name="features" value="A/C"> A/C <br>
-  <input type="checkbox" name="features" value="Piscina"> Piscina <br>
-  <input type="checkbox" name="features" value="Terraza"> Terraza <br>
-  <input type="checkbox" name="features" value="Ascensor"> Ascensor <br>
-  <input type="checkbox" name="features" value="calfaccion"> WIFI <br>
+  <h5>features</h5><br>
+  <label><input type="checkbox" name="features" value="calfaccion"> <span>Calefaccion</span></label><br>
+  <label><input type="checkbox" name="features" value="A/C"> <span>A/C </span></label><br>
+  <label><input type="checkbox" name="features" value="Piscina"> <span>Piscina</span> </label><br>
+  <label><input type="checkbox" name="features" value="Terraza"> <span>Terraza</span></label> <br>
+  <label><input type="checkbox" name="features" value="Ascensor"> <span>Ascensor</span> </label><br>
+  <label><input type="checkbox" name="features" value="calfaccion"> <span> WIFI </span></label><br>
   <br>
 
-  <label for="firtname">electro</label>
-  <input type="checkbox" name="electro" value="cocina"> cocina <br>
-  <input type="checkbox" name="electro" value="nevera"> nevera <br>
-  <input type="checkbox" name="electro" value="lavadora"> lavadora <br>
-  <input type="checkbox" name="electro" value="secadora"> secadora <br>
-  <input type="checkbox" name="electro" value="secador de pelo"> secador de pelo <br>
-  <input type="checkbox" name="electro" value="microondas"> microondas <br>
-  <input type="checkbox" name="electro" value="batidora"> batidora <br>
-  <input type="checkbox" name="electro" value="aspiradora"> aspiradora <br>
-  <input type="checkbox" name="electro" value="tostadora"> tostadora <br>
+  <h5>electro</h5>
+  <label><input type="checkbox" name="electro" value="nevera"> <span>nevera </span></label><br>
+  <label><input type="checkbox" name="electro" value="lavadora"> <span>lavadora </span></label><br>
+  <label><input type="checkbox" name="electro" value="cocina"> <span>cocina </span></label><br>
+  <label><input type="checkbox" name="electro" value="secadora"> <span>secadora</span></label> <br>
+  <label><input type="checkbox" name="electro" value="secador de pelo"> <span>secador de pelo</span></label> <br>
+  <label><input type="checkbox" name="electro" value="microondas"> <span>microondas</span></label> <br>
+  <label><input type="checkbox" name="electro" value="batidora"> <span> batidora </span></label><br>
+  <label><input type="checkbox" name="electro" value="aspiradora"> <span>aspiradora</span></label> <br>
+  <label><input type="checkbox" name="electro" value="tostadora"> <span>tostadora </span></label><br>
   <br>
 
-  <label for="firtname">Services Included</label>
-  <input type="checkbox" name="sevicesincluded" value="Agua"> Agua <br>
-  <input type="checkbox" name="sevicesincluded" value="agua caliene"> agua caliene <br>
-  <input type="checkbox" name="sevicesincluded" value="Electricidad"> Electricidad <br>
-  <input type="checkbox" name="sevicesincluded" value="Internet"> Internet <br>
-  <input type="checkbox" name="sevicesincluded" value="Utensilios baño"> Utensilios baño <br>
-  <input type="checkbox" name="sevicesincluded" value="desayuno"> desayuno <br>
-  <input type="checkbox" name="sevicesincluded" value="cenas"> cenas <br>
-  <input type="checkbox" name="sevicesincluded" value="Utensilios cocina"> Utensilios cocina <br>
-  <input type="checkbox" name="sevicesincluded" value="Cama"> Cama <br>
+  <h5>Services Included</h5>
+  <label><input type="checkbox" name="sevicesincluded" value="Agua"> <span>Agua</span></label> <br>
+  <label><input type="checkbox" name="sevicesincluded" value="agua caliene"> <span>agua caliene</span></label> <br>
+  <label><input type="checkbox" name="sevicesincluded" value="Electricidad"> <span>Electricidad</span></label> <br>
+  <label><input type="checkbox" name="sevicesincluded" value="Internet"> <span>Internet</span></label> <br>
+  <label><input type="checkbox" name="sevicesincluded" value="Utensilios baño"> <span>Utensilios baño </span></label>
+  <br>
+  <label><input type="checkbox" name="sevicesincluded" value="desayuno"> <span>desayuno</span></label> <br>
+  <label><input type="checkbox" name="sevicesincluded" value="cenas"> <span>cenas</span></label> <br>
+  <label><input type="checkbox" name="sevicesincluded" value="Utensilios cocina"> <span>Utensilios cocina</span></label>
+  <br>
+  <label><input type="checkbox" name="sevicesincluded" value="Cama"> <span>Cama</span></label> <br>
+
   <br>
 
-  <label for="firtname">Services for the Grandpa</label>
-  <h3>AD</h3>
-  <input type="checkbox" name="adr" value="true"> ad requeriment<br>
-  <input type="checkbox" name="adm" value="true"> ad mantdatory <br>
+  <h5>Services for the Grandpa</h5>
+  <h6>AD</h6>
+  <label><input type="checkbox" name="adr" value="true"> <span> ad requeriment</span></label><br>
+  <label><input type="checkbox" name="adm" value="true"> <span>ad mantdatory </span></label><br>
 
-  <h3>AB</h3>
-  <input type="checkbox" name="abr" value="true"> ab requeriment<br>
-  <input type="checkbox" name="abm" value="true"> ab mantdatory <br>
+  <h6>AB</h6>
+  <label><input type="checkbox" name="abr" value="true"> <span> abr requeriment</span></label><br>
+  <label><input type="checkbox" name="abm" value="true"> <span>ab mantdatory </span> </label><br>
 
-  <h3>AF</h3>
-  <input type="checkbox" name="afr" value="true"> af requeriment<br>
-  <input type="checkbox" name="afm" value="true"> af mantdatoriy <br>
+  <h6>AF</h6>
+  <label><input type="checkbox" name="afr" value="true"> <span>af requeriment</span></label><br>
+  <label><input type="checkbox" name="afm" value="true"> <span>af mantdatoriy</span></label> <br>
 
-  <h3>AG</h3>
-  <input type="checkbox" name="agr" value="true"> ag requeriment<br>
-  <input type="checkbox" name="agm" value="true"> ag mantdatoriy <br>
+  <h6>AG</h6>
+  <label><input type="checkbox" name="agr" value="true"> <span>ag requeriment</span></label><br>
+  <label><input type="checkbox" name="agm" value="true"> <span>ag mantdatoriy </span></label><br>
 
-  <h3>AZ</h3>
-  <input type="checkbox" name="azr" value="true"> az requeriment<br>
-  <input type="checkbox" name="azm" value="true"> az mantdatoriy <br>
+  <h6>AZ</h6>
+  <label><input type="checkbox" name="azr" value="true"> <span>az requeriment</span></label><br>
+  <label><input type="checkbox" name="azm" value="true"> <span>az mantdatoriy </span></label><br>
   <br>
   <br>
   <label for="restricciones">Restricciones</label><br>
   <textarea rows="5" cols="33" name="restricciones"></textarea><br>
 
-  <h2>ROOM</h2>
-  <h3>AG</h3><br>
+  <h5>ROOM</h5>
+  <h6>AG</h6><br>
   <label for="roomm2">M2 Room</label>
   <input type="text" name="room-m2" placeholder="000" value="">
   <br>
   <label for="wardrobes">wardrobes</label><br>
-  <input type="radio" name="wardrobes" value="uno"> uno<br>
-  <input type="radio" name="wardrobes" value="dos"> dos<br><br>
-  <label for="window">window</label><br>
-  <input type="radio" name="window" value="uno"> uno<br>
-  <input type="radio" name="window" value="dos"> dos<br><br>
-  <label for="window">wc</label><br>
-  <input type="radio" name="wc" value="private bathroom"> private bathroom<br>
-  <input type="radio" name="wc" value="share bathroom"> share bathroom<br><br>
-  <input type="checkbox" name="balcony" value="true"> have a balcony<br>
-  <input type="checkbox" name="heat" value="true"> have a heat<br>
-  <input type="checkbox" name="ac" value="true"> have a ac<br>
-  <input type="checkbox" name="tv" value="true"> have a tv<br>
-  <input type="checkbox" name="table" value="true"> have a tabe<br>
-  <input type="checkbox" name="chair" value="true"> have a chair<br>
+  <label><input type="radio" name="wardrobes" value="uno"> <span>uno</span></label><br>
+  <label><input type="radio" name="wardrobes" value="dos"> <span>dos</span></label><br><br>
+  <label>window</label><br>
+  <label><input type="radio" name="window" value="uno"> <span>uno</span></label><br>
+  <label><input type="radio" name="window" value="dos"> <span>dos</span></label><br><br>
+  <label>wc</label><br>
+  <label><input type="radio" name="wc" value="private bathroom"> <span>private bathroom</span></label><br>
+  <label><input type="radio" name="wc" value="share bathroom"> <span>share bathroom</span></label><br><br>
+
+  <label><input type="checkbox" name="balcony" value="true"> <span>have a balcony</span></label><br>
+  <label><input type="checkbox" name="heat" value="true"> <span>have a heat</span></label><br>
+  <label><input type="checkbox" name="ac" value="true"> <span>have a ac</span></label><br>
+  <label><input type="checkbox" name="tv" value="true"> <span>have a tv</span></label><br>
+  <label><input type="checkbox" name="table" value="true"> <span>have a tabe</span></label><br>
+  <label><input type="checkbox" name="chair" value="true"> <span>have a chair</span></label><br>
   <label for="othersThings">Others Things</label><br>
   <textarea rows="5" cols="33" name="othersThings"></textarea><br>
   <br>
