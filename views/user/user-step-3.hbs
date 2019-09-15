@@ -1,30 +1,75 @@
-<h1>User Profile</h1>
-<img src="{{user.avatar}}" alt="avatar image"><br>
-<form id="form" action="/user/update-type" method="POST">
+<div class="container">
+  <div class="row">
+    <div class="col s12 m4 l3">
+      <div class="collection">
+        <a href="/user/step-1" class="collection-item">Edit Profile</a>
+        <a href="/user/avatar-upload" class="collection-item">Photo Avatar </a>
+        <a href="/user/step-3" class="collection-item active">User Type</a>
+      </div>
+    </div>
+    <div class="col s12 m8 l9">
+      <h2>USER TYPE</h2>
+      <form id="form" action="/user/update-type" method="POST">
 
-  <h2>USER TYPE</h2>
+        <div class="col s12 m12 l4">
+          <div class="card-panel hoverable">
+            <label>
+              {{#if user.grandpaUser }}
+              <input type="radio" name="typeUser" value="Grandpa" checked>
+              {{else}}
+              <input type="radio" name="typeUser" value="Grandpa">
+              {{/if}}
+              <span>I'M A GRANDPA<br>
+                I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively. I am similar to what is called a
+                panel
+                in other frameworks.
+              </span>
+            </label>
 
+          </div>
+        </div>
+        <div class="col s12 m12 l4">
+          <div class="card-panel hoverable ">
+            <label>
+              {{#if user.mentorUser }}
+              <input type="radio" name="typeUser" value="Mentor" checked>
+              {{else}}
+              <input type="radio" name="typeUser" value="Mentor">
+              {{/if}}
+              <span>I'M A MENTOR<br>
+                I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively. I am similar to what is called a
+                panel
+                in other frameworks.
+              </span>
+            </label>
 
-  {{#if user.grandpaUser }}
-  <label><input type="radio" name="typeUser" value="Grandpa" checked> <span>Grandpa</span></label><br>
-  {{else}}
-  <label><input type="radio" name="typeUser" value="Grandpa"> <span>Grandpa</span></label><br>
-  {{/if}}
+          </div>
+        </div>
 
-  {{#if user.mentorUser }}
-  <label><input type="radio" name="typeUser" value="Mentor" checked> <span>Mentor</span></label><br>
-  {{else}}
-  <label><input type="radio" name="typeUser" value="Mentor"> <span>Mentor</span><br></label>
-  {{/if}}
-  <label><input type="radio" name="typeUser" value="Normla"> <span>Ninguno de ellos</span></label><br>
+        <div class="col s12 m12 l4">
+          <div class="card-panel hoverable">
+            <label>
 
-  <p>
-    <button type="submit">Save modifications</button>
-  </p>
-</form>
-<p>
-  {{#if user.grandpaUser }}
-  <button type="submit">create house</button>
-  {{/if}}
-</p>
-<a href="/logout">Logout</a>
+              <input type="radio" name="typeUser" value="normal">
+
+              <span>I'M A USER<br>
+                I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively. I am similar to what is called a
+                panel
+                in other frameworks.
+              </span>
+            </label>
+
+          </div>
+        </div>
+        <div class="col s12 m12 l12 center-align">
+          <button class="btn waves-effect waves-light" type="submit" name="action">SAVE TYPE USER</button>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
