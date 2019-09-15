@@ -16,10 +16,9 @@ const housesRouter = require('./routes/houses');
 const bookingRouter = require('./routes/booking');
 const bookingsRouter = require('./routes/bookings');
 
-
 mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
-
+//mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
 const app = express();
 
 // view engine setup
@@ -39,15 +38,15 @@ app.use(
   session({
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
-      ttl: 24 * 60 * 60, // 1 day
+      ttl: 24 * 60 * 60 // 1 day
     }),
     secret: 'ironhack',
     resave: true,
     saveUninitialized: true,
     cookie: {
-      maxAge: 24 * 60 * 60 * 1000,
-    },
-  }),
+      maxAge: 24 * 60 * 60 * 1000
+    }
+  })
 );
 
 app.use((req, res, next) => {
