@@ -1,22 +1,35 @@
-<h1>HOUSE create form</h1>
-<h2>TELL US ABOUT YOUR HOUSE SETP 1 OF 4</h2>
-<form id="form" action="/houses/create/step-1" method="POST">
-  <h2>TITLE OF YOUR HOUSE</h2>
-  <br><br>
-  <label for="street">Title</label>
-  <input type="text" name="title" placeholder="Title of your house" value="{{ house.title }}"><br>
-  <h2>ADDRESS</h2>
-  <br><br>
-  <label for="street">Street</label>
-  <input type="text" name="street" placeholder=" Name of street " value="{{ house.address.street }}"><br>
-  <label for="city">City</label>
-  <input type="text" name="city" placeholder="Name of city" value="{{ house.address.city }}"><br>
-  <label for="state">state</label>
-  <input type="text" name="state" placeholder="Name of state" value="{{ house.address.state }}"><br>
-  <label for="country">country</label>
-  <input type="text" name="country" placeholder="Name of Country" value="{{ house.address.country }}"><br>
-  <label for="zip">Zip Code</label>
-  <input type="text" name="zip" placeholder="00000" value="{{ house.address.zip }}"><br>
-  <br>
-  <button type="submit">Save the STEP 1</button>
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col s4">
+      enlaces <br>
+      enlaces <br>
+      enlaces <br>
+    </div>
+    <div class="col s8">
+      <h1>HOUSE create form</h1>
+      <h2>TELL US ABOUT YOUR HOUSE SETP 1 OF 4</h2>
+      <form id="form" action="/houses/create/step-1" method="POST">
+        <h2>TITLE OF YOUR HOUSE</h2>
+        <br><br>
+        <label for="title">Title</label>
+        <input type="text" name="title" placeholder="Title of your house" value="{{ house.title }}"><br>
+        <h2>ADDRESS</h2>
+        <br><br>
+        <label for="street">Street</label>
+        <input type="text" name="street" placeholder=" Name of street " value="{{ house.address.street }}"><br>
+        <label for="city">City</label>
+        <input type="text" name="city" placeholder="Name of city" value="{{ house.address.city }}"><br>
+        <label for="state">state</label>
+        <input type="text" name="state" placeholder="Name of state" value="{{ house.address.state }}"><br>
+        <label for="country">country</label>
+        <input type="text" name="country" placeholder="Name of Country" value="{{ house.address.country }}"><br>
+        <label for="zip">Zip Code</label>
+        <input type="text" name="zip" placeholder="00000" value="{{ house.address.zip }}"><br>
+        <br>
+        <button type="submit">Save the STEP 1</button>
+      </form>
+
+    </div>
+
+  </div>
+</div>

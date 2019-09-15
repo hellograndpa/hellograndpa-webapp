@@ -33,6 +33,7 @@ router.get('/', async (req, res, next) => {
 // insert a house (if logged)
 router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
   const {
+    title,
     street,
     city,
     state,
@@ -47,6 +48,7 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
     // create house
     if (house) {
       await House.findByIdAndUpdate(house._id, {
+        title,
         address: {
           street, city, state, country, zip,
         },
@@ -56,6 +58,7 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
     } else {
       await House.create({
         user,
+        title,
         address: {
           street, city, state, country, zip,
         },
