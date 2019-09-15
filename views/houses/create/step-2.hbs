@@ -1,80 +1,241 @@
-<h1>HOUSE create form</h1>
-<h2>TELL US ABOUT YOUR HOUSE STEP 3 OF 4</h2>
-<form id="form" action="/houses/create/step-2" method="POST">
-  <h5>Number of rooms</h5>
-  <label><input type="radio" name="rooms" value="1" checked> <span>1</span> </label><br>
-  <label><input type="radio" name="rooms" value="2"> <span>2</span> </label><br>
-  <label><input type="radio" name="rooms" value="3"> <span>3</span></label><br>
-  <label><input type="radio" name="rooms" value="4"> <span>+4 or more</span></label><br>
-  <br>
-  <label for="m2">M2</label>
-  <input type="text" name="house-m2" placeholder="house-m2" value="">
-  <br>
-  <label for="description">Description</label><br>
-  <textarea rows="5" cols="33" name="description"></textarea><br>
+<div class="container">
+  <div class="row">
 
-  <h5>features</h5><br>
-  <label><input type="checkbox" name="features" value="calfaccion"> <span>Calefaccion</span></label><br>
-  <label><input type="checkbox" name="features" value="A/C"> <span>A/C </span></label><br>
-  <label><input type="checkbox" name="features" value="Piscina"> <span>Piscina</span> </label><br>
-  <label><input type="checkbox" name="features" value="Terraza"> <span>Terraza</span></label> <br>
-  <label><input type="checkbox" name="features" value="Ascensor"> <span>Ascensor</span> </label><br>
-  <label><input type="checkbox" name="features" value="calfaccion"> <span> WIFI </span></label><br>
-  <br>
+    <div class="col s12 m4 l3">
+      <div class="collection">
+        <a href="/houses/create/step-1" class="collection-item">Edit House</a>
+        <a href="/houses/create/step-upload" class="collection-item ">House's photo </a>
+        <a href="/houses/create/step-2" class="collection-item active">About you house</a>
+        <a href="/houses/create/step-3" class="collection-item">User Type</a>
+      </div>
+      <a class="rounded waves-effect waves-light btn teal lighten-3 " href="/user/{{user.id}}">PREVIEW THE HOUSE</a>
+    </div>
 
-  <h5>electro</h5>
-  <label><input type="checkbox" name="electro" value="nevera"> <span>nevera </span></label><br>
-  <label><input type="checkbox" name="electro" value="lavadora"> <span>lavadora </span></label><br>
-  <label><input type="checkbox" name="electro" value="cocina"> <span>cocina </span></label><br>
-  <label><input type="checkbox" name="electro" value="secadora"> <span>secadora</span></label> <br>
-  <label><input type="checkbox" name="electro" value="secador de pelo"> <span>secador de pelo</span></label> <br>
-  <label><input type="checkbox" name="electro" value="microondas"> <span>microondas</span></label> <br>
-  <label><input type="checkbox" name="electro" value="batidora"> <span> batidora </span></label><br>
-  <label><input type="checkbox" name="electro" value="aspiradora"> <span>aspiradora</span></label> <br>
-  <label><input type="checkbox" name="electro" value="tostadora"> <span>tostadora </span></label><br>
-  <br>
+    <div class="col s12 m8 l9">
+      <h2>HOUSE DESCRIPTIONS</h2> <br>
+      <h5>SETP 3 OF 4</h5>
+      <form id="form" action="/houses/create/step-2" method="POST">
+        <div class=" col s12 m12 l12">
+          <h5>Title of your house</h5>
+          <input type="text" name="title" placeholder="title" value="{{house.title}}">
+        </div>
+        <div class=" col s12 m12 l12">
+          <div class="input-field col s12 m4 l3">
+            <h5>M2 house</h5>
 
-  <h5>Services Included</h5>
-  <label><input type="checkbox" name="sevicesincluded" value="Agua"> <span>Agua</span></label> <br>
-  <label><input type="checkbox" name="sevicesincluded" value="agua caliene"> <span>agua caliene</span></label> <br>
-  <label><input type="checkbox" name="sevicesincluded" value="Electricidad"> <span>Electricidad</span></label> <br>
-  <label><input type="checkbox" name="sevicesincluded" value="Internet"> <span>Internet</span></label> <br>
-  <label><input type="checkbox" name="sevicesincluded" value="Utensilios baño"> <span>Utensilios baño </span></label>
-  <br>
-  <label><input type="checkbox" name="sevicesincluded" value="desayuno"> <span>desayuno</span></label> <br>
-  <label><input type="checkbox" name="sevicesincluded" value="cenas"> <span>cenas</span></label> <br>
-  <label><input type="checkbox" name="sevicesincluded" value="Utensilios cocina"> <span>Utensilios cocina</span></label>
-  <br>
-  <label><input type="checkbox" name="sevicesincluded" value="Cama"> <span>Cama</span></label> <br>
+            <input type="text" name="house-m2" placeholder="house-m2" value="">
+          </div>
+          <div class="input-field col s12 m12 l9">
+            <h5>Number of rooms</h5>
+            <div class="input-field col s6 m3 l2">
+              <label><input type="radio" name="rooms" value="1" checked> <span>1</span> </label><br>
+            </div>
+            <div class="input-field col s6 m3 l2">
+              <label><input type="radio" name="rooms" value="2"> <span>2</span> </label><br>
+            </div>
+            <div class="input-field col s6 m3 l2">
+              <label><input type="radio" name="rooms" value="3"> <span>3</span></label><br>
+            </div>
+            <div class="input-field col s6 m3 l2">
+              <label><input type="radio" name="rooms" value="4"> <span>+ 4</span></label><br>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
 
-  <br>
-  <h5> && THE ROOM</h5>
-  <label for="roomm2">M2 Room</label>
-  <input type="text" name="room-m2" placeholder="000" value="">
-  <br>
-  <label for="wardrobes">wardrobes</label><br>
-  <label><input type="radio" name="wardrobes" value="uno"> <span>uno</span></label><br>
-  <label><input type="radio" name="wardrobes" value="dos"> <span>dos</span></label><br><br>
-  <label>window</label><br>
-  <label><input type="radio" name="window" value="uno"> <span>uno</span></label><br>
-  <label><input type="radio" name="window" value="dos"> <span>dos</span></label><br><br>
-  <label>wc</label><br>
-  <label><input type="radio" name="wc" value="private bathroom"> <span>private bathroom</span></label><br>
-  <label><input type="radio" name="wc" value="share bathroom"> <span>share bathroom</span></label><br><br>
+        <label for="description">Description</label><br>
+        <textarea class="materialize-textarea" name="description"></textarea><br>
+        <div class="input-field col s12 m12 l12">
+          <h5>Features</h5>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="features" value="calfaccion">
+              <span>Calefaccion</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="features" value="A/C"> <span>A/C
+              </span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="features" value="Piscina">
+              <span>Piscina</span> </label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="features" value="Terraza">
+              <span>Terraza</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="features" value="Ascensor">
+              <span>Ascensor</span> </label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="features" value="calfaccion"> <span>
+                WIFI </span></label>
+          </div>
+        </div>
 
-  <label><input type="checkbox" name="balcony" value="true"> <span>have a balcony</span></label><br>
-  <label><input type="checkbox" name="heat" value="true"> <span>have a heat</span></label><br>
-  <label><input type="checkbox" name="ac" value="true"> <span>have a ac</span></label><br>
-  <label><input type="checkbox" name="tv" value="true"> <span>have a tv</span></label><br>
-  <label><input type="checkbox" name="table" value="true"> <span>have a tabe</span></label><br>
-  <label><input type="checkbox" name="chair" value="true"> <span>have a chair</span></label><br>
-  <label for="othersThings">Others Things</label><br>
-  <textarea rows="5" cols="33" name="othersThings"></textarea><br>
-  <br>
-  <label for="m2">Cost</label>
-  <input type="text" name="costpermonth" placeholder="0000" value="">
-  <br>
-  <p>
-    <button type="submit">Save the house GO TO THE STEP 4</button>
-  </p>
-</form>
+
+
+        <div class="input-field col s12 m12 l12">
+          <h5>Electro</h5>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="electro" value="nevera"> <span>nevera </span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="electro" value="lavadora"> <span>lavadora </span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="electro" value="cocina"> <span>cocina </span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="electro" value="secadora"> <span>secadora</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="electro" value="secador de pelo"> <span>secador de pelo</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="electro" value="microondas"> <span>microondas</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="electro" value="batidora"> <span> batidora </span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="electro" value="aspiradora"> <span>aspiradora</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="electro" value="tostadora"> <span>tostadora </span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="electro" value="tostadora"> <span>Cama </span></label>
+          </div>
+        </div>
+
+
+        <div class="input-field col s12 m12 l12">
+          <h5>Services Included</h5>
+          <div class="input-field col s6 m3 l3">
+            <label>
+              <input type="checkbox" name="sevicesincluded" value="Agua">
+              <span>Agua</span>
+            </label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label>
+              <input type="checkbox" name="sevicesincluded" value="agua caliene">
+              <span>agua caliene</span>
+            </label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label>
+              <input type="checkbox" name="electro" value="cocina">
+              <span>cocina </span>
+            </label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label>
+              <input type="checkbox" name="sevicesincluded" value="Electricidad">
+              <span>Electricidad</span>
+            </label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label>
+              <input type="checkbox" name="sevicesincluded" value="Internet">
+              <span>Internet</span>
+            </label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label>
+              <input type="checkbox" name="sevicesincluded" value="Utensilios baño">
+              <span>Utensilios baño</span>
+            </label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label>
+              <input type="checkbox" name="sevicesincluded" value="desayuno">
+              <span>desayuno</span>
+            </label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label>
+              <input type="checkbox" name="sevicesincluded" value="cenas">
+              <span>cenas</span>
+            </label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="sevicesincluded" value="Utensilios cocina">
+              <span>Utensilios
+                cocina</span>
+            </label>
+          </div>
+        </div>
+        <div class="input-field col s12 m12 l12">
+          <h4> && THE ROOM</h4>
+          <div class="input-field col s6 m3 l4">
+            <label for="roomm2">M2 Room</label>
+            <input type="text" name="room-m2" placeholder="000" value="">
+          </div>
+          <div class="input-field col s6 m3 l4">
+            <label for="wardrobes">wardrobes</label>
+            <div class="input-field col s12 m12 l12">
+              <label><input type="radio" name="wardrobes" value="uno"> <span>uno</span></label>
+            </div>
+            <div class="input-field col s12 m12 l12">
+              <label><input type="radio" name="wardrobes" value="dos"> <span>dos</span></label>
+            </div>
+          </div>
+          <div class="input-field col s6 m3 l4">
+            <label>window</label>
+            <div class="input-field col s12 m12 l12">
+              <label><input type="radio" name="window" value="uno"> <span>uno</span></label>
+            </div>
+            <div class="input-field col s12 m12 l12">
+              <label><input type="radio" name="window" value="dos"> <span>dos</span></label>
+            </div>
+          </div>
+          <div class="input-field col s6 m3 l4">
+            <label>wc</label>
+            <div class="input-field col s12 m12 l12">
+              <label><input type="radio" name="wc" value="private bathroom"> <span>private bathroom</span></label>
+            </div>
+            <div class="input-field col s12 m12 l12">
+              <label><input type="radio" name="wc" value="share bathroom"> <span>share bathroom</span></label>
+            </div>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="balcony" value="true"> <span>have a balcony</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="heat" value="true"> <span>have a heat</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="ac" value="true"> <span>have a ac</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="tv" value="true"> <span>have a tv</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="table" value="true"> <span>have a tabe</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="chair" value="true"> <span>have a chair</span></label>
+          </div>
+
+          <div class="input-field col s12 m12 l12">
+            <br>
+            <br>
+            <label for="othersThings">Others Things</label>
+            <textarea class="materialize-textarea" rows="5" cols="33" name="othersThings"></textarea>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label for="m2">Cost</label>
+            <input type="text" name="costpermonth" placeholder="0000" value="">
+          </div>
+
+        </div>
+        <div class="input-field col s12 m12 l12">
+          <button class="btn waves-effect waves-light" type="submit" name="action">SAVE MODIFICATIONS</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
