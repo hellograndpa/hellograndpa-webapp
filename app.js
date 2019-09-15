@@ -18,7 +18,6 @@ const bookingsRouter = require('./routes/bookings');
 
 // prevent bodyParser from handling multipart forms (ie only handle get and post requests)
 
-
 mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
 //mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
@@ -41,15 +40,15 @@ app.use(
   session({
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
-      ttl: 24 * 60 * 60 // 1 day
+      ttl: 24 * 60 * 60, // 1 day
     }),
     secret: 'ironhack',
     resave: true,
     saveUninitialized: true,
     cookie: {
-      maxAge: 24 * 60 * 60 * 1000
-    }
-  })
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  }),
 );
 
 app.use((req, res, next) => {
