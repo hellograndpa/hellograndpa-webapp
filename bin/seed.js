@@ -71,6 +71,7 @@ User.collection
           House.create({
             user: u._id,
             rooms: faker.random.number({ max: 9 }),
+            title: faker.lorem.sentences(),
             m2: faker.random.number({ min: 50, max: 500 }),
             description: faker.lorem.paragraph(2),
             address: {
@@ -148,7 +149,7 @@ User.collection
                 description: faker.lorem.paragraph(2),
               },
             ],
-            photos: ['/images/photo1.jpg', '/images/photo2.jpg'],
+            photos: ['/images/picture/photo1.jpg', '/images/pictures/photo2.jpg'],
             restricciones: faker.lorem.paragraph(1),
             rentroom: {
               m2: 20,

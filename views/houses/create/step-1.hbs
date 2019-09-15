@@ -1,6 +1,10 @@
 <h1>HOUSE create form</h1>
 <h2>TELL US ABOUT YOUR HOUSE SETP 1 OF 4</h2>
 <form id="form" action="/houses/create/step-1" method="POST">
+  <h2>TITLE OF YOUR HOUSE</h2>
+  <br><br>
+  <label for="street">Title</label>
+  <input type="text" name="title" placeholder="Title of your house" value="{{ house.title }}"><br>
   <h2>ADDRESS</h2>
   <br><br>
   <label for="street">Street</label>

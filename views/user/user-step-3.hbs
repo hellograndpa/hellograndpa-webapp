@@ -1,0 +1,30 @@
+<h1>User Profile</h1>
+<img src="{{user.avatar}}" alt="avatar image"><br>
+<form id="form" action="/user/update-type" method="POST">
+
+  <h2>USER TYPE</h2>
+
+
+  {{#if user.grandpaUser }}
+  <label><input type="radio" name="typeUser" value="Grandpa" checked> <span>Grandpa</span></label><br>
+  {{else}}
+  <label><input type="radio" name="typeUser" value="Grandpa"> <span>Grandpa</span></label><br>
+  {{/if}}
+
+  {{#if user.mentorUser }}
+  <label><input type="radio" name="typeUser" value="Mentor" checked> <span>Mentor</span></label><br>
+  {{else}}
+  <label><input type="radio" name="typeUser" value="Mentor"> <span>Mentor</span><br></label>
+  {{/if}}
+  <label><input type="radio" name="typeUser" value="Normla"> <span>Ninguno de ellos</span></label><br>
+
+  <p>
+    <button type="submit">Save modifications</button>
+  </p>
+</form>
+<p>
+  {{#if user.grandpaUser }}
+  <button type="submit">create house</button>
+  {{/if}}
+</p>
+<a href="/logout">Logout</a>

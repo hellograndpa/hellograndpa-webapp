@@ -1,5 +1,4 @@
 <h1>User Profile</h1>
-<img src="{{user.avatar}}" alt="avatar image"><br>
 <form id="form" action="/user/update" method="POST">
   email : {{ user.email }}<br>
 
@@ -77,9 +76,16 @@
   </select><br><br>
 
   <label for="gender">Gender</label><br>
-
+  {{#if male}}
+  <label><input type="radio" name="gender" value="male" checked> <span>Male</span></label><br>
+  {{else}}
   <label><input type="radio" name="gender" value="male"> <span>Male</span></label><br>
+  {{/if}}
+  {{#if female}}
   <label><input type="radio" name="gender" value="female" checked> <span> Female</span></label><br><br>
+  {{else}}
+  <label><input type="radio" name="gender" value="female"> <span> Female</span></label><br><br>
+  {{/if}}
 
   <label for="phone">Phone</label>
   <input type="text" name="phone" placeholder="+34 999 99 99 99 " value="{{ user.phone }}"><br>
@@ -89,39 +95,26 @@
   <textarea rows="5" cols="33" name="bio"> {{ user.bio }}</textarea><br>
   <h2>ADDRESS</h2>
   <label for="street">Street</label>
-  <input type="text" name="street" placeholder=" Name of street " value="{{ user.address.street }}"><br>
+  <input type="text" name="street" placeholder="{{ user.address.street }}" value="{{ user.address.street }}"><br>
   <label for="city">City</label>
-  <input type="text" name="city" placeholder="Name of city" value="{{ user.address.city }}"><br>
+  <input type="text" name="city" placeholder="{{ user.address.city }}" value="{{ user.address.city }}"><br>
   <label for="state">state</label>
-  <input type="text" name="state" placeholder="Name of state" value="{{ user.address.state }}"><br>
+  <input type="text" name="state" placeholder="{{ user.address.state }}" value="{{ user.address.state }}"><br>
   <label for="country">country</label>
-  <input type="text" name="country" placeholder="Name of Country" value="{{ user.address.country }}"><br>
+  <input type="text" name="country" placeholder="{{ user.address.country }}" value="{{ user.address.country }}"><br>
   <label for="zip">Zip Code</label>
-  <input type="text" name="zip" placeholder="00000" value="{{ user.address.zip }}"><br>
-  <br>
-  <h2>USER TYPE</h2>
-
-
-  {{#if user.grandpaUser }}
-  <label><input type="radio" name="typeUser" value="Grandpa" checked> <span>Grandpa</span></label><br>
-  {{else}}
-  <label><input type="radio" name="typeUser" value="Grandpa"> <span>Grandpa</span></label><br>
-  {{/if}}
-
-  {{#if user.mentorUser }}
-  <label><input type="radio" name="typeUser" value="Mentor" checked> <span>Mentor</span></label><br>
-  {{else}}
-  <label><input type="radio" name="typeUser" value="Mentor"> <span>Mentor</span><br></label>
-  {{/if}}
-  <label><input type="radio" name="typeUser" value="Normla"> <span>Ninguno de ellos</span></label><br>
+  <input type="text" name="zip" placeholder="{{ user.address.zip }}" value="{{ user.address.zip }}"><br>
 
   <p>
     <button type="submit">Save modifications</button>
   </p>
+  <p>
+    <button> <a href="/user/avatar-upload"> avatar</a></button>
+  </p>
 </form>
 <p>
   {{#if user.grandpaUser }}
-  <button type="submit">create house</button>
+  <button> <a href="/houses/create/step-1"> create house</a></button>
   {{/if}}
-</p>
-<a href="/logout">Logout</a>
+
+  <a href="/logout">Logout </a>
