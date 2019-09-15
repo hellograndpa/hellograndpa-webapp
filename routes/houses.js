@@ -72,7 +72,7 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
       });
       req.flash('info', 'Address house CREATE');
     }
-    res.redirect('/houses/create/step-upload');
+    res.redirect('/houses/create/step-1');
   } catch (error) {
     req.flash('error', 'Some error happen - Please try again');
     res.redirect('/');
@@ -128,7 +128,7 @@ router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
       othersThings,
     });
     req.flash('info', 'FEATURES house created');
-    res.redirect('/houses/create/step-3');
+    res.redirect('/houses//create/step-2');
   } catch (error) {
     req.flash('error', 'Some error happen - Please try again');
     res.redirect('/houses/create/step-2');
@@ -167,7 +167,7 @@ router.post('/create/step-3', checkUserTypeGranpa, async (req, res, next) => {
       restricciones,
     });
     req.flash('info', 'SERVICES HSOTER CREATED');
-    res.redirect(`/houses/${house._id}`);
+    res.redirect('/houses/create/step-3');
   } catch (error) {
     req.flash('error', 'Some error happen - Please try again');
     res.redirect('/houses/create/step-3');
