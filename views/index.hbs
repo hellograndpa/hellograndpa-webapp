@@ -1,13 +1,16 @@
-<h1>HELLO GRANDPA</h1>
-<p>Welcome home</p>
+<h2>Search a home</h2>
 <form method="GET" action="/houses">
-    City:
-    <select name="city">
-        {{#each cities}}
-        <option value="{{this}}">{{this}}</option>
-        {{/each}}
-    </select>
-    <br />
+    <div class="input-field col s12">
+        <select name="city">
+            <option value="" disabled selected>Where do you want to go?</option>
+            {{#each cities}}
+            <option value="{{this}}">{{this}}</option>
+            {{/each}}
+            </option>
+        </select>
+        <label>City</label>
+    </div>
+
     Month
     <select name="month">
         <option value="January">January</option>

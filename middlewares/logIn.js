@@ -6,7 +6,7 @@ const logIn = async (email, password, req, res) => {
   if (user) {
     if (bcrypt.compareSync(password, user.hashpass)) {
       req.session.currentUser = user;
-      res.redirect('/user');
+      res.redirect('/');
     } else {
       req.flash('error', 'usuario o contraseña incorrectos');
       res.redirect('login');

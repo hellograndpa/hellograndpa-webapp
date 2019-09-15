@@ -17,10 +17,15 @@ const {
   seviciosIncludedArray,
 } = require('../middlewares/enumerables');
 
-mongoose.connect(
-  'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
-  { useNewUrlParser: true },
-);
+// mongoose.connect(
+//   'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
+//   { useNewUrlParser: true },
+// );
+mongoose.connect('mongodb://localhost/hellogranpa', {
+  keepAlive: true,
+  useNewUrlParser: true,
+  reconnectTries: Number.MAX_VALUE,
+});
 
 const users = Array.from({ length: 50 }, () => ({
   username: {
@@ -66,6 +71,7 @@ User.collection
           House.create({
             user: u._id,
             rooms: faker.random.number({ max: 9 }),
+            title: faker.lorem.sentences(),
             m2: faker.random.number({ min: 50, max: 500 }),
             description: faker.lorem.paragraph(2),
             address: {
@@ -143,7 +149,7 @@ User.collection
                 description: faker.lorem.paragraph(2),
               },
             ],
-            photos: ['/images/photo1.jpg', '/images/photo2.jpg'],
+            photos: ['/images/picture/photo1.jpg', '/images/pictures/photo2.jpg'],
             restricciones: faker.lorem.paragraph(1),
             rentroom: {
               m2: 20,
@@ -159,6 +165,9 @@ User.collection
               costpermonth: 500,
               othersThings: faker.lorem.paragraph(2),
             },
+            dateStart: { month: 'January', year: '2019' },
+            visibleByUsers: true,
+            active: true,
           })
             .then(() => {
               console.log('house inserted', u._id);

@@ -16,6 +16,9 @@ const housesRouter = require('./routes/houses');
 const bookingRouter = require('./routes/booking');
 const bookingsRouter = require('./routes/bookings');
 
+// prevent bodyParser from handling multipart forms (ie only handle get and post requests)
+
+
 mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
 //mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
