@@ -15,7 +15,12 @@ const House = require('../models/House');
 const router = express.Router();
 const HouseDetails = require('../models/House');
 
-const { servicesArray, featuresArray } = require('../middlewares/enumerables');
+const {
+  servicesArray,
+  featuresArray,
+  electroArray,
+  sevicesIncludedArray,
+} = require('../middlewares/enumerables');
 
 // Get a list of houses available
 router.get('/', async (req, res, next) => {
@@ -237,7 +242,12 @@ router.get(
   async (req, res) => {
     const house = await House.findOne({ user: req.session.currentUser._id });
     req.flash('info', 'house created step 2');
-    res.render('houses/create/step-2', { house, featuresArray, electroArray });
+    res.render('houses/create/step-2', {
+      house,
+      featuresArray,
+      electroArray,
+      sevicesIncludedArray,
+    });
   },
 );
 router.get(
