@@ -78,8 +78,8 @@
 
   <label for="gender">Gender</label><br>
 
-  <input type="radio" name="gender" value="male"> Male<br>
-  <input type="radio" name="gender" value="female" checked> Grandpa<br><br>
+  <label><input type="radio" name="gender" value="male"> <span>Male</span></label><br>
+  <label><input type="radio" name="gender" value="female" checked> <span> Female</span></label><br><br>
 
   <label for="phone">Phone</label>
   <input type="text" name="phone" placeholder="+34 999 99 99 99 " value="{{ user.phone }}"><br>
@@ -100,15 +100,21 @@
   <input type="text" name="zip" placeholder="00000" value="{{ user.address.zip }}"><br>
   <br>
   <h2>USER TYPE</h2>
+
+
   {{#if user.grandpaUser }}
-  <input type="radio" name="typeUser" value="Normla"> Normla<br>
-  <input type="radio" name="typeUser" value="Grandpa" checked> Grandpa<br>
-  <input type="radio" name="typeUser" value="Mentor"> Mentor<br>
+  <label><input type="radio" name="typeUser" value="Grandpa" checked> <span>Grandpa</span></label><br>
   {{else}}
-  <input type="radio" name="typeUser" value="Normla" checked> Normla<br>
-  <input type="radio" name="typeUser" value="Grandpa"> Grandpa<br>
-  <input type="radio" name="typeUser" value="Mentor"> Mentor<br>
+  <label><input type="radio" name="typeUser" value="Grandpa"> <span>Grandpa</span></label><br>
   {{/if}}
+
+  {{#if user.mentorUser }}
+  <label><input type="radio" name="typeUser" value="Mentor" checked> <span>Mentor</span></label><br>
+  {{else}}
+  <label><input type="radio" name="typeUser" value="Mentor"> <span>Mentor</span><br></label>
+  {{/if}}
+  <label><input type="radio" name="typeUser" value="Normla"> <span>Ninguno de ellos</span></label><br>
+
   <p>
     <button type="submit">Save modifications</button>
   </p>
