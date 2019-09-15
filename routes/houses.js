@@ -2,12 +2,8 @@ const express = require('express');
 const formidable = require('formidable');
 const fs = require('fs');
 
-
 const { isLogged } = require('../middlewares/logIn');
-const {
-  checkUserTypeGranpa,
-  checkUserHaveOneHouse,
-} = require('../middlewares/validationsign');
+const { checkUserTypeGranpa, checkUserHaveOneHouse } = require('../middlewares/validationsign');
 
 const User = require('../models/User');
 
@@ -33,12 +29,7 @@ router.get('/', async (req, res, next) => {
 // insert a house (if logged)
 router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
   const {
-    title,
-    street,
-    city,
-    state,
-    country,
-    zip,
+    title, street, city, state, country, zip,
   } = req.body;
   try {
     const user = req.session.currentUser._id;
@@ -50,7 +41,11 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
       await House.findByIdAndUpdate(house._id, {
         title,
         address: {
-          street, city, state, country, zip,
+          street,
+          city,
+          state,
+          country,
+          zip,
         },
       });
 
@@ -60,12 +55,16 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
         user,
         title,
         address: {
-          street, city, state, country, zip,
+          street,
+          city,
+          state,
+          country,
+          zip,
         },
       });
       req.flash('info', 'Address house CREATE');
     }
-    res.redirect('/houses/create/step-upload');
+    res.redirect('/houses/create/step-1');
   } catch (error) {
     req.flash('error', 'Some error happen - Please try again');
     res.redirect('/');
@@ -98,31 +97,30 @@ router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
     const { ObjectId } = require('mongoose').Types;
     const query = { user: new ObjectId(req.session.currentUser._id) };
     const house = await House.findOne(query);
-    await House.findByIdAndUpdate(house._id,
-      {
-        rooms,
-        m2,
-        description,
-        features,
-        electro,
-        sevicesincluded,
-        rentroom: {
-          m2: roomm2,
-          wardrobes,
-          window,
-          wc,
-          balcony,
-          heat,
-          ac,
-          tv,
-          table,
-          chair,
-          costpermonth,
-        },
-        othersThings,
-      });
+    await House.findByIdAndUpdate(house._id, {
+      rooms,
+      m2,
+      description,
+      features,
+      electro,
+      sevicesincluded,
+      rentroom: {
+        m2: roomm2,
+        wardrobes,
+        window,
+        wc,
+        balcony,
+        heat,
+        ac,
+        tv,
+        table,
+        chair,
+        costpermonth,
+      },
+      othersThings,
+    });
     req.flash('info', 'FEATURES house created');
-    res.redirect('/houses/create/step-3');
+    res.redirect('/houses//create/step-2');
   } catch (error) {
     req.flash('error', 'Some error happen - Please try again');
     res.redirect('/houses/create/step-2');
@@ -130,17 +128,7 @@ router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
 });
 router.post('/create/step-3', checkUserTypeGranpa, async (req, res, next) => {
   const {
-    adr,
-    abr,
-    afr,
-    agr,
-    azr,
-    adm,
-    abm,
-    afm,
-    agm,
-    azm,
-    restricciones,
+    adr, abr, afr, agr, azr, adm, abm, afm, agm, azm, restricciones,
   } = req.body;
   try {
     // const house = await House.find({ user: req.session.currentUser._id });
@@ -149,44 +137,43 @@ router.post('/create/step-3', checkUserTypeGranpa, async (req, res, next) => {
     const query = { user: new ObjectId(req.session.currentUser._id) };
     const house = await House.findOne(query);
     // create house
-    await House.findByIdAndUpdate(house._id,
-      {
-        sevicestohoster: [
-          {
-            typesevice: 'ad',
-            points: 10,
-            requirement: adr,
-            mandatory: adm,
-          },
-          {
-            typesevice: 'ab',
-            points: 20,
-            requirement: abr,
-            mandatory: abm,
-          },
-          {
-            typesevice: 'af',
-            points: 30,
-            requirement: afr,
-            mandatory: afm,
-          },
-          {
-            typesevice: 'ag',
-            points: 40,
-            requirement: agr,
-            mandatory: agm,
-          },
-          {
-            typesevice: 'az',
-            points: 50,
-            requirement: azr,
-            mandatory: azm,
-          },
-        ],
-        restricciones,
-      });
+    await House.findByIdAndUpdate(house._id, {
+      sevicestohoster: [
+        {
+          typesevice: 'ad',
+          points: 10,
+          requirement: adr,
+          mandatory: adm,
+        },
+        {
+          typesevice: 'ab',
+          points: 20,
+          requirement: abr,
+          mandatory: abm,
+        },
+        {
+          typesevice: 'af',
+          points: 30,
+          requirement: afr,
+          mandatory: afm,
+        },
+        {
+          typesevice: 'ag',
+          points: 40,
+          requirement: agr,
+          mandatory: agm,
+        },
+        {
+          typesevice: 'az',
+          points: 50,
+          requirement: azr,
+          mandatory: azm,
+        },
+      ],
+      restricciones,
+    });
     req.flash('info', 'SERVICES HSOTER CREATED');
-    res.redirect(`/houses/${house._id}`);
+    res.redirect('/houses/create/step-3');
   } catch (error) {
     req.flash('error', 'Some error happen - Please try again');
     res.redirect('/houses/create/step-3');
@@ -206,15 +193,14 @@ router.post('/create/step-upload', isLogged, checkUserTypeGranpa, async (req, re
   form.parse(req);
   // you need control where you put the file
   form.on('fileBegin', (name, file) => {
-    file.path = `${__dirname}/../public/images/pictures/${house.id}_house_${photos.length + 1}`;// __dirname now is the router path
+    file.path = `${__dirname}/../public/images/pictures/${house.id}_house_${photos.length + 1}`; // __dirname now is the router path
   });
 
   // save the file path into de date base
   form.on('file', async (name, file) => {
     req.flash('info', 'upload ');
-    photos.push(`/images/pictures/${house.id}_house_${photos.length + 1}`);// the path estart inside of public/
-    await House.findByIdAndUpdate(house._id,
-      { photos });
+    photos.push(`/images/pictures/${house.id}_house_${photos.length + 1}`); // the path estart inside of public/
+    await House.findByIdAndUpdate(house._id, { photos });
     res.redirect('/houses/create/step-upload');
   });
   // error control
@@ -252,7 +238,6 @@ router.get('/create/step-upload', isLogged, checkUserTypeGranpa, async (req, res
   req.flash('info', 'photo uploaded');
   res.render('houses/create/step-upload', { house });
 });
-
 
 // Show details of a house
 // Get id from url
