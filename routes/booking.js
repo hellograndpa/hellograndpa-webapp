@@ -29,7 +29,7 @@ router.get('/:id', isLogged, async (req, res, next) => {
       );
       sumPointsMandatory *= 2;
       const finalFisrtPrice = house.rentroom.costpermonth - sumPointsMandatory;
-
+      console.log('optionalserv', house.sevicestohoster);
       res.render('bookings/create', {
         house,
         mandatoryServices,

@@ -1,8 +1,20 @@
 const servicesArray = [
-  { serviceType: 'Pasear al Perro', points: 10 },
-  { serviceType: 'Llevar al médico', points: 20 },
-  { serviceType: 'Preparar la cena', points: 30 },
-  { serviceType: 'Hacer la colada', points: 40 },
+  {
+    serviceType: 'Pasear al Perro',
+    points: 10,
+    description: 'Intentar sacar al perro almenos 2 veces al día',
+  },
+  {
+    serviceType: 'Llevar al médico',
+    points: 20,
+    description: 'Tengo que visitar al médico almenos 1 vez por semana',
+  },
+  { serviceType: 'Preparar la cena', points: 30, description: 'yami yami' },
+  {
+    serviceType: 'Hacer la colada',
+    points: 40,
+    description: 'no puedo con eso',
+  },
   { serviceType: 'Acompañar a la plaza', points: 50 },
 ];
 
