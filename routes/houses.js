@@ -142,13 +142,13 @@ router.post('/create/step-3', checkUserTypeGranpa, async (req, res, next) => {
       req.body[service.serviceType] &&
       req.body[service.serviceType] !== 'none'
     ) {
-      const required = req.body[service.serviceType] === 'req';
+      const requirement = req.body[service.serviceType] === 'req';
       const mandatory = req.body[service.serviceType] === 'mandatory';
 
       services.push({
         serviceType: service.serviceType,
         points: service.points,
-        required,
+        requirement,
         mandatory,
       });
     }
