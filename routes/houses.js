@@ -39,7 +39,6 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
     // create house
     if (house) {
       await House.findByIdAndUpdate(house._id, {
-        title,
         address: {
           street,
           city,
@@ -53,7 +52,6 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
     } else {
       await House.create({
         user,
-        title,
         address: {
           street,
           city,
@@ -72,6 +70,7 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
 });
 router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
   const {
+    title,
     rooms,
     m2,
     description,
@@ -98,6 +97,7 @@ router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
     const query = { user: new ObjectId(req.session.currentUser._id) };
     const house = await House.findOne(query);
     await House.findByIdAndUpdate(house._id, {
+      title,
       rooms,
       m2,
       description,
@@ -120,7 +120,7 @@ router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
       othersThings,
     });
     req.flash('info', 'FEATURES house created');
-    res.redirect('/houses//create/step-2');
+    res.redirect('/houses/create/step-2');
   } catch (error) {
     req.flash('error', 'Some error happen - Please try again');
     res.redirect('/houses/create/step-2');
