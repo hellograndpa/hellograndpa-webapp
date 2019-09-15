@@ -1,9 +1,9 @@
-const sevicesArray = [
-  { type: 'ad', points: 10 },
-  { type: 'ab', points: 20 },
-  { type: 'af', points: 30 },
-  { type: 'ag', points: 40 },
-  { type: 'az', points: 50 },
+const servicesArray = [
+  { serviceType: 'Pasear al Perro', points: 10 },
+  { serviceType: 'Llevar al médico', points: 20 },
+  { serviceType: 'Preparar la cena', points: 30 },
+  { serviceType: 'Hacer la colada', points: 40 },
+  { serviceType: 'Acompañar a la plaza', points: 50 },
 ];
 
 const featuresArray = [
@@ -41,7 +41,7 @@ const sevicesIncludedArray = [
 ];
 
 module.exports = {
-  sevicesArray,
+  servicesArray,
   featuresArray,
   electroArray,
   sevicesIncludedArray,

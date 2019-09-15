@@ -23,8 +23,8 @@
     <ul>
         {{#each mandatoryServices }}
         <li>
-            <input type="checkbox" readonly class="services" checked="true" name="{{this.typesevice}}"
-                value="{{this.points}}">{{this.typesevice}}
+            <input type="checkbox" readonly class="services" checked="true" name="{{this.serviceType}}"
+                value="{{this.points}}">{{this.serviceType}}
             <span>{{this.points}}</span>
         </li>
         {{/each}}
@@ -33,8 +33,8 @@
     <ul>
         {{#each optionalServices }}
         <li>
-            <input type="checkbox" class="services" name="{{this.typesevice}}"
-                value="{{this.points}}">{{this.typesevice}}
+            <input type="checkbox" class="services" name="{{this.serviceType}}"
+                value="{{this.points}}">{{this.serviceType}}
             <span>{{this.points}}</span>
         </li>
         {{/each}}
