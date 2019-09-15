@@ -1,21 +1,25 @@
-<h2>Search a home</h2>
-<form method="GET" action="/houses">
-    <div class="input-field col s12">
-        <select name="city">
-            <option value="" disabled selected>Where do you want to go?</option>
-            {{#each cities}}
-            <option value="{{this}}">{{this}}</option>
-            {{/each}}
-            </option>
-        </select>
-        <label>City</label>
-    </div>
+{{!-- <img src="/images/img/home_foto.jpg"> <!-- random image --> --}}
+<div class="caption center-align">
+    <h2>Search a home</h2>
+    <form method="GET" action="/houses">
+        <div class="input-field col s4 m4 l4">
+            <select name="city">
+                <option value="" disabled selected>Where do you want to go?</option>
+                {{#each cities}}
+                <option value="{{this}}">{{this}}</option>
+                {{/each}}
+                </option>
+            </select>
+            <label>City</label>
+        </div>
 
-    Month
-    <select name="month">
-        <option value="January">January</option>
-        <option value="February">February</option>
-        <option value="March">March</option>
-    </select>
-    <input type="submit" value="Search">
+        Month
+        <select name="month">
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+        </select>
+        <input type="submit" value="Search">
+</div>
+
 </form>
