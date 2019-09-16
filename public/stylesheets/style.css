@@ -6,7 +6,7 @@ body {
 main {
   flex: 1 0 auto;
 }
-.brand-logo img{
+.brand-logo img {
   width: 100px;
   margin-left: 30px;
   margin-top: 10px;
@@ -26,4 +26,65 @@ main {
 }
 .pd10 {
   padding: 10px;
+}
+
+.error {
+  width: 25%;
+  height: 50px;
+  left: 35%;
+  background-color: rgb(111, 3, 3);
+  position: relative;
+  -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1.5s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-delay: 0.1s; /* Safari 4.0 - 8.0 */
+  animation-name: example;
+  animation-duration: 1.5;
+  animation-delay: 0.1s;
+  visibility: hidden;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0px 5px 5px grey;
+}
+.info {
+  width: 25%;
+  height: 50px;
+  left: 35%;
+  background-color: rgb(2, 58, 2);
+  position: relative;
+  -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 1.5s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-delay: 0.1s; /* Safari 4.0 - 8.0 */
+  animation-name: example;
+  animation-duration: 1.5s;
+  animation-delay: 0.1s;
+  visibility: hidden;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0px 5px 5px grey;
+}
+@keyframes example {
+  0% {
+    top: 65px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 300ms, opacity 300ms;
+  }
+  50% {
+    top: 65px;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 300ms;
+  }
+  99% {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 300ms, opacity 300ms;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 300ms, opacity 300ms;
+  }
 }
