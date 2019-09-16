@@ -6,7 +6,11 @@ body {
 main {
   flex: 1 0 auto;
 }
-
+.brand-logo img{
+  width: 100px;
+  margin-left: 30px;
+  margin-top: 10px;
+}
 .portada {
   position: absolute !important;
   top: 0px !important;
