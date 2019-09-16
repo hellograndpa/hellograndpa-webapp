@@ -3,131 +3,85 @@
     <div class="col s12 m4 l3">
       <div class="collection">
         <a href="/houses/create/step-1" class="collection-item">Edit House</a>
-        <a href="/houses/create/step-upload" class="collection-item ">House's photo </a>
+        <a href="/houses/create/step-upload" class="collection-item">House's photo </a>
         <a href="/houses/create/step-2" class="collection-item">About you house</a>
-        <a href="/houses/create/step-3" class="collection-item active">User Type</a>
+        <a href="/houses/create/step-3" class="collection-item active">Services</a>
       </div>
-      <a class="rounded waves-effect waves-light btn teal lighten-3 " href="/user/{{user.id}}">PREVIEW THE HOUSE</a>
+      <a class="rounded waves-effect waves-light btn teal lighten-3 " href="/houses/{{house.id}}">PREVIEW THE HOUSE</a>
     </div>
 
     <div class="col s12 m8 l9">
       <h2>HOUSE DESCRIPTIONS</h2> <br>
       <h5>SETP 4 OF 4</h5>
       <form id="form" action="/houses/create/step-3" method="POST">
+
+        <h5>SEVICES MANDATOY OR OPTATIVE</h5>
+
+        {{#each servicesArray}}
+
         <div class="col s12 m12 l12">
-          <h5>SEVICES MANDATOY OR OPTATIVE</h5>
-          <div class="col s12 m12 l12">
-            <h6>AD</h6>
-            <div class="col s12 m6 l4">
-              <label><input type="checkbox" name="adr" value="true"> <span> ad requeriment</span></label><br>
-              <label><input type="checkbox" name="adm" value="true"> <span>ad mantdatory </span></label><br>
-            </div>
-            <div class="col s12 m6 l8">
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet dicta aliquam, odit beatae fugit
-                suscipit totam enim optio veniam officiis tenetur quisquam ut nam a. Eum atque maxime eligendi
-                incidunt?</span><br>
-            </div>
+          <h6>{{this.serviceType}} - {{this.points}} puntos de descuento</h6>
+          <div class="col s12 m6 l4">
+            <label><input type="radio" name="{{this.serviceType}}" value="none" checked> <span>none</span></label>
+            <label><input type="radio" name="{{this.serviceType}}" value="req"> <span>requirement</span></label>
+            <label><input type="radio" name="{{this.serviceType}}" value="mandatory"> <span>mandatory</span></label>
           </div>
-          <div class="col s12 m12 l12">
-            <h6>AB</h6>
-            <div class="col s12 m6 l4">
-              <label><input type="checkbox" name="abr" value="true"> <span> abr requeriment</span></label><br>
-              <label><input type="checkbox" name="abm" value="true"> <span>ab mantdatory </span> </label><br>
-            </div>
-            <div class="col s12 m6 l8">
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet dicta aliquam, odit beatae fugit
-                suscipit totam enim optio veniam officiis tenetur quisquam ut nam a. Eum atque maxime eligendi
-                incidunt?</span><br>
-            </div>
-          </div>
-          <div class="col s12 m12 l12">
-            <h6>AF</h6>
-            <div class="col s12 m6 l4">
-              <label><input type="checkbox" name="afr" value="true"> <span>af requeriment</span></label><br>
-              <label><input type="checkbox" name="afm" value="true"> <span>af mantdatoriy</span></label> <br>
-            </div>
-            <div class="col s12 m6 l8">
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet dicta aliquam, odit beatae fugit
-                suscipit totam enim optio veniam officiis tenetur quisquam ut nam a. Eum atque maxime eligendi
-                incidunt?</span><br>
-            </div>
-          </div>
-          <div class="col s12 m12 l12">
-            <h6>AG</h6>
-            <div class="col s12 m6 l4">
-              <label><input type="checkbox" name="agr" value="true"> <span>ag requeriment</span></label><br>
-              <label><input type="checkbox" name="agm" value="true"> <span>ag mantdatoriy </span></label><br>
-            </div>
-            <div class="col s12 m6 l8">
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet dicta aliquam, odit beatae fugit
-                suscipit totam enim optio veniam officiis tenetur quisquam ut nam a. Eum atque maxime eligendi
-                incidunt?</span><br>
-            </div>
-          </div>
-          <div class="col s12 m12 l12">
-            <h6>AZ</h6>
-            <div class="col s12 m6 l4">
-              <label><input type="checkbox" name="azr" value="true"> <span>az requeriment</span></label><br>
-              <label><input type="checkbox" name="azm" value="true"> <span>az mantdatoriy </span></label><br>
-            </div>
-            <div class="col s12 m6 l8">
-              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet dicta aliquam, odit beatae fugit
-                suscipit totam enim optio veniam officiis tenetur quisquam ut nam a. Eum atque maxime eligendi
-                incidunt?</span><br>
-            </div>
-          </div>
-
-          <div class="col s12 m12 l12">
-            <br>
-            <label for="restricciones">Restricciones</label><br>
-            <textarea class="materialize-textarea" name="restricciones"></textarea><br>
+          <div class="col s12 m6 l8">
+            <span>{{this.description}}</span><br>
           </div>
         </div>
+        {{/each}}
         <div class="col s12 m12 l12">
-          <h4>START AVAILABLE</h4>
-          <div class="input-field col s12 m4 l3">
-            <label for="monthStart">Month Start</label><br>
-            <select name="month">
-              <option>January</option>
-              <option>February</option>
-              <option>March</option>
-              <option>April</option>
-              <option>May</option>
-              <option>June</option>
-              <option>July</option>
-              <option>August</option>
-              <option>September</option>
-              <option>October</option>
-              <option>November</option>
-              <option>December</option>
-            </select><br>
-          </div>
-          <div class="input-field col s12 m4 l3">
-            <label for="yearStart">Year Start</label><br>
-            <select name="year">
-              <option>2009</option>
-              <option>2010</option>
-              <option>2011</option>
-              <option>2012</option>
-              <option>2013</option>
-              <option>2014</option>
-              <option>2015</option>
-              <option>2016</option>
-              <option>2017</option>
-              <option>2018</option>
-            </select><br><br>
-          </div>
+          <br>
+          <label for="restricciones">Restricciones</label><br>
+          <textarea class="materialize-textarea" name="restricciones"></textarea><br>
         </div>
-
-
-        <h2>YOUR PRICE</h2>
-        <label for="m2">Cost</label>
-        <input type="text" name="costpermonth" placeholder="0000" value="">
-        <div class="input-field col s12 m12 l12">
-          <button class="btn waves-effect waves-light" type="submit" name="action">SAVE MODIFICATIONS</button>
-        </div>
-      </form>
-
     </div>
+    <div class="col s12 m12 l12">
+      <h4>START AVAILABLE</h4>
+      <div class="input-field col s12 m4 l3">
+        <label for="monthStart">Month Start</label><br>
+        <select name="month">
+          <option>January</option>
+          <option>February</option>
+          <option>March</option>
+          <option>April</option>
+          <option>May</option>
+          <option>June</option>
+          <option>July</option>
+          <option>August</option>
+          <option>September</option>
+          <option>October</option>
+          <option>November</option>
+          <option>December</option>
+        </select><br>
+      </div>
+      <div class="input-field col s12 m4 l3">
+        <label for="yearStart">Year Start</label><br>
+        <select name="year">
+          <option>2009</option>
+          <option>2010</option>
+          <option>2011</option>
+          <option>2012</option>
+          <option>2013</option>
+          <option>2014</option>
+          <option>2015</option>
+          <option>2016</option>
+          <option>2017</option>
+          <option>2018</option>
+        </select><br><br>
+      </div>
+    </div>
+
+
+    <h2>YOUR PRICE</h2>
+    <label for="m2">Cost</label>
+    <input type="text" name="costpermonth" placeholder="0000" value="">
+    <div class="input-field col s12 m12 l12">
+      <button class="btn waves-effect waves-light" type="submit" name="action">SAVE MODIFICATIONS</button>
+    </div>
+    </form>
+
   </div>
+</div>
 </div>

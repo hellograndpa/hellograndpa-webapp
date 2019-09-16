@@ -8,6 +8,8 @@ const Booking = require('../models/Booking');
 
 const { isLogged } = require('../middlewares/logIn');
 
+const { servicesArray } = require('../middlewares/enumerables');
+
 // start a new booking
 router.get('/:id', isLogged, async (req, res, next) => {
   const { id } = req.params;
@@ -27,7 +29,7 @@ router.get('/:id', isLogged, async (req, res, next) => {
       );
       sumPointsMandatory *= 2;
       const finalFisrtPrice = house.rentroom.costpermonth - sumPointsMandatory;
-
+      console.log('optionalserv', house.sevicestohoster);
       res.render('bookings/create', {
         house,
         mandatoryServices,
@@ -49,6 +51,17 @@ router.post('/:id', isLogged, async (req, res, next) => {
   const house = req.params.id;
   const user = req.session.currentUser._id;
 
+  const services = [];
+
+  servicesArray.forEach((service) => {
+    if (req.body[service.serviceType]) {
+      services.push({
+        serviceType: service.serviceType,
+        points: service.points,
+      });
+    }
+  });
+
   const newBooking = {
     user,
     house,
@@ -58,13 +71,7 @@ router.post('/:id', isLogged, async (req, res, next) => {
     priceInit: req.body.priceInitHidden,
     discount: req.body.discountHidden,
     priceEnd: req.body.priceEndHidden,
-    sevicestoHosterCompromise: [
-      { typesevice: 'ad', points: req.body.ad },
-      { typesevice: 'ab', points: req.body.ab },
-      { typesevice: 'af', points: req.body.af },
-      { typesevice: 'ag', points: req.body.ag },
-      { typesevice: 'az', points: req.body.az },
-    ],
+    sevicestoHosterCompromise: services,
   };
   await Booking.create(newBooking);
 

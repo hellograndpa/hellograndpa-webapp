@@ -51,7 +51,7 @@ const HouseSchema = new Schema(
     ],
     sevicestohoster: [
       {
-        typesevice: String,
+        serviceType: String,
         points: Number,
         requirement: Boolean,
         mandatory: Boolean,

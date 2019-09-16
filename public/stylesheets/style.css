@@ -1,13 +1,25 @@
-*{
-  margin: 0;
-	padding: 0;
-	list-style: none;
-}
 body {
-  padding: 50px;
-  font: 14px 'Roboto', Helvetica, Arial, sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
 }
 
-a {
-  color: #00b7ff;
+.portada {
+  position: absolute !important;
+  top: 0px !important;
+  left: 0px !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: -100;
+}
+.portada_card {
+  background-color: #fff;
+
+  text-align: right;
+}
+.pd10 {
+  padding: 10px;
 }

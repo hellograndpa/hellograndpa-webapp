@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 
 const bcrypt = require('bcrypt');
@@ -21,7 +23,7 @@ const {
 //   'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
 //   { useNewUrlParser: true },
 // );
-mongoose.connect('mongodb://localhost/hellogranpa', {
+mongoose.connect(process.env.DB_HOST, {
   keepAlive: true,
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE,
@@ -114,42 +116,42 @@ User.collection
             ],
             sevicestohoster: [
               {
-                typesevice: 'ad',
+                serviceType: 'Pasear al Perro',
                 points: 10,
                 requirement: true,
                 mandatory: true,
                 description: faker.lorem.paragraph(2),
               },
               {
-                typesevice: 'ab',
+                serviceType: 'Llevar al médico',
                 points: 20,
                 requirement: true,
                 mandatory: true,
                 description: faker.lorem.paragraph(2),
               },
               {
-                typesevice: 'af',
+                serviceType: 'Preparar la cena',
                 points: 30,
                 requirement: true,
                 mandatory: false,
                 description: faker.lorem.paragraph(2),
               },
               {
-                typesevice: 'ag',
+                serviceType: 'Hacer la colada',
                 points: 40,
                 requirement: true,
                 mandatory: false,
                 description: faker.lorem.paragraph(2),
               },
               {
-                typesevice: 'az',
+                serviceType: 'Acompañar a la plaza',
                 points: 50,
                 requirement: true,
                 mandatory: false,
                 description: faker.lorem.paragraph(2),
               },
             ],
-            photos: ['/images/picture/photo1.jpg', '/images/pictures/photo2.jpg'],
+            photos: [],
             restricciones: faker.lorem.paragraph(1),
             rentroom: {
               m2: 20,
