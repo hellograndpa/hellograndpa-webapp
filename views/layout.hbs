@@ -17,12 +17,14 @@
   <header>
     <div class="navbar-fixed">
       <nav class="grey darken-4" role="navigation">
-        <div class="nav-wrapper"><a id="logo-container" href="/" class="brand-logo"><img src="images/logo/nav-logo-2.png" alt=""></a>
+        <div class="nav-wrapper"><a id="logo-container" href="/" class="brand-logo"><img
+              src="images/logo/nav-logo-2.png" alt=""></a>
           <ul class="right hide-on-med-and-down">
             <li><a href="/">Home</a></li>
             {{#if currentUser}}
             <li><a href="/user/step-1">{{currentUser.username.firstname}}</a></li>
             <li><a href="/houses/create/step-1">Create a House</a></li>
+            <li><a href="/user/messages/">My Inbox</a></li>
             <li><a href="/logout">Log Out</a></li>
             {{else}}
             <li><a href="/login">LogIn</a></li>
@@ -52,13 +54,9 @@
       {{#if errorMessages }}
       <p class="error">{{ errorMessages }}</p>
       {{/if }}
-
     </div>
   </header>
-
   <main>
-
-
     {{{body}}}
   </main>
 
