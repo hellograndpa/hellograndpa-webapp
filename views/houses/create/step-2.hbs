@@ -43,7 +43,7 @@
         <br>
 
         <label for="description">Description</label><br>
-        <textarea class="materialize-textarea" name="description"></textarea><br>
+        <textarea class="materialize-textarea" name="description">{{house.description}}</textarea><br>
         <div class="input-field col s12 m12 l12">
           <h5>Features</h5>
           {{#each featuresArray}}
@@ -124,12 +124,10 @@
           <div class="input-field col s12 m12 l12">
             <br>
             <br>
+            {{ house.othersThings }}
             <label for="othersThings">Others Things</label>
-            <textarea class="materialize-textarea" rows="5" cols="33" name="othersThings"></textarea>
-          </div>
-          <div class="input-field col s6 m3 l3">
-            <label for="m2">Cost</label>
-            <input type="text" name="costpermonth" placeholder="0000" value="">
+            <textarea class="materialize-textarea" rows="5" cols="33"
+              name="othersThings">{{ house.rentroom.othersThings }}</textarea>
           </div>
 
         </div>
