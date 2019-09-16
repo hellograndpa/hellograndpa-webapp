@@ -1,0 +1,16 @@
+<h3>List of messages</h3>
+{{#each messages}}
+<div>
+
+    {{this.message}}
+    {{#if this.booking}}
+    You have a request:<br />
+    from: {{this.userFrom.username.firstname}}<br />
+    to go in: {{this.booking.dateIn}}<br />
+    to go out: {{this.booking.dateOut}}<br />
+    {{else}}
+    You have a message:<br />
+    from: {{this.userFrom.username.firstname}}<br />
+    {{/if}}
+</div>
+{{/each}}
