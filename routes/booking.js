@@ -6,6 +6,8 @@ const House = require('../models/House');
 
 const Booking = require('../models/Booking');
 
+const Message = require('../models/Message');
+
 const { isLogged } = require('../middlewares/logIn');
 
 const { servicesArray } = require('../middlewares/enumerables');
@@ -73,7 +75,27 @@ router.post('/:id', isLogged, async (req, res, next) => {
     priceEnd: req.body.priceEndHidden,
     sevicestoHosterCompromise: services,
   };
-  await Booking.create(newBooking);
+  const bookingCreated = await Booking.create(newBooking);
+
+  const today = new Date();
+  const date =
+    today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+  const time =
+    today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+  const dateTime = date + ' ' + time;
+
+  const houseSelected = await House.findById(house).populate('user');
+
+  const newMessage = {
+    userTo: user,
+    userFrom: houseSelected.user._id,
+    booking: bookingCreated._id,
+    message: 'SomeOne wants to join you',
+    sentDateHour: dateTime,
+    readed: false,
+  };
+
+  await Message.create(newMessage);
 
   res.redirect('/user/bookings');
 });

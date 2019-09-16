@@ -15,6 +15,7 @@ const usersRouter = require('./routes/users');
 const housesRouter = require('./routes/houses');
 const bookingRouter = require('./routes/booking');
 const bookingsRouter = require('./routes/bookings');
+const messagesRouter = require('./routes/messages');
 
 // prevent bodyParser from handling multipart forms (ie only handle get and post requests)
 
@@ -61,6 +62,7 @@ app.use(notifications(app));
 
 // Routes
 app.use('/', indexRouter);
+app.use('/user/messages', messagesRouter);
 app.use('/user', usersRouter);
 app.use('/houses', housesRouter);
 app.use('/booking', bookingRouter);
