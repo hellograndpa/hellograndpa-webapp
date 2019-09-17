@@ -1,85 +1,174 @@
-<div class="row">
-  <div class="col s12 m12 12">
-    {{#each house.photos}}
-    <div class="col s12 m6 l3">
-      <div class="card">
-        <div class="card-image">
-          <img src="{{ this }}" alt="">
-
-        </div>
-
-      </div>
+<style>
+  input[type="checkbox"][readonly] {
+    pointer-events: none;
+  }
+</style>
+<div class="row" style="">
+  <div class="col s12 m1">
+  </div>
+  <div class="col s12 m10">
+    <div class="textcenter">
+      <h1>House details</h1>
+      <h6>{{house.title}}</h6>
     </div>
-    {{/each}}
+  </div>
+  <div class="col s12 m1">
   </div>
 </div>
-<div class="container">
+
+<!-- HOUSE SPECS -->
   <div class="row">
-
-    <div class="col s12 m6 l8">
-      <a href="/houses/">Back</a>
-      <div class="housedetails">
+    <div class="col s12 m0">
+    </div>
+    <div class="col s12 m0" style="width: 50%">
+      <blockquote>
+        <h3 class="header">House specs</h3>
+      </blockquote>
+      <div class="card horizontal">
+        <div class="card-stacked">
+          <div class="card-content">
+            <ul class="housespecs">
+              <li>Number of rooms: {{ house.rooms }}</li>
+              <li>Meters: {{ house.m2 }}</li>
+              <li>Address: {{ house.address.street }}</li>
+              <li>{{ house.address.city }}</li>
+              <li>{{ house.address.state }}</li>
+              <li>{{ house.address.zip }}</li>
+          </div>
+        </div>
       </div>
-      <h1>House details</h1>
-      <h3>{{house.title}}</h3>
+      <div class="col s12 m0">
+      </div>
+    </div>
 
-      <h3>House specs:</h3>
-      <ul class="housespecs">
-        <li>Number of rooms: {{ house.rooms }}</li>
-        <li>Meters: {{ house.m2 }}</li>
-        <li>Address: {{ house.address.street }}</li>
-        <li>{{ house.address.city }}</li>
-        <li>{{ house.address.state }}</li>
-        <li>{{ house.address.zip }}</li>
+<!-- FEATURES -->
+    <div class="row">
+      <div class="col s12 m0" style="width: 50%">
+        <blockquote>
+          <h3 class="header">Features:</h3>
+        </blockquote>
+        <div class="card horizontal">
+          <div class="card-stacked">
+            <div class="card-content">
+              <ul class="features">
+                <li class="features">{{#each house.features}}</li>
+                <li>{{this}}</li>
+                {{/each}}
+                <h4>Electro:</h4>
+                <div class="divider"></div>
+                <div class="section"></div>
+                <li class="features">{{#each house.electro}}</li>
+                <li>{{this}}</li>
+                {{/each}}
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m0">
+        </div>
+      </div>
 
-        <h4>Features:{{#each house.features}}</h4>
-        <li>{{this}}</li>
-        {{/each}}
-        <h4>Electro:{{#each house.electro}}</h4>
-        <li>{{this}}</li>
-        {{/each}}
+<!-- SERVICES INCLUDES -->
+      <div class="row">
+        <div class="col s12 m0" style="width: 50%">
+          <blockquote>
+            <h3 class="header">Services included:</h3>
+          </blockquote>
+          <div class="card horizontal">
+            <div class="card-stacked">
+              <div class="card-content">
+                <ul class="features">
+                <li class="features">{{#each house.sevicesincluded}}</li>
+                <li>{{this}}</li>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m0">
+          </div>
+        </div>
 
-        <h4>Services included:{{#each house.sevicesincluded}}</h4>
-        <li>{{this}}</li>
-        {{/each}}
-        <h4>Services to hoster:{{#each house.sevicestohoster}}</h4>
-        <li>{{this.serviceType}}</li>
-        <li>{{this.points}}</li>
-        <li>is mandatory: {{this.mandatory}}</li>
-        <li>is optional: {{this.requirement}}</li>
-        <li>{{this.description}}</li>
-        {{/each}}
-      </ul>
-      <h4>Restrictions:</h4>
-      <p>{{ house.restricciones }}</p>
+<!-- SERVICES HOSTER -->
+        <div class="row">
+          <div class="col s12 m0" style="width: 50%">
+            <blockquote>
+              <h3 class="header">Services to hoster:</h3>
+            </blockquote>
+            <div class="card horizontal">
+              <div class="card-stacked">
+                <div class="card-content">
+                  <ul class="features">
+                    <li class="features">{{#each house.sevicestohoster}}</li>
+                    <li style="font-weight: bold">{{this.serviceType}}: <span style="font-weight: normal">{{this.points}} points.</span></li>
+                    <li>is mandatory: {{this.mandatory}}</li>
+                    <li>is optional: {{this.requirement}}</li>
+                    <li>{{this.description}}</li></br>
+                    {{/each}}
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="col s12 m0">
+    </div>
+  </div>
 
-      <h3>Rent room:</h3>
-      <ul>
-        <li>M2: {{ house.rentroom.m2 }}</li>
-        <li>Description {{ house.rentroom.description }}</li>
-        <li>Wardrobes: {{ house.rentroom.wardrobes }}</li>
-        <li>Window: {{ house.rentroom.window }}</li>
-        <li>Balcony: {{ house.rentroom.balcony }}</li>
-        <li>Heat: {{ house.rentroom.heat }}</li>
-        <li>AC: {{ house.rentroom.ac }}</li>
-        <li>WC: {{ house.rentroom.wc }}</li>
-        <li>TV: {{ house.rentroom.tv }}</li>
-        <li>Table: {{ house.rentroom.table }}</li>
-        <li>Chair: {{ house.rentroom.chair }}</li>
-        <li>Cost per month: {{ house.rentroom.costpermonth }}</li>
-        <li>Other things: {{ house.rentroom.otherthings }}</li>
-      </ul>
+  <!-- HOUSE RESTRICTIONS -->
+  <div class="row">
+    <div class="col s12 m0" style="width: 50%">
+      <blockquote>
+        <h3 class="header">Restrictions:</h3>
+      </blockquote>
+      <div class="card horizontal">
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>{{ house.restricciones }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m0"></div>
+  </div>
 
-      <h3>Booking:</h3>
-      <ul>
-        <li>{{house.rentroom.booking}}</li>
-      </ul>
-      <h3>Reviews:{{#each house.rateandreview }}
-        <li>{{this}}</li>
-        {{/each}}
-      </h3>
+<!-- BOOKING -->
+<div class="row">
+  <div class="col s12 m0" style="width: 50%">
+    <blockquote>
+      <h3 class="header">Booking:</h3>
+    </blockquote>
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          <ul>
+            <li>{{house.rentroom.booking}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m0"></div>
+</div>
 
-      <br>
+<!-- REVIEWS -->
+<div class="row">
+  <div class="col s12 m0" style="width: 50%">
+    <blockquote>
+      <h3 class="header">
+        <h3>Reviews:</h3>
+    </blockquote>
+    <div class="card horizontal">
+      <div class="card-stacked">
+        <div class="card-content">
+          {{#each house.rateandreview }}
+          <li>{{this}}</li>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m0"></div>
+</div>
+
+<!--///////////////////////////HASTA AQUÍ CAMBIADO EL CSS////////////////////////////////////-->
 
       <h3>BOOK THIS HOUSE:</h3>
       Hi: {{currentUser.username.firstname}}<br />
@@ -94,15 +183,12 @@
       {{else}}
       <h3>Must be logged to book!</h3>
       {{/if}}
-
-      <br /><br />
-
-
+      <br />
     </div>
 
     {{!--start the price and booking --}}
     <div class="col s12 m6 l4">
-      <h3>User: {{house.user.username.firstname}}</h3>
+      <h5>User: {{house.user.username.firstname}}</h5>
     </div>
   </div>
 </div>
