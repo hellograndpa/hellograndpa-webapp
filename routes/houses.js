@@ -246,6 +246,28 @@ router.post('/create/step-upload', isLogged, checkUserTypeGranpa, async (req, re
   });
 });
 
+// DELETE IMAGES
+router.post('/create/delete-images', isLogged, checkUserTypeGranpa, async (req, res) => {
+  const {
+    imagesDelete,
+  } = req.body;
+  const path = `${__dirname}/../public`;
+  console.log(`images ${imagesDelete}`);
+  try {
+    imagesDelete.forEach((image) => {
+      console.log(path + imagesDelete);
+      fs.unlinkSync(path + image);
+      const index = house.photos.indexOf(image);
+      house.photos.splice(index, 1);
+    });
+    // file removed
+    req.flash('info', 'removed image');
+    res.redirect('/houses/create/step-upload');
+  } catch (err) {
+    req.flash('error', 'NO removed image');
+  }
+});
+
 // Show form to create a house (if logged)
 // THIS ROUTE IS DEPRECATED
 router.get('/create', isLogged, checkUserTypeGranpa, checkUserHaveOneHouse, (req, res) => {
@@ -286,6 +308,7 @@ router.get('/create/step-upload', isLogged, checkUserTypeGranpa, async (req, res
   const house = await House.findOne({
     user: req.session.currentUser._id,
   });
+  console.log(house);
   req.flash('info', 'photo uploaded');
   res.render('houses/create/step-upload', {
     house,
