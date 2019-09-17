@@ -6,19 +6,20 @@
             <div class="row">
                 {{#each houses}}
                 <div class="col s12 m4">
-                    <div class="card">
-                        <div class="card-image">
-                            <a href="/houses/{{this._id}}"><img src="{{this.photos.[0]}}"></a>
-                        </div>
-                        <div class="card-content">
-                            <p>{{this.title}}</p>
-                            <p>user: {{this.user.username.firstname}} {{this.user.username.lastname}}</p>
-                            <div>rooms: {{ this.rooms }}</div>
-                            <div>m2: {{ this.m2 }}</div>
-                        </div>
-                        <div class="card-action">
-                            <a href="/houses/{{this._id}}">View details</a>
-                        </div>
+
+                    <div class="card-image">
+                        <a href="/houses/{{this._id}}"><img src="{{this.photos.[0]}}"></a>
+                        <span class="card-title">{{this.title}}</span>
+                        <a class="btn-floating halfway-fab waves-effect waves-light red">
+                            <img src="{{user.avatar}}"
+                                alt="{{this.user.username.firstname}} {{this.user.username.lastname}}" width="30px"
+                                height="30px" class="circle center-align"></a>
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            calle Ramon Turró, 25 <br />
+                            Price: 500€/mes
+                        </p>
                     </div>
                 </div>
                 {{/each}}
