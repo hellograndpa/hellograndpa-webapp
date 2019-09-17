@@ -81,6 +81,7 @@ const HouseSchema = new Schema(
       table: Boolean,
       chair: Boolean,
       costpermonth: Number,
+      deposit: Number,
       othersThings: String,
       booking: {
         type: mongoose.Schema.Types.ObjectId,
@@ -114,6 +115,7 @@ const HouseSchema = new Schema(
     dateStart: { month: String, year: String },
     visibleByUsers: Boolean,
     active: Boolean,
+    canActive: Boolean,
   },
   { timestamps: true },
 );

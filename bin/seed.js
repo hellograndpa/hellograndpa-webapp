@@ -83,14 +83,7 @@ User.collection
               country: 'España',
               zip: faker.address.zipCode('#####'),
             },
-            features: [
-              'Calefaccion',
-              'A/C',
-              'Piscina',
-              'Terraza',
-              'Ascensor',
-              'WIFI',
-            ],
+            features: ['Calefaccion', 'A/C', 'Piscina', 'Terraza', 'Ascensor', 'WIFI'],
             electro: [
               'cocina',
               'nevera',
@@ -165,11 +158,13 @@ User.collection
               table: true,
               chair: true,
               costpermonth: 500,
+              deposit: 500,
               othersThings: faker.lorem.paragraph(2),
             },
             dateStart: { month: 'January', year: '2019' },
             visibleByUsers: true,
             active: true,
+            canActive: true,
           })
             .then(() => {
               console.log('house inserted', u._id);

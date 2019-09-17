@@ -15,17 +15,10 @@ const servicesArray = [
     points: 40,
     description: 'no puedo con eso',
   },
-  { serviceType: 'Acompañar a la plaza', points: 50 },
+  { serviceType: 'Acompañar a la plaza', points: 50, description: 'volando voy volando vengo' },
 ];
 
-const featuresArray = [
-  'Calefaccion',
-  'A/C',
-  'Piscina',
-  'Terraza',
-  'Ascensor',
-  'WIFI',
-];
+const featuresArray = ['Calefaccion', 'A/C', 'Piscina', 'Terraza', 'Ascensor', 'WIFI'];
 
 const electroArray = [
   'cocina',
