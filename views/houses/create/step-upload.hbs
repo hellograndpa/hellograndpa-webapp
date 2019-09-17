@@ -15,14 +15,23 @@
       <h2>PHOTOS OF YOUR HOUSE</h2> <br>
       <h5>SETP 2 OF 4</h5>
 
-      {{!--load imagenes  --}}
+      {{!--load images  --}}
       <div class="col s6 m12 l12">
+        <form action="/houses/create/delete-images" method="post">
         {{#each house.photos}}
-        <img src="{{this}}" alt="" width="45%">
+          <div>
+            <label><input type="checkbox" name="imagesDelete" value="{{ this }}"> <span> <img src="{{ this }}" alt="" width="40%"></span></label>
+          </div>
+       
         {{/each}}
+        <div class="col s12 m4 l2">
+            <div class="file-field input-field"></div>
+            <button class="btn waves-effect waves-light red" type="submit" name="action">DELETE IMAGES</button>
+          </div>
+        </form>
       </div>
 
-      {{!--UPLOAD imagenes  --}}
+      {{!--UPLOAD images  --}}
       <div class="col s12 m12 l12">
         <h5>SELECT THE FILE</h5>
         <form action="/houses/create/step-upload" enctype="multipart/form-data" method="post">

@@ -3,7 +3,9 @@ const bcrypt = require('bcrypt');
 const formidable = require('formidable');
 const fs = require('fs');
 
-const { isLogged } = require('../middlewares/logIn');
+const {
+  isLogged,
+} = require('../middlewares/logIn');
 const {
   checkfieldsEmpty,
   checkCorretFormatEmail,
@@ -38,7 +40,11 @@ router.get('/step-1', isLogged, async (req, res, next) => {
       female = false;
     }
     req.flash('info', 'Usuario ok');
-    res.render('user/user-step-1', { user, male, female });
+    res.render('user/user-step-1', {
+      user,
+      male,
+      female,
+    });
   } catch (error) {
     req.flash('error', 'Some error happen - Please try again');
     res.render('/');
@@ -61,7 +67,9 @@ router.post(
       pass,
     } = res.locals.auth;
     try {
-      const existEmail = await User.findOne({ email });
+      const existEmail = await User.findOne({
+        email,
+      });
       if (existEmail) {
         req.flash('error', 'Usuario ya existe');
         res.redirect('/signup');
@@ -72,7 +80,10 @@ router.post(
 
         // create date
         await User.create({
-          username: { firstname, lastname },
+          username: {
+            firstname,
+            lastname,
+          },
           email,
           hashpass,
           birthday,
@@ -117,7 +128,10 @@ router.post('/update', async (req, res, next) => {
       mentorUser = false;
     }
     await User.findByIdAndUpdate(req.session.currentUser._id, {
-      username: { firstname, lastname },
+      username: {
+        firstname,
+        lastname,
+      },
       month,
       day,
       year,
@@ -143,6 +157,25 @@ router.post('/update', async (req, res, next) => {
   }
 });
 
+router.get('/bookings', isLogged, async (req, res, next) => {
+  try {
+    // TODO: buscar en bookings todos los que tengan el userId de currentUser
+    const userBookings = await Booking.find({
+      user: req.session.currentUser._id,
+    });
+    // TODO: Comprobar si me ha devuelto algo
+    if (userBookings.length === 0) {
+      req.flash('info', 'Not a booking yet');
+    }
+    res.render('bookings/list', {
+      userBookings,
+    });
+  } catch (error) {
+    req.flash('error', 'Some error happen - Please try again');
+    res.render('/');
+  }
+});
+
 router.post('/avatar-upload', isLogged, async (req, res) => {
   const user = await User.findById(req.session.currentUser._id);
 
@@ -159,7 +192,9 @@ router.post('/avatar-upload', isLogged, async (req, res) => {
   form.on('file', async (name, file) => {
     req.flash('info', 'upload ');
     const avatar = `/images/avatar/${user.id}_avatar`; // the path estart inside of public/
-    await User.findByIdAndUpdate(user._id, { avatar });
+    await User.findByIdAndUpdate(user._id, {
+      avatar,
+    });
     res.redirect('/user/avatar-upload');
   });
   // error control
@@ -174,7 +209,9 @@ router.post('/avatar-upload', isLogged, async (req, res) => {
 });
 
 router.post('/update-type', async (req, res, next) => {
-  const { typeUser } = req.body;
+  const {
+    typeUser,
+  } = req.body;
   try {
     let grandpaUser = false;
     let mentorUser = false;
@@ -201,12 +238,16 @@ router.post('/update-type', async (req, res, next) => {
 router.get('/avatar-upload', isLogged, async (req, res) => {
   const user = await User.findById(req.session.currentUser._id);
   req.flash('info', 'photo uploaded');
-  res.render('user/avatar-upload', { user });
+  res.render('user/avatar-upload', {
+    user,
+  });
 });
 
 router.get('/step-3', isLogged, async (req, res) => {
   const user = await User.findById(req.session.currentUser._id);
   req.flash('info', 'photo uploaded');
-  res.render('user/user-step-3', { user });
+  res.render('user/user-step-3', {
+    user,
+  });
 });
 module.exports = router;
