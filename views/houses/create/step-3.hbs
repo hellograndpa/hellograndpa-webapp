@@ -19,7 +19,7 @@
         {{#each house.sevicestohoster}}
         <div class="col s12 m12 l12">
           <h6>{{this.serviceType}} - {{this.points}} puntos de descuento</h6>
-          <div class="col s12 m6 l4">
+          <div class="col s12 m3 l6">
             <label><input type="radio" name="{{this.serviceType}}" value="none"> <span>none</span></label>
             {{#if this.requirement}}
             <label><input type="radio" name="{{this.serviceType}}" value="req" checked> <span>requirement</span></label>
@@ -33,7 +33,7 @@
             <label><input type="radio" name="{{this.serviceType}}" value="mandatory"> <span>mandatory</span></label>
             {{/if}}
           </div>
-          <div class="col s12 m6 l8">
+          <div class="col s12 m9 l6">
             <span>{{this.description}}</span><br>
           </div>
         </div>

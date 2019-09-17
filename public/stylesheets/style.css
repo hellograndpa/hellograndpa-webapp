@@ -105,7 +105,6 @@ blockquote {
 .row .col.l6 {
   width: auto;
 }
-
 .container .row .col .card {
   display: flex;
   flex-direction: column;
@@ -118,4 +117,11 @@ blockquote {
 
 .btn{
   box-shadow: none;
+}
+.modal {
+  background-color: #fafafa;
+  padding: 0;
+  max-height: 80%;
+  width: 35%;
+  will-change: top, opacity;
 }
