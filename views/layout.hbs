@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <link rel='stylesheet' href='/stylesheets/style.css' />
-
 </head>
 
 <body>
@@ -27,8 +26,8 @@
             <li><a href="/user/messages/">My Inbox</a></li>
             <li><a href="/logout">Log Out</a></li>
             {{else}}
-            <li><a href="/login">LogIn</a></li>
-            <li><a href="/signup">Sign Up</a></li>
+            <li><a class="waves-effect waves-light btn modal-trigger" href="#login">LogIn</a></li>
+            <li><a class="waves-effect waves-light btn modal-trigger" href="#signup">Sign Up</a></li>
             {{/if}}
           </ul>
 
@@ -39,7 +38,7 @@
             <li><a href="/houses/create/step-1">Create a House</a></li>
             <li><a href="/logout">Log Out</a></li>
             {{else}}
-            <li><a href="/login">LogIn</a></li>
+            <li><a class="waves-effect waves-light btn modal-trigger" href="#login">LogIn</a></li>
             <li><a href="/signup">Sign Up</a></li>
             {{/if}}
           </ul>
@@ -57,9 +56,113 @@
       </div>
     </div>
 
+    {{!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> --}}
+    <!-- LOGUIN -->
+    <div id="login" class="modal">
+      <div class="modal-content">
+        <h4>LOG IN FORM</h4>
+        <form id="form" action="/login" method="POST">
+          <label for="email">Email</label><br>
+          <input type="email" name="email" placeholder="Email adreess">
+
+          <label for="password">Password</label><br>
+          <input type="password" name="password" placeholder="Enter Password">
+          <button class="btn" type="submit" name="action">LOG IN</button>
+          <br>
+        </form>
+      </div>
+    </div>
+    <!-- SIGN UP -->
+    <div id="signup" class="modal">
+      <div class="modal-content">
+        <h4>SIGN UP FORM</h4>
+        <form id="form" action="/user" method="POST">
+          <label for="email">Email</label><br>
+          <input type="email" name="email" placeholder="Email adreess">
+
+          <label for="firtname">First Name</label><br>
+          <input type="text" name="firstname" placeholder="Fist Name">
+
+          <label for="lastname">Last Name</label><br>
+          <input type="text" name="lastname" placeholder="Last Name">
+
+          <label for="password">Password</label><br>
+          <input type="password" name="pass" placeholder="Create Password">
+
+          <label for="lastName">Birthday</label><br>
+          <select name="month">
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
+          </select>
+
+          <select name="day">
+            <option>01</option>
+            <option>02</option>
+            <option>03</option>
+            <option>04</option>
+            <option>05</option>
+            <option>06</option>
+            <option>07</option>
+            <option>08</option>
+            <option>09</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>23</option>
+            <option>24</option>
+            <option>25</option>
+            <option>26</option>
+            <option>27</option>
+            <option>28</option>
+            <option>29</option>
+            <option>30</option>
+            <option>31</option>
+          </select>
+
+          <select name="year">
+            <option>2009</option>
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+            <option>2016</option>
+            <option>2017</option>
+            <option>2018</option>
+          </select>
+          <div>
+            <button class="btn" type="submit" name="action">LOG IN</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
   </header>
   <main>
     {{{body}}}
+
+
   </main>
 
 
@@ -105,8 +208,8 @@
             <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
           </ul>
         </div>
-    </div>
-    <!-- <div class="footer-copyright">
+      </div>
+      <!-- <div class="footer-copyright">
       <div class="container">
         © 2019 Copyright Text
         <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
@@ -117,6 +220,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="/js/bookings.js"></script>
+  <script src="/js/modals.js"></script>
 </body>
 
 </html>

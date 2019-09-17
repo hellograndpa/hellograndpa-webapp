@@ -18,13 +18,14 @@
       {{!--load images  --}}
       <div class="col s6 m12 l12">
         <form action="/houses/create/delete-images" method="post">
-        {{#each house.photos}}
+          {{#each house.photos}}
           <div>
-            <label><input type="checkbox" name="imagesDelete" value="{{ this }}"> <span> <img src="{{ this }}" alt="" width="40%"></span></label>
+            <label><input type="checkbox" name="imagesDelete" value="{{ this }}"> <span> <img src="{{ this }}" alt=""
+                  width="40%"></span></label>
           </div>
-       
-        {{/each}}
-        <div class="col s12 m4 l2">
+
+          {{/each}}
+          <div class="col s12 m4 l2">
             <div class="file-field input-field"></div>
             <button class="btn waves-effect waves-light red" type="submit" name="action">DELETE IMAGES</button>
           </div>
@@ -44,7 +45,7 @@
                 <input type="file" name="upload" multiple />
               </div>
               <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                <input class="file-path validate" type="text" name="upload" placeholder="Upload one or more files">
               </div>
             </div>
           </div>

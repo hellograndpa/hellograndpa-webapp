@@ -4,7 +4,11 @@ const formidable = require('formidable');
 const fs = require('fs');
 
 const { isLogged } = require('../middlewares/logIn');
-const { checkUserTypeGranpa, checkUserHaveOneHouse } = require('../middlewares/validationsign');
+const {
+  checkUserTypeGranpa,
+  checkUserHaveOneHouse,
+  checkUploadNotEmpty,
+} = require('../middlewares/validationsign');
 
 const User = require('../models/User');
 
@@ -184,42 +188,47 @@ router.post('/create/step-3', checkUserTypeGranpa, async (req, res, next) => {
 });
 
 // UPLOAD FILES
-router.post('/create/step-upload', isLogged, checkUserTypeGranpa, async (req, res) => {
-  const { ObjectId } = require('mongoose').Types;
-  const query = {
-    user: new ObjectId(req.session.currentUser._id),
-  };
-  const house = await House.findOne(query);
-  const { photos } = house;
+router.post(
+  '/create/step-upload',
+  isLogged,
+  checkUserTypeGranpa,
+  checkUploadNotEmpty,
+  async (req, res) => {
+    const { ObjectId } = require('mongoose').Types;
+    const query = {
+      user: new ObjectId(req.session.currentUser._id),
+    };
+    const house = await House.findOne(query);
+    const { photos } = house;
+    // formidable is a npm package
+    const form = new formidable.IncomingForm();
 
-  // formidable is a npm package
-  const form = new formidable.IncomingForm();
-
-  form.parse(req);
-  // you need control where you put the file
-  form.on('fileBegin', (name, file) => {
-    file.path = `${__dirname}/../public/images/pictures/${house.id}_house_${photos.length + 1}`; // __dirname now is the router path
-  });
-
-  // save the file path into de date base
-  form.on('file', async (name, file) => {
-    req.flash('info', 'upload ');
-    photos.push(`/images/pictures/${house.id}_house_${photos.length + 1}`); // the path estart inside of public/
-    await House.findByIdAndUpdate(house._id, {
-      photos,
+    form.parse(req);
+    // you need control where you put the file
+    form.on('fileBegin', (name, file) => {
+      file.path = `${__dirname}/../public/images/pictures/${house.id}_house_${photos.length + 1}`; // __dirname now is the router path
     });
-    res.redirect('/houses/create/step-upload');
-  });
-  // error control
-  form.on('error', (err) => {
-    req.resume();
-    req.flash('error', `Some error happen ${err}`);
-  });
-  // aborted control
-  form.on('aborted', () => {
-    console.log('user aborted upload');
-  });
-});
+
+    // save the file path into de date base
+    form.on('file', async (name, file) => {
+      req.flash('info', 'upload ');
+      photos.push(`/images/pictures/${house.id}_house_${photos.length + 1}`); // the path estart inside of public/
+      await House.findByIdAndUpdate(house._id, {
+        photos,
+      });
+      res.redirect('/houses/create/step-upload');
+    });
+    // error control
+    form.on('error', (err) => {
+      req.resume();
+      req.flash('error', `Some error happen ${err}`);
+    });
+    // aborted control
+    form.on('aborted', () => {
+      console.log('user aborted upload');
+    });
+  },
+);
 
 // DELETE IMAGES
 router.post('/create/delete-images', isLogged, checkUserTypeGranpa, async (req, res) => {
@@ -251,7 +260,7 @@ router.post('/create/delete-images', isLogged, checkUserTypeGranpa, async (req, 
 router.get('/create', isLogged, checkUserTypeGranpa, checkUserHaveOneHouse, (req, res) => {
   res.render('houses/create');
 });
-// ALL STEPS --
+// ALL STEPS
 router.get('/create/step-1', isLogged, checkUserTypeGranpa, async (req, res, next) => {
   const house = await House.findOne({
     user: req.session.currentUser._id,
