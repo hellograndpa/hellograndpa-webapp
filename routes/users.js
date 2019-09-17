@@ -143,23 +143,6 @@ router.post('/update', async (req, res, next) => {
   }
 });
 
-router.get('/bookings', isLogged, async (req, res, next) => {
-  try {
-    // TODO: buscar en bookings todos los que tengan el userId de currentUser
-    const userBookings = await Booking.find({
-      user: req.session.currentUser._id,
-    });
-    // TODO: Comprobar si me ha devuelto algo
-    if (userBookings.length === 0) {
-      req.flash('info', 'Not a booking yet');
-    }
-    res.render('bookings/list', { userBookings });
-  } catch (error) {
-    req.flash('error', 'Some error happen - Please try again');
-    res.render('/');
-  }
-});
-
 router.post('/avatar-upload', isLogged, async (req, res) => {
   const user = await User.findById(req.session.currentUser._id);
 

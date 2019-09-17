@@ -1,41 +1,43 @@
 <h1>User bookings list</h1>
-<div style="display:flex; justify-content:center; flex-wrap: wrap;">
+<div style="display:flex; justify-content:center; flex-wrap: nowrap;">
   <div class="container">
     <div class="row">
+
+      
       <div class="col s12 m4 l3">
         <div class="collection">
-  {{#each userBookings}}
-  <div style=" padding: 10px; width:30%">
-    <h3>House</h3>
-    <div><a href="/houses/{{this._id}}"><img src="/images/pictures/photo1.jpg" width="150" alt="Foto"></a></div>
-    <div>rooms: {{ this.rooms }}</div>
-    <div>m2: {{ this.m2 }}</div>
-    <div>description:{{ this.description }}</div>
-    <hr>
-    <div>ADDRESS: casa Paco</div>
-    <div>state:{{ this.address.state }}</div>
-    <div>city:{{ this.address.city }}</div>
-    <div>street:{{ this.address.street }}</div>
-    <div>zip:{{ this.address.zip }}</div>
-    <hr>
-    <div>FEATURES</div>
-    <ul>
-      {{#each this.features}}
-      <li>{{this}}</li>
-      {{/each}}
-    </ul>
-    <div>ELECTRO</div>
-    <ul>
-      {{#each this.electro}}
-      <li>{{this}}</li>
-      {{/each}}
-    </ul>
-    <div>sevicesincluded</div>
-    <ul>
-      {{#each this.sevicesincluded}}
-      <li>{{this}}</li>
-      {{/each}}
-    </ul>
-  </div>
-  {{/each}}
-</div>
+          {{#each userBookings}}
+          <div style=" padding: 10px; width:30%">
+            <h3>House</h3>
+            <div><a href="/houses/{{this._id}}"><img src="/images/pictures/photo1.jpg" width="150" alt="Foto"></a></div>
+            <div>rooms: {{ this.house.rooms }}</div>
+            <div>m2: {{ this.house.m2 }}</div>
+            <div>description:{{ this.house.description }}</div>
+            <hr>
+            <div>ADDRESS: casa Paco</div>
+            <div>state:{{ this.house.address.state }}</div>
+            <div>city:{{ this.house.address.city }}</div>
+            <div>street:{{ this.house.address.street }}</div>
+            <div>zip:{{ this.house.address.zip }}</div>
+            <hr>
+            <div>FEATURES</div>
+            <ul>
+              {{#each this.house.features}}
+              <li>{{this}}</li>
+              {{/each}}
+            </ul>
+            <div>ELECTRO</div>
+            <ul>
+              {{#each this.house.electro}}
+              <li>{{this}}</li>
+              {{/each}}
+            </ul>
+            <div>sevicesincluded</div>
+            <ul>
+              {{#each this.house.sevicesincluded}}
+              <li>{{this}}</li>
+              {{/each}}
+            </ul>
+          </div>
+          {{/each}}
+        </div>
