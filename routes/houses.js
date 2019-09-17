@@ -43,6 +43,8 @@ router.get('/', async (req, res, next) => {
 });
 
 // insert a house (if logged)
+// TODO: CREATE WITH MAPS
+// CREATE HOUSE STEP 1 - DIRECTION AND
 router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
   const {
     title,
@@ -73,7 +75,7 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
         },
       });
 
-      req.flash('info', 'Address house UUPDATE');
+      req.flash('info', 'Address house UPDATE');
     } else {
       await House.create({
         user,
@@ -93,6 +95,8 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
     res.redirect('/');
   }
 });
+
+// CREATE HOUSE STEP 2 - HOUSE AND ROOM DESCRIPTION
 router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
   const {
     title,
@@ -151,7 +155,7 @@ router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
     res.redirect('/houses/create/step-2');
   }
 });
-
+// CREATE HOUSE STEP 3 - SERVICES AND COST AND DEPOSIT
 router.post('/create/step-3', checkUserTypeGranpa, async (req, res, next) => {
   const services = [];
 
@@ -243,6 +247,7 @@ router.post('/create/step-upload', isLogged, checkUserTypeGranpa, async (req, re
 });
 
 // Show form to create a house (if logged)
+// THIS ROUTE IS DEPRECATED
 router.get('/create', isLogged, checkUserTypeGranpa, checkUserHaveOneHouse, (req, res) => {
   res.render('houses/create');
 });
