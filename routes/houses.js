@@ -1,11 +1,13 @@
 const express = require('express');
 
 const formidable = require('formidable');
+const fs = require('fs');
 
 const { isLogged } = require('../middlewares/logIn');
 const {
   checkUserTypeGranpa,
   checkUserHaveOneHouse,
+  checkUploadNotEmpty,
 } = require('../middlewares/validationsign');
 
 const User = require('../models/User');
@@ -210,6 +212,7 @@ router.post(
   '/create/step-upload',
   isLogged,
   checkUserTypeGranpa,
+  checkUploadNotEmpty,
   async (req, res) => {
     const { ObjectId } = require('mongoose').Types;
     const query = {
@@ -217,7 +220,6 @@ router.post(
     };
     const house = await House.findOne(query);
     const { photos } = house;
-
     // formidable is a npm package
     const form = new formidable.IncomingForm();
 
@@ -258,15 +260,20 @@ router.post(
   async (req, res) => {
     const { imagesDelete } = req.body;
     const path = `${__dirname}/../public`;
-    console.log(`images ${imagesDelete}`);
+    console.log(`ruta ok : ${path}${imagesDelete}`);
     try {
-      imagesDelete.forEach((image) => {
-        console.log(path + imagesDelete);
-        fs.unlinkSync(path + image);
-        const index = house.photos.indexOf(image);
+      console.log(imagesDelete);
+      const house = await House.findOne({ user: req.session.currentUser._id });
+      const index = house.photos.indexOf(imagesDelete);
+
+      if (index !== -1) {
         house.photos.splice(index, 1);
-      });
-      // file removed
+        const { photos } = house;
+        await House.findByIdAndUpdate(house._id, {
+          photos,
+        });
+        fs.unlinkSync(`${path}${imagesDelete}`);
+      }
       req.flash('info', 'removed image');
       res.redirect('/houses/create/step-upload');
     } catch (err) {
@@ -286,6 +293,7 @@ router.get(
     res.render('houses/create');
   },
 );
+// ALL STEPS
 router.get(
   '/create/step-1',
   isLogged,
@@ -340,7 +348,6 @@ router.get(
     const house = await House.findOne({
       user: req.session.currentUser._id,
     });
-    console.log(house);
     req.flash('info', 'photo uploaded');
     res.render('houses/create/step-upload', {
       house,
