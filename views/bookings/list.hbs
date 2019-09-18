@@ -1,17 +1,17 @@
-<h1>User bookings list</h1>
-<div style="display: flex">
-  <div class="row">
+<h1 style="margin-left: 30px;">User bookings list</h1>
+  <div class="row" style="margin-left: 30px;
+    margin-right: 30px;">
     {{#each userBookings}}
-    <div class="col s4 m4">
-      <div class="card">
-        <class="card-image"><a href="/houses/{{this._id}}"><img src="/images/pictures/photo1.jpg" width="150"
+    <div class="col s12 m4">
+      <div class="card details">
+        <class="card-image"><a href="/houses/{{this._id}}"><img src="/images/pictures/photo1.jpg" width="250px"
               alt="Foto"></a>
           <h3>House:</h3>
           <div>rooms: {{ this.house.rooms }}</div>
           <div>m2: {{ this.house.m2 }}</div>
           <div>description:{{ this.house.description }}</div>
           <hr>
-          <div>ADDRESS: casa Paco</div>
+          <div>Adress: casa Paco</div>
           <div>state:{{ this.house.address.state }}</div>
           <div>city:{{ this.house.address.city }}</div>
           <div>street:{{ this.house.address.street }}</div>
@@ -37,7 +37,8 @@
           </ul>
         </class>
       </div>
-      {{/each}}
+      
     </div>
+    {{/each}}
   </div>
-</div>
+  

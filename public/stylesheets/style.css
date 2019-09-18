@@ -125,3 +125,16 @@ blockquote {
   width: 35%;
   will-change: top, opacity;
 }
+.card {
+  padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+  color: #26a69a;
+}
+
+a:hover {
+  color: #26a69a;
+}
