@@ -3,11 +3,15 @@
     <div class="col s12 m4 l3">
       <div class="collection">
         <a href="/houses/create/step-1" class="collection-item active">Edit House</a>
+        {{#if house}}
         <a href="/houses/create/step-upload" class="collection-item ">House's photo </a>
         <a href="/houses/create/step-2" class="collection-item">About you house</a>
         <a href="/houses/create/step-3" class="collection-item">Services</a>
+        {{/if}}
       </div>
+      {{#if house}}
       <a class="rounded waves-effect waves-light btn teal lighten-3 " href="/houses/{{house.id}}">PREVIEW THE HOUSE</a>
+      {{/if}}
     </div>
     <div class="col s12 m8 l9">
       <div class="col s8">

@@ -24,6 +24,17 @@ const checkfieldsEmpty = (req, res, next) => {
   }
 };
 
+const checkUploadNotEmpty = (req, res, next) => {
+  const { upload } = req.body;
+  if (upload === '') {
+    req.flash('error', 'No has seleccioado ningna imagen');
+    res.redirect('/houses/create/step-upload');
+  } else {
+    req.flash('info', 'no están vacios');
+    next();
+  }
+};
+
 const checkCorretFormatEmail = (req, res, next) => {
   const { email } = req.body;
 
@@ -64,10 +75,10 @@ const checkUserHaveOneHouse = async (req, res, next) => {
   }
 };
 
-
 module.exports = {
   checkfieldsEmpty,
   checkCorretFormatEmail,
   checkUserTypeGranpa,
   checkUserHaveOneHouse,
+  checkUploadNotEmpty,
 };
