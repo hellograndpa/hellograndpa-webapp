@@ -109,5 +109,6 @@ blockquote {
   padding: 0;
   max-height: 80%;
   width: 35%;
+  min-width: 320px;
   will-change: top, opacity;
 }
