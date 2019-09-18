@@ -149,7 +149,7 @@ blockquote {
   padding-right: 24px;
   padding-bottom: 24px;
   box-shadow: none;
-  border: solid 1px #212121;
+  /* border: solid 1px #212121; */
 }
 
 .btn{
@@ -175,4 +175,8 @@ blockquote {
 
 a:hover {
   color: #26a69a;
+}
+
+.card-border-grey {
+  border: 1px solid rgba(128, 128, 128, 0.762);
 }

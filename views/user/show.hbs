@@ -1,47 +1,70 @@
 <div class="container">
   <div class="row">
     <div class="col s12 m4 l4">
-        <div class="card  darken-1">
-          <div class="card-content center-align">
-            <img class="circle center-align" width="50%" src="{{user.avatar}}" alt="Avatar" co>
-          </div>
-          <div class="card-action">
-             <i class=" small material-icons green-text text-darken-2">verified_user</i> Verified User
-          </div>
-          <div class="card-action">
-             <i class=" small material-icons amber-text text-acent-4">star</i> 250 Review
-          </div>
-          <div class="card-action">
-             <i class=" small material-icons">check_circle</i> ID Card <br>
-             <i class=" small material-icons">check_circle</i> Phone Number <br>
-             <i class=" small material-icons">check_circle</i> Have Contact Email <br>
-
-          </div>
+      <div class="card card-border-grey ">
+        <div class="card-content center-align">
+          <img class="circle center-align" width="80%" src="{{user.avatar}}" alt="Avatar" co>
         </div>
-      </div>       
-    
+        <div class="card-action valign-wrapper">
+          <i class=" small material-icons green-text text-darken-2">verified_user</i> Verified User
+        </div>
+        <div class="card-action valign-wrapper">
+          <i class=" small material-icons amber-text text-acent-4">star</i> 250 Review
+        </div>
+        <div class="card-action">
+          <div class="valign-wrapper">
+            <i class=" small material-icons  
+            {{#if user.idCard}}green-text text-darken-2
+            {{else}} grey-text text-lighten-2
+            {{/if}}">check_circle</i>
+            ID Card <br>
+          </div>
+          <div class="valign-wrapper">
+            <i class=" small material-icons {{#if user.phone}}green-text text-darken-2
+            {{else}} grey-text text-lighten-2
+            {{/if}}">check_circle</i> Phone Number <br>
+          </div>
+          <div class="valign-wrapper">
+            <i class=" small material-icons 
+            {{#if user.email}}green-text text-darken-2
+            {{else}} grey-text text-lighten-2
+            {{/if}}">check_circle</i> Have Contact Email <br>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <div class="col s12 m4 l8">
       <h2>Hi, I'm {{user.username.firstname}} {{user.username.lastname}} </h2>
-      <i class=" small material-icons green-text text-darken-2">verified_user</i> I live into {{user.address.city}}, {{user.address.country}}
-      <i class=" small material-icons green-text text-darken-2">verified_user</i> I live into {{user.address.city}}, {{user.address.country}}
-      
+      <div class="valign-wrapper">
+        <i class=" medium material-icons">home</i> <span class="flow-text"> I live
+          in{{user.address.city}},{{user.address.country}}</span> <br>
+
+      </div>
+      <div class="valign-wrapper">
+        <i class=" medium material-icons">cake</i> <span class="flow-text">I'm a very young, person only have
+          {{user.birthday}} </span> <br>
+      </div>
+
       <div>
-        <blockquote>
+        <h5><strong>Somethings that would be nice to know about me</strong></h5>
+        <blockquote class="flow-text">
           {{user.bio}}
         </blockquote>
       </div>
       <div>
-        <h5> <span> <strong>YOU CAN SEE A THE PHOTOS OF MY HOUSE</strong> </span></h5>
+        <h5> <span> <strong>YOU CAN SEE SAME PHOTOS OF MY HOUSE</strong> </span></h5>
       </div>
       <div>
         {{#each house.photos}}
-          <img src="{{this}}" alt="" width="25%">
-          {{/each}}
+        <img src="{{this}}" alt="" width="25%">
+        {{/each}}
       </div>
       <div>
-      <h5> <span> <strong>THE REVIEWS</strong> </span></h5>
+        <h5> <span> <strong>THE REVIEWS</strong> </span></h5>
       </div>
-      
+
     </div>
 
   </div>
