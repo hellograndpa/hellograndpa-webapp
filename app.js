@@ -63,10 +63,11 @@ app.use(notifications(app));
 // Routes
 app.use('/', indexRouter);
 app.use('/user/messages', messagesRouter);
+app.use('/user/bookings', bookingsRouter);
 app.use('/user', usersRouter);
 app.use('/houses', housesRouter);
 app.use('/booking', bookingRouter);
-app.use('/user/bookings', bookingsRouter);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

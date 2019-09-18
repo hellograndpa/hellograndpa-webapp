@@ -12,7 +12,7 @@ const {
 } = require('../middlewares/validationsign');
 
 const User = require('../models/User');
-
+const House = require('../models/House');
 const Booking = require('../models/Booking');
 
 const router = express.Router();
@@ -249,5 +249,39 @@ router.get('/step-3', isLogged, async (req, res) => {
   res.render('user/user-step-3', {
     user,
   });
+});
+
+// USER SHOW
+router.get('/:id', async (req, res, next) => {
+  // get info from ddbb
+  const {
+    id,
+  } = req.params;
+  const house = House.findOne({
+    user: id,
+  });
+  try {
+    const user = await User.findById(id);
+    const house = await House.findOne({
+      user: user._id,
+    });
+    if (user) {
+      res.render('user/show', {
+        user,
+        house,
+      });
+    } else {
+      // next(error);
+      req.flash('error', 'this user in not active');
+      res.redirect('/', {
+        user,
+      });
+    }
+  } catch (error) {
+    req.flash('error', 'this user in not active');
+    res.redirect('/', {
+      user,
+    });
+  }
 });
 module.exports = router;

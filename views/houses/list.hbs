@@ -1,30 +1,45 @@
-<h1>List of available houses</h1>
-<div>
-
+<div class="house_list">
     <div class="row">
-        {{#each houses}}
+        <div class="col s12 m1"></div>
+        <div class="col s12 m10">
+            <div class="title">{{houses.length}} of available houses founded in {{city}}</div>
+            <div class="row">
+                {{#each houses}}
+                <div class="col s12 m4">
 
+                    <div class="card">
+                        <div class="card-image">
+                            <a href="/houses/{{this._id}}"><img src="{{this.photos.[0]}}"></a>
 
-        <div class="col s12 m4">
-            <div class="card">
-                <div class="card-image">
-                    <a href="
-                    /houses/{{this._id}}"><img src="{{this.photos.[0]}}"></a>
+                            <a class="btn-floating halfway-fab waves-effect waves-light white"
+                                href="/user/{{this.user._id}}">
+                                <img src="{{this.user.avatar}}"
+                                    alt="{{this.user.username.firstname}} {{this.user.username.lastname}}" width="30px"
+                                    height="30px" class="circle center-align"></a>
+                        </div>
+                        <a href="/houses/{{this._id}}">
+                            <div class="card-content">
+                                <div class="card-title">{{this.title}}</div>
+                                <div>
+                                    <p class="street">{{this.address.street}}</p>
+                                    <p class="price">{{this.priceDiscounted}}€/month</p>
+                                    <p class="extra">{{this.rentroom.m2}} m2 {{this.rooms}} room {{this.rentroom.wc}}
+                                    </p>
+                                </div>
+                                <div class="services">
+                                    {{#each this.mandatoryServices}}
 
+                                    <i class="material-icons dp48" title="{{this.description}}">{{this.logo}}</i>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <p>{{this.title}}</p>
-                    <p>user: {{this.user.username.firstname}} {{this.user.username.lastname}}</p>
-                    <div>rooms: {{ this.rooms }}</div>
-                    <div>m2: {{ this.m2 }}</div>
-                </div>
-                <div class="card-action">
-                    <a href="/houses/{{this._id}}">View details</a>
-                </div>
+                {{/each}}
             </div>
         </div>
-
-        {{/each}}
+        <div class="col s12 m1"></div>
     </div>
-
+    <br>
 </div>
