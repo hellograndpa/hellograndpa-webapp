@@ -32,8 +32,30 @@ router.get('/', async (req, res, next) => {
     const houses = await House.find({
       'address.city': city,
     }).populate('mentor user');
+
+    houses.forEach((el) => {
+      let newPrice = 0;
+      el.priceDiscounted = el.sevicestohoster
+        .filter((service) => service.mandatory === true)
+        .forEach((service) => (newPrice += service.points));
+      el.priceDiscounted = el.rentroom.costpermonth - newPrice * 2;
+
+      const mandatoryServices = el.sevicestohoster.filter(
+        (service) => service.mandatory === true,
+      );
+
+      mandatoryServices.forEach((service) => {
+        service.logo = servicesArray.find(
+          (el) => (el.serviceType = service.serviceType),
+        ).logo;
+      });
+
+      el.mandatoryServices = mandatoryServices;
+    });
+
     res.render('houses/list', {
       houses,
+      city,
     });
   } catch (error) {
     next(error);
@@ -44,9 +66,7 @@ router.get('/', async (req, res, next) => {
 // TODO: CREATE WITH MAPS
 // CREATE HOUSE STEP 1 - DIRECTION AND
 router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
-  const {
-    title, street, city, state, country, zip,
-  } = req.body;
+  const { title, street, city, state, country, zip } = req.body;
   try {
     const user = req.session.currentUser._id;
     const { ObjectId } = require('mongoose').Types;
@@ -206,7 +226,9 @@ router.post(
     form.parse(req);
     // you need control where you put the file
     form.on('fileBegin', (name, file) => {
-      file.path = `${__dirname}/../public/images/pictures/${house.id}_house_${photos.length + 1}`; // __dirname now is the router path
+      file.path = `${__dirname}/../public/images/pictures/${
+        house.id
+      }_house_${photos.length + 1}`; // __dirname now is the router path
     });
 
     // save the file path into de date base
@@ -231,76 +253,107 @@ router.post(
 );
 
 // DELETE IMAGES
-router.post('/create/delete-images', isLogged, checkUserTypeGranpa, async (req, res) => {
-  const { imagesDelete } = req.body;
-  const path = `${__dirname}/../public`;
-  console.log(`ruta ok : ${path}${imagesDelete}`);
-  try {
-    console.log(imagesDelete);
-    const house = await House.findOne({ user: req.session.currentUser._id });
-    const index = house.photos.indexOf(imagesDelete);
+router.post(
+  '/create/delete-images',
+  isLogged,
+  checkUserTypeGranpa,
+  async (req, res) => {
+    const { imagesDelete } = req.body;
+    const path = `${__dirname}/../public`;
+    console.log(`ruta ok : ${path}${imagesDelete}`);
+    try {
+      console.log(imagesDelete);
+      const house = await House.findOne({ user: req.session.currentUser._id });
+      const index = house.photos.indexOf(imagesDelete);
 
-    if (index !== -1) {
-      house.photos.splice(index, 1);
-      const { photos } = house;
-      await House.findByIdAndUpdate(house._id, {
-        photos,
-      });
-      fs.unlinkSync(`${path}${imagesDelete}`);
+      if (index !== -1) {
+        house.photos.splice(index, 1);
+        const { photos } = house;
+        await House.findByIdAndUpdate(house._id, {
+          photos,
+        });
+        fs.unlinkSync(`${path}${imagesDelete}`);
+      }
+      req.flash('info', 'removed image');
+      res.redirect('/houses/create/step-upload');
+    } catch (err) {
+      req.flash('error', 'NO removed image');
     }
-    req.flash('info', 'removed image');
-    res.redirect('/houses/create/step-upload');
-  } catch (err) {
-    req.flash('error', 'NO removed image');
-  }
-});
+  },
+);
 
 // Show form to create a house (if logged)
 // THIS ROUTE IS DEPRECATED
-router.get('/create', isLogged, checkUserTypeGranpa, checkUserHaveOneHouse, (req, res) => {
-  res.render('houses/create');
-});
+router.get(
+  '/create',
+  isLogged,
+  checkUserTypeGranpa,
+  checkUserHaveOneHouse,
+  (req, res) => {
+    res.render('houses/create');
+  },
+);
 // ALL STEPS
-router.get('/create/step-1', isLogged, checkUserTypeGranpa, async (req, res, next) => {
-  const house = await House.findOne({
-    user: req.session.currentUser._id,
-  });
-  req.flash('info', 'house created step 1');
-  res.render('houses/create/step-1', {
-    house,
-  });
-});
-router.get('/create/step-2', isLogged, checkUserTypeGranpa, async (req, res) => {
-  const house = await House.findOne({
-    user: req.session.currentUser._id,
-  });
-  req.flash('info', 'house created step 2');
-  res.render('houses/create/step-2', {
-    house,
-    featuresArray,
-    electroArray,
-    sevicesIncludedArray,
-  });
-});
-router.get('/create/step-3', isLogged, checkUserTypeGranpa, async (req, res) => {
-  const house = await House.findOne({
-    user: req.session.currentUser._id,
-  });
-  req.flash('info', 'house created step 3');
-  res.render('houses/create/step-3', {
-    house,
-    servicesArray,
-  });
-});
-router.get('/create/step-upload', isLogged, checkUserTypeGranpa, async (req, res) => {
-  const house = await House.findOne({
-    user: req.session.currentUser._id,
-  });
-  req.flash('info', 'photo uploaded');
-  res.render('houses/create/step-upload', {
-    house,
-  });
-});
+router.get(
+  '/create/step-1',
+  isLogged,
+  checkUserTypeGranpa,
+  async (req, res, next) => {
+    const house = await House.findOne({
+      user: req.session.currentUser._id,
+    });
+    req.flash('info', 'house created step 1');
+    res.render('houses/create/step-1', {
+      house,
+    });
+  },
+);
+router.get(
+  '/create/step-2',
+  isLogged,
+  checkUserTypeGranpa,
+  async (req, res) => {
+    const house = await House.findOne({
+      user: req.session.currentUser._id,
+    });
+    req.flash('info', 'house created step 2');
+    res.render('houses/create/step-2', {
+      house,
+      featuresArray,
+      electroArray,
+      sevicesIncludedArray,
+    });
+  },
+);
+router.get(
+  '/create/step-3',
+  isLogged,
+  checkUserTypeGranpa,
+  async (req, res) => {
+    const house = await House.findOne({
+      user: req.session.currentUser._id,
+    });
+    req.flash('info', 'house created step 3');
+    res.render('houses/create/step-3', {
+      house,
+      servicesArray,
+    });
+  },
+);
+router.get(
+  '/create/step-upload',
+  isLogged,
+  checkUserTypeGranpa,
+  async (req, res) => {
+    const house = await House.findOne({
+      user: req.session.currentUser._id,
+    });
+    req.flash('info', 'photo uploaded');
+    res.render('houses/create/step-upload', {
+      house,
+    });
+  },
+);
 
 // Show details of a house
 // Get id from url
