@@ -21,7 +21,11 @@
           <input type="month" id="dateIn" name="dateIn" min="2019-10" value="">
           <div>Until?</div><br>
           <input type="month" id="dateOut" name="dateOut" min="2019-10" value="">
-          <input type="submit" value="Book!">
+          <button class="btn waves-effect waves-light" type="submit" style="margin-top: 15px" name="action">Enviar
+            Petición
+            <i class="material-icons right">send</i>
+          </button>
+          
         </form><br>
         {{else}}
         <h3>Must be logged to book!</h3>
@@ -36,10 +40,7 @@
               <input type="hidden" name="discountHidden" id="discountHidden">
               <input type="hidden" name="priceEndHidden" id="priceEndHidden">
               <br>
-              <div class="pd5"><button class="btn waves-effect waves-light" type="submit" name="action">Enviar
-                  Petición
-                  <i class="material-icons right">send</i>
-                </button></div>
+              
       </div>
     </div>
 
