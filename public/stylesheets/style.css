@@ -165,9 +165,9 @@ blockquote {
 }
 .card {
   padding-left: 24px;
-    padding-right: 24px;
-    padding-top: 24px;
-    padding-bottom: 24px;
+  padding-right: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
   color: #26a69a;
@@ -176,7 +176,19 @@ blockquote {
 a:hover {
   color: #26a69a;
 }
+<<<<<<< HEAD
 
 .card-border-grey {
   border: 1px solid rgba(128, 128, 128, 0.762);
+=======
+.container{
+  width: 100%;
+}
+
+.container .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+>>>>>>> 9b4a0672a79af928410edace7a47c5d589e7793a
 }

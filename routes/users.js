@@ -3,13 +3,8 @@ const bcrypt = require('bcrypt');
 const formidable = require('formidable');
 const fs = require('fs');
 
-const {
-  isLogged,
-} = require('../middlewares/logIn');
-const {
-  checkfieldsEmpty,
-  checkCorretFormatEmail,
-} = require('../middlewares/validationsign');
+const { isLogged } = require('../middlewares/logIn');
+const { checkfieldsEmpty, checkCorretFormatEmail } = require('../middlewares/validationsign');
 
 const User = require('../models/User');
 const House = require('../models/House');
@@ -52,51 +47,40 @@ router.get('/step-1', isLogged, async (req, res, next) => {
 });
 
 // Create a new user
-router.post(
-  '/',
-  checkfieldsEmpty,
-  checkCorretFormatEmail,
-  async (req, res, next) => {
-    const {
+router.post('/', checkfieldsEmpty, checkCorretFormatEmail, async (req, res, next) => {
+  const {
+    email, firstname, lastname, month, day, year, pass,
+  } = res.locals.auth;
+  try {
+    const existEmail = await User.findOne({
       email,
-      firstname,
-      lastname,
-      month,
-      day,
-      year,
-      pass,
-    } = res.locals.auth;
-    try {
-      const existEmail = await User.findOne({
-        email,
-      });
-      if (existEmail) {
-        req.flash('error', 'Usuario ya existe');
-        res.redirect('/signup');
-      } else {
-        const birthday = `${year}-${month}-${day}`;
-        const salt = bcrypt.genSaltSync(bcryptSalt);
-        const hashpass = bcrypt.hashSync(pass, salt);
+    });
+    if (existEmail) {
+      req.flash('error', 'Usuario ya existe');
+      res.redirect('/');
+    } else {
+      const birthday = `${year}-${month}-${day}`;
+      const salt = bcrypt.genSaltSync(bcryptSalt);
+      const hashpass = bcrypt.hashSync(pass, salt);
 
-        // create date
-        await User.create({
-          username: {
-            firstname,
-            lastname,
-          },
-          email,
-          hashpass,
-          birthday,
-        });
-        req.flash('info', 'user created');
-        res.redirect('/');
-      }
-    } catch (error) {
-      req.flash('error', 'Some error happen - Please try again');
-      res.redirect('/signup');
+      // create date
+      await User.create({
+        username: {
+          firstname,
+          lastname,
+        },
+        email,
+        hashpass,
+        birthday,
+      });
+      req.flash('info', 'user created');
+      res.redirect('/');
     }
-  },
-);
+  } catch (error) {
+    req.flash('error', 'Some error happen - Please try again');
+    res.redirect('/');
+  }
+});
 // update the data  // use req.body
 router.post('/update', async (req, res, next) => {
   const {
@@ -176,6 +160,7 @@ router.get('/bookings', isLogged, async (req, res, next) => {
   }
 });
 
+// UPLOAD IMAGES AVATAR
 router.post('/avatar-upload', isLogged, async (req, res) => {
   const user = await User.findById(req.session.currentUser._id);
 
@@ -208,10 +193,9 @@ router.post('/avatar-upload', isLogged, async (req, res) => {
   });
 });
 
+// USER TYPE - GRANDPA O MENTOR
 router.post('/update-type', async (req, res, next) => {
-  const {
-    typeUser,
-  } = req.body;
+  const { typeUser } = req.body;
   try {
     let grandpaUser = false;
     let mentorUser = false;
@@ -254,9 +238,7 @@ router.get('/step-3', isLogged, async (req, res) => {
 // USER SHOW
 router.get('/:id', async (req, res, next) => {
   // get info from ddbb
-  const {
-    id,
-  } = req.params;
+  const { id } = req.params;
   const house = House.findOne({
     user: id,
   });
