@@ -127,9 +127,9 @@ blockquote {
 }
 .card {
   padding-left: 24px;
-    padding-right: 24px;
-    padding-top: 24px;
-    padding-bottom: 24px;
+  padding-right: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
   color: #26a69a;
@@ -137,4 +137,15 @@ blockquote {
 
 a:hover {
   color: #26a69a;
+}
+
+.container{
+  width: 100%;
+}
+
+.container .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
 }
