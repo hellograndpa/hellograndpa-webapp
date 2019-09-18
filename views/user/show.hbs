@@ -1,127 +1,48 @@
-<h1>User Profile</h1>
-<img src="{{user.avatar}}" alt="avatar image"><br>
-<form id="form" action="/user/update" method="POST">
-  email : {{ user.email }}<br>
+<div class="container">
+  <div class="row">
+    <div class="col s12 m4 l4">
+        <div class="card  darken-1">
+          <div class="card-content center-align">
+            <img class="circle center-align" width="50%" src="{{user.avatar}}" alt="Avatar" co>
+          </div>
+          <div class="card-action">
+             <i class=" small material-icons green-text text-darken-2">verified_user</i> Verified User
+          </div>
+          <div class="card-action">
+             <i class=" small material-icons amber-text text-acent-4">star</i> 250 Review
+          </div>
+          <div class="card-action">
+             <i class=" small material-icons">check_circle</i> ID Card <br>
+             <i class=" small material-icons">check_circle</i> Phone Number <br>
+             <i class=" small material-icons">check_circle</i> Have Contact Email <br>
 
-  <label for="firtname">First Name</label>
-  <input type="text" name="firstname" placeholder="{{ user.username.firstname }}" value="{{ user.username.firstname }}">
-  <br>
+          </div>
+        </div>
+      </div>       
+    
+    <div class="col s12 m4 l8">
+      <h2>Hi, I'm {{user.username.firstname}} {{user.username.lastname}} </h2>
+      <i class=" small material-icons green-text text-darken-2">verified_user</i> I live into {{user.address.city}}, {{user.address.country}}
+      <i class=" small material-icons green-text text-darken-2">verified_user</i> I live into {{user.address.city}}, {{user.address.country}}
+      
+      <div>
+        <blockquote>
+          {{user.bio}}
+        </blockquote>
+      </div>
+      <div>
+        <h5> <span> <strong>YOU CAN SEE A THE PHOTOS OF MY HOUSE</strong> </span></h5>
+      </div>
+      <div>
+        {{#each house.photos}}
+          <img src="{{this}}" alt="" width="25%">
+          {{/each}}
+      </div>
+      <div>
+      <h5> <span> <strong>THE REVIEWS</strong> </span></h5>
+      </div>
+      
+    </div>
 
-  <label for="lastname">Last Name</label>
-  <input type="text" name="lastname" placeholder="{{ user.username.lastname }}"
-    value="{{ user.username.lastname }}"><br>
-
-  <label for=" lastName">Birthday</label><br>
-  <select name="month">
-    <option>{{ currentUser.birthday }}</option>
-    <option>January</option>
-    <option>February</option>
-    <option>March</option>
-    <option>April</option>
-    <option>May</option>
-    <option>June</option>
-    <option>July</option>
-    <option>August</option>
-    <option>September</option>
-    <option>October</option>
-    <option>November</option>
-    <option>December</option>
-  </select>
-  <select name="day">
-    <option>{{ currentUser.birthday }}</option>
-    <option>01</option>
-    <option>02</option>
-    <option>03</option>
-    <option>04</option>
-    <option>05</option>
-    <option>06</option>
-    <option>07</option>
-    <option>08</option>
-    <option>09</option>
-    <option>10</option>
-    <option>11</option>
-    <option>12</option>
-    <option>13</option>
-    <option>14</option>
-    <option>15</option>
-    <option>16</option>
-    <option>17</option>
-    <option>18</option>
-    <option>19</option>
-    <option>20</option>
-    <option>21</option>
-    <option>22</option>
-    <option>23</option>
-    <option>24</option>
-    <option>25</option>
-    <option>26</option>
-    <option>27</option>
-    <option>28</option>
-    <option>29</option>
-    <option>30</option>
-    <option>31</option>
-  </select>
-
-  <select name="year">
-    <option>{{ currentUser.birthday }}</option>
-    <option>2009</option>
-    <option>2010</option>
-    <option>2011</option>
-    <option>2012</option>
-    <option>2013</option>
-    <option>2014</option>
-    <option>2015</option>
-    <option>2016</option>
-    <option>2017</option>
-    <option>2018</option>
-  </select><br><br>
-
-  <label for="gender">Gender</label><br>
-
-  <label><input type="radio" name="gender" value="male"> <span>Male</span></label><br>
-  <label><input type="radio" name="gender" value="female" checked> <span> Female</span></label><br><br>
-
-  <label for="phone">Phone</label>
-  <input type="text" name="phone" placeholder="+34 999 99 99 99 " value="{{ user.phone }}"><br>
-  <label for="idCard">Id Card</label>
-  <input type="text" name="idCard" placeholder="01234567K" value="{{ user.idCard }}"><br>
-  <label for="bio">Bio</label><br>
-  <textarea rows="5" cols="33" name="bio"> {{ user.bio }}</textarea><br>
-  <h2>ADDRESS</h2>
-  <label for="street">Street</label>
-  <input type="text" name="street" placeholder=" Name of street " value="{{ user.address.street }}"><br>
-  <label for="city">City</label>
-  <input type="text" name="city" placeholder="Name of city" value="{{ user.address.city }}"><br>
-  <label for="state">state</label>
-  <input type="text" name="state" placeholder="Name of state" value="{{ user.address.state }}"><br>
-  <label for="country">country</label>
-  <input type="text" name="country" placeholder="Name of Country" value="{{ user.address.country }}"><br>
-  <label for="zip">Zip Code</label>
-  <input type="text" name="zip" placeholder="00000" value="{{ user.address.zip }}"><br>
-  <br>
-  <h2>USER TYPE</h2>
-
-
-  {{#if user.grandpaUser }}
-  <label><input type="radio" name="typeUser" value="Grandpa" checked> <span>Grandpa</span></label><br>
-  {{else}}
-  <label><input type="radio" name="typeUser" value="Grandpa"> <span>Grandpa</span></label><br>
-  {{/if}}
-
-  {{#if user.mentorUser }}
-  <label><input type="radio" name="typeUser" value="Mentor" checked> <span>Mentor</span></label><br>
-  {{else}}
-  <label><input type="radio" name="typeUser" value="Mentor"> <span>Mentor</span><br></label>
-  {{/if}}
-  <label><input type="radio" name="typeUser" value="Normla"> <span>Ninguno de ellos</span></label><br>
-
-  <p>
-    <button type="submit">Save modifications</button>
-  </p>
-</form>
-<p>
-  {{#if user.grandpaUser }}
-  <button type="submit">create house</button>
-  {{/if}}
-</p>
-<a href="/logout">Logout</a>
+  </div>
+</div>
