@@ -15,7 +15,9 @@ const { servicesArray } = require('../middlewares/enumerables');
 // start a new booking
 router.get('/:id', isLogged, async (req, res, next) => {
   const { id } = req.params;
-  const { dateIn, dateOut } = req.query;
+  const { rGroup } = req.query;
+  const dateIn = rGroup[0];
+  const dateOut = rGroup[1];
   try {
     const house = await House.findById(id);
     if (house) {
@@ -31,7 +33,7 @@ router.get('/:id', isLogged, async (req, res, next) => {
       );
       sumPointsMandatory *= 2;
       const finalFisrtPrice = house.rentroom.costpermonth - sumPointsMandatory;
-      console.log('optionalserv', house.sevicestohoster);
+
       res.render('bookings/create', {
         house,
         mandatoryServices,
@@ -75,7 +77,21 @@ router.post('/:id', isLogged, async (req, res, next) => {
     priceEnd: req.body.priceEndHidden,
     sevicestoHosterCompromise: services,
   };
+  
   const bookingCreated = await Booking.create(newBooking);
+
+  let { bookedDates } = await House.findById(house, 'bookedDates');
+  let dateAct = new Date(newBooking.dateIn.substring(0, 4), newBooking.dateIn.substring(4, 6) - 1, '01');
+  const dateOut = new Date(newBooking.dateOut.substring(0, 4), newBooking.dateOut.substring(4, 6) - 1, '01');
+
+  while (dateAct <= dateOut){
+    bookedDates.push(parseInt(dateAct.getFullYear().toString() + ("0" + (dateAct.getMonth() + 1)).slice(-2)));
+    dateAct.setMonth(dateAct.getMonth()+1);
+  }
+
+
+  await House.findByIdAndUpdate(house, {bookedDates});
+
 
   const today = new Date();
   const date =

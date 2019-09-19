@@ -116,6 +116,7 @@ const HouseSchema = new Schema(
     visibleByUsers: Boolean,
     active: Boolean,
     canActive: Boolean,
+    bookedDates: [Number],
   },
   { timestamps: true },
 );

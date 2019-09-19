@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="details container">
   <div class="row">
     <div class="col s5" style="float: right">
       <div class="card">
@@ -18,14 +18,35 @@
         {{#if currentUser}}
         <form name="BookingForm" method="GET" action="/booking/{{house._id}}">
           <div>From when you whant to in?</div><br>
-          <input type="month" id="dateIn" name="dateIn" min="2019-10" value="">
-          <div>Until?</div><br>
-          <input type="month" id="dateOut" name="dateOut" min="2019-10" value="">
+
+          <div class="carousel carousel-slider center" data-indicators="true">
+            <div class="carousel-fixed-item center middle-indicator">
+              <div class="left">
+                <a href="Previo" class="movePrevCarousel middle-indicator-text waves-effect waves-light content-indicator"><i class="material-icons left  middle-indicator-text">chevron_left</i></a>
+              </div>
+              <div class="right">
+                <a href="Siguiente" class=" moveNextCarousel middle-indicator-text waves-effect waves-light content-indicator"><i class="material-icons right middle-indicator-text">chevron_right</i></a>
+              </div>
+            </div>
+           
+            
+          </div>
+
+
+
+
+
+
+          dateIn <input type="text" class="dateIn"><br>
+          dateOut <input type="text" class="dateOut">
+          
           <button class="btn waves-effect waves-light" type="submit" style="margin-top: 15px" name="action">Enviar
             Petición
             <i class="material-icons right">send</i>
           </button>
-          
+          {{#each house.bookedDates}}
+          {{this}}
+          {{/each}}
         </form><br>
         {{else}}
         <h3>Must be logged to book!</h3>

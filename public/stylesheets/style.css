@@ -220,19 +220,73 @@ blockquote {
 a:hover {
   color: #26a69a;
 }
-<<<<<<< HEAD
 
 .card-border-grey {
   border: 1px solid rgba(128, 128, 128, 0.762);
-=======
-.container{
-  width: 100%;
 }
 
-.container .row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
->>>>>>> 9b4a0672a79af928410edace7a47c5d589e7793a
+.middle-indicator{
+  position:absolute;
+  }
+ .middle-indicator-text{
+  font-size: 4.2rem;
+ }
+ a.middle-indicator-text{
+   color:white !important;
+ }
+.content-indicator{
+   width: 64px;
+   height: 50px;
+   background: none;
+   -moz-border-radius: 50px;
+   -webkit-border-radius: 50px;
+   border-radius: 50px; 
+ }
+   .indicators{
+   visibility: hidden;
+ }
+ .details .carousel.carousel-slider .carousel-fixed-item{
+  bottom:auto!important
+ }
+
+.border{
+  border: 1px solid black;
+  padding:10px!important
+}
+.calendar-year-wrapper{
+  width: 65%;
+  margin: 0 auto;
+}
+.details .carousel{
+  height: 250px!important;
+}
+.year-title{
+  padding:20px
+}
+.details .carousel-item{
+  min-height: 250px!important
+}
+
+.details .carousel .whatever{
+  background-color:  green;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.details .carousel .none{
+  background-color:  grey;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.details .carousel .checkboxes input[type=checkbox]{
+  display: none;
+}
+
+.details .carousel .checkboxes input[type=checkbox]:checked + .whatever{
+  background-color: red;
 }
