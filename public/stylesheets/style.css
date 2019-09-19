@@ -268,3 +268,7 @@ a:hover {
 .imputfield-search-margin {
   margin: 0 0 0 0;
 }
+
+.collapsible-width {
+  width: 100%;
+}
