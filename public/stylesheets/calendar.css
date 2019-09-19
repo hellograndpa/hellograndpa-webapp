@@ -1,0 +1,66 @@
+.calendar .middle-indicator {
+  position: absolute;
+}
+.calendar .middle-indicator-text {
+  font-size: 4.2rem;
+  color: slategrey;
+}
+.calendar a.middle-indicator-text {
+  color: slategrey !important;
+}
+.calendar .content-indicator {
+  width: 64px;
+  height: 50px;
+  background: none;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+}
+.calendar .indicators {
+  visibility: hidden;
+}
+.calendar .carousel.carousel-slider .carousel-fixed-item {
+  bottom: auto !important;
+}
+
+.calendar .calendar-year-wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+.calendar .carousel {
+  height: 250px !important;
+}
+.calendar .year-title {
+  padding: 20px;
+  color: grey;
+}
+.calendar .carousel-item {
+  min-height: 250px !important;
+}
+
+.calendar .carousel .whatever {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border: 1px solid grey;
+}
+
+.calendar .carousel .none {
+  background-color: #eeeeee;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.calendar .carousel .checkboxes input[type='checkbox'] {
+  display: none;
+}
+
+.calendar .carousel .checkboxes input[type='checkbox']:checked + .whatever {
+  background-color: #00e676;
+}
+.calendar .lbldate {
+  margin: 2px;
+}

@@ -192,7 +192,9 @@ a:hover {
 .card-border-grey {
   border: 1px solid rgba(128, 128, 128, 0.762);
 }
-
+.mg-top2{
+  margin:2px
+}
 .boxes-home {
   padding: 4.5em;
   margin-top: -2%;
