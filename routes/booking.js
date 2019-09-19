@@ -77,21 +77,32 @@ router.post('/:id', isLogged, async (req, res, next) => {
     priceEnd: req.body.priceEndHidden,
     sevicestoHosterCompromise: services,
   };
-  
+
   const bookingCreated = await Booking.create(newBooking);
 
   let { bookedDates } = await House.findById(house, 'bookedDates');
-  let dateAct = new Date(newBooking.dateIn.substring(0, 4), newBooking.dateIn.substring(4, 6) - 1, '01');
-  const dateOut = new Date(newBooking.dateOut.substring(0, 4), newBooking.dateOut.substring(4, 6) - 1, '01');
+  let dateAct = new Date(
+    newBooking.dateIn.substring(0, 4),
+    newBooking.dateIn.substring(4, 6) - 1,
+    '01',
+  );
+  const dateOut = new Date(
+    newBooking.dateOut.substring(0, 4),
+    newBooking.dateOut.substring(4, 6) - 1,
+    '01',
+  );
 
-  while (dateAct <= dateOut){
-    bookedDates.push(parseInt(dateAct.getFullYear().toString() + ("0" + (dateAct.getMonth() + 1)).slice(-2)));
-    dateAct.setMonth(dateAct.getMonth()+1);
+  while (dateAct <= dateOut) {
+    bookedDates.push(
+      parseInt(
+        dateAct.getFullYear().toString() +
+          ('0' + (dateAct.getMonth() + 1)).slice(-2),
+      ),
+    );
+    dateAct.setMonth(dateAct.getMonth() + 1);
   }
 
-
-  await House.findByIdAndUpdate(house, {bookedDates});
-
+  await House.findByIdAndUpdate(house, { bookedDates });
 
   const today = new Date();
   const date =
@@ -114,5 +125,68 @@ router.post('/:id', isLogged, async (req, res, next) => {
   await Message.create(newMessage);
 
   res.redirect('/user/bookings');
+});
+
+function pad(num, size) {
+  let s = `${num}`;
+  while (s.length < size) s = `0${s}`;
+  return s;
+}
+
+const arrMonths = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Ago',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dic',
+];
+
+router.get('/calendar/:id', async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const { bookedDates } = await House.findById(id);
+    let calText = '';
+    const actualMonthYear = 201909;
+
+    for (let i = 2019; i < 2025; i++) {
+      calText +=
+        '<div class="carousel-item  grey lighten-5 white-text checkboxes" href="#one!">';
+      calText += '<div class="calendar-year-wrapper">';
+      calText += `<div class="year-title">${i}</div>`;
+      calText += '<div class="row">';
+      for (let m = 1; m < 13; m++) {
+        const yearMonth = i + pad(m, 2);
+
+        calText += '<div class="col s6 m3">';
+
+        if (
+          parseInt(yearMonth) <= actualMonthYear ||
+          bookedDates.filter((date) => date === parseInt(yearMonth)).length > 0
+        ) {
+          calText += `<label class="none lbldate" for="${yearMonth}">${
+            arrMonths[m - 1]
+          }</label>`;
+        } else {
+          calText += `<input type="checkbox" name="rGroup" class="chkDate" value="${yearMonth}" id="${yearMonth}"  />`;
+          calText += `<label class="whatever lbldate" for="${yearMonth}">${
+            arrMonths[m - 1]
+          }</label>`;
+        }
+
+        calText += '</div>';
+      }
+      calText += '</div></div></div>';
+    }
+    res.send(calText);
+  } catch (error) {
+    next(error);
+  }
 });
 module.exports = router;

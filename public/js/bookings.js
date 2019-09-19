@@ -31,15 +31,3 @@ document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('select');
   var instances = M.FormSelect.init(elems, '');
 });
-
-
-document.addEventListener('DOMContentLoaded',printCalendar)
-
-document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.carousel');
-  var instances = M.Carousel.init(elems, {
-    fullWidth: true,
-      indicators: false
-  } );
-});
-
