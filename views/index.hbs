@@ -1,39 +1,45 @@
-<form method="GET" action="/houses">
-    <div class="row">
-        <div class="portada_card col s12 m6 l4">
-            <div class="pd10">
-                <p class="flow-text">Find a room</p>
-                <div class="input-field">
-                    <select name="city">
-                        <option value="" disabled selected>Where do you want to go?</option>
-                        {{#each cities}}
-                        <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                        </option>
-                    </select>
-                    <label>City</label>
-                </div>
+<style>
+    main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 
-                <div class="input-field ">
-                    <select name="month">
-                        <option value="" disabled selected>When want to in?</option>
-                        <option value="January">January</option>
-                        <option value="February">February</option>
-                        <option value="March">March</option>
-                    </select>
-                    <label for="month">Month</label>
+<div class="home-text">
+    Find your GrandPa Roomate!
+</div>
+<div class="search-wrapper">
+    <form method="GET" action="/houses">
 
-                </div>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Buscar
-                    <i class="material-icons right">send</i>
-                </button>
+        <div class="search-box ">
+
+            <div class="input-field">
+                <select name="city">
+                    <option value="" disabled selected>Where?</option>
+                    {{#each cities}}
+                    <option value="{{this}}">{{this}}</option>
+                    {{/each}}
+                    </option>
+                </select>
+
             </div>
+            <div class="input-field ">
+                <select name="month">
+                    <option value="" disabled selected>When ?</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                </select>
+
+            </div>
+            <div class="button-wrapper"><button class="btn waves-effect waves-light" type="submit" name="action">Buscar
+                    <i class="material-icons right">send</i>
+                </button></div>
 
         </div>
+    </form>
+</div>
 
-
-        <div class="portada"><img style="object-fit:cover; z-index:-1" width="100%" height="100%"
-                src="/images/portada-3.jpg"></div>
-    </div>
-
-</form>
+<div class="portada"><img style="object-fit:cover; z-index:-1" width="100%" height="100%" src="/images/portada-3.jpg">
+</div>

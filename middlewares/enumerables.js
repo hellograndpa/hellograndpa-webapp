@@ -3,13 +3,13 @@ const servicesArray = [
     serviceType: 'Pasear al Perro',
     points: 10,
     description: 'Intentar sacar al perro almenos 2 veces al día',
-    logo: 'directions_run',
+    logo: 'pet',
   },
   {
     serviceType: 'Llevar al médico',
     points: 20,
     description: 'Tengo que visitar al médico almenos 1 vez por semana',
-    logo: 'face',
+    logo: 'local_hospital',
   },
   {
     serviceType: 'Preparar la cena',
