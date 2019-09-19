@@ -9,11 +9,11 @@ const logIn = async (email, password, req, res) => {
       res.redirect('/');
     } else {
       req.flash('error', 'usuario o contraseña incorrectos');
-      res.redirect('login');
+      res.redirect('/');
     }
   } else {
     req.flash('error', 'usuario o contraseña incorrectos');
-    res.redirect('login');
+    res.redirect('/');
   }
 };
 
@@ -23,7 +23,7 @@ const isLogged = (req, res, next) => {
     next();
   } else {
     req.flash('info', 'Must be Logged to acces!');
-    res.redirect('/login');
+    res.redirect('/');
   }
 };
 

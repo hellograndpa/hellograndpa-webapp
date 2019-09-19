@@ -16,7 +16,7 @@ const checkfieldsEmpty = (req, res, next) => {
     || pass === ''
   ) {
     req.flash('error', 'los campos con * no pueden estar vacios');
-    res.redirect('/signup');
+    res.redirect('/');
   } else {
     res.locals.auth = req.body;
     req.flash('info', 'no están vacios');
@@ -26,7 +26,7 @@ const checkfieldsEmpty = (req, res, next) => {
 
 const checkUploadNotEmpty = (req, res, next) => {
   const { upload } = req.body;
-  if (upload === '') {
+  if (upload === false) {
     req.flash('error', 'No has seleccioado ningna imagen');
     res.redirect('/houses/create/step-upload');
   } else {
