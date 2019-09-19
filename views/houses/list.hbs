@@ -14,8 +14,8 @@
                             <a class="btn-floating halfway-fab waves-effect waves-light white"
                                 href="/user/{{this.user._id}}">
                                 <img src="{{this.user.avatar}}"
-                                    alt="{{this.user.username.firstname}} {{this.user.username.lastname}}" width="30px"
-                                    height="30px" class="circle center-align"></a>
+                                    alt="{{this.user.username.firstname}} {{this.user.username.lastname}}"
+                                    class="circle center-align"></a>
                         </div>
                         <a href="/houses/{{this._id}}">
                             <div class="card-content">
@@ -28,7 +28,6 @@
                                 </div>
                                 <div class="services">
                                     {{#each this.mandatoryServices}}
-
                                     <i class="material-icons dp48" title="{{this.description}}">{{this.logo}}</i>
                                     {{/each}}
                                 </div>

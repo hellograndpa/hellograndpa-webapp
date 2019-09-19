@@ -35,21 +35,23 @@ router.get('/', async (req, res, next) => {
 
     houses.forEach((el) => {
       let newPrice = 0;
+
       el.priceDiscounted = el.sevicestohoster
         .filter((service) => service.mandatory === true)
         .forEach((service) => (newPrice += service.points));
+
       el.priceDiscounted = el.rentroom.costpermonth - newPrice * 2;
 
       const mandatoryServices = el.sevicestohoster.filter(
-        (service) => service.mandatory === true,
+        (service) => service && service.mandatory === true,
       );
-
+      
       mandatoryServices.forEach((service) => {
-        service.logo = servicesArray.find(
-          (el) => (el.serviceType = service.serviceType),
+        let newLogo= servicesArray.find(
+          (element) => { return element.serviceType === service.serviceType; },
         ).logo;
+        service.logo = newLogo;
       });
-
       el.mandatoryServices = mandatoryServices;
     });
 
