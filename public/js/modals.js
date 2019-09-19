@@ -8,3 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
     dismissible: true,
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  var elems = document.querySelectorAll('.collapsible');
+  var instances = M.Collapsible.init(elems, {
+    onOpenEnd() {},
+    endingTop: '10%',
+    opacity: 0.8,
+    preventScrolling: true,
+    dismissible: true,
+  });
+});
