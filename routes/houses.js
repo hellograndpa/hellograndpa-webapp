@@ -29,9 +29,17 @@ router.get('/', async (req, res, next) => {
   const { city } = req.query;
 
   try {
-    const houses = await House.find({
-      'address.city': city,
-    }).populate('mentor user');
+
+    let houses;
+
+    if(city){
+      houses = await House.find({
+        'address.city': city,
+      }).populate('mentor user');
+    }else{
+      houses = await House.find().populate('mentor user');
+    }    
+    
 
     houses.forEach((el) => {
       let newPrice = 0;

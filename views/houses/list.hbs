@@ -2,7 +2,11 @@
     <div class="row">
         <div class="col s12 m1"></div>
         <div class="col s12 m10">
-            <div class="title">{{houses.length}} of available houses founded in {{city}}</div>
+            <div class="title">{{houses.length}} of available houses founded
+                {{#if city}}
+                in {{city}}
+                {{/if}}
+            </div>
             <div class="row">
                 {{#each houses}}
                 <div class="col s12 m4">
