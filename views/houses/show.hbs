@@ -1,17 +1,16 @@
 <!-- HEADER DETAILS-->
 <div class="row">
   <div class="col s12" style="text-align: center">
+    <a href="/houses/{{this._id}}"><img src="{{this.photos.[0]}}"></a>
     <div class="textcenter">
-      <h1>House details</h1>
-      <h6>{{house.title}}</h6>
     </div>
   </div>
 </div>
 
-<div class="container">
+<div class="container_houses">
   <div class="row">
     <div class="col s5" style="float: right">
-      <div class="card">
+      <div class="card_details">
         <h3>Hi {{currentUser.username.firstname}},</h3>
         <h5>Details of your reservation:</h5>
         <h5>Owner: {{house.user.username.firstname}}</h5>
@@ -25,32 +24,38 @@
             Petición
             <i class="material-icons right">send</i>
           </button>
-          
+
         </form><br>
         {{else}}
         <h3>Must be logged to book!</h3>
         {{/if}}
-              <div class="pd5">Initial Price: <span id="totalAmount">{{house.rentroom.costpermonth}}</span> €/
-                Montly
-              </div>
-              <div class="pd5">Discounts: <span id="discountPrice">{{sumPointsMandatory}}</span> €/ Montly
-              </div>
-              <div class="pd5">Final Price: <span id="finalPrice">{{finalFisrtPrice}}</span> €/ Montly</div>
-              <input type="hidden" name="priceInitHidden" id="priceInitHidden" value="{{house.rentroom.costpermonth}}">
-              <input type="hidden" name="discountHidden" id="discountHidden">
-              <input type="hidden" name="priceEndHidden" id="priceEndHidden">
-              <br>
-              
+        <div class="pd5">Initial Price: <span id="totalAmount">{{house.rentroom.costpermonth}}</span> €/
+          Montly
+        </div>
+        <div class="pd5">Discounts: <span id="discountPrice">{{sumPointsMandatory}}</span> €/ Montly
+        </div>
+        <div class="pd5">Final Price: <span id="finalPrice">{{finalFisrtPrice}}</span> €/ Montly</div>
+        <input type="hidden" name="priceInitHidden" id="priceInitHidden" value="{{house.rentroom.costpermonth}}">
+        <input type="hidden" name="discountHidden" id="discountHidden">
+        <input type="hidden" name="priceEndHidden" id="priceEndHidden">
+        <br>
+
       </div>
     </div>
 
     <!-- HOUSE SPECS -->
     <div class="col s7">
+      <div>
+        <h2>{{house.title}}</h2>
+        <img src="{{house.user.avatar}}" alt="" width="50px" height="50px" class="circle center-align">
+        <p>{{house.user.username.firstname}} {{house.user.username.lastname}}</p>
+      </div>
+
       <blockquote>
         <h3 class="header">House specs:</h3>
       </blockquote>
       <ul class="housespecs">
-        <li>Number of rooms: {{ house.rooms }}</li>
+        <li><i class="material-icons dp48">airline_seat_individual_suite</i> Number of rooms: {{ house.rooms }}</li>
         <li>Meters: {{ house.m2 }}</li>
         <li>Address: {{ house.address.street }}</li>
         <li>{{ house.address.city }}</li>
