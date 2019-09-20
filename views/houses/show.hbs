@@ -1,158 +1,262 @@
 <!-- HEADER DETAILS-->
-<div class="row">
-  <div class="col s12" style="text-align: center">
-    <div class="textcenter">
-      <h1>House details</h1>
-      <h6>{{house.title}}</h6>
+
+
+<div id="gallery" class="row">
+  <div class="col s12 m12 l12 margin-padding-cero ">
+    {{#each house.photos}}
+    {{#if_eq @index 0}}
+    <div class="materialboxed col s12 m4 l6 margin-padding-cero ">
+      <img src="{{this}}" alt="" width="100%" class="border1-black ">
     </div>
+    {{/if_eq}}
+
+    {{#if_eq @index 1}}
+    <div class=" materialboxed col s12 m4 l3 margin-padding-cero">
+      <img src="{{this}}" alt="" width="100%" class="border1-black ">
+    </div>
+    {{/if_eq}}
+
+    {{#if_eq @index 2}}
+    <div class="materialboxed col s12 m4 l3 margin-padding-cero">
+
+      <img src="{{this}}" alt="" width="100%" class=" materialboxed border1-black ">
+    </div>
+    {{/if_eq}}
+
+    {{#if_eq @index 3}}
+    <div class="col s12 m4 l3 margin-padding-cero">
+      <img src="{{this}}" alt="" width="100%" class="materialboxed border2-black-notup ">
+    </div>
+    {{/if_eq}}
+
+    {{#if_eq @index 4}}
+    <div class="col s12 m4 l3 margin-padding-cero">
+      <img src="{{this}}" alt="" width="100%" class="materialboxed border2-black-notup ">
+    </div>
+    {{/if_eq}}
+
+    {{/each}}
   </div>
 </div>
 
+{{!--CONTENT OF THE HOUSE  --}}
 <div class="container">
   <div class="row">
-    <div class="col s5" style="float: right">
+    {{!--CONTENT OF THE HOUSE  --}}
+
+    <!-- HOUSE SPECS -->
+    <div class="col s12 m6 l7 margin-bottom20">
+      {{!-- HOUSE --}}
+      <div class="margin-bottom50">
+        <h2>{{house.title}}</h2>
+        <div class="col s12 m6 l1">
+          <img src="{{house.user.avatar}}" alt="" width="50px" height="50px" class="circle"><br>
+          {{house.user.username.firstname}} <br> {{house.user.username.lastname}}
+        </div>
+        <div class="col s12 m6 l11">
+          <div class="tex-house valign-wrapper mandatory10">
+            <i class="small material-icons grey-text text-darken-3">home</i><span class="tex-house"> I live in a big
+              house
+              of<strong>{{house.m2}}</strong> with <strong>{{house.rooms}}</strong>. <br></span>
+          </div>
+          <div class="tex-house valign-wrapper mandatory10 margin-bottom20">
+            <i class="small material-icons grey-text text-darken-3">location_on</i><span class="tex-house"> It´s a very
+              nice
+              place {{ house.address.street }} {{ house.address.state }}, {{ house.address.city }}, form
+              {{ house.address.country }}</span><br><br>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+
+      <!-- ROOM -->
+
+
+      <h5 class="teal-text text-lighten-2">YOUR ROOM</h5>
+      <div class="row grey lighten-3 mandatory">
+        <div class="col s12 m6 l7">
+          {{house.rentroom.m2}}
+          {{house.rentroom.wardrobes}}
+          {{house.rentroom.window}}
+        </div>
+
+      </div>
+      <div class="divider"></div>
+
+      <!-- SERVICES HOSTER -->
+
+      <blockquote>
+        <h5 class="">Services to hoster:</h5>
+      </blockquote>
+      <div class="row grey lighten-3 mandatory">
+        <div class="col s12 m12 l12 margin-bottom20 center-align"><strong>MANDATORY</strong></div>
+        {{#each house.sevicestohoster}}
+        {{#if this.mandatory}}
+        <divc class="col s12 m6 l4 center-align">
+          <i class="medium material-icons teal-text text-lighten-2">
+            beenhere
+          </i><br>
+          <strong>{{this.serviceType}}</strong> <br>
+          {{this.description}}
+        </divc>
+        {{/if}}
+        {{/each}}
+      </div>
+      <div class="divider"></div>
+      <div class="row grey lighten-4 mandatory">
+        <div class="col s12 m12 l12 margin-bottom20 center-align"><strong>OPTATIVE</strong></div>
+        {{#each house.sevicestohoster}}
+        {{#if this.mandatory}}
+        {{else}}
+        <divc class="col s12 m6 l4 center-align">
+          <i class="medium material-icons teal-text text-lighten-2">
+            mood
+          </i><br>
+          <strong>{{this.serviceType}}</strong> <br>
+          {{this.description}}
+        </divc>
+        {{/if}}
+        {{/each}}
+      </div>
+      <div class="divider"></div>
+
+      <!-- FEATURES -->
+
+      <blockquote>
+        <h5 class="header">Features:</h5>
+      </blockquote>
+      <div class="row">
+        {{#if house.features.calefaccion}}
+        <divc class="col s6 m4 l2 ">
+          <div class="card-property">
+            <i class="small material-icons">business</i><br>
+            Heating
+          </div>
+        </divc>
+        {{/if}}
+        {{#if house.features.ac}}
+        <divc class="col s6 m4 l2 ">
+          <div class="card-property ">
+            <i class="small material-icons">ac_unit</i><br>
+            A/C
+          </div>
+        </divc>
+        {{/if}}
+        {{#if house.features.piscina}}
+        <divc class="col s6 m4 l2 ">
+          <div class="card-property ">
+            <i class="small material-icons">pool</i><br>
+            Pool
+          </div>
+        </divc>
+        {{/if}}
+        {{#if house.features.terraza}}
+        <divc class="col s6 m4 l2 ">
+          <div class="card-property ">
+            <i class="small material-icons">wb_sunny</i><br>
+            Terrace
+          </div>
+        </divc>
+        {{/if}}
+        {{#if house.features.ascensor}}
+        <divc class="col s6 m4 l2 ">
+          <div class="card-property ">
+            <i class="small material-icons">airplay</i><br>
+            Elevator
+          </div>
+        </divc>
+        {{/if}}
+        {{#if house.features.wifi}}
+        <divc class="col s6 m4 l2 ">
+          <div class="card-property ">
+            <i class=" small material-icons">wifi</i><br>
+            Wifi
+          </div>
+        </divc>
+        {{/if}}
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- SERVICES INCLUDES -->
+
+      <blockquote>
+        <h5 class="header">Services included:</h5>
+      </blockquote>
+      {{#each house.sevicesincluded}}
+      {{@key}} -
+      {{/each}}<br><br>
+      <div class="divider"></div>
+
+
+
+      <!-- HOUSE RESTRICTIONS -->
+
+      <blockquote>
+        <h5 class="header">Restrictions:</h5>
+      </blockquote>
+      <p>{{ house.restricciones }}</p>
+    </div>
+
+    {{!-- CARD BOOKING SIDE  --}}
+    <div class="col s12 m6 l4">
       <div class="card calendar house_calendar_details">
-        <h3>Hi {{currentUser.username.firstname}},</h3>
-        <h5>Details of your reservation:</h5>
-        <h5>Owner: {{house.user.username.firstname}}</h5>
-        {{#if currentUser}}
-        <form name="BookingForm" method="GET" action="/booking/{{house._id}}">
-          <div>From when you whant to in?</div><br>
+        <div class="card-content center-align">
+          {{#if currentUser}}
+          <form name="BookingForm" method="GET" action="/booking/{{house._id}}">
+            <div>From when you whant to in?</div><br>
 
-          <div class="carousel carousel-slider center " data-indicators="true">
-            <div class="carousel-fixed-item center middle-indicator">
-              <div class="left">
-                <a href="Previo"
-                  class="movePrevCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
-                    class="material-icons left  middle-indicator-text">chevron_left</i></a>
-              </div>
-              <div class="right">
-                <a href="Siguiente"
-                  class=" moveNextCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
-                    class="material-icons right middle-indicator-text">chevron_right</i></a>
-              </div>
+            <div class="carousel carousel-slider center " data-indicators="true">
+              <div class="carousel-fixed-item center middle-indicator">
+                <div class="left">
+                  <a href="Previo"
+                    class="movePrevCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
+                      class="material-icons left  middle-indicator-text">chevron_left</i></a>
+                </div>
+                <div class="right">
+                  <a href="Siguiente"
+                    class=" moveNextCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
+                      class="material-icons right middle-indicator-text">chevron_right</i></a>
+                </div>
 
-              <div class="preloader-wrapper big active">
-                <div class="spinner-layer spinner-blue-only">
-                  <div class="circle-clipper left">
-                    <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                    <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                    <div class="circle"></div>
+                <div class="preloader-wrapper big active">
+                  <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
                   </div>
                 </div>
               </div>
-
             </div>
-
-
+            dateIn <input type="text" class="dateIn"><br>
+            dateOut <input type="text" class="dateOut">
+            <button class="btn waves-effect waves-light" type="submit" style="margin-top: 15px" name="action">Enviar
+              Petición
+              <i class="material-icons right">send</i>
+            </button>
+          </form><br>
+          {{else}}
+          <h3>Must be logged to book!</h3>
+          {{/if}}
+          <div class="pd5">Initial Price: <span id="totalAmount">{{house.rentroom.costpermonth}}</span> €/
+            Montly
           </div>
+          <div class="pd5">Discounts: <span id="discountPrice">{{sumPointsMandatory}}</span> €/ Montly
+          </div>
+          <div class="pd5">Final Price: <span id="finalPrice">{{finalFisrtPrice}}</span> €/ Montly</div>
+          <input type="hidden" name="priceInitHidden" id="priceInitHidden" value="{{house.rentroom.costpermonth}}">
+          <input type="hidden" name="discountHidden" id="discountHidden">
+          <input type="hidden" name="priceEndHidden" id="priceEndHidden">
+          <br>
 
-          dateIn <input type="text" class="dateIn"><br>
-          dateOut <input type="text" class="dateOut">
-
-          <button class="btn waves-effect waves-light" type="submit" style="margin-top: 15px" name="action">Enviar
-            Petición
-            <i class="material-icons right">send</i>
-          </button>
-        </form><br>
-        {{else}}
-        <h3>Must be logged to book!</h3>
-        {{/if}}
-        <div class="pd5">Initial Price: <span id="totalAmount">{{house.rentroom.costpermonth}}</span> €/
-          Montly
         </div>
-        <div class="pd5">Discounts: <span id="discountPrice">{{sumPointsMandatory}}</span> €/ Montly
-        </div>
-        <div class="pd5">Final Price: <span id="finalPrice">{{finalFisrtPrice}}</span> €/ Montly</div>
-        <input type="hidden" name="priceInitHidden" id="priceInitHidden" value="{{house.rentroom.costpermonth}}">
-        <input type="hidden" name="discountHidden" id="discountHidden">
-        <input type="hidden" name="priceEndHidden" id="priceEndHidden">
-        <br>
-
       </div>
     </div>
-
-    <!-- HOUSE SPECS -->
-    <div class="col s7">
-        <div>
-          <h2>{{house.title}}</h2>
-          <img src="{{house.user.avatar}}" alt="" width="50px" height="50px" class="circle center-align">
-          <p>{{house.user.username.firstname}} {{house.user.username.lastname}}</p>
-        </div>
-      <blockquote>
-        <h3 class="header">House specs:</h3>
-      </blockquote>
-      <ul class="housespecs">
-        <li>Number of rooms: {{ house.rooms }}</li>
-        <li>Meters: {{ house.m2 }}</li>
-        <li>Address: {{ house.address.street }}</li>
-        <li>{{ house.address.city }}</li>
-        <li>{{ house.address.state }}</li>
-        <li>{{ house.address.zip }}</li><br />
-        <div class="divider"></div>
-
-        <!-- FEATURES -->
-
-        <blockquote>
-          <h3 class="header">Features:</h3>
-        </blockquote>
-        <ul class="features">
-          <li class="features">
-            {{#if house.features.calefaccion}}
-            calefacción
-            {{/if}}
-
-            {{#each house.features}}</li>
-          <li>{{this}}</li>
-          {{/each}}<br />
-          <div class="divider"></div>
-          <blockquote>
-            <h3 class="header">Electro:</h3>
-          </blockquote>
-          <li class="features">{{#each house.electro}}</li>
-          <li>{{this}}</li>
-          {{/each}}<br />
-          <div class="divider"></div>
-
-          <!-- SERVICES INCLUDES -->
-
-          <blockquote>
-            <h3 class="header">Services included:</h3>
-          </blockquote>
-          <ul class="features">
-            <li class="features">{{#each house.sevicesincluded}}</li>
-            <li>{{this}}</li>
-            {{/each}}<br />
-            <div class="divider"></div>
-
-
-            <!-- SERVICES HOSTER -->
-
-            <blockquote>
-              <h3 class="header">Services to hoster:</h3>
-            </blockquote>
-            <ul class="features">
-              <li class="features">{{#each house.sevicestohoster}}</li>
-              <li style="font-weight: bold">{{this.serviceType}}: <span style="font-weight: normal">{{this.points}}
-                  points.</span></li>
-              <li>is mandatory: {{this.mandatory}}</li>
-              <li>is optional: {{this.requirement}}</li>
-              <li>{{this.description}}</li></br>
-              {{/each}}<br />
-              <div class="divider"></div>
-            </ul>
-
-            <!-- HOUSE RESTRICTIONS -->
-
-            <blockquote>
-              <h3 class="header">Restrictions:</h3>
-            </blockquote>
-            <p>{{ house.restricciones }}</p>
-    </div>
-  </div>
-  <input type="hidden" name="houseId" id="houseId" value="{{house._id}}">
-</div><br>
+    <input type="hidden" name="houseId" id="houseId" value="{{house._id}}">
+  </div><br>
