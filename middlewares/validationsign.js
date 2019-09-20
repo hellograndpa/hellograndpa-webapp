@@ -60,7 +60,7 @@ const checkUserTypeGranpa = async (req, res, next) => {
     next();
   } else {
     req.flash('error', `you are not a grandpa ${user._id} ${user.grandpaUser}`);
-    res.redirect('/user');
+    res.redirect('/user/step-3');
   }
 };
 

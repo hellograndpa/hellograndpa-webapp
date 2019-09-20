@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel='stylesheet' href='/stylesheets/calendar.css' />
 </head>
 
 <body class="grey lighten-5">
@@ -25,7 +26,8 @@
             {{#if currentUser}}
             <li><a href="/user/step-1">{{currentUser.username.firstname}}</a></li>
             <li><a href="/houses/create/step-1">Create a House</a></li>
-            <li><a href="/user/messages/">My Inbox</a></li>
+            <li><a href="/user/messages/inbox">My Inbox</a></li>
+            <li><a href="/user/bookings/">Bookings</a></li>
             <li><a href="/logout">Log Out</a></li>
             {{else}}
             <li><a class="waves-effect waves-light btn modal-trigger" href="#login">LogIn</a></li>
@@ -227,9 +229,12 @@
       </div>
   </footer>
 
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/js/calendar.js"></script>
   <script src="/js/bookings.js"></script>
   <script src="/js/modals.js"></script>
+
 </body>
 
 </html>

@@ -8,47 +8,47 @@
 
 {{!-- SEARCH  --}}
 <div class="row">
-  <div class="col s4 m12 l12 " >
-    <div class="center-align search-home">
-       {{!-- <span class="white-text"> <h3> Find your GrandPa Roomate!</h3></span> --}}
+    <div class="col s4 m12 l12 ">
+        <div class="center-align search-home">
+            {{!-- <span class="white-text"> <h3> Find your GrandPa Roomate!</h3></span> --}}
+        </div>
     </div>
-  </div> 
-  <div class="row">
-  <div class="col s4 m6 offset-m2 l6 offset-l4 card-panel  search-home ">
-        <form method="GET" action="/houses">
-            <div class=" col s12 m4 l4" >
-                <div class="input-field imputfield-search-margin ">
-                    <select name="city">
-                        <option value="" disabled selected>Where?</option>
-                        {{#each cities}}
-                        <option value="{{this}}">{{this}}</option>
-                        {{/each}}
-                        </option>
-                    </select>
+    <div class="row">
+        <div class="col s4 m6 offset-m2 l4 offset-l4 card-panel  search-home ">
+            <form method="GET" action="/houses">
+                <div class=" col s12 m4 l4">
+                    <div class="input-field imputfield-search-margin ">
+                        <select name="city">
+                            <option value="" disabled selected>Where?</option>
+                            {{#each cities}}
+                            <option value="{{this}}">{{this}}</option>
+                            {{/each}}
+                            </option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class=" col s12 m4 l4" >  
-                <div class="input-field imputfield-search-margin ">
-                    <select name="month">
-                        <option value="" disabled selected>When ?</option>
-                        <option value="January">January</option>
-                        <option value="February">February</option>
-                        <option value="March">March</option>
-                    </select>
+                <div class=" col s12 m4 l4">
+                    <div class="input-field imputfield-search-margin ">
+                        <select name="month">
+                            <option value="" disabled selected>When ?</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                        </select>
 
+                    </div>
                 </div>
-            </div> 
-            <div class="col s12 m4 l4 ">
-                  <button class="btn waves-effect waves-light btm-search-margin" type="submit" name="action">Buscar
+                <div class="col s12 m4 l4 ">
+                    <button class="btn waves-effect waves-light btm-search-margin" type="submit" name="action">Buscar
                         <i class="material-icons right">send</i>
-                  </button>
-            </div>
+                    </button>
+                </div>
 
-            
-        </form>
+
+            </form>
+        </div>
     </div>
-  </div>
-  </div>
+</div>
 </div>
 
 <div class="portada"><img style="object-fit:cover; z-index:-1" width="100%" height="600" src="/images/portada-3.jpg">
@@ -58,34 +58,38 @@
 
 {{!-- CONTEENT  --}}
 <div class="container center-align boxes-home ">
-<div class="row">
-    <div class="col s12 m12 12 ">
-        <span class="white-text"> <h3>Discover your new <span class="teal-text lighten-2"><strong>Grandpa</strong></span> roomate!</h3>
-        {{!-- <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. <br> In eum omnes molestie. Sed ad debet scaevola, ne mel.</p></span> --}}
+    <div class="row">
+        <div class="col s12 m12 12 ">
+            <span class="white-text">
+                <h3>Discover your new <span class="teal-text lighten-2"><strong>Grandpa</strong></span> roomate!</h3>
+                {{!-- <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. <br> In eum omnes molestie. Sed ad debet scaevola, ne mel.</p></span> --}}
+        </div>
+        <div class="col s12 m12 l12 ">
+            <div class="col s12 m12 l4">
+                <div class="card-panel">
+                    <span><img src="/images/img/casabusqueda.png" alt=""></span>
+                    <h5>Find a Roomate</h5>
+                    <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes
+                        molestie.</p>
+                </div>
+            </div>
+            <div class="col s12 m12 l4">
+                <div class="card-panel">
+                    <span><img src="/images/img/hombrebusqueda.png" alt=""></span>
+                    <h5>View profile</h5>
+                    <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes
+                        molestie.</p>
+                </div>
+            </div>
+            <div class="col s12 m12 l4">
+                <div class="card-panel">
+                    <span><img src="/images/img/tabletbusqueda.png" alt=""></span>
+                    <h5>Book your room</h5>
+                    <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes
+                        molestie.</p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col s12 m12 l12 ">
-        <div class="col s12 m12 l4">
-            <div class="card-panel">
-                <span><img src="/images/img/casabusqueda.png" alt=""></span>
-                <h5>Find a Roomate</h5>
-                <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes molestie.</p>
-            </div>
-        </div>
-        <div class="col s12 m12 l4">
-            <div class="card-panel" >
-                <span><img src="/images/img/hombrebusqueda.png" alt=""></span>
-                <h5>View profile</h5>
-                <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes molestie.</p>
-            </div>
-        </div>
-        <div class="col s12 m12 l4">
-            <div class="card-panel">
-                <span><img src="/images/img/tabletbusqueda.png" alt=""></span>
-                <h5>Book your room</h5>
-                <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes molestie.</p>
-            </div>
-        </div>
-    </div>
-</div>
 
 </div>

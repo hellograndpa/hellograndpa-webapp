@@ -16,19 +16,20 @@
       <h5>SETP 2 OF 4</h5>
 
       {{!--load images  --}}
-      <div class="col s6 m12 l12">
+      <div class="col s6 m6 l12">
         <form action="/houses/create/delete-images" method="post">
           {{#each house.photos}}
-          <div>
+          <div class="col s12 m4 l5">
             <label><input type="checkbox" name="imagesDelete" value="{{ this }}"> <span> <img src="{{ this }}" alt=""
-                  width="40%"></span></label>
+                  width="100%"></span></label>
           </div>
 
           {{/each}}
-          <div class="col s12 m4 l2">
-            <div class="file-field input-field"></div>
-            <button class="btn waves-effect waves-light red" type="submit" name="action">DELETE IMAGES</button>
-          </div>
+          <br>
+          <div class="col s12 m12 l2">
+            <div class="file-field input-field">
+              <button class="btn waves-effect waves-light red" type="submit" name="action">DELETE IMAGES</button>
+            </div>
         </form>
       </div>
 
