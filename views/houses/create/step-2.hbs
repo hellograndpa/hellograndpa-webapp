@@ -21,7 +21,7 @@
           <div class="input-field col s12 m4 l3">
             <h5>M2 house</h5>
 
-            <input type="text" name="house-m2" placeholder="house-m2" value="">
+            <input type="text" name="houseM2" placeholder="house-m2" value="{{house.m2}}">{{house.m2}}
           </div>
           <div class="input-field col s12 m12 l9">
             <h5>Number of rooms</h5>
@@ -46,34 +46,120 @@
         <textarea class="materialize-textarea" name="description">{{house.description}}</textarea><br>
         <div class="input-field col s12 m12 l12">
           <h5>Features</h5>
-          {{#each featuresArray}}
           <div class="input-field col s6 m3 l3">
-            <label><input type="checkbox" name="features" value="{{this}}"> <span>{{this}}</span></label>
+            <label><input type="checkbox" name="calefaccion" value="true"
+                {{#if house.features.calefaccion}}checked{{/if}}> <span>Calefacción</span></label>
           </div>
-          {{/each}}
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="ac" value="true"
+                {{#if house.features.ac}}checked{{/if}}><span>A/C</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="piscina" value="true" {{#if house.features.piscina}}checked{{/if}}>
+              <span>Piscina</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="terraza" value="true" {{#if house.features.terraza}}checked{{/if}}>
+              <span>Terraza</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="ascensor" value="true" {{#if house.features.ascensor}}checked{{/if}}>
+              <span>Ascensor</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="wifi" value="true" {{#if house.features.wifi}}checked{{/if}}>
+              <span>WIFI</span></label>
+          </div>º
         </div>
         <div class="input-field col s12 m12 l12">
           <h5>Electro</h5>
-          {{#each electroArray}}
           <div class="input-field col s6 m3 l3">
-            <label><input type="checkbox" name="electro" value="{{this}}"> <span>{{this}} </span></label>
+            <label><input type="checkbox" name="cocina" value="true"
+                {{#if house.electro.cocina}}checked{{/if}}><span>Cocina</span></label>
           </div>
-          {{/each}}
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="nevera" value="true"
+                {{#if house.electro.nevera}}checked{{/if}}><span>nevera</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="lavadora" value="true"
+                {{#if house.electro.lavadora}}checked{{/if}}><span>lavadora</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="secadora" value="true"
+                {{#if house.electro.secadora}}checked{{/if}}><span>Cocina</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="secadorDePelo" value="true"
+                {{#if house.electro.secadorDePelo}}checked{{/if}}><span>Cocina</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="horno" value="true"
+                {{#if house.electro.horno}}checked{{/if}}><span>Cocina</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="microondas" value="true"
+                {{#if house.electro.microondas}}checked{{/if}}><span>Cocina</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="aspiradora" value="true"
+                {{#if house.electro.aspiradora}}checked{{/if}}><span>Cocina</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="batidora" value="true"
+                {{#if house.electro.batidora}}checked{{/if}}><span>Cocina</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="electro" value="true"
+                {{#if house.electro.tostadora}}checked{{/if}}><span>Cocina</span></label>
+          </div>
         </div>
 
         <div class="input-field col s12 m12 l12">
           <h5>Services Included</h5>
-          {{#each sevicesIncludedArray}}
           <div class="input-field col s6 m3 l3">
-            <label><input type="checkbox" name="sevicesincluded" value="{{this}}"> <span>{{this}}</span></label>
+            <label><input type="checkbox" name="agua" value="true"
+                {{#if house.sevicesincluded.agua}}checked{{/if}}><span>Agua</span></label>
           </div>
-          {{/each}}
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="aguaCaliente" value="true"
+                {{#if house.sevicesincluded.aguaCaliente}}checked{{/if}}><span>aguaCaliente</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="electricidad" value="true"
+                {{#if house.sevicesincluded.electricidad}}checked{{/if}}><span>electricidad</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="internet" value="true"
+                {{#if house.sevicesincluded.internet}}checked{{/if}}><span>internet</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="utensiliosBano" value="true"
+                {{#if house.sevicesincluded.utensiliosBano}}checked{{/if}}><span>Aparatos baño</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="desayuno" value="true"
+                {{#if house.sevicesincluded.desayuno}}checked{{/if}}><span>desayuno</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="cenas" value="true"
+                {{#if house.sevicesincluded.cenas}}checked{{/if}}><span>cenas</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="utensiliosCocina" value="true"
+                {{#if house.sevicesincluded.utensiliosCocina}}checked{{/if}}><span>utensiliosCocina</span></label>
+          </div>
+          <div class="input-field col s6 m3 l3">
+            <label><input type="checkbox" name="cama" value="true"
+                {{#if house.sevicesincluded.cama}}checked{{/if}}><span>cama</span></label>
+          </div>
+
         </div>
         <div class="input-field col s12 m12 l12">
           <h4> && THE ROOM</h4>
           <div class="input-field col s6 m3 l4">
             <label for="roomm2">M2 Room</label>
-            <input type="text" name="room-m2" placeholder="000" value="">
+            <input type="text" name="roomm2" placeholder="000" value="{{house.rentroom.m2}}">
           </div>
           <div class="input-field col s6 m3 l4">
             <label for="wardrobes">wardrobes</label>

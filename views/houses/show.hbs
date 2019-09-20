@@ -96,7 +96,12 @@
           <h3 class="header">Features:</h3>
         </blockquote>
         <ul class="features">
-          <li class="features">{{#each house.features}}</li>
+          <li class="features">
+            {{#if house.features.calefaccion}}
+            calefacción
+            {{/if}}
+
+            {{#each house.features}}</li>
           <li>{{this}}</li>
           {{/each}}<br />
           <div class="divider"></div>

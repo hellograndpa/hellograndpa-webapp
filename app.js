@@ -8,7 +8,9 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
-const { notifications } = require('./middlewares/nofifications');
+const {
+  notifications
+} = require('./middlewares/nofifications');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -16,11 +18,15 @@ const housesRouter = require('./routes/houses');
 const bookingRouter = require('./routes/booking');
 const bookingsRouter = require('./routes/bookings');
 const messagesRouter = require('./routes/messages');
+var hbs = require('hbs');
+
 
 // prevent bodyParser from handling multipart forms (ie only handle get and post requests)
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
+mongoose.connect(process.env.DB_HOST, {
+  useNewUrlParser: true
+});
 //mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
 const app = express();
 
@@ -30,7 +36,9 @@ app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -86,3 +94,28 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
+
+hbs.registerHelper('ifCond', function (v1, operator, v2, options) {
+  switch (operator) {
+    case '==':
+      return (v1 == v2) ? options.fn(this) : options.inverse(this);
+    case '===':
+      return (v1 === v2) ? options.fn(this) : options.inverse(this);
+    case '!==':
+      return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+    case '<':
+      return (v1 < v2) ? options.fn(this) : options.inverse(this);
+    case '<=':
+      return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+    case '>':
+      return (v1 > v2) ? options.fn(this) : options.inverse(this);
+    case '>=':
+      return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+    case '&&':
+      return (v1 && v2) ? options.fn(this) : options.inverse(this);
+    case '||':
+      return (v1 || v2) ? options.fn(this) : options.inverse(this);
+    default:
+      return options.inverse(this);
+  }
+});

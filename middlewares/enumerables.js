@@ -1,5 +1,4 @@
-const servicesArray = [
-  {
+const servicesArray = [{
     serviceType: 'Pasear al Perro',
     points: 10,
     description: 'Intentar sacar al perro almenos 2 veces al día',
@@ -31,39 +30,39 @@ const servicesArray = [
   },
 ];
 
-const featuresArray = [
-  'Calefaccion',
-  'A/C',
-  'Piscina',
-  'Terraza',
-  'Ascensor',
-  'WIFI',
-];
+const featuresArray = {
+  calefaccion: false,
+  ac: false,
+  piscina: false,
+  terraza: false,
+  ascensor: false,
+  wifi: false,
+};
 
-const electroArray = [
-  'cocina',
-  'nevera',
-  'lavadora',
-  'secadora',
-  'secador de pelo',
-  'horno',
-  'microondas',
-  'aspiradora',
-  'batidora',
-  'tostadora',
-];
+const electroArray = {
+  cocina: false,
+  nevera: false,
+  lavadora: false,
+  secadora: false,
+  secadorDePelo: false,
+  horno: false,
+  microondas: false,
+  aspiradora: false,
+  batidora: false,
+  tostadora: false,
+};
 
-const sevicesIncludedArray = [
-  'Agua',
-  'agua caliene',
-  'Electricidad',
-  'Internet',
-  'Utensilios baño',
-  'desayuno',
-  'cenas',
-  'Utensilios cocina',
-  'Cama',
-];
+const sevicesIncludedArray = {
+  agua: false,
+  aguaCaliene: false,
+  electricidad: false,
+  internet: false,
+  utensiliosBano: false,
+  desayuno: false,
+  cenas: false,
+  utensiliosCocina: false,
+  cama: false,
+};
 
 module.exports = {
   servicesArray,

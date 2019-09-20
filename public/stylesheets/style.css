@@ -94,12 +94,12 @@ main {
   position: relative;
   -webkit-animation-name: example;
   /* Safari 4.0 - 8.0 */
-  -webkit-animation-duration: 1.5s;
+  -webkit-animation-duration: 4s;
   /* Safari 4.0 - 8.0 */
   -webkit-animation-delay: 0.1s;
   /* Safari 4.0 - 8.0 */
   animation-name: example;
-  animation-duration: 1.5;
+  animation-duration: 4;
   animation-delay: 0.1s;
   visibility: hidden;
   text-align: center;
@@ -117,12 +117,12 @@ main {
   position: relative;
   -webkit-animation-name: example;
   /* Safari 4.0 - 8.0 */
-  -webkit-animation-duration: 1.5s;
+  -webkit-animation-duration: 4s;
   /* Safari 4.0 - 8.0 */
   -webkit-animation-delay: 0.1s;
   /* Safari 4.0 - 8.0 */
   animation-name: example;
-  animation-duration: 1.5s;
+  animation-duration: 4s;
   animation-delay: 0.1s;
   visibility: hidden;
   text-align: center;
@@ -192,9 +192,11 @@ a:hover {
 .card-border-grey {
   border: 1px solid rgba(128, 128, 128, 0.762);
 }
-.mg-top2{
-  margin:2px
+
+.mg-top2 {
+  margin: 2px
 }
+
 .boxes-home {
   padding: 4.5em;
   margin-top: -2%;
@@ -219,6 +221,7 @@ a:hover {
 .collapsible-width {
   width: 100%;
 }
-.margin-50px{
+
+.margin-50px {
   margin: 50px 0 0 0;
 }

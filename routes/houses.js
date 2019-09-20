@@ -3,7 +3,9 @@ const express = require('express');
 const formidable = require('formidable');
 const fs = require('fs');
 
-const { isLogged } = require('../middlewares/logIn');
+const {
+  isLogged,
+} = require('../middlewares/logIn');
 const {
   checkUserTypeGranpa,
   checkUserHaveOneHouse,
@@ -26,7 +28,9 @@ const {
 
 // Get a list of houses available
 router.get('/', async (req, res, next) => {
-  const { city } = req.query;
+  const {
+    city,
+  } = req.query;
 
   try {
     const houses = await House.find({
@@ -66,10 +70,19 @@ router.get('/', async (req, res, next) => {
 // TODO: CREATE WITH MAPS
 // CREATE HOUSE STEP 1 - DIRECTION AND
 router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
-  const { title, street, city, state, country, zip } = req.body;
+  const {
+    title,
+    street,
+    city,
+    state,
+    country,
+    zip,
+  } = req.body;
   try {
     const user = req.session.currentUser._id;
-    const { ObjectId } = require('mongoose').Types;
+    const {
+      ObjectId,
+    } = require('mongoose').Types;
     const query = {
       user: new ObjectId(req.session.currentUser._id),
     };
@@ -112,26 +125,55 @@ router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
   const {
     title,
     rooms,
-    m2,
+    houseM2,
     description,
-    features,
-    electro,
-    sevicesincluded,
+    calefaccion,
+    ac,
+    piscina,
+    terraza,
+    ascensor,
+    wifi,
+    cocina,
+    nevera,
+    lavadora,
+    secadora,
+    secadorDePelo,
+    horno,
+    microondas,
+    aspiradora,
+    batidora,
+    tostadora,
+    agua,
+    aguaCaliene,
+    electricidad,
+    internet,
+    utensiliosBano,
+    desayuno,
+    cenas,
+    utensiliosCocina,
+    cama,
     roomm2,
     wardrobes,
     window,
     wc,
     balcony,
     heat,
-    ac,
+    roomac,
     tv,
     table,
     chair,
   } = req.body;
+  console.log(req.body);
+
+  const newM2 = parseInt(houseM2);
+  const newRoomm2 = parseInt(roomm2);
+
   try {
     // const house = await House.find({ user: req.session.currentUser._id });
     const user = req.session.currentUser._id;
-    const { ObjectId } = require('mongoose').Types;
+    const {
+      ObjectId,
+    } = require('mongoose').Types;
     const query = {
       user: new ObjectId(req.session.currentUser._id),
     };
@@ -139,19 +181,47 @@ router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
     await House.findByIdAndUpdate(house._id, {
       title,
       rooms,
-      m2,
+      m2: newM2,
       description,
-      features,
-      electro,
-      sevicesincluded,
+      features: {
+        calefaccion,
+        ac,
+        piscina,
+        terraza,
+        ascensor,
+        wifi,
+      },
+      electro: {
+        cocina,
+        nevera,
+        lavadora,
+        secadora,
+        secadorDePelo,
+        horno,
+        microondas,
+        aspiradora,
+        batidora,
+        tostadora,
+      },
+      sevicesincluded: {
+        agua,
+        aguaCaliene,
+        electricidad,
+        internet,
+        utensiliosBano,
+        desayuno,
+        cenas,
+        utensiliosCocina,
+        cama,
+      },
       rentroom: {
-        m2: roomm2,
+        m2: newRoomm2,
         wardrobes,
         window,
         wc,
         balcony,
         heat,
-        ac,
+        roomac,
         tv,
         table,
         chair,
@@ -160,7 +230,8 @@ router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
     req.flash('info', 'FEATURES house created');
     res.redirect('/houses/create/step-2');
   } catch (error) {
-    req.flash('error', 'Some error happen - Please try again');
+    console.log(error);
+    req.flash('error', `Some error happen - Please try again${error}`);
     res.redirect('/houses/create/step-2');
   }
 });
@@ -180,11 +251,17 @@ router.post('/create/step-3', checkUserTypeGranpa, async (req, res, next) => {
     });
   });
   console.log('services', services);
-  const { restricciones, costpermonth, deposit } = req.body;
+  const {
+    restricciones,
+    costpermonth,
+    deposit,
+  } = req.body;
   const newConst = parseInt(costpermonth);
   try {
     // const house = await House.find({ user: req.session.currentUser._id });
-    const { ObjectId } = require('mongoose').Types;
+    const {
+      ObjectId,
+    } = require('mongoose').Types;
     const query = {
       user: new ObjectId(req.session.currentUser._id),
     };
@@ -214,12 +291,16 @@ router.post(
   checkUserTypeGranpa,
   checkUploadNotEmpty,
   async (req, res) => {
-    const { ObjectId } = require('mongoose').Types;
+    const {
+      ObjectId,
+    } = require('mongoose').Types;
     const query = {
       user: new ObjectId(req.session.currentUser._id),
     };
     const house = await House.findOne(query);
-    const { photos } = house;
+    const {
+      photos,
+    } = house;
     // formidable is a npm package
     const form = new formidable.IncomingForm();
 
@@ -258,17 +339,23 @@ router.post(
   isLogged,
   checkUserTypeGranpa,
   async (req, res) => {
-    const { imagesDelete } = req.body;
+    const {
+      imagesDelete,
+    } = req.body;
     const path = `${__dirname}/../public`;
     console.log(`ruta ok : ${path}${imagesDelete}`);
     try {
       console.log(imagesDelete);
-      const house = await House.findOne({ user: req.session.currentUser._id });
+      const house = await House.findOne({
+        user: req.session.currentUser._id,
+      });
       const index = house.photos.indexOf(imagesDelete);
 
       if (index !== -1) {
         house.photos.splice(index, 1);
-        const { photos } = house;
+        const {
+          photos,
+        } = house;
         await House.findByIdAndUpdate(house._id, {
           photos,
         });
@@ -359,7 +446,9 @@ router.get(
 // Get id from url
 router.get('/:id', async (req, res, next) => {
   // get info from ddbb
-  const { id } = req.params;
+  const {
+    id,
+  } = req.params;
   try {
     const house = await HouseDetails.findById(id).populate('user');
     if (house) {
