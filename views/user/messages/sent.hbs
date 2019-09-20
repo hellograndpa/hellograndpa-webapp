@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12 m4 l3 ">
+      <div class="collection collapsible-width ">
+        <a href="/user/messages/inbox" class="collection-item">In Box</a>
+        <a href="/user/messages/sent" class="collection-item active">Sent</a>
+      </div>
+    </div>
+    <div class="col s12 m8 l9 collapsible-width">
+      <h3 class="">Booking messages list </h3>
+      <br>
+      <ul class="collapsible">
+        {{#each messages}}
+        <li class="active">
+          <div class="collapsible-header">
+            <div class="row">
+              <div class="col s1 m1 l1">
+                <i class="material-icons">email</i>
+              </div>
+              <div class="col s11 m10 l11 ">
+                <h4> You have a request for a booking:</h4>
+                <span class="margin--50px flow-text">from: {{this.userFrom.username.firstname}}
+                  {{this.userTo.username.lastname}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="collapsible-body collapsible-width"><span class="flow-text">
+              {{#if this.booking}}
+              <strong> MESSAGE: </strong> <br> <br></span>
+            <span>{{this.message}} <br><br></span> <strong> BOOKING DATA: </strong> <br> <br>
+            to go in: {{this.booking.dateIn}}<br>
+            to go out: {{this.booking.dateOut}}<br />
+            <a class="waves-effect waves-light btn modal-trigger margin-50px" href="/user/bookings/">Go to the
+              booking</a>
+            {{/if}}
+            </span>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
