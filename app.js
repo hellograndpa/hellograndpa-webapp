@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
+const hbs = require('hbs');
 const { notifications } = require('./middlewares/nofifications');
 
 const indexRouter = require('./routes/index');
@@ -20,8 +21,10 @@ const messagesRouter = require('./routes/messages');
 // prevent bodyParser from handling multipart forms (ie only handle get and post requests)
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
-//mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
+mongoose.connect(process.env.DB_HOST, {
+  useNewUrlParser: true,
+});
+// mongoose.connect('mongodb://localhost/hellograndpa', { useNewUrlParser: true });
 const app = express();
 
 // view engine setup
@@ -30,7 +33,11 @@ app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(
+  express.urlencoded({
+    extended: false,
+  }),
+);
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -68,7 +75,6 @@ app.use('/user', usersRouter);
 app.use('/houses', housesRouter);
 app.use('/booking', bookingRouter);
 
-
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
@@ -86,3 +92,10 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
+
+hbs.registerHelper('if_eq', function (a, b, opts) {
+  if (a == b) {
+    return opts.fn(this);
+  }
+  return opts.inverse(this);
+});
