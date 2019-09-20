@@ -3,9 +3,8 @@
     margin-right: 30px;">
     {{#each userBookings}}
     <div class="col s12 m4">
-      <div class="card details">
-        <class="card-image"><a href="/houses/{{this._id}}"><img src="/images/pictures/photo1.jpg" width="250px"
-              alt="Foto"></a>
+      <div class="card container_houses">
+        <class="card-image"><img src="{{house.photos}}" alt="" width="100%" class="center-align">
           <h3>House:</h3>
           <div>rooms: {{ this.house.rooms }}</div>
           <div>m2: {{ this.house.m2 }}</div>
