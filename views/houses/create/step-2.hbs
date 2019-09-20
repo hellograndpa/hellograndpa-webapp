@@ -26,16 +26,21 @@
           <div class="input-field col s12 m12 l9">
             <h5>Number of rooms</h5>
             <div class="input-field col s6 m3 l2">
-              <label><input type="radio" name="rooms" value="1" checked> <span>1</span> </label><br>
+              <label><input type="radio" name="rooms" value="1" {{#if_eq house.rooms 1}}checked{{/if_eq}}>
+                <span>1</span>
+              </label><br>
             </div>
             <div class="input-field col s6 m3 l2">
-              <label><input type="radio" name="rooms" value="2"> <span>2</span> </label><br>
+              <label><input type="radio" name="rooms" value="2" {{#if_eq house.rooms 2}}checked{{/if_eq}}>
+                <span>2</span> </label><br>
             </div>
             <div class="input-field col s6 m3 l2">
-              <label><input type="radio" name="rooms" value="3"> <span>3</span></label><br>
+              <label><input type="radio" name="rooms" value="3" {{#if_eq house.rooms 3}}checked{{/if_eq}}>
+                <span>3</span></label><br>
             </div>
             <div class="input-field col s6 m3 l2">
-              <label><input type="radio" name="rooms" value="4"> <span>+ 4</span></label><br>
+              <label><input type="radio" name="rooms" value="4" {{#if_eq house.rooms 4}}checked{{/if_eq}}> <span>+
+                  4</span></label><br>
             </div>
           </div>
         </div>
@@ -164,53 +169,71 @@
           <div class="input-field col s6 m3 l4">
             <label for="wardrobes">wardrobes</label>
             <div class="input-field col s12 m12 l12">
-              <label><input type="radio" name="wardrobes" value="uno"> <span>uno</span></label>
+              <label><input type="radio" name="wardrobes" value="uno"
+                  {{#if_eq house.rentroom.wardrobes '1'}}checked{{/if_eq}}>
+                <span>uno</span></label>
             </div>
             <div class="input-field col s12 m12 l12">
-              <label><input type="radio" name="wardrobes" value="dos"> <span>dos</span></label>
+              <label><input type="radio" name="wardrobes" value="dos"
+                  {{#if_eq house.rentroom.wardrobes 'dos'}}checked{{/if_eq}}>
+                <span>dos</span></label>
             </div>
           </div>
           <div class="input-field col s6 m3 l4">
             <label>window</label>
             <div class="input-field col s12 m12 l12">
-              <label><input type="radio" name="window" value="uno"> <span>uno</span></label>
+              <label><input type="radio" name="window" value="uno"
+                  {{#if_eq house.rentroom.window 'uno'}}checked{{/if_eq}}>
+                <span>uno</span></label>
             </div>
             <div class="input-field col s12 m12 l12">
-              <label><input type="radio" name="window" value="dos"> <span>dos</span></label>
+              <label><input type="radio" name="window" value="dos"
+                  {{#if_eq house.rentroom.window 'dos'}}checked{{/if_eq}}>
+                <span>dos</span></label>
             </div>
           </div>
           <div class="input-field col s6 m3 l4">
             <label>wc</label>
             <div class="input-field col s12 m12 l12">
-              <label><input type="radio" name="wc" value="private bathroom"> <span>private bathroom</span></label>
+              <label><input type="radio" name="wc" value="private bathroom"
+                  {{#if_eq house.rentroom.wc 'private bathroom'}}checked{{/if_eq}}> <span>private
+                  bathroom</span></label>
             </div>
             <div class="input-field col s12 m12 l12">
-              <label><input type="radio" name="wc" value="share bathroom"> <span>share bathroom</span></label>
+              <label><input type="radio" name="wc" value="share bathroom"
+                  {{#if_eq house.rentroom.wc 'share bathroom'}}checked{{/if_eq}}> <span>share bathroom</span></label>
             </div>
           </div>
           <div class="input-field col s6 m3 l3">
-            <label><input type="checkbox" name="balcony" value="true"> <span>have a balcony</span></label>
+            <label><input type="checkbox" name="balcony" value="true" {{#if house.rentroom.cama}}checked{{/if}}>
+              <span>have a balcony</span></label>
           </div>
           <div class="input-field col s6 m3 l3">
-            <label><input type="checkbox" name="heat" value="true"> <span>have a heat</span></label>
+            <label><input type="checkbox" name="heat" value="true" {{#if house.rentroom.cheatama}}checked{{/if}}>
+              <span>have
+                a heat</span></label>
           </div>
           <div class="input-field col s6 m3 l3">
-            <label><input type="checkbox" name="ac" value="true"> <span>have a ac</span></label>
+            <label><input type="checkbox" name="roomac" value="true" {{#if house.rentroom.roomac}}checked{{/if}}>
+              <span>have a
+                ac</span></label>
           </div>
           <div class="input-field col s6 m3 l3">
-            <label><input type="checkbox" name="tv" value="true"> <span>have a tv</span></label>
+            <label><input type="checkbox" name="tv" value="true" {{#if house.rentroom.tv}}checked{{/if}}> <span>have a
+                tv</span></label>
           </div>
           <div class="input-field col s6 m3 l3">
-            <label><input type="checkbox" name="table" value="true"> <span>have a tabe</span></label>
+            <label><input type="checkbox" name="table" value="true" {{#if house.rentroom.table}}checked{{/if}}>
+              <span>have a tabe</span></label>
           </div>
           <div class="input-field col s6 m3 l3">
-            <label><input type="checkbox" name="chair" value="true"> <span>have a chair</span></label>
+            <label><input type="checkbox" name="chair" value="true" {{#if house.rentroom.chair}}checked{{/if}}>
+              <span>have a chair</span></label>
           </div>
 
           <div class="input-field col s12 m12 l12">
             <br>
             <br>
-            {{ house.othersThings }}
             <label for="othersThings">Others Things</label>
             <textarea class="materialize-textarea" rows="5" cols="33"
               name="othersThings">{{ house.rentroom.othersThings }}</textarea>
