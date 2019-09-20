@@ -7,15 +7,14 @@
   border: 1px solid rgba(128, 128, 128, 0.762);
    box-shadow: none;
 }
-
 .container_houses {
-
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 
 .row .col .l6 {
   width: auto;
