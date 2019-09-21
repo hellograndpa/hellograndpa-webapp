@@ -1,5 +1,4 @@
 function recalcPrices() {
-  alert('0')
   const arrCheks = Array.from(document.getElementsByClassName('services'));
   const totalAmount = parseFloat(
     document.getElementById('totalAmount').innerText,
@@ -19,16 +18,19 @@ function recalcPrices() {
   document.getElementById('discountHidden').value = totalDiscount;
   document.getElementById('priceEndHidden').value = totalAmount - totalDiscount;
 }
-function init() {
-  const checks = document.querySelectorAll('.services-list label');
-  for (let i = 0; i < checks.length; i++) {
-    checks[i].addEventListener('click', recalcPrices);
-  }
-}
 
-window.onload = init;
+function initServices() {
+  
+  const checks = document.getElementsByClassName('services');
+  if(checks){
+    for (let i = 0; i < checks.length; i++) {
+      checks[i].addEventListener('click', recalcPrices);
+    }
+  }  
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('select');
   var instances = M.FormSelect.init(elems, '');
+  initServices();
 });

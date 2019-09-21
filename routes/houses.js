@@ -438,7 +438,7 @@ router.get('/:id', async (req, res, next) => {
       let points = 0;
       mandatoryServices.forEach((service) => points += service.points);
       house.discountPrice = points * 2;
-      house.finalPrice = house.rentroom.costpermonth - house.sumPointsMandatory;
+      house.finalPrice = house.rentroom.costpermonth - house.discountPrice;
 
       res.render('houses/show', {
         house,
