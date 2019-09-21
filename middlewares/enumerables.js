@@ -2,7 +2,7 @@ const servicesArray = [{
     serviceType: 'Pasear al Perro',
     points: 10,
     description: 'Intentar sacar al perro almenos 2 veces al día',
-    logo: 'pet',
+    logo: 'pets',
   },
   {
     serviceType: 'Llevar al médico',

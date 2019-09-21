@@ -1,0 +1,74 @@
+.house_list .btn-floating {
+  width: 60px;
+  height: 60px;
+}
+
+.house_list .title {
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.house_list .title .filters {
+  color: rgb(63, 63, 218);
+  font-size: 14px;
+}
+.house_list .card .card-content {
+  color: black;
+}
+
+.house_list .card .card-content .card-title {
+  color: black;
+  font-size: 15px;
+  line-height: 17px;
+  height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.house_list .card .card-content .street {
+  color: grey;
+  line-height: 20px;
+}
+.house_list #showcase {
+  margin: 0 20px;
+  text-align: center;
+}
+
+.house_list #range {
+  height: 15px;
+  margin: 10px 0;
+  width: 35%;
+}
+.house_list .price-container {
+  width: 35%;
+  display: flex;
+  justify-content: space-between;
+}
+.house_list #value-span,
+.house_list #value-input {
+  width: 50%;
+  float: left;
+  display: block;
+  text-align: center;
+  margin: 0;
+}
+
+.house_list .card .card-content .price {
+  color: rgb(42, 43, 148);
+  line-height: 35px;
+  font-size: 18px;
+}
+
+.house_list .card .card-content .extra {
+  color: grey;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.house_list .card .card-content .services {
+  border-top: 1px solid darkgrey;
+  margin-top: 10px;
+  padding-top: 10px;
+}

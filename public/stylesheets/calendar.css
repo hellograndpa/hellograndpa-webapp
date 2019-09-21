@@ -38,7 +38,7 @@
   min-height: 250px !important;
 }
 
-.calendar .carousel .whatever {
+.calendar .whatever {
   display: inline-block;
   width: 50px;
   height: 50px;
@@ -46,7 +46,16 @@
   border: 1px solid grey;
 }
 
-.calendar .carousel .none {
+.calendar .selected {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border: 1px solid grey;
+  background-color: #00e676;
+}
+
+.calendar .none {
   background-color: #eeeeee;
   display: inline-block;
   width: 50px;

@@ -26,13 +26,19 @@ router.get('/:id', isLogged, async (req, res, next) => {
       );
       const optionalServices = house.sevicestohoster.filter(
         (service) =>
-          service.requirement === true && service.mandatory === false,
+          service.requirement === true,
       );
-      let sumPointsMandatory = mandatoryServices.reduce(
-        (prev, current) => prev.points + current.points,
+      let sumPointsMandatory = 0;
+
+      mandatoryServices.forEach(
+        (element) => sumPointsMandatory += element.points
       );
+
+
       sumPointsMandatory *= 2;
       const finalFisrtPrice = house.rentroom.costpermonth - sumPointsMandatory;
+      const dateInText = new Date(dateIn.substring(0, 4), dateIn.substring(4, 6) - 1, '01').toDateString();
+      const dateOutText = new Date(dateOut.substring(0, 4), dateOut.substring(4, 6) - 1, '01').toDateString();
 
       res.render('bookings/create', {
         house,
@@ -40,6 +46,8 @@ router.get('/:id', isLogged, async (req, res, next) => {
         optionalServices,
         dateIn,
         dateOut,
+        dateInText,
+        dateOutText,
         sumPointsMandatory,
         finalFisrtPrice,
       });
@@ -60,7 +68,7 @@ router.post('/:id', isLogged, async (req, res, next) => {
   servicesArray.forEach((service) => {
     if (req.body[service.serviceType]) {
       services.push({
-        serviceType: service.serviceType,
+        servicetype: service.serviceType,
         points: service.points,
       });
     }

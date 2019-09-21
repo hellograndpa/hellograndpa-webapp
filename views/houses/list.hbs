@@ -1,21 +1,120 @@
+<style>
+
+</style>
 <div class="house_list">
     <div class="row">
         <div class="col s12 m1"></div>
         <div class="col s12 m10">
-            <div class="title">{{houses.length}} of available houses founded in {{city}}</div>
+
+            <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header title">
+                        {{houses.length}} of available houses founded
+                        {{#if city}}
+                        in {{city}}
+                        {{/if}}
+                        <div class="filters">click to filter</div>
+                    </div>
+                    <div class="collapsible-body">
+                        <form action="" method="get">
+                            <div class="row">
+
+                                <div class="col s6 m6 l6 ">
+
+                                    <div class="input-field imputfield-search-margin ">
+                                        <select name="city">
+                                            {{#if city}}
+                                            <option value="" disabled>Where?</option>
+                                            {{else}}
+                                            <option value="" selected disabled>Where?</option>
+                                            {{/if}}
+
+                                            {{#each cities}}
+                                            <option value="{{this}}" {{#if_eq this city}}selected{{/if_eq}}>{{this}}
+                                            </option>
+                                            {{/each}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                                <div class="col s6 m6 l6 ">
+                                    <div class="title">Price</div>
+                                    <div id="range"></div>
+                                    <div class="price-container">
+                                        <div>min:<span id="value-span-min"></span></div>
+                                        <div>max:<span id="value-span-max"></span></div>
+                                        <input type="hidden" name="priceMin" id="priceMin">
+                                        <input type="hidden" name="priceMax" id="priceMax">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class=" row">
+
+                                <div class="title">Features</div>
+                                <div class="input-field col s6 m3 l3">
+                                    <label><input type="checkbox" name="calefaccion" value="true"
+                                            {{#if calefaccion}}checked{{/if}}>
+                                        <span>Calefacción</span></label>
+                                </div>
+                                <div class="input-field col s6 m3 l3">
+                                    <label><input type="checkbox" name="ac" value="true"
+                                            {{#if ac}}checked{{/if}}><span>A/C</span></label>
+                                </div>
+                                <div class="input-field col s6 m3 l3">
+                                    <label><input type="checkbox" name="piscina" value="true"
+                                            {{#if piscina}}checked{{/if}}>
+                                        <span>Piscina</span></label>
+                                </div>
+                                <div class="input-field col s6 m3 l3">
+                                    <label><input type="checkbox" name="terraza" value="true"
+                                            {{#if terraza}}checked{{/if}}>
+                                        <span>Terraza</span></label>
+                                </div>
+                                <div class="input-field col s6 m3 l3">
+                                    <label><input type="checkbox" name="ascensor" value="true"
+                                            {{#if ascensor}}checked{{/if}}>
+                                        <span>Ascensor</span></label>
+                                </div>
+                                <div class="input-field col s6 m3 l3">
+                                    <label><input type="checkbox" name="wifi" value="true" {{#if wifi}}checked{{/if}}>
+                                        <span>WIFI</span></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col s12 m12 l12 right-align">
+                                    <button class="btn waves-effect waves-light" type="submit" name="action">Filter
+                                        <i class="material-icons right">send</i>
+                                </div>
+
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </li>
+            </ul>
             <div class="row">
                 {{#each houses}}
-                <div class="col s12 m4">
+                <div class="col s12 m3">
 
                     <div class="card">
                         <div class="card-image">
-                            <a href="/houses/{{this._id}}"><img src="{{this.photos.[0]}}"></a>
+                            <a href="/houses/{{this._id}}">
+                                {{#if this.photos}}
+                                <img src="{{this.photos.[0]}}"></a>
+                            {{else}}
+                            <img src="/images/pictures/default.jpg"></a>
+                            {{/if}}
+
 
                             <a class="btn-floating halfway-fab waves-effect waves-light white"
                                 href="/user/{{this.user._id}}">
                                 <img src="{{this.user.avatar}}"
-                                    alt="{{this.user.username.firstname}} {{this.user.username.lastname}}" width="30px"
-                                    height="30px" class="circle center-align"></a>
+                                    alt="{{this.user.username.firstname}} {{this.user.username.lastname}}"
+                                    class="circle center-align"></a>
                         </div>
                         <a href="/houses/{{this._id}}">
                             <div class="card-content">
@@ -28,7 +127,6 @@
                                 </div>
                                 <div class="services">
                                     {{#each this.mandatoryServices}}
-
                                     <i class="material-icons dp48" title="{{this.description}}">{{this.logo}}</i>
                                     {{/each}}
                                 </div>
