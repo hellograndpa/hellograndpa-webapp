@@ -1,4 +1,5 @@
 function recalcPrices() {
+  alert('0')
   const arrCheks = Array.from(document.getElementsByClassName('services'));
   const totalAmount = parseFloat(
     document.getElementById('totalAmount').innerText,
@@ -12,14 +13,14 @@ function recalcPrices() {
   });
   totalDiscount *= 2;
 
-  document.getElementById('discountPrice').innerText = totalDiscount;
-  document.getElementById('finalPrice').innerText = totalAmount - totalDiscount;
+  document.getElementById('discountPrice').innerText = totalDiscount + '€';
+  document.getElementById('finalPrice').innerText = totalAmount - totalDiscount + '€';
 
   document.getElementById('discountHidden').value = totalDiscount;
   document.getElementById('priceEndHidden').value = totalAmount - totalDiscount;
 }
 function init() {
-  const checks = document.getElementsByClassName('services');
+  const checks = document.querySelectorAll('.services-list label');
   for (let i = 0; i < checks.length; i++) {
     checks[i].addEventListener('click', recalcPrices);
   }

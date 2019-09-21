@@ -1,0 +1,30 @@
+.create-booking .prices {
+  padding: 5px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+.create-booking .button {
+  padding: 5px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+.create-booking .services-list li {
+  display: flex;
+  align-items: center;
+  padding: 6px 0px;
+}
+.create-booking .services-list .material-icons {
+  margin-left: 10px;
+}
+#finalPrice {
+  color: #33691e;
+}
+.create-booking .dates {
+  margin-bottom: 10px;
+}
+.create-booking .dates span {
+  font-size: 20px;
+}

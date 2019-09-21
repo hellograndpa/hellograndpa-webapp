@@ -70,7 +70,7 @@ const HouseSchema = new Schema({
     mandatory: Boolean,
     description: String,
   }],
-  photos: [String],
+  photos: { type: [String], default: '/images/pictures/default.jpg' },
   restricciones: String,
   rentroom: {
     m2: Number,

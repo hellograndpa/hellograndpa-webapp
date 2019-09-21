@@ -13,13 +13,16 @@
     <div class="col s5" style="float: right">
       <div class="card calendar house_calendar_details">
         <h3>Hi {{currentUser.username.firstname}},</h3>
-        <h5>Details of your reservation:</h5>
-        <h5>Owner: {{house.user.username.firstname}}</h5>
+        <h5>Make your request to {{house.user.username.firstname}}</h5>
         {{#if currentUser}}
         <form name="BookingForm" method="GET" action="/booking/{{house._id}}">
-          <div>From when you whant to in?</div><br>
-
+          <div class="center">
+            <label class="none lbldate">No Dispo</label>
+            <label class="whatever lbldate">Dispo</label>
+            <label class="selected lbldate">Selected</label>
+          </div>
           <div class="carousel carousel-slider center " data-indicators="true">
+
             <div class="carousel-fixed-item center middle-indicator">
               <div class="left">
                 <a href="Previo"
@@ -50,9 +53,12 @@
 
 
           </div>
+          <div>
+            <div>dateIn <input type="text" class="dateIn" readonly></div>
+            <div>dateOut <input type="text" class="dateOut" readonly>
+            </div>
+          </div>
 
-          dateIn <input type="text" class="dateIn"><br>
-          dateOut <input type="text" class="dateOut">
 
           <button class="btn waves-effect waves-light" type="submit" style="margin-top: 15px" name="action">Enviar
             Petición
@@ -78,11 +84,11 @@
 
     <!-- HOUSE SPECS -->
     <div class="col s7">
-        <div>
-          <h2>{{house.title}}</h2>
-          <img src="{{house.user.avatar}}" alt="" width="50px" height="50px" class="circle center-align">
-          <p>{{house.user.username.firstname}} {{house.user.username.lastname}}</p>
-        </div>
+      <div>
+        <h2>{{house.title}}</h2>
+        <img src="{{house.user.avatar}}" alt="" width="50px" height="50px" class="circle center-align">
+        <p>{{house.user.username.firstname}} {{house.user.username.lastname}}</p>
+      </div>
       <blockquote>
         <h3 class="header">House specs:</h3>
       </blockquote>

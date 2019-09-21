@@ -26,20 +26,44 @@ const {
 
 // Get a list of houses available
 router.get('/', async (req, res, next) => {
-  const { city } = req.query;
+  const {
+    city,
+    calefaccion,
+    ac,
+    piscina,
+    terraza,
+    ascensor,
+    wifi,
+    priceMin,
+    priceMax,
+  } = req.query;
 
   try {
-
     let houses;
+    let minPrice=0;
+    let maxPrice=1500;
 
-    if(city){
-      houses = await House.find({
-        'address.city': city,
-      }).populate('mentor user');
-    }else{
-      houses = await House.find().populate('mentor user');
-    }    
-    
+    if(priceMin){
+      minPrice=priceMin;
+    }
+
+    if(priceMax){
+      maxPrice=priceMax;
+    }
+    const cities = await House.find().distinct('address.city');
+
+    if (city) {
+      houses = await House.find({ $and: [{ 'address.city': city }, { 'rentroom.costpermonth': { $gt: minPrice } }, { 'rentroom.costpermonth': { $lt: maxPrice } }] }).sort({ createdAt: -1 }).populate('mentor user');
+    } else {
+      houses = await House.find({ $and: [{ 'rentroom.costpermonth': { $gt: minPrice } }, { 'rentroom.costpermonth': { $lt: maxPrice } }] }).populate('mentor user').sort({ createdAt: -1 });
+    }
+
+    if (calefaccion) { houses = houses.filter((house) => house.features.calefaccion === true); }
+    if (wifi) { houses = houses.filter((house) => house.features.wifi === true); }
+    if (ac) { houses = houses.filter((house) => house.features.ac === true); }
+    if (piscina) { houses = houses.filter((house) => house.features.piscina === true); }
+    if (terraza) { houses = houses.filter((house) => house.features.terraza === true); }
+    if (ascensor) { houses = houses.filter((house) => house.features.ascensor === true); }
 
     houses.forEach((el) => {
       let newPrice = 0;
@@ -66,6 +90,13 @@ router.get('/', async (req, res, next) => {
     res.render('houses/list', {
       houses,
       city,
+      calefaccion,
+      ac,
+      piscina,
+      terraza,
+      ascensor,
+      wifi,
+      cities,
     });
   } catch (error) {
     next(error);
@@ -403,6 +434,12 @@ router.get('/:id', async (req, res, next) => {
   try {
     const house = await HouseDetails.findById(id).populate('user');
     if (house) {
+      const mandatoryServices = house.sevicestohoster.filter((service) => service.mandatory === true);
+      let points = 0;
+      mandatoryServices.forEach((service) => points += service.points);
+      house.discountPrice = points * 2;
+      house.finalPrice = house.rentroom.costpermonth - house.sumPointsMandatory;
+
       res.render('houses/show', {
         house,
       });

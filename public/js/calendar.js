@@ -59,26 +59,26 @@ function calendarInit() {
   });
 }
 function printCalendar() {
-  const houseId = document.getElementById('houseId').value;
+  if(document
+    .querySelector('.carousel')){
+      const houseId = document.getElementById('houseId').value;
 
-  axios
-    .get('/booking/calendar/' + houseId)
-    .then((response) => {
-      document
-        .querySelector('.carousel')
-        .insertAdjacentHTML('beforeend', response.data);
-      console.log(response);
-      calendarInit();
-      document.querySelector('.preloader-wrapper').remove();
-    })
-    .catch(function(error) {
-      console.log(error);
-    })
-    .finally(function() {
-      // always executed
-    });
+    axios
+      .get('/booking/calendar/' + houseId)
+      .then((response) => {
+        document
+          .querySelector('.carousel')
+          .insertAdjacentHTML('beforeend', response.data);
+        calendarInit();
+        document.querySelector('.preloader-wrapper').remove();
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+      .finally(function() {
+        // always executed
+      });
+  }
 }
 
-document.addEventListener('DOMContentLoaded', setTimeout(printCalendar, 2000));
-
-document.addEventListener('DOMContentLoaded', function() {});
+document.addEventListener('DOMContentLoaded', () => setTimeout(printCalendar, 2000));
