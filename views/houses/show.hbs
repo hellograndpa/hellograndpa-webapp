@@ -75,247 +75,197 @@
       </div>
       <div class="divider"></div>
 
-      <div class="carousel-fixed-item center middle-indicator">
-        <div class="left">
-          <a href="Previo" class="movePrevCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
-              class="material-icons left  middle-indicator-text">chevron_left</i></a>
-        </div>
-        <div class="right">
-          <a href="Siguiente"
-            class=" moveNextCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
-              class="material-icons right middle-indicator-text">chevron_right</i></a>
-        </div>
+      <!-- ROOM -->
 
-        <div>
+      <div>
 
-          <h5 class="teal-text text-lighten-2">YOUR ROOM</h5>
-          <div class="row grey lighten-3 mandatory">
-            <div class="col s12 m12 l12">
-              <div class="col s6 m4 l3">
-                <h4>{{house.rentroom.m2}} m2</h4>
-              </div>
-              <div class="col s6 m4 l3">
-                WARDROBES
-                <h4>{{house.rentroom.wardrobes}}</h4>
-              </div>
-              <div class="col s6 m4 l3">
-                WINDOWS
-                <h4>{{house.rentroom.window}}</h4>
-              </div>
+        <h5 class="teal-text text-lighten-2">YOUR ROOM</h5>
+        <div class="row grey lighten-3 mandatory">
+          <div class="col s12 m12 l12">
+            <div class="col s6 m4 l3">
+              <h4>{{house.rentroom.m2}} m2</h4>
             </div>
-
-          </div>
-
-
-          <h5 class="teal-text text-lighten-2">YOUR ROOM</h5>
-          <div class="row grey lighten-3 mandatory">
-            <div class="col s12 m6 l7">
-              {{house.rentroom.m2}}
-              {{house.rentroom.wardrobes}}
-              {{house.rentroom.window}}
+            <div class="col s6 m4 l3">
+              WARDROBES
+              <h4>{{house.rentroom.wardrobes}}</h4>
             </div>
-
-          </div>
-          <div class="divider"></div>
-
-          <!-- SERVICES HOSTER -->
-
-          <blockquote>
-            <h5 class="">Services to hoster:</h5>
-          </blockquote>
-          <div class="row grey lighten-3 mandatory">
-            <div class="col s12 m12 l12 margin-bottom20 center-align"><strong>MANDATORY</strong></div>
-            {{#each house.sevicestohoster}}
-            {{#if this.mandatory}}
-            <divc class="col s12 m6 l4 center-align">
-              <i class="medium material-icons teal-text text-lighten-2">
-                beenhere
-              </i><br>
-              <strong>{{this.serviceType}}</strong> <br>
-              {{this.description}}
-            </divc>
-            {{/if}}
-            {{/each}}
-          </div>
-          <div class="divider"></div>
-          <div class="row grey lighten-4 mandatory">
-            <div class="col s12 m12 l12 margin-bottom20 center-align"><strong>OPTATIVE</strong></div>
-            {{#each house.sevicestohoster}}
-            {{#if this.mandatory}}
-            {{else}}
-            <divc class="col s12 m6 l4 center-align">
-              <i class="medium material-icons teal-text text-lighten-2">
-                mood
-              </i><br>
-              <strong>{{this.serviceType}}</strong> <br>
-              {{this.description}}
-            </divc>
-            {{/if}}
-            {{/each}}
-          </div>
-          <div class="divider"></div>
-
-          <!-- FEATURES -->
-
-          <blockquote>
-            <h5 class="header">Features:</h5>
-          </blockquote>
-          <div class="row">
-            {{#if house.features.calefaccion}}
-            <divc class="col s6 m4 l2 ">
-              <div class="card-property">
-                <i class="small material-icons">business</i><br>
-                Heating
-              </div>
-            </divc>
-            {{/if}}
-            {{#if house.features.ac}}
-            <divc class="col s6 m4 l2 ">
-              <div class="card-property ">
-                <i class="small material-icons">ac_unit</i><br>
-                A/C
-              </div>
-            </divc>
-            {{/if}}
-            {{#if house.features.piscina}}
-            <divc class="col s6 m4 l2 ">
-              <div class="card-property ">
-                <i class="small material-icons">pool</i><br>
-                Pool
-              </div>
-            </divc>
-            {{/if}}
-            {{#if house.features.terraza}}
-            <divc class="col s6 m4 l2 ">
-              <div class="card-property ">
-                <i class="small material-icons">wb_sunny</i><br>
-                Terrace
-              </div>
-            </divc>
-            {{/if}}
-            {{#if house.features.ascensor}}
-            <divc class="col s6 m4 l2 ">
-              <div class="card-property ">
-                <i class="small material-icons">airplay</i><br>
-                Elevator
-              </div>
-            </divc>
-            {{/if}}
-            {{#if house.features.wifi}}
-            <divc class="col s6 m4 l2 ">
-              <div class="card-property ">
-                <i class=" small material-icons">wifi</i><br>
-                Wifi
-              </div>
-            </divc>
-            {{/if}}
+            <div class="col s6 m4 l3">
+              WINDOWS
+              <h4>{{house.rentroom.window}}</h4>
+            </div>
           </div>
 
-          <div class="divider"></div>
+        </div>
 
-          <!-- SERVICES INCLUDES -->
+      </div>
+      <div class="divider"></div>
 
-          <blockquote>
-            <h5 class="header">Services included:</h5>
-          </blockquote>
-          {{#each house.sevicesincluded}}
-          {{@key}} -
-          {{/each}}<br><br>
-          <div class="divider"></div>
+      <!-- SERVICES HOSTER -->
+
+      <blockquote>
+        <h5 class="">Services to hoster:</h5>
+      </blockquote>
+      <div class="row grey lighten-3 mandatory">
+        <div class="col s12 m12 l12 margin-bottom20 center-align"><strong>MANDATORY</strong></div>
+        {{#each house.sevicestohoster}}
+        {{#if this.mandatory}}
+        <divc class="col s12 m6 l4 center-align">
+          <i class="medium material-icons teal-text text-lighten-2">
+            beenhere
+          </i><br>
+          <strong>{{this.serviceType}}</strong> <br>
+          {{this.description}}
+        </divc>
+        {{/if}}
+        {{/each}}
+      </div>
+      <div class="divider"></div>
+      <div class="row grey lighten-4 mandatory">
+        <div class="col s12 m12 l12 margin-bottom20 center-align"><strong>OPTATIVE</strong></div>
+        {{#each house.sevicestohoster}}
+        {{#if this.mandatory}}
+        {{else}}
+        <divc class="col s12 m6 l4 center-align">
+          <i class="medium material-icons teal-text text-lighten-2">
+            mood
+          </i><br>
+          <strong>{{this.serviceType}}</strong> <br>
+          {{this.description}}
+        </divc>
+        {{/if}}
+        {{/each}}
+      </div>
+      <div class="divider"></div>
+
+      <!-- FEATURES -->
+
+      <blockquote>
+        <h5 class="header">Features:</h5>
+      </blockquote>
+      <div class="row">
+        {{#if house.features.calefaccion}}
+        <divc class="col s6 m4 l2 ">
+          <div class="card-property">
+            <i class="small material-icons">business</i><br>
+            Heating
+          </div>
+        </divc>
+        {{/if}}
+        {{#if house.features.ac}}
+        <divc class="col s6 m4 l2 ">
+          <div class="card-property ">
+            <i class="small material-icons">ac_unit</i><br>
+            A/C
+          </div>
+        </divc>
+        {{/if}}
+        {{#if house.features.piscina}}
+        <divc class="col s6 m4 l2 ">
+          <div class="card-property ">
+            <i class="small material-icons">pool</i><br>
+            Pool
+          </div>
+        </divc>
+        {{/if}}
+        {{#if house.features.terraza}}
+        <divc class="col s6 m4 l2 ">
+          <div class="card-property ">
+            <i class="small material-icons">wb_sunny</i><br>
+            Terrace
+          </div>
+        </divc>
+        {{/if}}
+        {{#if house.features.ascensor}}
+        <divc class="col s6 m4 l2 ">
+          <div class="card-property ">
+            <i class="small material-icons">airplay</i><br>
+            Elevator
+          </div>
+        </divc>
+        {{/if}}
+        {{#if house.features.wifi}}
+        <divc class="col s6 m4 l2 ">
+          <div class="card-property ">
+            <i class=" small material-icons">wifi</i><br>
+            Wifi
+          </div>
+        </divc>
+        {{/if}}
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- SERVICES INCLUDES -->
+
+      <blockquote>
+        <h5 class="header">Services included:</h5>
+      </blockquote>
+      {{#each house.sevicesincluded}}
+      {{@key}} -
+      {{/each}}<br><br>
+      <div class="divider"></div>
 
 
 
-          {{!-- CARD BOOKING SIDE  --}}
-          <div class="col s12 m6 l4">
-            <div class="card calendar house_calendar_details">
-              <div class="center-alig mandatory10">
-                <h4> Room price from:</h4>
-                <div id="price" class="center-align">
-                  <span id="finalPrice" class="red-text text-darken-4 valign-wrapper">
-                    <h2 id="price">{{finalFisrtPrice}}500</h2>€/ Montly
-                  </span>
+      <!-- HOUSE RESTRICTIONS -->
+
+      <blockquote>
+        <h5 class="header">Restrictions:</h5>
+      </blockquote>
+      <p>{{ house.restricciones }}</p>
+    </div>
+
+    {{!-- CARD BOOKING SIDE  --}}
+    <div class="col s12 m6 l4">
+      <div class="card calendar house_calendar_details">
+        <div class="center-alig mandatory10">
+          <h4> Room price from:</h4>
+          <div id="price" class="center-align">
+            <span id="finalPrice" class="red-text text-darken-4 valign-wrapper">
+              <h2 id="price">{{finalFisrtPrice}}500</h2>€/ Montly
+            </span>
+          </div>
+          <div>From when you whant to in?</div><br>
+        </div>
+        <div class=" mandatory10 ">
+          {{#if currentUser}}
+          <form name="BookingForm" method="GET" action="/booking/{{house._id}}">
+
+            <div class="carousel carousel-slider center " data-indicators="true">
+              <div class="carousel-fixed-item center middle-indicator">
+                <div class="left">
+                  <a href="Previo"
+                    class="movePrevCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
+                      class="material-icons left  middle-indicator-text">chevron_left</i></a>
                 </div>
-                <div>From when you whant to in?</div><br>
-              </div>
-              <div class=" mandatory10 ">
-                {{#if currentUser}}
-                <form name="BookingForm" method="GET" action="/booking/{{house._id}}">
+                <div class="right">
+                  <a href="Siguiente"
+                    class=" moveNextCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
+                      class="material-icons right middle-indicator-text">chevron_right</i></a>
+                </div>
 
-                  <blockquote>
-                    <h5 class="header">Restrictions:</h5>
-                  </blockquote>
-                  <p>{{ house.restricciones }}</p>
-              </div>
-
-              {{!-- CARD BOOKING SIDE  --}}
-              <div class="col s12 m6 l4">
-                <div class="card calendar house_calendar_details">
-                  <div class="card-content center-align">
-                    {{#if currentUser}}
-                    <form name="BookingForm" method="GET" action="/booking/{{house._id}}">
-                      <div>From when you whant to in?</div><br>
-
-                      <div class="carousel carousel-slider center " data-indicators="true">
-                        <div class="carousel-fixed-item center middle-indicator">
-                          <div class="left">
-                            <a href="Previo"
-                              class="movePrevCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
-                                class="material-icons left  middle-indicator-text">chevron_left</i></a>
-                          </div>
-                          <div class="right">
-                            <a href="Siguiente"
-                              class=" moveNextCarousel middle-indicator-text waves-effect waves-light content-indicator"><i
-                                class="material-icons right middle-indicator-text">chevron_right</i></a>
-                          </div>
-
-                          <div class="preloader-wrapper big active">
-                            <div class="spinner-layer spinner-blue-only">
-                              <div class="circle-clipper left">
-                                <div class="circle"></div>
-                              </div>
-                              <div class="gap-patch">
-                                <div class="circle"></div>
-                              </div>
-                              <div class="circle-clipper right">
-                                <div class="circle"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      dateIn <input type="text" class="dateIn"><br>
-                      dateOut <input type="text" class="dateOut">
-                      <button class="btn waves-effect waves-light" type="submit" style="margin-top: 15px"
-                        name="action">Enviar
-                        Petición
-                        <i class="material-icons right">send</i>
-                      </button>
-                    </form><br>
-                    {{else}}
-                    <h3>Must be logged to book!</h3>
-                    {{/if}}
-                    <div class="pd5">Initial Price: <span id="totalAmount">{{house.rentroom.costpermonth}}</span> €/
-                      Montly
+                <div class="preloader-wrapper big active">
+                  <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
                     </div>
-                    <div class="pd5">Discounts: <span id="discountPrice">{{sumPointsMandatory}}</span> €/ Montly
+                    <div class="gap-patch">
+                      <div class="circle"></div>
                     </div>
-                    <div class="pd5">Final Price: <span id="finalPrice">{{finalFisrtPrice}}</span> €/ Montly</div>
-                    <input type="hidden" name="priceInitHidden" id="priceInitHidden"
-                      value="{{house.rentroom.costpermonth}}">
-                    <input type="hidden" name="discountHidden" id="discountHidden">
-                    <input type="hidden" name="priceEndHidden" id="priceEndHidden">
-                    <br>
-
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <<<<<<< HEAD </div> <div class="col s12 m12 l12">
-                <div class="col s12 m12 l6">
-                  <input type="text" class="dateIn" value="Date  IN ">
-                </div>
-                <div class="col s12 m12 l6">
-                  <input type="text" class="dateOut" value="Date OUT">
-                </div>
+            </div>
+            <div class="col s12 m12 l12">
+              <div class="col s12 m12 l6">
+                <input type="text" class="dateIn" value="Date  IN ">
+              </div>
+              <div class="col s12 m12 l6">
+                <input type="text" class="dateOut" value="Date OUT">
+              </div>
 
             </div>
 
@@ -325,26 +275,22 @@
               </button>
 
             </div>
-            </form><br>
-            {{else}}
-            <h3>Must be logged to book!</h3>
-            {{/if}}
-            {{!-- <div class="pd5">Initial Price: <span id="totalAmount">{{house.rentroom.costpermonth}}</span> €/
+          </form><br>
+          {{else}}
+          <h3>Must be logged to book!</h3>
+          {{/if}}
+          {{!-- <div class="pd5">Initial Price: <span id="totalAmount">{{house.rentroom.costpermonth}}</span> €/
             Montly
           </div>
           <div class="pd5">Discounts: <span id="discountPrice">{{sumPointsMandatory}}</span> €/ Montly
           </div> --}}
-            <input type="hidden" name="priceInitHidden" id="priceInitHidden" value="{{house.rentroom.costpermonth}}">
-            <input type="hidden" name="discountHidden" id="discountHidden">
-            <input type="hidden" name="priceEndHidden" id="priceEndHidden">
-            <input type="hidden" name="houseId" id="houseId" value="{{house._id}}">
-            <br>
+          <input type="hidden" name="priceInitHidden" id="priceInitHidden" value="{{house.rentroom.costpermonth}}">
+          <input type="hidden" name="discountHidden" id="discountHidden">
+          <input type="hidden" name="priceEndHidden" id="priceEndHidden">
+          <input type="hidden" name="houseId" id="houseId" value="{{house._id}}">
+          <br>
 
-          </div>
         </div>
       </div>
-    </div><br>
-    =======
-    <input type="hidden" name="houseId" id="houseId" value="{{house._id}}">
+    </div>
   </div><br>
-  >>>>>>> 9c6409751caf006b5c0a432f1cca94734cab5744
