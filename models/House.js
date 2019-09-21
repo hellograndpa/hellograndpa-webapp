@@ -74,11 +74,11 @@ const HouseSchema = new Schema(
     photos: {
       type: [String],
       default: [
-        'images/img/una.jpg',
-        'images/img/2.jpg',
-        'images/img/3.jpg',
-        'images/img/4.jpg',
-        'images/img/5.jpg',
+        '/images/img/una.jpg',
+        '/images/img/2.jpg',
+        '/images/img/5.jpg',
+        '/images/img/4.jpg',
+        '/images/img/5.jpg',
       ],
     },
     restricciones: String,
