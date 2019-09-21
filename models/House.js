@@ -9,68 +9,19 @@ const {
   sevicesIncludedArray,
 } = require('../middlewares/enumerables');
 
-const HouseSchema = new Schema({
-  mentor: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
-  title: String,
-  rooms: Number,
-  m2: Number,
-  description: String,
-  address: {
-    street: String,
-    city: String,
-    country: String,
-    state: String,
-    zip: Number,
-  },
-  features: {
-    calefaccion: Boolean,
-    ac: Boolean,
-    piscina: Boolean,
-    terraza: Boolean,
-    ascensor: Boolean,
-    wifi: Boolean,
-  },
-  electro: {
-    cocina: Boolean,
-    nevera: Boolean,
-    lavadora: Boolean,
-    secadora: Boolean,
-    secadorDePelo: Boolean,
-    horno: Boolean,
-    microondas: Boolean,
-    aspiradora: Boolean,
-    batidora: Boolean,
-    tostadora: Boolean,
-  },
-  sevicesincluded: {
-    agua: Boolean,
-    aguaCaliene: Boolean,
-    electricidad: Boolean,
-    internet: Boolean,
-    utensiliosBano: Boolean,
-    desayuno: Boolean,
-    cenas: Boolean,
-    utensiliosCocina: Boolean,
-    cama: Boolean,
-  },
-  sevicestohoster: [{
-    serviceType: String,
-    points: Number,
-    requirement: Boolean,
-    mandatory: Boolean,
-    description: String,
-  }],
-  photos: { type: [String], default: '/images/pictures/default.jpg' },
-  restricciones: String,
-  rentroom: {
+const HouseSchema = new Schema(
+  {
+    mentor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    title: String,
+    rooms: Number,
     m2: Number,
     description: String,
     address: {

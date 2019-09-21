@@ -2,9 +2,12 @@ function initRange(){
     let range = document.getElementById('range');
     if(range){
         const urlParams = new URLSearchParams(window.location.search);
-        const myMin = urlParams.get('priceMin');
-        const myMax = urlParams.get('priceMax');
-
+        let myMin = urlParams.get('priceMin');
+        let myMax = urlParams.get('priceMax');
+        
+        if (!myMin){
+            myMin=0;
+        }
         if (!myMax){
             myMax=1500;
         }
@@ -39,10 +42,7 @@ function initRange(){
             }
         });
 
-        // When the input changes, set the slider value
-        valueInput.addEventListener('change', function () {
-            range.noUiSlider.set([null, this.value]);
-        });
+
     }
 }
 window.onload = initRange;
