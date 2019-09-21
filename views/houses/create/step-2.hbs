@@ -21,7 +21,7 @@
           <div class="input-field col s12 m4 l3">
             <h5>M2 house</h5>
 
-            <input type="text" name="houseM2" placeholder="house-m2" value="{{house.m2}}">{{house.m2}}
+            <input type="text" name="houseM2" placeholder="house-m2" value="{{house.m2}}">
           </div>
           <div class="input-field col s12 m12 l9">
             <h5>Number of rooms</h5>
@@ -170,7 +170,7 @@
             <label for="wardrobes">wardrobes</label>
             <div class="input-field col s12 m12 l12">
               <label><input type="radio" name="wardrobes" value="uno"
-                  {{#if_eq house.rentroom.wardrobes '1'}}checked{{/if_eq}}>
+                  {{#if_eq house.rentroom.wardrobes 'uno'}}checked{{/if_eq}}>
                 <span>uno</span></label>
             </div>
             <div class="input-field col s12 m12 l12">
@@ -205,11 +205,11 @@
             </div>
           </div>
           <div class="input-field col s6 m3 l3">
-            <label><input type="checkbox" name="balcony" value="true" {{#if house.rentroom.cama}}checked{{/if}}>
+            <label><input type="checkbox" name="balcony" value="true" {{#if house.rentroom.balcony}}checked{{/if}}>
               <span>have a balcony</span></label>
           </div>
           <div class="input-field col s6 m3 l3">
-            <label><input type="checkbox" name="heat" value="true" {{#if house.rentroom.cheatama}}checked{{/if}}>
+            <label><input type="checkbox" name="heat" value="true" {{#if house.rentroom.heat}}checked{{/if}}>
               <span>have
                 a heat</span></label>
           </div>
@@ -243,6 +243,11 @@
         <div class="input-field col s12 m12 l12">
           <button class="btn waves-effect waves-light" type="submit" name="action">SAVE MODIFICATIONS</button>
         </div>
+
+        {{!-- HIDEN OBJET ROOMRENT --}}
+        <input class="hide" type="text" name="costpermonth" placeholder="0000" value="{{house.rentroom.costpermonth}}">
+        <input class="hide" type="text" name="deposit" placeholder="0000" value="{{house.rentroom.deposit}}">
+
       </form>
     </div>
   </div>
