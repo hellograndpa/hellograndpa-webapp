@@ -29,7 +29,7 @@ const UserSchema = new Schema(
       index: true,
     },
     bio: String,
-    avatar: String,
+    avatar: { type: String, default: '/images/avatar/savatar.svg' },
     birthday: {
       type: String,
       required: true,

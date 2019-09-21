@@ -1,110 +1,115 @@
-<style>
-    input[type="checkbox"][readonly] {
-        pointer-events: none;
-    }
-</style>
-<div class="row">
-    <div class="col s12 m1">
-    </div>
-    <div class="col s12 m9">
-        <div class="textcenter">
-            <h2>Make Yor Request</h2>
-        </div>
-    </div>
-    <div class="col s12 m1">
-    </div>
-</div>
+<div class="create-booking">
 
-<form method="POST" action="">
     <div class="row">
         <div class="col s12 m1">
         </div>
-        <div class="col s12 m3">
-            <blockquote>
-                <h3 class="header">House details</h3>
-            </blockquote>
-            <div class="card horizontal">
-                <div class="card-stacked">
-                    <div class="card-content">
+        <div class="col s12 m9">
+            <div class="textcenter">
+                <h2>Make Yor Request</h2>
+                <a href="javascript:window.history.back()">
+                    << go back</a> </div> </div> <div class="col s12 m1">
+            </div>
+        </div>
 
-                        <div>{{house.title}}</div>
-                        <div>{{house.address.street}}</div>
-                        <div>{{house.address.zip}}, {{house.address.city}}</div>
+        <form method="POST" action="">
+            <div class="row">
+                <div class="col s12 m1">
+                </div>
+                <div class="col s12 m3">
+                    <blockquote>
+                        <h3 class="header">Details:</h3>
+                    </blockquote>
+                    <div class="card horizontal">
+                        <div class="card-stacked">
+                            <div class="card-content">
 
-                        <h4>Dates:</h4>
-                        <div>In Date:<br>
-                            <input type="text" id="dateIn" name="dateIn"  value="{{dateIn}}">
-                        </div>
-                        <div>Out Date:<br>
-                            <input type="text" id="dateOut" name="dateOut" value="{{dateOut}}">
+                                <div>{{house.title}}</div>
+                                <div>{{house.address.street}}</div>
+                                <div>{{house.address.zip}}, {{house.address.city}}</div>
+
+                                <h4>Dates:</h4>
+                                <div class="dates">In Date:<br>
+                                    <span>{{dateInText}}</span>
+                                    <input type="hidden" id="dateIn" name="dateIn" value="{{dateIn}}">
+                                </div>
+                                <div class="dates">Out Date:<br>
+                                    <span>{{dateOutText}}</span>
+                                    <input type="hidden" id="dateOut" name="dateOut" value="{{dateOut}}">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col s12 m3">
-            <blockquote>
-                <h3>Mandatory services</h3>
-            </blockquote>
-            <div class="card horizontal">
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <ul>
-                            {{#each mandatoryServices }}
-                            <li>
-                                <label><input type="checkbox" readonly class="services" checked="true"
-                                        name="{{this.serviceType}}" value="{{this.points}}">
-                                    <span>{{this.serviceType}} {{this.points}}</span></label>
-                                <i class="material-icons dp48">info_outline</i>
-                            </li>
-                            {{/each}}
-                        </ul>
-                        <h3>Optional services</h3>
-                        <ul>
-                            {{#each optionalServices }}
-                            <li>
-                                <label><input type="checkbox" class="services" name="{{this.serviceType}}"
-                                        value="{{this.points}}">
-                                    <span>{{this.serviceType}} {{this.points}}</span></label>
-                            </li>
-                            {{/each}}
-                        </ul>
+                <div class="col s12 m3">
+                    <blockquote>
+                        <h3>Services:</h3>
+                    </blockquote>
+                    <div class="card horizontal">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <h4>Mandatory</h4>
+                                <ul class="services-list ">
+                                    {{#each mandatoryServices }}
+                                    <li>
+                                        <label style="pointer-events: none"><input type="checkbox" readonly
+                                                class="services" checked="true" name="{{this.serviceType}}"
+                                                value="{{this.points}}">
+                                            <span>{{this.serviceType}}</span></label>
+                                        <i title="{{this.description}}" class="material-icons dp48">info_outline</i>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                                <h4>Your Compromise</h3>
+                                    <ul class="services-list ">
+                                        {{#each optionalServices }}
+                                        <li>
+                                            <label><input type="checkbox" class="services" name="{{this.serviceType}}"
+                                                    value="{{this.points}}">
+                                                <span>{{this.serviceType}}</span></label>
+                                            <i title="{{this.description}}" class="material-icons dp48">info_outline</i>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col s12 m3">
-            <blockquote>
-                <h3>Prices</h3>
-            </blockquote>
-            <div class="card horizontal">
-                <div class="card-stacked">
-                    <div class="card-content">
-                        <div class="pd5">Initial Price: <span id="totalAmount">{{house.rentroom.costpermonth}}</span> €/
-                            Montly
-                        </div>
-                        <div class="pd5">Discounts: <span id="discountPrice">{{sumPointsMandatory}}</span> €/ Montly
-                        </div>
-                        <div class="pd5">Final Price: <span id="finalPrice">{{finalFisrtPrice}}</span> €/ Montly</div>
-                        <input type="hidden" name="priceInitHidden" id="priceInitHidden"
-                            value="{{house.rentroom.costpermonth}}">
-                        <input type="hidden" name="discountHidden" id="discountHidden">
-                        <input type="hidden" name="priceEndHidden" id="priceEndHidden">
+                <div class="col s12 m3">
+                    <blockquote>
+                        <h3>Prices:</h3>
+                    </blockquote>
+                    <div class="card horizontal">
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <div class="prices">
+                                    <div>Initial Price:</div>
+                                    <div id="totalAmount">
+                                        {{house.rentroom.costpermonth}}€
+                                    </div>
 
-                        <div class="pd5"><button class="btn waves-effect waves-light" type="submit" name="action">Enviar
-                                Petición
-                                <i class="material-icons right">send</i>
-                            </button></div>
+                                </div>
+                                <div class="prices">Discounts: <span id="discountPrice">{{sumPointsMandatory}}€</span>
+                                </div>
+                                <div class="prices">Final Price: <span id="finalPrice">{{finalFisrtPrice}}€</span>
+                                </div>
+                                <input type="hidden" name="priceInitHidden" id="priceInitHidden"
+                                    value="{{house.rentroom.costpermonth}}">
+                                <input type="hidden" name="discountHidden" id="discountHidden">
+                                <input type="hidden" name="priceEndHidden" id="priceEndHidden">
+
+                                <div class="button"><button class="btn waves-effect waves-light" type="submit"
+                                        name="action">Send Request
+                                        <i class="material-icons right">send</i>
+                                    </button></div>
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
+                <div class="col s12 m1">
+
+                </div>
             </div>
-
-        </div>
-        <div class="col s12 m1">
-
-        </div>
+        </form>
     </div>
-</form>
-
-</form>
