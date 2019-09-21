@@ -99,3 +99,5 @@ hbs.registerHelper('if_eq', function (a, b, opts) {
   }
   return opts.inverse(this);
 });
+
+hbs.registerHelper('index_of', (context, opts) => context[opts]);
