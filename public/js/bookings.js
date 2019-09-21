@@ -12,22 +12,25 @@ function recalcPrices() {
   });
   totalDiscount *= 2;
 
-  document.getElementById('discountPrice').innerText = totalDiscount;
-  document.getElementById('finalPrice').innerText = totalAmount - totalDiscount;
+  document.getElementById('discountPrice').innerText = totalDiscount + '€';
+  document.getElementById('finalPrice').innerText = totalAmount - totalDiscount + '€';
 
   document.getElementById('discountHidden').value = totalDiscount;
   document.getElementById('priceEndHidden').value = totalAmount - totalDiscount;
 }
-function init() {
-  const checks = document.getElementsByClassName('services');
-  for (let i = 0; i < checks.length; i++) {
-    checks[i].addEventListener('click', recalcPrices);
-  }
-}
 
-window.onload = init;
+function initServices() {
+  
+  const checks = document.getElementsByClassName('services');
+  if(checks){
+    for (let i = 0; i < checks.length; i++) {
+      checks[i].addEventListener('click', recalcPrices);
+    }
+  }  
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('select');
   var instances = M.FormSelect.init(elems, '');
+  initServices();
 });

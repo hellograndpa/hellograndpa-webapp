@@ -94,7 +94,7 @@ app.use((err, req, res, next) => {
 module.exports = app;
 
 hbs.registerHelper('if_eq', function (a, b, opts) {
-  if (a == b) {
+  if (a === b) {
     return opts.fn(this);
   }
   return opts.inverse(this);

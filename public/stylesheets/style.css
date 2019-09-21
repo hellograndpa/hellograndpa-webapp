@@ -15,8 +15,6 @@ main {
   font-size: 40px;
 }
 
-
-
 .brand-logo img {
   width: 100px;
   margin-left: 30px;
@@ -32,7 +30,11 @@ main {
   z-index: -100;
   filter: brightness(30%);
 }
-
+.panel-search {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 .portada_card {
   background-color: #fff;
   text-align: right;
@@ -40,50 +42,6 @@ main {
 
 .pd10 {
   padding: 10px;
-}
-
-.house_list .title {
-  font-size: 20px;
-  /* line-height: 50px; */
-  font-size: 25px;
-  padding: 50px 0;
-
-}
-
-.house_list .card .card-content {
-  color: black;
-}
-
-.house_list .card .card-content .card-title {
-  color: black;
-  font-size: 15px;
-  line-height: 17px;
-  height: 20px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.house_list .card .card-content .street {
-  color: grey;
-  line-height: 20px;
-}
-
-.house_list .card .card-content .price {
-  color: rgb(42, 43, 148);
-  line-height: 35px;
-  font-size: 18px;
-}
-
-.house_list .card .card-content .extra {
-  color: grey;
-  font-size: 13px line-height: 20px;
-}
-
-.house_list .card .card-content .services {
-  border-top: 1px solid darkgrey;
-  margin-top: 10px;
-  padding-top: 10px;
 }
 
 .error {
@@ -175,8 +133,9 @@ blockquote {
   will-change: top, opacity;
 }
 
-
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+.card
+  .card-action
+  a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
   color: #26a69a;
 }
 
@@ -189,7 +148,7 @@ a:hover {
 }
 
 .mg-top2 {
-  margin: 2px
+  margin: 2px;
 }
 
 .boxes-home {
@@ -205,12 +164,13 @@ a:hover {
   z-index: 1;
 }
 
-.btm-search-margin {
+. {
   margin: 8px 0 8px 0;
 }
 
 .imputfield-search-margin {
   margin: 0 0 0 0;
+  width: 65%;
 }
 
 .collapsible-width {
