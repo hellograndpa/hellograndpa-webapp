@@ -40,15 +40,15 @@ router.get('/', async (req, res, next) => {
 
   try {
     let houses;
-    let minPrice=0;
-    let maxPrice=1500;
+    let minPrice = 0;
+    let maxPrice = 1500;
 
-    if(priceMin){
-      minPrice=priceMin;
+    if (priceMin) {
+      minPrice = priceMin;
     }
 
-    if(priceMax){
-      maxPrice=priceMax;
+    if (priceMax) {
+      maxPrice = priceMax;
     }
     const cities = await House.find().distinct('address.city');
 
@@ -70,7 +70,7 @@ router.get('/', async (req, res, next) => {
 
       el.priceDiscounted = el.sevicestohoster
         .filter((service) => service.mandatory === true)
-        .forEach((service) => (newPrice += service.points));
+        .forEach((service) => newPrice += service.points);
 
       el.priceDiscounted = el.rentroom.costpermonth - newPrice * 2;
 
