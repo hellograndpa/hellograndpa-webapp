@@ -1,43 +1,52 @@
 <h1 style="margin-left: 30px;">User bookings list</h1>
-  <div class="row" style="margin-left: 30px;
-    margin-right: 30px;">
-    {{#each userBookings}}
-    <div class="col s12 m4">
-      <div class="card container_houses">
-        <class="card-image"><img src="{{house.photos}}" alt="" width="100%" class="center-align">
-          <h3>House:</h3>
-          <div>rooms: {{ this.house.rooms }}</div>
-          <div>m2: {{ this.house.m2 }}</div>
-          <div>description:{{ this.house.description }}</div>
-          <hr>
-          <div>Adress: casa Paco</div>
-          <div>state:{{ this.house.address.state }}</div>
-          <div>city:{{ this.house.address.city }}</div>
-          <div>street:{{ this.house.address.street }}</div>
-          <div>zip:{{ this.house.address.zip }}</div>
-          <hr>
-          <h3>Features:</h3>
+<div class="container">
+  {{#each userBookings}}
+  <div class="row">
+    <div class="card container_houses">
+      <div class="col s12">
+        <!--style="border-right: 1px solid gray; height: auto;-->
+        <div class="col s5">
+          <h2>{{house.title}}:</h2>
+          <blockquote>
+            <h4>Dates:</h4>
+          </blockquote>
+          <div>In Date:<br>
+            <input type="text" id="dateIn" name="dateIn" value="{{dateIn}}">
+          </div>
+          <div>Out Date:<br>
+            <input type="text" id="dateOut" name="dateOut" value="{{dateOut}}">
+          </div>
+        </div>
+
+        <div class="col s4">
+          <blockquote>
+            <h4>Mandatory:</h4>
+          </blockquote>
           <ul>
-            {{#each this.house.features}}
-            <li>{{this}}</li>
+            {{#each sevicestoHosterCompromise }}
+            <li>
+              <label style="pointer-events: none"><input type="checkbox" readonly class="services" checked="true"
+                  name="{{this.typesevice}}" value="{{this.points}}">
+                <span>{{this.typesevice}} {{this.points}}</span></label>
+            </li>
             {{/each}}
           </ul>
-          <h3>Electro:</h3>
-          <ul>
-            {{#each this.house.electro}}
-            <li>{{this}}</li>
-            {{/each}}
-          </ul>
-          <h3>Services included:</h3>
-          <ul>
-            {{#each this.house.sevicesincluded}}
-            <li>{{this}}</li>
-            {{/each}}
-          </ul>
-        </class>
+          <br>
+          <div class="file-field input-field">
+            <button class="btn waves-effect waves-light red" type="submit" name="action">DELETE BOOKING</button>
+          </div>
+        </div>
+
+        <div class="col s3">
+          {{#each house.photos}}
+          <div>
+            <img src="{{this}}" alt="" width="100%">
+          </div>
+          {{/each}}
+        </div>
+
       </div>
-      
     </div>
-    {{/each}}
   </div>
-  
+  {{/each}}
+</div>

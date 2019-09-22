@@ -117,6 +117,20 @@
         <div class="input-field col s12 m12 l12">
           <button class="btn waves-effect waves-light" type="submit" name="action">SAVE MODIFICATIONS</button>
         </div>
+        <dir>
+          {{!-- HIDE DATA  --}}
+          <input class="hide" type="text" name="roomm2" value="{{house.rentroom.m2}}">
+          <input class="hide" type="text" name="wardrobes" value="{{house.rentroom.wardrobes}}">
+          <input class=" hide" type="text" name="window" value="{{house.rentroom.window}}">
+          <input class="hide" type="text" name="wc" value="{{house.rentroom.wc}}">
+          <input class="hide" type="text" name="balcony" value="{{house.rentroom.balcony}}">
+          <input class="hide" type="text" name="heat" value="{{house.rentroom.heat}}">
+          <input class="hide" type="text" name="roomac" value="{{ house.rentroom.roomac}}">
+          <input class="hide" type="text" name="tv" value="{{house.rentroom.tv}}">
+          <input class="hide" type="text" name="table" value="{{ house.rentroom.table}}">
+          <input class="hide" type="text" name="chair" value="{{ house.rentroom.chair}}">
+          <textarea class="hide" rows="5" cols="33" name="othersThings">{{ house.rentroom.othersThings }}</textarea>
+        </dir>
 
       </form>
 

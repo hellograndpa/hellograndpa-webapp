@@ -77,10 +77,10 @@ router.get('/', async (req, res, next) => {
       const mandatoryServices = el.sevicestohoster.filter(
         (service) => service && service.mandatory === true,
       );
-      
+
       mandatoryServices.forEach((service) => {
-        let newLogo= servicesArray.find(
-          (element) => { return element.serviceType === service.serviceType; },
+        const newLogo = servicesArray.find(
+          (element) => element.serviceType === service.serviceType,
         ).logo;
         service.logo = newLogo;
       });
@@ -193,12 +193,16 @@ router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
     table,
     chair,
     othersThings,
+    costpermonth,
+    deposit,
   } = req.body;
   console.log(req.body);
 
   const newM2 = parseInt(houseM2);
   const newRoomm2 = parseInt(roomm2);
   const newRooms = parseInt(rooms);
+  const newConst = parseInt(costpermonth);
+  const newDeposit = parseInt(deposit);
 
   try {
     // const house = await House.find({ user: req.session.currentUser._id });
@@ -256,6 +260,10 @@ router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
         table,
         chair,
         othersThings,
+        costpermonth,
+        deposit,
+        costpermonth: newConst,
+        deposit: newDeposit,
       },
     });
     req.flash('info', 'FEATURES house created');
@@ -268,11 +276,11 @@ router.post('/create/step-2', checkUserTypeGranpa, async (req, res, next) => {
 });
 // CREATE HOUSE STEP 3 - SERVICES AND COST AND DEPOSIT
 router.post('/create/step-3', checkUserTypeGranpa, async (req, res, next) => {
+  // monto el array con los datos de los servicio mandatory
   const services = [];
-
   servicesArray.forEach((service) => {
-    const requirement = req.body[service.serviceType] === 'req';
-    const mandatory = req.body[service.serviceType] === 'mandatory';
+    const requirement = (req.body[service.serviceType] === 'req');
+    const mandatory = (req.body[service.serviceType] === 'mandatory');
     services.push({
       serviceType: service.serviceType,
       points: service.points,
@@ -281,29 +289,63 @@ router.post('/create/step-3', checkUserTypeGranpa, async (req, res, next) => {
       description: service.description,
     });
   });
+
   console.log('services', services);
-  const { restricciones, costpermonth, deposit } = req.body;
+
+  const {
+    roomm2,
+    wardrobes,
+    window,
+    wc,
+    balcony,
+    heat,
+    roomac,
+    tv,
+    table,
+    chair,
+    othersThings,
+    restricciones,
+    costpermonth,
+    deposit,
+  } = req.body;
+
+
+  const newRoomm2 = parseInt(roomm2);
   const newConst = parseInt(costpermonth);
+  const newDeposit = parseInt(deposit);
+
   try {
-    // const house = await House.find({ user: req.session.currentUser._id });
+    const user = req.session.currentUser._id;
     const { ObjectId } = require('mongoose').Types;
     const query = {
       user: new ObjectId(req.session.currentUser._id),
     };
     const house = await House.findOne(query);
-    // create house
+    console.log(house);
     await House.findByIdAndUpdate(house._id, {
       sevicestohoster: services,
       restricciones,
       rentroom: {
+        roomm2: newRoomm2,
+        wardrobes,
+        window,
+        wc,
+        balcony,
+        heat,
+        roomac,
+        tv,
+        table,
+        chair,
+        othersThings,
         costpermonth: newConst,
-        deposit,
+        deposit: newDeposit,
       },
       canActive: true,
     });
     req.flash('info', 'SERVICES HSOTER CREATED');
     res.redirect('/houses/create/step-3');
   } catch (error) {
+    console.log(error);
     req.flash('error', 'Some error happen - Please try again');
     res.redirect('/houses/create/step-3');
   }
@@ -438,7 +480,7 @@ router.get('/:id', async (req, res, next) => {
       let points = 0;
       mandatoryServices.forEach((service) => points += service.points);
       house.discountPrice = points * 2;
-      house.finalPrice = house.rentroom.costpermonth - house.sumPointsMandatory;
+      house.finalPrice = house.rentroom.costpermonth - house.discountPrice;
 
       res.render('houses/show', {
         house,

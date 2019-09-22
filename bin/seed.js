@@ -38,7 +38,6 @@ const users = Array.from({
   },
   email: faker.internet.email(),
   bio: faker.lorem.paragraph(2),
-  avatar: '/images/avatars/avatar.jpg',
   birthday: '19-01-1981',
   gender: 'male',
   address: {
@@ -157,7 +156,6 @@ User.collection
               description: faker.lorem.paragraph(2),
             },
             ],
-            photos: [],
             restricciones: faker.lorem.paragraph(1),
             rentroom: {
               m2: 20,
