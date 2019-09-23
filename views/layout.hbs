@@ -242,8 +242,14 @@
   <script src="/js/modals.js"></script>
   <script src="/js/helperhandlebars.js"></script>
   <script src="/js/search.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
 
-
+    socket.on('newMessage', function (msg) {
+      M.toast({ html: msg })
+    });
+  </script>
 </body>
 
 </html>

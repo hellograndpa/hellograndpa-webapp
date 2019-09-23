@@ -23,8 +23,26 @@ const servicesArray = [{
     logo: 'toys',
   },
   {
-    serviceType: 'Acompañar a la plaza',
+    serviceType: 'Ayudarme con la limpieza general',
     points: 50,
+    description: 'volando voy volando vengo',
+    logo: 'person_add',
+  },
+  {
+    serviceType: 'Acompañar al mercado',
+    points: 50,
+    description: 'volando voy volando vengo',
+    logo: 'person_add',
+  },
+  {
+    serviceType: 'Pasear por el barrio',
+    points: 20,
+    description: 'volando voy volando vengo',
+    logo: 'person_add',
+  },
+  {
+    serviceType: 'Desayunar juntos',
+    points: 20,
     description: 'volando voy volando vengo',
     logo: 'person_add',
   },
@@ -64,9 +82,12 @@ const sevicesIncludedArray = {
   cama: false,
 };
 
+let socketsUsers = [];
+
 module.exports = {
   servicesArray,
   featuresArray,
   electroArray,
   sevicesIncludedArray,
+  socketsUsers,
 };

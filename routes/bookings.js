@@ -1,10 +1,30 @@
 const express = require('express');
+
 const Booking = require('../models/Booking');
+
 const router = express.Router();
+const { socketsUsers } = require('../middlewares/enumerables');
 
 // details one of my bookings
 router.get('/:id', (req, res, next) => {
   res.render('bookings/show');
+});
+
+// accept or decline an action
+router.get('/:id/:action', async (req, res, next) => {
+  const { id, action } = req.params;
+
+  const booking = await Booking.findByIdAndUpdate(id, { status: action }).populate('user');
+
+  if (booking) {
+    const socketId = socketsUsers[booking.user._id];
+    if (action === 'reserved') {
+      global.io.to(socketId).emit('newMessage', 'Your booking has been accepted!! <a href="/user/bookings/">GO</a>');
+    } else {
+      global.io.to(socketId).emit('newMessage', 'Your booking has been declined!! <a href="/user/bookings/">GO</a>');
+    }
+  }
+  res.send('ok');
 });
 
 // fet form to review a booking
