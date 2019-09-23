@@ -17,6 +17,7 @@ const housesRouter = require('./routes/houses');
 const bookingRouter = require('./routes/booking');
 const bookingsRouter = require('./routes/bookings');
 const messagesRouter = require('./routes/messages');
+const mapRouter = require('./routes/map');
 
 // prevent bodyParser from handling multipart forms (ie only handle get and post requests)
 
@@ -74,6 +75,8 @@ app.use('/user/bookings', bookingsRouter);
 app.use('/user', usersRouter);
 app.use('/houses', housesRouter);
 app.use('/booking', bookingRouter);
+app.use('/map', mapRouter);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

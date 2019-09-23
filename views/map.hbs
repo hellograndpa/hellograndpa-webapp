@@ -1,0 +1,33 @@
+<body>
+
+
+  <script
+    src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
+  <link rel='stylesheet'
+    href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css'
+    type='text/css' />
+
+
+  <div class="row">
+    <div class="col l12">
+      <input type="text" id="geo1" name="geo1">
+      <input type="text" id="geo2" name="geo2">
+    </div>
+    <div class="col l4">
+      <pre id="json-response" class="txt-xs px12">Search for a place. Your results will be displayed here!</pre>
+    </div>
+    <div class="col l8">
+
+      <div id='map'></div>
+      <div id='geocoder' class='geocoder'></div>
+    </div>
+
+  </div>
+
+  <script src="/js/map.js"></script>
+
+
+
+</body>
+
+</html>

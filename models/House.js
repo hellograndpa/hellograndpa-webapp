@@ -142,6 +142,11 @@ const HouseSchema = new Schema(
     active: Boolean,
     canActive: Boolean,
     bookedDates: [Number],
+    featuresGeo: {
+      geometry: {
+        coordinates: [Number],
+      },
+    },
   },
   {
     timestamps: true,
