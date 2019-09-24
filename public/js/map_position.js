@@ -18,12 +18,14 @@ const map = new mapboxgl.Map({
   // style URL
   style: 'mapbox://styles/mapbox/light-v10',
   // initial position in [long, lat] format
-  center: [-77.034084142948, 38.909671288923],
+  center: [2, 40],
   // initial zoom
-  zoom: 13,
+  zoom: 5,
+
 });
 
 let stores;
+
 axios
   .get('/map/houses')
   .then((response) => {
@@ -47,10 +49,11 @@ axios
         accessToken: mapboxgl.accessToken,
         mapboxgl,
         marker: false,
-        bbox: [-77.210763, 38.803367, -76.853675, 39.052643],
+        bbox: [-2, 35, 3, 45],
       });
 
-      map.addControl(geocoder, 'top-left');
+      // map.addControl(geocoder, 'top-left');
+      document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 
       map.addSource('single-point', {
         type: 'geojson',
@@ -130,112 +133,12 @@ axios
         createPopUp(stores.features[0]);
       });
     });
-  }).then(() => {
-    // This adds the data to the map
-    map.on('load', (e) => {
-      // This is where your '.addLayer()' used to be, instead add only the source without styling a layer
-      map.addSource('places', {
-        type: 'geojson',
-        data: stores,
-      });
-      // Initialize the list
-      buildLocationList(stores);
-
-      geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl,
-        marker: false,
-        bbox: [-77.210763, 38.803367, -76.853675, 39.052643],
-      });
-
-      map.addControl(geocoder, 'top-left');
-
-      map.addSource('single-point', {
-        type: 'geojson',
-        data: {
-          type: 'FeatureCollection',
-          features: [], // Notice that initially there are no features
-        },
-      });
-
-      map.addLayer({
-        id: 'point',
-        source: 'single-point',
-        type: 'circle',
-        paint: {
-          'circle-radius': 10,
-          'circle-color': '#007cbf',
-          'circle-stroke-width': 3,
-          'circle-stroke-color': '#fff',
-        },
-      });
-
-      geocoder.on('result', (ev) => {
-        const searchResult = ev.result.geometry;
-        map.getSource('single-point').setData(searchResult);
-
-        const options = { units: 'miles' };
-        stores.features.forEach((store) => {
-          Object.defineProperty(store.properties, 'distance', {
-            value: turf.distance(searchResult, store.geometry, options),
-            writable: true,
-            enumerable: true,
-            configurable: true,
-          });
-        });
-
-        stores.features.sort((a, b) => {
-          if (a.properties.distance > b.properties.distance) {
-            return 1;
-          }
-          if (a.properties.distance < b.properties.distance) {
-            return -1;
-          }
-          // a must be equal to b
-          return 0;
-        });
-
-        const listings = document.getElementById('listings');
-        while (listings.firstChild) {
-          listings.removeChild(listings.firstChild);
-        }
-
-
-        function sortLonLat(storeIdentifier) {
-          const lats = [stores.features[storeIdentifier].geometry.coordinates[1], searchResult.coordinates[1]];
-          const lons = [stores.features[storeIdentifier].geometry.coordinates[0], searchResult.coordinates[0]];
-
-          const sortedLons = lons.sort((a, b) => {
-            if (a > b) { return 1; }
-            if (a.distance < b.distance) { return -1; }
-            return 0;
-          });
-          const sortedLats = lats.sort((a, b) => {
-            if (a > b) { return 1; }
-            if (a.distance < b.distance) { return -1; }
-            return 0;
-          });
-
-          map.fitBounds([
-            [sortedLons[0], sortedLats[0]],
-            [sortedLons[1], sortedLats[1]],
-          ], {
-            padding: 100,
-          });
-        }
-
-        sortLonLat(0);
-        createPopUp(stores.features[0]);
-      });
-    });
-
-    // This is where your interactions with the symbol layer used to be
-    // Now you have interactions with DOM markers instead
     stores.features.forEach((marker, i) => {
       // Create an img element for the marker
       const el = document.createElement('div');
       el.id = `marker-${i}`;
       el.className = 'marker';
+
       // Add markers to the map at all points
       new mapboxgl.Marker(el, { offset: [0, -23] })
         .setLngLat(marker.geometry.coordinates)
@@ -281,8 +184,9 @@ function createPopUp(currentFeature) {
 
   const popup = new mapboxgl.Popup({ closeOnClick: false })
     .setLngLat(currentFeature.geometry.coordinates)
-    .setHTML(`${'<h3>Sweetgreen</h3>'
-            + '<h4>'}${currentFeature.properties.address}</h4>`)
+    .setHTML(`<h5>Sweetgreen</h5>
+            <h4>${currentFeature.properties.address}</h4>`)
+
     .addTo(map);
 }
 
@@ -297,41 +201,39 @@ function buildLocationList(data) {
     listing.className = 'item';
     listing.id = `listing-${i}`;
 
-    const link = listing.appendChild(document.createElement('a'));
-    link.href = '#';
-    link.className = 'title';
-    link.dataPosition = i;
-    link.innerHTML = prop.title;
-
     const details = listing.appendChild(document.createElement('div'));
     details.innerHTML = ` <div class="row">
                 <div class="col s12 m12 l12">
-
                   <div class="card horizontal">
                     <div class="card-image">
                       <img src="${prop.photo}">
                     </div>
-                    <div class="card-stacked">
-                      <div class="card-content">
-                        <div class="card-title">${prop.title}</div>
-                            <div>
-                              <p class="street">${prop.address} ${prop.city}</p>
-                              <p class="price">${prop.price}€/month</p>
-                              <p class="extra">${prop.roomm2} m2
-                              </p>
-                            </div>
-                      </div>
-                      <div class="card-action">
-                        <a href="/houses/${prop.houseId}"> See more information of the house</a>
-                        <a class="btn-floating halfway-fab waves-effect waves-light white"
-                                href="/user/${prop.userId}">
-                                <img src="${prop.avatar}"
-                                    alt="${prop.name} ${prop.lastname}"
-                                    class="circle center-align"></a>
-                      </div>
+                  <div class="card-stacked">
+                    <div class="card-content">
+                    <a class="btn-floating halfway-fab waves-effect waves-light white" href="/user/${prop.userId}">
+                      <img src="${prop.avatar}" class="circle center-align">
+                    </a>
+                      <div id="contcard-${i}"></div>
+                    <div>
+                      <p class="street">${prop.address} ${prop.city}</p> <br>
+                      <p class="price">${prop.price}€/month</p> <br>
+                      <p class="extra">${prop.roomm2} m2</p>
                     </div>
-              
-                </div>`;
+                  </div>
+                  <div class="card-action">
+                    <a href="/houses/${prop.houseId}"> See the house </a>
+                  </div>
+                </div>
+              </div>`;
+
+    const cardTitle = document.getElementById(`contcard-${i}`);
+    const link = cardTitle.appendChild(document.createElement('a'));
+    link.href = '#';
+    link.className = 'title card-title';
+    link.dataPosition = i;
+    link.innerHTML = prop.title;
+
+
     if (prop.distance) {
       const roundedDistance = Math.round(prop.distance * 100) / 100;
       details.innerHTML += `<p><strong>${roundedDistance} miles away</strong></p>`;
@@ -358,52 +260,3 @@ function buildLocationList(data) {
     });
   }
 }
-
-// function buildLocationList(data) {
-//   for (i = 0; i < data.features.length; i++) {
-//     const currentFeature = data.features[i];
-//     const prop = currentFeature.properties;
-
-//     const listings = document.getElementById('listings');
-//     const listing = listings.appendChild(document.createElement('div'));
-//     listing.className = 'item';
-//     listing.id = `listing-${i}`;
-
-//     const link = listing.appendChild(document.createElement('a'));
-//     link.href = '#';
-//     link.className = 'title';
-//     link.dataPosition = i;
-//     link.innerHTML = prop.titile;
-
-//     const details = listing.appendChild(document.createElement('div'));
-//     details.innerHTML = prop.city;
-//     if (prop.phone) {
-//       details.innerHTML += ` &middot; ${prop.phoneFormatted}`;
-//     }
-
-//     if (prop.distance) {
-//       const roundedDistance = Math.round(prop.distance * 100) / 100;
-//       details.innerHTML += `<p><strong>${roundedDistance} miles away</strong></p>`;
-//     }
-
-
-//     link.addEventListener('click', function (e) {
-//       // Update the currentFeature to the store associated with the clicked link
-//       const clickedListing = data.features[this.dataPosition];
-
-//       // 1. Fly to the point
-//       flyToStore(clickedListing);
-
-//       // 2. Close all other popups and display popup for clicked store
-//       createPopUp(clickedListing);
-
-//       // 3. Highlight listing in sidebar (and remove highlight for all other listings)
-//       const activeItem = document.getElementsByClassName('active');
-
-//       if (activeItem[0]) {
-//         activeItem[0].classList.remove('active');
-//       }
-//       this.parentNode.classList.add('active');
-//     });
-//   }
-// }

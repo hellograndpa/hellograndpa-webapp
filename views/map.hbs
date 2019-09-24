@@ -1,18 +1,22 @@
+<link rel="stylesheet" href="/stylesheets/maplist.css">
 <div class="row">
 
   <div class="col m6 l4">
     <div class='sidebar'>
-      <div class='heading'>
-        <h1>Our locations</h1>
+      <div id='geocoder' class='geocoder'></div>
+      <div class=''>
+        <h5>Results</h5>
       </div>
       <div id='listings' class='listings'></div>
     </div>
-    <pre id="json-response" class="txt-xs px12">Search for a place. Your results will be displayed here!</pre>
+    <pre id="json-response" class="txt-xs px12">Search for a place. Your results will be displayed here!
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+    </pre>
   </div>
   <div class="col m6 l8">
-
-    <div id='map'></div>
-    <div id='geocoder' class='geocoder'></div>
+    <div id='map' calss="maps"></div>
   </div>
 
 </div>
