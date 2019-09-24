@@ -21,6 +21,16 @@ main {
   margin-top: 10px;
 }
 
+.brand-logo-footer img {
+  width: 200px;
+
+}
+
+.footer_container{
+  display: flex;
+  align-items: center;
+}
+
 .portada {
   position: absolute !important;
   top: 0px !important;

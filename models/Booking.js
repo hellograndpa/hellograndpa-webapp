@@ -27,7 +27,7 @@ const BookingSchema = new Schema(
     priceEnd: Number,
     sevicestoHosterCompromise: [
       {
-        typesevice: String,
+        serviceType: String,
         points: Number,
       },
     ],
