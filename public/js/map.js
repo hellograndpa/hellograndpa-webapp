@@ -5,6 +5,7 @@ const map = new mapboxgl.Map({
   style: 'mapbox://styles/mapbox/streets-v11',
   center: [-2.0000, 40.0000],
   zoom: 5,
+  hash: true,
 });
 
 
@@ -23,10 +24,10 @@ map.on('load', () => {
     const styleSpec = ev.result;
 
     const [geo1Value, geo2Value] = styleSpec.geometry.coordinates;
-    console.log(geo1Value, geo2Value);
+    console.log('TCL: geo1Value, geo2Value', geo1Value, geo2Value);
 
-    document.getElementById('geo1').value = geo1Value;
     document.getElementById('geo2').value = geo2Value;
+    document.getElementById('geo1').value = geo1Value;
   });
 });
 document.getElementById('geocoder').appendChild(geocoder.onAdd(map));

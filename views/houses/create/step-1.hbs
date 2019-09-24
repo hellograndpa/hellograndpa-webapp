@@ -60,16 +60,12 @@
           <div class="col col s12 m12 l12 ">
             <div id='map'></div>
           </div>
-          {{#each house.featuresGeo.geometry}}
-          {{#if this}}
-          {{#if_eq @index 0}}
-          <input class="hide" type="text" id="geo1" name="geo1" value="{{this}}">
-          {{/if_eq}}
-          {{#if_eq @index 1}}
-          <input class="hide" type="text" id="geo2" name="geo2" value="{{this}}">
-          {{/if_eq}}
-          {{/if}}
-          {{/each}}
+          <div id="geoloc">
+            <input class="hide" type="text" id="geo2" name="geo2" value="0">
+            <input class="hide" type="text" id="geo1" name="geo1" value="0">`;
+
+          </div>
+
           <div class="input-field col s12 m12 l12">
             <button class="btn waves-effect waves-light" type="submit" name="action">SAVE MODIFICATIONS</button>
           </div>
