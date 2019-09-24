@@ -105,6 +105,7 @@ axios
           listings.removeChild(listings.firstChild);
         }
 
+        buildLocationList(stores);
 
         function sortLonLat(storeIdentifier) {
           const lats = [stores.features[storeIdentifier].geometry.coordinates[1], searchResult.coordinates[1]];
