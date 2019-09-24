@@ -84,11 +84,10 @@ router.get('/', async (req, res, next) => {
       );
       
       mandatoryServices.forEach((service) => {
-        let newLogo= servicesArray.find(
-          (element) => { return element.serviceType === service.serviceType; },
-        ).logo;
+        const newLogo = servicesArray.find((element) => element.serviceType === service.serviceType).logo;
         service.logo = newLogo;
       });
+
       el.mandatoryServices = mandatoryServices;
     });
 
@@ -117,10 +116,13 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
     title, street, city, state, country, zip, geo1, geo2,
   } = req.body;
 
+  console.log(`uno que va${geo1} ${geo2}`);
+
   const newGeo1 = parseFloat(geo1);
   const newGeo2 = parseFloat(geo2);
 
-  console.log(req.body);
+  console.log(newGeo1, newGeo2);
+
   try {
     const user = req.session.currentUser._id;
     const { ObjectId } = require('mongoose').Types;
