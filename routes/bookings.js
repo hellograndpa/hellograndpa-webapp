@@ -1,6 +1,8 @@
 const express = require('express');
 const Booking = require('../models/Booking');
 const router = express.Router();
+const { isLogged } = require('../middlewares/logIn');
+
 
 // details one of my bookings
 router.get('/:id', (req, res, next) => {
@@ -36,5 +38,18 @@ router.get('/', async (req, res, next) => {
     res.render('/');
   }
 });
+
+//TO DO  - Find over find over and over...
+// router.get('/inbox', isLogged, async (req, res, next) => {
+//   try {
+//     const { ObjectId } = require('mongoose').Types;
+//     const grandPaBookingList = await Booking.find({
+//       'house.user': new ObjectId(req.session.currentUser._id),
+//     }).populate('user house');
+//     res.render('user/bookings/', { grandPaBookingList });
+//   } catch (error) {
+//     res.render('/');
+//   }
+// });
 
 module.exports = router;

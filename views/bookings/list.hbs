@@ -1,50 +1,72 @@
 <h1 style="margin-left: 30px;">User bookings list</h1>
 <div class="container">
+  
   {{#each userBookings}}
   <div class="row">
+    <div class="row">
+      <div class="col l3">
+        <div class="collection">
+          <a href="/user/bookings/" class="collection-item active">Made</a>
+          <a href="/user/bookings/inbox/" class="collection-item">Recived</a>
+        </div>
+      </div>
+
     <div class="card container_houses">
       <div class="col s12">
         <!--style="border-right: 1px solid gray; height: auto;-->
         <div class="col s5">
-          <h2>{{house.title}}:</h2>
+          <h4>{{this.house.title}}</h4>
           <blockquote>
             <h4>Dates:</h4>
           </blockquote>
           <div>In Date:<br>
-            <input type="text" id="dateIn" name="dateIn" value="{{dateIn}}">
+            <input type="text" id="dateIn" name="dateIn" value="{{this.dateIn}}">
           </div>
           <div>Out Date:<br>
-            <input type="text" id="dateOut" name="dateOut" value="{{dateOut}}">
+            <input type="text" id="dateOut" name="dateOut" value="{{this.dateOut}}">
+          </div>
+          <br>
+          <div class="file-field input-field">
+            <button class="btn waves-effect waves-light #4f8a10" type="submit" name="action"
+              style="margin-right: 5px">ACCEPT
+              BOOKING</button>
+            {{!-- <button class="btn waves-effect waves-light red" type="submit" name="action" style="margin-left: 5px">DELETE
+              BOOKING</button> --}}
           </div>
         </div>
 
         <div class="col s4">
           <blockquote>
-            <h4>Mandatory:</h4>
+            <h4>Compromises:</h4>
           </blockquote>
           <ul>
-            {{#each sevicestoHosterCompromise }}
+            {{#each this.sevicestoHosterCompromise }}
             <li>
               <label style="pointer-events: none"><input type="checkbox" readonly class="services" checked="true"
-                  name="{{this.typesevice}}" value="{{this.points}}">
-                <span>{{this.typesevice}} {{this.points}}</span></label>
+                  name="{{this.serviceType}}" value="{{this.points}}">
+                <span>{{this.serviceType}} </span></label>
             </li>
             {{/each}}
           </ul>
           <br>
-          <div class="file-field input-field">
-            <button class="btn waves-effect waves-light red" type="submit" name="action">DELETE BOOKING</button>
+          <blockquote>
+            <h4>Price:</h4>
+          </blockquote>
+          <div id="price" class="center-align">
+            <span id="finalPrice" class="red-text text-darken-4 valign-wrapper">
+              <h2 id="price">{{this.booking.priceEnd}}</h2>€/ Montly
+            </span>
           </div>
+
         </div>
 
         <div class="col s3">
-          {{#each house.photos}}
-          <div>
-            <img src="{{this}}" alt="" width="100%">
-          </div>
-          {{/each}}
-        </div>
 
+          <div>
+            <img src="{{this.house.photos.[0]}}" alt="" width="100%">
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
