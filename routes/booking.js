@@ -68,7 +68,7 @@ router.post('/:id', isLogged, async (req, res, next) => {
   servicesArray.forEach((service) => {
     if (req.body[service.serviceType]) {
       services.push({
-        servicetype: service.serviceType,
+        serviceType: service.serviceType,
         points: service.points,
       });
     }

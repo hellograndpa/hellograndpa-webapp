@@ -35,6 +35,7 @@ router.get('/', async (req, res, next) => {
     wifi,
     priceMin,
     priceMax,
+    dateIn,
   } = req.query;
 
   try {
@@ -55,6 +56,11 @@ router.get('/', async (req, res, next) => {
       houses = await House.find({ $and: [{ 'address.city': city }, { 'rentroom.costpermonth': { $gt: minPrice } }, { 'rentroom.costpermonth': { $lt: maxPrice } }] }).sort({ createdAt: -1 }).populate('mentor user');
     } else {
       houses = await House.find({ $and: [{ 'rentroom.costpermonth': { $gt: minPrice } }, { 'rentroom.costpermonth': { $lt: maxPrice } }] }).populate('mentor user').sort({ createdAt: -1 });
+    }
+
+    if (dateIn) {
+      const dateInNumber = parseInt( dateIn.replace('-','') );
+      houses = houses.filter((house) => house.bookedDates.includes(dateInNumber) === false);   
     }
 
     if (calefaccion) { houses = houses.filter((house) => house.features.calefaccion === true); }
@@ -96,6 +102,7 @@ router.get('/', async (req, res, next) => {
       ascensor,
       wifi,
       cities,
+      dateIn
     });
   } catch (error) {
     next(error);
