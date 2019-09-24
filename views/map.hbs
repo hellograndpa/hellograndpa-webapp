@@ -1,33 +1,20 @@
-<body>
+<div class="row">
 
-
-  <script
-    src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
-  <link rel='stylesheet'
-    href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css'
-    type='text/css' />
-
-
-  <div class="row">
-    <div class="col l12">
-      <input type="text" id="geo1" name="geo1">
-      <input type="text" id="geo2" name="geo2">
+  <div class="col m6 l4">
+    <div class='sidebar'>
+      <div class='heading'>
+        <h1>Our locations</h1>
+      </div>
+      <div id='listings' class='listings'></div>
     </div>
-    <div class="col l4">
-      <pre id="json-response" class="txt-xs px12">Search for a place. Your results will be displayed here!</pre>
-    </div>
-    <div class="col l8">
+    <pre id="json-response" class="txt-xs px12">Search for a place. Your results will be displayed here!</pre>
+  </div>
+  <div class="col m6 l8">
 
-      <div id='map'></div>
-      <div id='geocoder' class='geocoder'></div>
-    </div>
-
+    <div id='map'></div>
+    <div id='geocoder' class='geocoder'></div>
   </div>
 
-  <script src="/js/map.js"></script>
+</div>
 
-
-
-</body>
-
-</html>
+<script src="/js/map_position.js"></script>
