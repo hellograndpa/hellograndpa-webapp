@@ -39,7 +39,7 @@
 .house_list #range {
   height: 15px;
   margin: 10px 0;
-  width: 35%;
+  width: 90%;
 }
 .house_list .price-container {
   width: 35%;
@@ -71,4 +71,7 @@
   border-top: 1px solid darkgrey;
   margin-top: 10px;
   padding-top: 10px;
+}
+.house_list .title-month-filter {
+  line-height: 30px;
 }

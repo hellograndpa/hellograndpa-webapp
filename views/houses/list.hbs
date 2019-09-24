@@ -18,10 +18,8 @@
                     <div class="collapsible-body">
                         <form action="" method="get">
                             <div class="row">
-
-                                <div class="col s6 m6 l6 ">
-
-                                    <div class="input-field imputfield-search-margin ">
+                                <div class="col s6 m4 l4 ">
+                                    <div class=" ">
                                         <select name="city">
                                             {{#if city}}
                                             <option value="" disabled>Where?</option>
@@ -36,10 +34,12 @@
                                             </option>
                                         </select>
                                     </div>
-
-
                                 </div>
-                                <div class="col s6 m6 l6 ">
+                                <div class="col s6 m4 l4 ">
+
+                                    <div><input type="text" class="datepicker"></div>
+                                </div>
+                                <div class="col s4 m3 l4 ">
                                     <div class="title">Price</div>
                                     <div id="range"></div>
                                     <div class="price-container">
