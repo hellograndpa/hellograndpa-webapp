@@ -20,18 +20,18 @@
             <h4>Dates:</h4>
           </blockquote>
           <div>In Date:<br>
-            <input type="text" id="dateIn" name="dateIn" value="{{this.dateIn}}">
+            <input type="text" id="dateIn" name="dateIn" value="{{this.dateInDate}}">
           </div>
           <div>Out Date:<br>
-            <input type="text" id="dateOut" name="dateOut" value="{{this.dateOut}}">
+            <input type="text" id="dateOut" name="dateOut" value="{{this.dateOutDate}}">
           </div>
           <br>
           <div class="file-field input-field">
-            <button class="btn waves-effect waves-light #4f8a10" type="submit" name="action"
+            {{!-- <button class="btn waves-effect waves-light #4f8a10" type="submit" name="action"
               style="margin-right: 5px">ACCEPT
-              BOOKING</button>
-            {{!-- <button class="btn waves-effect waves-light red" type="submit" name="action" style="margin-left: 5px">DELETE
               BOOKING</button> --}}
+            <button class="btn waves-effect waves-light red" type="submit" name="action" style="margin-left: 5px">DELETE
+              BOOKING</button>
           </div>
         </div>
 
@@ -54,7 +54,7 @@
           </blockquote>
           <div id="price" class="center-align">
             <span id="finalPrice" class="red-text text-darken-4 valign-wrapper">
-              <h2 id="price">{{this.booking.priceEnd}}</h2>€/ Montly
+              <h2 id="price">{{this.priceEnd}}</h2>€/ Montly
             </span>
           </div>
 

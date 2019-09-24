@@ -28,13 +28,22 @@ router.get('/', async (req, res, next) => {
     const userBookings = await Booking.find({
       user: new ObjectId(req.session.currentUser._id)
     }).populate('house');
+    userBookings.forEach((booking) => {
+
+      const dateInDate = new Date(booking.dateIn.substring(0, 4), booking.dateIn.substring(4, 6), '01').toDateString();
+      booking.dateInDate = dateInDate;
+
+      const dateOutDate = new Date(booking.dateOut.substring(0, 4), booking.dateOut.substring(4, 6), '01').toDateString();
+      booking.dateOutDate = dateOutDate;
+
+    });
     // TODO: Comprobar si me ha devuelto algo
     if (userBookings.length === 0) {
       req.flash('info', 'Not a booking yet');
     }
     res.render('bookings/list', { userBookings });
   } catch (error) {
-    req.flash('error', 'Some error happen - Please try again');
+    req.flash('error', `Some error happen - Please try again ${error}`);
     res.render('/');
   }
 });
