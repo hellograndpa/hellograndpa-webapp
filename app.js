@@ -10,6 +10,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const hbs = require('hbs');
+
 const { notifications } = require('./middlewares/nofifications');
 
 const indexRouter = require('./routes/index');
@@ -18,6 +19,7 @@ const housesRouter = require('./routes/houses');
 const bookingRouter = require('./routes/booking');
 const bookingsRouter = require('./routes/bookings');
 const messagesRouter = require('./routes/messages');
+const mapRouter = require('./routes/map');
 
 // prevent bodyParser from handling multipart forms (ie only handle get and post requests)
 
@@ -75,6 +77,8 @@ app.use('/user/bookings', bookingsRouter);
 app.use('/user', usersRouter);
 app.use('/houses', housesRouter);
 app.use('/booking', bookingRouter);
+app.use('/map', mapRouter);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

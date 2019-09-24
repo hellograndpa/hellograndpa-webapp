@@ -8,6 +8,7 @@
     "seed-user": "node ./bin/seed.js"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",

@@ -16,7 +16,24 @@
   <link rel='stylesheet' href='/stylesheets/calendar.css' />
   <link rel='stylesheet' href='/stylesheets/houselist.css' />
   <link rel="stylesheet" href="/stylesheets/create-booking.css">
+
+
+
   <link href="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.min.css" rel="stylesheet">
+  <script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Geocoder plugin -->
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet'>
+  <script
+    src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
+  <link rel='stylesheet'
+    href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css'
+    type='text/css' />
+
+  <!-- Turf.js plugin -->
+  <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
 </head>
 
 <body class="grey lighten-5">
@@ -29,6 +46,8 @@
 
           <ul class="right hide-on-med-and-down">
             <li><a href="/">Home</a></li>
+            <li><a href="/map">Mapa</a></li>
+
             {{#if currentUser}}
             <li><a href="/user/step-1">{{currentUser.username.firstname}}</a></li>
             <li><a href="/houses/create/step-1">Create a House</a></li>
@@ -234,13 +253,10 @@
       </div>
     </div>
   </footer>
-  <script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
   <script src="/js/calendar.js"></script>
   <script src="/js/bookings.js"></script>
   <script src="/js/modals.js"></script>
-  <script src="/js/helperhandlebars.js"></script>
   <script src="/js/search.js"></script>
   <script src="/js/houseslist.js"></script>
   <script src="/socket.io/socket.io.js"></script>

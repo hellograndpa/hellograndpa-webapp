@@ -107,8 +107,13 @@ router.get('/', async (req, res, next) => {
 // CREATE HOUSE STEP 1 - DIRECTION AND
 router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
   const {
-    title, street, city, state, country, zip,
+    title, street, city, state, country, zip, geo1, geo2,
   } = req.body;
+
+  const newGeo1 = parseFloat(geo1);
+  const newGeo2 = parseFloat(geo2);
+
+  console.log(req.body);
   try {
     const user = req.session.currentUser._id;
     const { ObjectId } = require('mongoose').Types;
@@ -126,6 +131,9 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
           country,
           zip,
         },
+        featuresGeo: {
+          geometry: [newGeo1, newGeo2],
+        },
       });
 
       req.flash('info', 'Address house UPDATE');
@@ -138,6 +146,9 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
           state,
           country,
           zip,
+        },
+        featuresGeo: {
+          geometry: [geo1, geo2],
         },
       });
       req.flash('info', 'Address house CREATE');
