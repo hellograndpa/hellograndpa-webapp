@@ -1,13 +1,15 @@
 <link rel="stylesheet" href="/stylesheets/maplist.css">
 <div class="row">
 
-  <div class="col s12 m6 l5">
+  <div class="col s12 m6 l4">
     <div class='sidebar'>
       <div id='geocoder' class='geocoder'></div>
       <div class=''>
         <h5>Results</h5>
       </div>
-      <div id='listings' class='listings'></div>
+      <div class="col 12 m12 l12 scroll-cards">
+        <div id='listings' class='listings'></div>
+      </div>
     </div>
     <pre id="json-response" class="txt-xs px12">Search for a place. Your results will be displayed here!
       <div class="progress">
@@ -15,7 +17,10 @@
       </div>
     </pre>
   </div>
-  <div class="col s12  m6 l7">
+  <div class="col s12  m6 l8">
+    <div class="col s4 m2 l1 btn-filter valign-wrapper">
+      <span class="center-align">TV</span>
+    </div>
     <div id='map' calss="maps"></div>
   </div>
 
