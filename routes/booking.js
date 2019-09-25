@@ -90,31 +90,6 @@ router.post('/:id', isLogged, async (req, res, next) => {
 
   const bookingCreated = await Booking.create(newBooking);
 
-  const { bookedDates } = houseSearch.bookedDates;
-
-  const dateAct = new Date(
-    newBooking.dateIn.substring(0, 4),
-    newBooking.dateIn.substring(4, 6) - 1,
-    '01',
-  );
-  const dateOut = new Date(
-    newBooking.dateOut.substring(0, 4),
-    newBooking.dateOut.substring(4, 6) - 1,
-    '01',
-  );
-
-  while (dateAct <= dateOut) {
-    bookedDates.push(
-      parseInt(
-        dateAct.getFullYear().toString() +
-          ('0' + (dateAct.getMonth() + 1)).slice(-2),
-      ),
-    );
-    dateAct.setMonth(dateAct.getMonth() + 1);
-  }
-
-  await House.findByIdAndUpdate(house, { bookedDates });
-
   const today = new Date();
   const date =
     today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -128,7 +103,7 @@ router.post('/:id', isLogged, async (req, res, next) => {
     userTo: houseSelected.user._id,
     userFrom: user,
     booking: bookingCreated._id,
-    message: 'SomeOne wants to join you',
+    message: 'SomeOne wants to join you!',
     sentDateHour: dateTime,
     readed: false,
   };

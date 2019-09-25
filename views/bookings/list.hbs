@@ -1,74 +1,105 @@
 <h1 style="margin-left: 30px;">User bookings list</h1>
 <div class="container">
-  
-  {{#each userBookings}}
   <div class="row">
-    <div class="row">
-      <div class="col l3">
-        <div class="collection">
-          <a href="/user/bookings/" class="collection-item active">Made</a>
-          <a href="/user/bookings/inbox/" class="collection-item">Recived</a>
-        </div>
-      </div>
+    <div class="col l3">
+      <div class="collection">
+        <a href="/user/bookings" class="collection-item active">Made</a>
+        <a href="/user/bookings/inbox" class="collection-item">Recived</a>
 
-    <div class="card container_houses">
-      <div class="col s12">
-        <!--style="border-right: 1px solid gray; height: auto;-->
-        <div class="col s5">
-          <h4>{{this.house.title}}</h4>
-          <blockquote>
-            <h4>Dates:</h4>
-          </blockquote>
-          <div>In Date:<br>
-            <input type="text" id="dateIn" name="dateIn" value="{{this.dateInDate}}">
-          </div>
-          <div>Out Date:<br>
-            <input type="text" id="dateOut" name="dateOut" value="{{this.dateOutDate}}">
-          </div>
-          <br>
-          <div class="file-field input-field">
-            {{!-- <button class="btn waves-effect waves-light #4f8a10" type="submit" name="action"
+      </div>
+    </div>
+    <div class="col l9">
+      <div class="row">
+
+        {{#each userBookings}}
+        <div class="col s12 l12">
+          <div class="card container_houses">
+            <!--style="border-right: 1px solid gray; height: auto;-->
+            <div class="col s5">
+              <h4>{{this.house.title}}</h4>
+              <blockquote>
+                <h4>Dates:</h4>
+              </blockquote>
+              <div>In Date:<br>
+                <input type="text" id="dateInShow" name="dateInShow" readonly value="{{this.dateInDate}}">
+              </div>
+              <div>Out Date:<br>
+                <input type="text" id="dateOutShow" name="dateOutShow" readonly value="{{this.dateOutDate}}">
+              </div>
+              <br>
+
+              <div class="buttons file-field input-field">
+                {{!-- <button class="btn waves-effect waves-light #4f8a10" type="submit" name="action"
               style="margin-right: 5px">ACCEPT
               BOOKING</button> --}}
-            <button class="btn waves-effect waves-light red" type="submit" name="action" style="margin-left: 5px">DELETE
-              BOOKING</button>
+                <input type="hidden" class="bookingId" value="{{this._id}}" />
+                <input type="hidden" class="dateIn" value="{{this.dateIn}}" />
+                <input type="hidden" class="dateOut" value="{{this.dateOut}}" />
+                <input type="hidden" class="houseId" value="{{this.house._id}}" />
+
+                {{#if ../view}}
+                <a class="waves-effect waves-light btn" href="/houses/{{this.house._id}}"><i
+                    class="material-icons left">home</i>House details</a>
+
+                <button class="btn waves-effect waves-light red" style="margin-left: 5px">DELETE
+                  BOOKING</button>
+                {{else}}
+                <button class="acceptBooking btn waves-effect waves-light green" style="margin-left: 5px">ACCEPT
+                  BOOKING</button>
+                <button class="btn waves-effect waves-light red" style="margin-left: 5px">decline
+                  BOOKING</button>
+                {{/if}}
+              </div>
+            </div>
+
+            <div class="col s4">
+              <blockquote>
+                <h4>Compromises:</h4>
+              </blockquote>
+              <ul>
+                {{#each this.sevicestoHosterCompromise }}
+                <li>
+                  <label style="pointer-events: none"><input type="checkbox" readonly class="services" checked="true"
+                      name="{{this.serviceType}}" value="{{this.points}}">
+                    <span>{{this.serviceType}} </span></label>
+                </li>
+                {{/each}}
+              </ul>
+              <br>
+              <blockquote>
+                <h4>Price:</h4>
+              </blockquote>
+              <div id="price" class="center-align">
+                <span id="finalPrice" class="red-text text-darken-4 valign-wrapper">
+                  <h2 id="price">{{this.priceEnd}}</h2>€/ Montly
+                </span>
+              </div>
+
+            </div>
+
+            <div class="col s3">
+              <blockquote>
+                <h4>Status:</h4>
+              </blockquote>
+              <div id="price" class="center-align">
+                <span class="red-text text-darken-4 valign-wrapper">
+                  <h4 id="">{{this.status}}</h4>
+                </span>
+              </div>
+              <blockquote>
+                <h4>Picture:</h4>
+              </blockquote>
+              <div>
+                <img src="{{this.house.photos.[0]}}" alt="" width="100%">
+              </div>
+
+            </div>
           </div>
         </div>
-
-        <div class="col s4">
-          <blockquote>
-            <h4>Compromises:</h4>
-          </blockquote>
-          <ul>
-            {{#each this.sevicestoHosterCompromise }}
-            <li>
-              <label style="pointer-events: none"><input type="checkbox" readonly class="services" checked="true"
-                  name="{{this.serviceType}}" value="{{this.points}}">
-                <span>{{this.serviceType}} </span></label>
-            </li>
-            {{/each}}
-          </ul>
-          <br>
-          <blockquote>
-            <h4>Price:</h4>
-          </blockquote>
-          <div id="price" class="center-align">
-            <span id="finalPrice" class="red-text text-darken-4 valign-wrapper">
-              <h2 id="price">{{this.priceEnd}}</h2>€/ Montly
-            </span>
-          </div>
-
-        </div>
-
-        <div class="col s3">
-
-          <div>
-            <img src="{{this.house.photos.[0]}}" alt="" width="100%">
-          </div>
-
-        </div>
+        {{/each}}
       </div>
     </div>
   </div>
-  {{/each}}
 </div>
+
+<script src="/js/userbookings.js"></script>

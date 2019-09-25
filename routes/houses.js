@@ -101,7 +101,7 @@ router.get('/', async (req, res, next) => {
       ascensor,
       wifi,
       cities,
-      dateIn
+      dateIn,
     });
   } catch (error) {
     next(error);

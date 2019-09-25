@@ -25,7 +25,7 @@ const BookingSchema = new Schema(
     dateOut: String,
     status: {
       type: String,
-      enum: ['pending', 'reserved', 'payed', 'cancel'],
+      enum: ['pending', 'reserved', 'payed', 'cancelled'],
     },
     priceInit: Number,
     discount: Number,
