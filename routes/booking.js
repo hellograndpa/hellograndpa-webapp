@@ -73,9 +73,11 @@ router.post('/:id', isLogged, async (req, res, next) => {
       });
     }
   });
+  const houseSearch = await House.findById(house).populate('user');
 
   const newBooking = {
-    user,
+    userFrom: user,
+    userTo: houseSearch.user._id,
     house,
     dateIn: req.body.dateIn,
     dateOut: req.body.dateOut,
@@ -88,8 +90,9 @@ router.post('/:id', isLogged, async (req, res, next) => {
 
   const bookingCreated = await Booking.create(newBooking);
 
-  let { bookedDates } = await House.findById(house, 'bookedDates');
-  let dateAct = new Date(
+  const { bookedDates } = houseSearch.bookedDates;
+
+  const dateAct = new Date(
     newBooking.dateIn.substring(0, 4),
     newBooking.dateIn.substring(4, 6) - 1,
     '01',
@@ -122,8 +125,8 @@ router.post('/:id', isLogged, async (req, res, next) => {
   const houseSelected = await House.findById(house).populate('user');
 
   const newMessage = {
-    userTo: user,
-    userFrom: houseSelected.user._id,
+    userTo: houseSelected.user._id,
+    userFrom: user,
     booking: bookingCreated._id,
     message: 'SomeOne wants to join you',
     sentDateHour: dateTime,
