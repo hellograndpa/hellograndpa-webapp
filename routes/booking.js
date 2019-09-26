@@ -12,6 +12,8 @@ const { isLogged } = require('../middlewares/logIn');
 
 const { servicesArray } = require('../middlewares/enumerables');
 
+const { socketsUsers } = require('../middlewares/enumerables');
+
 // start a new booking
 router.get('/:id', isLogged, async (req, res, next) => {
   const { id } = req.params;
@@ -109,6 +111,9 @@ router.post('/:id', isLogged, async (req, res, next) => {
   };
 
   await Message.create(newMessage);
+
+  const socketId = socketsUsers[houseSelected.user._id];
+  global.io.to(socketId).emit('newMessage', 'You have a new message!<br/> <a href="/user/messages/inbox">View my Inbox</a>');
 
   res.redirect('/user/bookings');
 });

@@ -53,9 +53,9 @@ router.get('/:id/gest', async (req, res, next) => {
       const socketId = socketsUsers[booking.userFrom._id];
      
       if (status === 'reserved') {
-        global.io.to(socketId).emit('newMessage', 'Your booking has been accepted!! <a href="/user/bookings/">GO</a>');
+        global.io.to(socketId).emit('newMessage', 'Your booking has been accepted!! <br/> <a href="/user/bookings/">View booking</a>');
       } else {
-        global.io.to(socketId).emit('newMessage', 'Your booking has been declined!! <a href="/user/bookings/">GO</a>');
+        global.io.to(socketId).emit('newMessage', 'Your booking has been declined!! <br/><a href="/user/bookings/">View booking</a>');
       }
     }
     res.send('ok');
