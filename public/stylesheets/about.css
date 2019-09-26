@@ -1,0 +1,20 @@
+.aboutHeader {
+  padding-bottom: 5%;
+}
+.aboutHeader h5{
+  text-align: center;
+  font-style: italic;
+}
+.rowAbout {
+  padding-bottom: 10%;
+}
+
+.h1About {
+  text-align: center;
+}
+
+.pAbout {
+  border-right: 1px solid #26a69a;
+  line-height: 20px;
+  padding-right: 30px;
+}
