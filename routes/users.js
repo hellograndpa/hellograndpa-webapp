@@ -153,13 +153,13 @@ router.post('/avatar-upload', isLogged, async (req, res) => {
   form.parse(req);
   // you need control where you put the file
   form.on('fileBegin', (name, file) => {
-    file.path = `${__dirname}/../public/images/avatar/${user.id}_avatar`; // __dirname now is the router path
+    file.path = `${__dirname}/../public/images/avatar/${user.id}_avatar.jpg`; // __dirname now is the router path
   });
 
   // save the file path into de date base
   form.on('file', async (name, file) => {
     req.flash('info', 'upload ');
-    const avatar = `/images/avatar/${user.id}_avatar`; // the path estart inside of public/
+    const avatar = `/images/avatar/${user.id}_avatar.jpg`; // the path estart inside of public/
     await User.findByIdAndUpdate(user._id, {
       avatar,
     });

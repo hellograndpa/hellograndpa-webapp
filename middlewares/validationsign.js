@@ -56,7 +56,6 @@ const checkCorretFormatEmail = (req, res, next) => {
 const checkUserTypeGranpa = async (req, res, next) => {
   const user = await User.findById(req.session.currentUser._id);
   if (user.grandpaUser) {
-    req.flash('info', 'it is grandpa');
     next();
   } else {
     req.flash('error', `you are not a grandpa ${user._id} ${user.grandpaUser}`);

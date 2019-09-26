@@ -28,8 +28,8 @@ const BookingSchema = new Schema(
       enum: ['pending', 'reserved', 'payed', 'cancelled'],
     },
     priceInit: Number,
-    discount: Number,
-    priceEnd: Number,
+    discount: { type: Number, default: 0 },
+    priceEnd: { type: Number, default: 0 },
     sevicestoHosterCompromise: [
       {
         serviceType: String,

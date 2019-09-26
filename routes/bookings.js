@@ -12,7 +12,7 @@ const { isLogged } = require('../middlewares/logIn');
 router.get('/:id/gest', async (req, res, next) => {
   const { id } = req.params;
   const { action, dateIn, dateOut, houseId } = req.query;
-
+  console.log('dd',dateIn)
   let status = '';
 
   if (action === 'accept') {
@@ -60,6 +60,7 @@ router.get('/:id/gest', async (req, res, next) => {
     }
     res.send('ok');
   } catch (error) {
+    console.log(error)
     res.send('ko');
   }
 });
