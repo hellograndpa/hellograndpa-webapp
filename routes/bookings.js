@@ -9,9 +9,9 @@ const { isLogged } = require('../middlewares/logIn');
 
 
 // accept or decline an action
-router.get('/:id/:action', async (req, res, next) => {
-  const { id, action } = req.params;
-  const { dateIn, dateOut, houseId } = req.query;
+router.get('/:id/gest', async (req, res, next) => {
+  const { id } = req.params;
+  const { action, dateIn, dateOut, houseId } = req.query;
 
   let status = '';
 

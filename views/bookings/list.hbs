@@ -3,9 +3,13 @@
   <div class="row">
     <div class="col l3">
       <div class="collection">
+        {{#if view}}
         <a href="/user/bookings" class="collection-item active">Made</a>
         <a href="/user/bookings/inbox" class="collection-item">Recived</a>
-
+        {{else}}
+        <a href="/user/bookings" class="collection-item">Made</a>
+        <a href="/user/bookings/inbox" class="collection-item active">Recived</a>
+        {{/if}}
       </div>
     </div>
     <div class="col l9">
@@ -27,7 +31,6 @@
                 <input type="text" id="dateOutShow" name="dateOutShow" readonly value="{{this.dateOutDate}}">
               </div>
               <br>
-
               <div class="buttons file-field input-field">
                 {{!-- <button class="btn waves-effect waves-light #4f8a10" type="submit" name="action"
               style="margin-right: 5px">ACCEPT
@@ -38,16 +41,20 @@
                 <input type="hidden" class="houseId" value="{{this.house._id}}" />
 
                 {{#if ../view}}
+
                 <a class="waves-effect waves-light btn" href="/houses/{{this.house._id}}"><i
                     class="material-icons left">home</i>House details</a>
-
-                <button class="btn waves-effect waves-light red" style="margin-left: 5px">DELETE
+                {{#if_eq this.status 'pending'}}
+                <button class="cancelBooking btn waves-effect waves-light red" style="margin-left: 5px">CANCEL
                   BOOKING</button>
+                {{/if_eq}}
                 {{else}}
+                {{#if_eq this.status 'pending'}}
                 <button class="acceptBooking btn waves-effect waves-light green" style="margin-left: 5px">ACCEPT
                   BOOKING</button>
-                <button class="btn waves-effect waves-light red" style="margin-left: 5px">decline
+                <button class="cancelBooking btn waves-effect waves-light red" style="margin-left: 5px">DECLINEDELETE
                   BOOKING</button>
+                {{/if_eq}}
                 {{/if}}
               </div>
             </div>
@@ -82,9 +89,21 @@
                 <h4>Status:</h4>
               </blockquote>
               <div id="price" class="center-align">
+                {{#if_eq this.status 'pending'}}
                 <span class="red-text text-darken-4 valign-wrapper">
                   <h4 id="">{{this.status}}</h4>
                 </span>
+                {{/if_eq}}
+                {{#if_eq this.status 'cancelled'}}
+                <span class="red-text text-darken-4 valign-wrapper">
+                  <h4 id="">{{this.status}}</h4>
+                </span>
+                {{/if_eq}}
+                {{#if_eq this.status 'reserved'}}
+                <span class="green-text text-darken-4 valign-wrapper">
+                  <h4 id="">{{this.status}}</h4>
+                </span>
+                {{/if_eq}}
               </div>
               <blockquote>
                 <h4>Picture:</h4>
