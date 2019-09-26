@@ -68,14 +68,16 @@ router.post('/:id', isLogged, async (req, res, next) => {
   servicesArray.forEach((service) => {
     if (req.body[service.serviceType]) {
       services.push({
-        servicetype: service.serviceType,
+        serviceType: service.serviceType,
         points: service.points,
       });
     }
   });
+  const houseSearch = await House.findById(house).populate('user');
 
   const newBooking = {
-    user,
+    userFrom: user,
+    userTo: houseSearch.user._id,
     house,
     dateIn: req.body.dateIn,
     dateOut: req.body.dateOut,
@@ -88,30 +90,6 @@ router.post('/:id', isLogged, async (req, res, next) => {
 
   const bookingCreated = await Booking.create(newBooking);
 
-  let { bookedDates } = await House.findById(house, 'bookedDates');
-  let dateAct = new Date(
-    newBooking.dateIn.substring(0, 4),
-    newBooking.dateIn.substring(4, 6) - 1,
-    '01',
-  );
-  const dateOut = new Date(
-    newBooking.dateOut.substring(0, 4),
-    newBooking.dateOut.substring(4, 6) - 1,
-    '01',
-  );
-
-  while (dateAct <= dateOut) {
-    bookedDates.push(
-      parseInt(
-        dateAct.getFullYear().toString() +
-          ('0' + (dateAct.getMonth() + 1)).slice(-2),
-      ),
-    );
-    dateAct.setMonth(dateAct.getMonth() + 1);
-  }
-
-  await House.findByIdAndUpdate(house, { bookedDates });
-
   const today = new Date();
   const date =
     today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -122,10 +100,10 @@ router.post('/:id', isLogged, async (req, res, next) => {
   const houseSelected = await House.findById(house).populate('user');
 
   const newMessage = {
-    userTo: user,
-    userFrom: houseSelected.user._id,
+    userTo: houseSelected.user._id,
+    userFrom: user,
     booking: bookingCreated._id,
-    message: 'SomeOne wants to join you',
+    message: 'SomeOne wants to join you!',
     sentDateHour: dateTime,
     readed: false,
   };
