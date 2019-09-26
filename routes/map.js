@@ -7,12 +7,11 @@ const House = require('../models/House');
 
 router.get('/houses', async (req, res) => {
   try {
-    const houses = await House.find();
+    const houses = await House.find().populate('user');
     const dataHouseLocation = {
       type: 'FeatureCollection',
       features: [],
     };
-
     houses.forEach((e) => {
       dataHouseLocation.features.push({
         type: 'Feature',
@@ -24,18 +23,23 @@ router.get('/houses', async (req, res) => {
         },
         properties: {
           title: e.title,
-          phoneFormatted: '(202) 234-7336',
-          phone: '2022347336',
+          houseId: e._id,
           address: e.address.street,
           city: e.address.city,
+          state: e.address.state,
           country: e.address.country,
-          crossStreet: '',
           postalCode: e.address.postalCode,
-          state: 'D.C.',
+          avatar: e.user.avatar,
+          name: e.user.username.firstname,
+          lastname: e.user.username.lastname,
+          phone: e.user.phone[0],
+          price: e.rentroom.costpermonth,
+          room2: e.rentroom.m2,
+          photo: e.photos[0],
+          userId: e.user._id,
         },
       });
     });
-
 
     res.json(dataHouseLocation);
   } catch (error) {

@@ -17,11 +17,25 @@
   <link rel='stylesheet' href='/stylesheets/calendar.css' />
   <link rel='stylesheet' href='/stylesheets/houselist.css' />
   <link rel="stylesheet" href="/stylesheets/create-booking.css">
-  <link rel="stylesheet" href="/stylesheets/map.css">
+
+
+
   <link href="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.min.css" rel="stylesheet">
+  <script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
   <!-- Geocoder plugin -->
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet'>
+  <script
+    src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
+  <link rel='stylesheet'
+    href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css'
+    type='text/css' />
+
+  <!-- Turf.js plugin -->
+  <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
 </head>
 
 <body class="grey lighten-5">
@@ -34,6 +48,8 @@
 
           <ul class="right hide-on-med-and-down">
             <li><a href="/">Home</a></li>
+            <li><a href="/map">Mapa</a></li>
+
             {{#if currentUser}}
             <li><a href="/user/step-1">{{currentUser.username.firstname}}</a></li>
             <li><a href="/houses/create/step-1">Create a House</a></li>
@@ -207,19 +223,14 @@
 
 
   <footer class="page-footer grey darken-4">
-    <div class="container">
-      <div class="row">
-        <div class="col l6">
-          <a id="logo-container" href="/" class="brand-logo" style="align-items: flex-end"><img
+    <div class="container col l12">
+      <div class="footer_container row">
+        <div class="col l8">
+          <a id="logo-container" href="/" class="brand-logo-footer" style="align-items: flex-end"><img
               src="/images/logo/nav-new-logo.png" alt=""></a>
         </div>
 
-        <!--<div id="logofooter">
-          <a id="logo-container" href="/" class="brand-logo" style="align-items: flex-end"><img
-              src="/images/logo/nav-new-logo.png" alt=""></a>
-        </div>-->
-
-        <div class="col l4 offset-l2 s12">
+        <div class="col l2">
           <h5 class="white-text">Menu:</h5>
           <ul>
             <li><a href="/" class="grey-text text-lighten-3">Home</a></li>
@@ -235,13 +246,10 @@
     </div>
     <div class="footer-copyright page-footer" style="background-color:  #26a69a">
       <div class="container" style="text-align: center">
-        © 2014 Copyright Text
+        Created by: Víctor Camarena, Antonio Rivera & Jofre Moreno © 2019 Copyright
       </div>
     </div>
   </footer>
-  <script src="//cdn.bootcss.com/noUiSlider/8.5.1/nouislider.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="/js/calendar.js"></script>
   <script src="/js/bookings.js"></script>
   <script src="/js/modals.js"></script>

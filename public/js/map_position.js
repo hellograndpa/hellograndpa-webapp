@@ -1,299 +1,174 @@
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2p0MG01MXRqMW45cjQzb2R6b2ptc3J4MSJ9.zA2W0IkI0c6KaAhJfk9bWg';
+mapboxgl.accessToken = 'pk.eyJ1IjoiaXR0ZW5lcyIsImEiOiJjazB0eGg5NmkwOHR4M2hwZGhxemtoeHRiIn0.A8MkCxfecgxrjj-hYODfjA';
 
-// This adds the map to your page
+// This will let you use the .remove() function later on
+if (!('remove' in Element.prototype)) {
+  Element.prototype.remove = function () {
+    if (this.parentNode) {
+      this.parentNode.removeChild(this);
+    }
+  };
+}
+
+
+// This adds the map
 const map = new mapboxgl.Map({
   // container id specified in the HTML
   container: 'map',
   // style URL
   style: 'mapbox://styles/mapbox/light-v10',
   // initial position in [long, lat] format
-  center: [-3,
-    40],
+  center: [2, 40],
   // initial zoom
-  zoom: 6,
+  zoom: 5,
+
 });
 
-const stores = {
-  type: 'FeatureCollection',
-  features: [
-    {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-77.034084142948,
-          38.909671288923,
-        ],
-      },
-      properties: {
-        phoneFormatted: '(202) 234-7336',
-        phone: '2022347336',
-        address: '1471 P St NW',
-        city: 'Washington DC',
-        country: 'United States',
-        crossStreet: 'at 15th St NW',
-        postalCode: '20005',
-        state: 'D.C.',
-      },
-    }, {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-77.049766,
-          38.900772,
-        ],
-      },
-      properties: {
-        phoneFormatted: '(202) 507-8357',
-        phone: '2025078357',
-        address: '2221 I St NW',
-        city: 'Washington DC',
-        country: 'United States',
-        crossStreet: 'at 22nd St NW',
-        postalCode: '20037',
-        state: 'D.C.',
-      },
-    }, {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-77.043929,
-          38.910525,
-        ],
-      },
-      properties: {
-        phoneFormatted: '(202) 387-9338',
-        phone: '2023879338',
-        address: '1512 Connecticut Ave NW',
-        city: 'Washington DC',
-        country: 'United States',
-        crossStreet: 'at Dupont Circle',
-        postalCode: '20036',
-        state: 'D.C.',
-      },
-    }, {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-77.0672,
-          38.90516896,
-        ],
-      },
-      properties: {
-        phoneFormatted: '(202) 337-9338',
-        phone: '2023379338',
-        address: '3333 M St NW',
-        city: 'Washington DC',
-        country: 'United States',
-        crossStreet: 'at 34th St NW',
-        postalCode: '20007',
-        state: 'D.C.',
-      },
-    }, {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-77.002583742142,
-          38.887041080933,
-        ],
-      },
-      properties: {
-        phoneFormatted: '(202) 547-9338',
-        phone: '2025479338',
-        address: '221 Pennsylvania Ave SE',
-        city: 'Washington DC',
-        country: 'United States',
-        crossStreet: 'btwn 2nd & 3rd Sts. SE',
-        postalCode: '20003',
-        state: 'D.C.',
-      },
-    }, {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-76.933492720127,
-          38.99225245786,
-        ],
-      },
-      properties: {
-        address: '8204 Baltimore Ave',
-        city: 'College Park',
-        country: 'United States',
-        postalCode: '20740',
-        state: 'MD',
-      },
-    }, {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-77.097083330154,
-          38.980979,
-        ],
-      },
-      properties: {
-        phoneFormatted: '(301) 654-7336',
-        phone: '3016547336',
-        address: '4831 Bethesda Ave',
-        cc: 'US',
-        city: 'Bethesda',
-        country: 'United States',
-        postalCode: '20814',
-        state: 'MD',
-      },
-    }, {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-77.359425054188,
-          38.958058116661,
-        ],
-      },
-      properties: {
-        phoneFormatted: '(571) 203-0082',
-        phone: '5712030082',
-        address: '11935 Democracy Dr',
-        city: 'Reston',
-        country: 'United States',
-        crossStreet: 'btw Explorer & Library',
-        postalCode: '20190',
-        state: 'VA',
-      },
-    }, {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-77.10853099823,
-          38.880100922392,
-        ],
-      },
-      properties: {
-        phoneFormatted: '(703) 522-2016',
-        phone: '7035222016',
-        address: '4075 Wilson Blvd',
-        city: 'Arlington',
-        country: 'United States',
-        crossStreet: 'at N Randolph St.',
-        postalCode: '22203',
-        state: 'VA',
-      },
-    }, {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-75.28784,
-          40.008008,
-        ],
-      },
-      properties: {
-        phoneFormatted: '(610) 642-9400',
-        phone: '6106429400',
-        address: '68 Coulter Ave',
-        city: 'Ardmore',
-        country: 'United States',
-        postalCode: '19003',
-        state: 'PA',
-      },
-    }, {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-75.20121216774,
-          39.954030175164,
-        ],
-      },
-      properties: {
-        phoneFormatted: '(215) 386-1365',
-        phone: '2153861365',
-        address: '3925 Walnut St',
-        city: 'Philadelphia',
-        country: 'United States',
-        postalCode: '19104',
-        state: 'PA',
-      },
-    }, {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [-77.043959498405,
-          38.903883387232,
-        ],
-      },
-      properties: {
-        phoneFormatted: '(202) 331-3355',
-        phone: '2023313355',
-        address: '1901 L St. NW',
-        city: 'Washington DC',
-        country: 'United States',
-        crossStreet: 'at 19th St',
-        postalCode: '20036',
-        state: 'D.C.',
-      },
-    }],
-};
-  // This adds the data to the map
-map.on('load', (e) => {
-  // Add the data to your map as a layer
-  map.addLayer({
-    id: 'locations',
-    type: 'symbol',
-    // Add a GeoJSON source containing place coordinates and information.
-    source: {
-      type: 'geojson',
-      data: stores,
-    },
-    layout: {
-      'icon-image': 'restaurant-15',
-      'icon-allow-overlap': true,
-    },
+let stores;
+
+axios
+  .get('/map/houses')
+  .then((response) => {
+    // handle success
+    const { data } = response;
+    console.log('TCL: data', data);
+    stores = data;
+  })
+  .then(() => {
+    console.log('TCL: stores', stores);
+    map.on('load', (e) => {
+      // This is where your '.addLayer()' used to be, instead add only the source without styling a layer
+      map.addSource('places', {
+        type: 'geojson',
+        data: stores,
+      });
+      // Initialize the list
+      buildLocationList(stores);
+
+      geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl,
+        marker: false,
+        bbox: [-2, 35, 3, 45],
+      });
+
+      // map.addControl(geocoder, 'top-left');
+      document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+
+      map.addSource('single-point', {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: [], // Notice that initially there are no features
+        },
+      });
+
+      map.addLayer({
+        id: 'point',
+        source: 'single-point',
+        type: 'circle',
+        paint: {
+          'circle-radius': 10,
+          'circle-color': '#007cbf',
+          'circle-stroke-width': 3,
+          'circle-stroke-color': '#fff',
+        },
+      });
+
+      geocoder.on('result', (ev) => {
+        const searchResult = ev.result.geometry;
+        map.getSource('single-point').setData(searchResult);
+
+        const options = { units: 'miles' };
+        stores.features.forEach((store) => {
+          Object.defineProperty(store.properties, 'distance', {
+            value: turf.distance(searchResult, store.geometry, options),
+            writable: true,
+            enumerable: true,
+            configurable: true,
+          });
+        });
+
+        stores.features.sort((a, b) => {
+          if (a.properties.distance > b.properties.distance) {
+            return 1;
+          }
+          if (a.properties.distance < b.properties.distance) {
+            return -1;
+          }
+          // a must be equal to b
+          return 0;
+        });
+
+        const listings = document.getElementById('listings');
+        while (listings.firstChild) {
+          listings.removeChild(listings.firstChild);
+        }
+
+        buildLocationList(stores);
+
+        function sortLonLat(storeIdentifier) {
+          const lats = [stores.features[storeIdentifier].geometry.coordinates[1], searchResult.coordinates[1]];
+          const lons = [stores.features[storeIdentifier].geometry.coordinates[0], searchResult.coordinates[0]];
+
+          const sortedLons = lons.sort((a, b) => {
+            if (a > b) { return 1; }
+            if (a.distance < b.distance) { return -1; }
+            return 0;
+          });
+          const sortedLats = lats.sort((a, b) => {
+            if (a > b) { return 1; }
+            if (a.distance < b.distance) { return -1; }
+            return 0;
+          });
+
+          map.fitBounds([
+            [sortedLons[0], sortedLats[0]],
+            [sortedLons[1], sortedLats[1]],
+          ], {
+            padding: 100,
+          });
+        }
+
+        sortLonLat(0);
+        createPopUp(stores.features[0]);
+      });
+    });
+    stores.features.forEach((marker, i) => {
+      // Create an img element for the marker
+      const el = document.createElement('div');
+      el.id = `marker-${i}`;
+      el.className = 'marker';
+
+      // Add markers to the map at all points
+      new mapboxgl.Marker(el, { offset: [0, -23] })
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(map);
+
+      el.addEventListener('click', (e) => {
+        // 1. Fly to the point
+        flyToStore(marker);
+
+        // 2. Close all other popups and display popup for clicked store
+        createPopUp(marker);
+
+        // 3. Highlight listing in sidebar (and remove highlight for all other listings)
+        const activeItem = document.getElementsByClassName('active');
+
+        e.stopPropagation();
+        if (activeItem[0]) {
+          activeItem[0].classList.remove('active');
+        }
+
+        const listing = document.getElementById(`listing-${i}`);
+        listing.classList.add('active');
+      });
+    });
+  })
+  .catch((error) => {
+    // handle error
+    console.log('error', error);
   });
-  // Initialize the list
-  buildLocationList(stores);
-
-  const geocoder = new MapboxGeocoder({ // Initialize the geocoder
-    accessToken: mapboxgl.accessToken, // Set the access token
-    mapboxgl, // Set the mapbox-gl instance
-    zoom: 13, // Set the zoom level for geocoding results
-    placeholder: 'Enter an address or place name', // This placeholder text will display in the search bar
-    bbox: [-105.116, 39.679, -104.898, 39.837], // Set a bounding box
-  });
-
-
-  // Add the geocoder to the map
-  map.addControl(geocoder, 'top-left'); // Add the search box to the top left
-});
-
-
-map.on('click', (e) => {
-  const features = map.queryRenderedFeatures(e.point, {
-    layers: ['locations'],
-  });
-
-  if (features.length) {
-    const clickedPoint = features[0];
-    // 1. Fly to the point
-    flyToStore(clickedPoint);
-
-    // 2. Close all other popups and display popup for clicked store
-    createPopUp(clickedPoint);
-
-    // 3. Highlight listing in sidebar (and remove highlight for all other listings)
-    const activeItem = document.getElementsByClassName('active');
-    if (activeItem[0]) {
-      activeItem[0].classList.remove('active');
-    }
-
-    const selectedFeature = clickedPoint.properties.address;
-
-    for (let i = 0; i < stores.features.length; i++) {
-      if (stores.features[i].properties.address === selectedFeature) {
-        selectedFeatureIndex = i;
-      }
-    }
-
-    const listing = document.getElementById(`listing-${selectedFeatureIndex}`);
-    listing.classList.add('active');
-  }
-});
 
 
 function flyToStore(currentFeature) {
@@ -303,7 +178,6 @@ function flyToStore(currentFeature) {
   });
 }
 
-
 function createPopUp(currentFeature) {
   const popUps = document.getElementsByClassName('mapboxgl-popup');
   if (popUps[0]) popUps[0].remove();
@@ -311,40 +185,59 @@ function createPopUp(currentFeature) {
 
   const popup = new mapboxgl.Popup({ closeOnClick: false })
     .setLngLat(currentFeature.geometry.coordinates)
-    .setHTML(`${'<h3>Sweetgreen</h3>'
-        + '<h4>'}${currentFeature.properties.address}</h4>`)
+    .setHTML(`<h5>Sweetgreen</h5>
+            <h4>${currentFeature.properties.address}</h4>`)
+
     .addTo(map);
 }
 
 
 function buildLocationList(data) {
-  for (i = 0; i < data.features.length; i++) {
-    // Create an array of all the stores and their properties
+  for (let i = 0; i < data.features.length; i++) {
     const currentFeature = data.features[i];
-    // Shorten data.feature.properties to just `prop` so we're not
-    // writing this long form over and over again.
     const prop = currentFeature.properties;
-    // Select the listing container in the HTML
+
     const listings = document.getElementById('listings');
-    // Append a div with the class 'item' for each store
     const listing = listings.appendChild(document.createElement('div'));
     listing.className = 'item';
     listing.id = `listing-${i}`;
 
-    // Create a new link with the class 'title' for each store
-    // and fill it with the store address
-    const link = listing.appendChild(document.createElement('a'));
-    link.href = '#';
-    link.className = 'title';
-    link.dataPosition = i;
-    link.innerHTML = prop.address;
-
-    // Create a new div with the class 'details' for each store
-    // and fill it with the city and phone number
     const details = listing.appendChild(document.createElement('div'));
-    details.innerHTML = prop.city;
-    if (prop.phone) {
-      details.innerHTML += ` &middot; ${prop.phoneFormatted}`;
+    details.innerHTML = ` <div class="row">
+                <div class="col s12 m12 l12">
+                  <div class="card horizontal">
+                    <div class="card-image">
+                      <img src="${prop.photo}">
+                    </div>
+                  <div class="card-stacked">
+                    <div class="card-content">
+                    <a class="btn-floating halfway-fab waves-effect waves-light white" href="/user/${prop.userId}">
+                      <img src="${prop.avatar}" class="circle center-align">
+                    </a>
+                      <div id="contcard-${i}"></div>
+                    <div>
+                      <p class="street">${prop.address} ${prop.city}</p> <br>
+                      <p class="price">${prop.price}€/month</p> <br>
+                      <p class="extra">${prop.roomm2} m2</p>
+                    </div>
+                  </div>
+                  <div class="card-action">
+                    <a href="/houses/${prop.houseId}"> See the house </a>
+                  </div>
+                </div>
+              </div>`;
+
+    const cardTitle = document.getElementById(`contcard-${i}`);
+    const link = cardTitle.appendChild(document.createElement('a'));
+    link.href = '#';
+    link.className = 'title card-title';
+    link.dataPosition = i;
+    link.innerHTML = prop.title;
+
+
+    if (prop.distance) {
+      const roundedDistance = Math.round(prop.distance * 100) / 100;
+      details.innerHTML += `<p><strong>${roundedDistance} miles away</strong></p>`;
     }
 
 
@@ -352,7 +245,7 @@ function buildLocationList(data) {
       // Update the currentFeature to the store associated with the clicked link
       const clickedListing = data.features[this.dataPosition];
 
-      // 1. Fly to the point associated with the clicked link
+      // 1. Fly to the point
       flyToStore(clickedListing);
 
       // 2. Close all other popups and display popup for clicked store

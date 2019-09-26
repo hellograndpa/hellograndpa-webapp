@@ -1,17 +1,24 @@
-<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
-<link rel='stylesheet'
-  href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css' type='text/css' />
-
+<link rel="stylesheet" href="/stylesheets/maplist.css">
 <div class="row">
-  <div class="col l4">
-    <pre id="json-response" class="txt-xs px12">Search for a place. Your results will be displayed here!</pre>
+
+  <div class="col s12 m6 l5">
+    <div class='sidebar'>
+      <div id='geocoder' class='geocoder'></div>
+      <div class=''>
+        <h5>Results</h5>
+      </div>
+      <div id='listings' class='listings'></div>
+    </div>
+    <pre id="json-response" class="txt-xs px12">Search for a place. Your results will be displayed here!
+      <div class="progress">
+        <div class="indeterminate"></div>
+      </div>
+    </pre>
   </div>
-  <div class="col l8">
-    aqui el mapa
-    <div id='map'></div>
-    <div id='geocoder' class='geocoder'></div>
+  <div class="col s12  m6 l7">
+    <div id='map' calss="maps"></div>
   </div>
 
 </div>
 
-<script src="/js/mapList.js"></script>
+<script src="/js/map_position.js"></script>
