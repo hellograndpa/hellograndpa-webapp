@@ -5,6 +5,7 @@ const map = new mapboxgl.Map({
   style: 'mapbox://styles/mapbox/streets-v11',
   center: [-2.0000, 40.0000],
   zoom: 5,
+  hash: true,
 });
 
 

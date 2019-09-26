@@ -9,7 +9,10 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const hbs = require('hbs');
-const { notifications } = require('./middlewares/nofifications');
+const axios = require('axios');
+const {
+  notifications,
+} = require('./middlewares/nofifications');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');

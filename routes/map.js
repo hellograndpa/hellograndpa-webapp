@@ -10,8 +10,7 @@ router.get('/houses', async (req, res) => {
     const houses = await House.find();
     const dataHouseLocation = {
       type: 'FeatureCollection',
-      features: [
-      ],
+      features: [],
     };
 
     houses.forEach((e) => {
@@ -19,8 +18,8 @@ router.get('/houses', async (req, res) => {
         type: 'Feature',
         geometry: {
           type: 'Point',
-          coordinates: [-77.034084142948,
-            38.909671288923,
+          coordinates: [e.featuresGeo.geometry.coordinates[0],
+            e.featuresGeo.geometry.coordinates[1],
           ],
         },
         properties: {
@@ -48,8 +47,7 @@ router.get('/busqueda', async (req, res) => {
     const houses = await House.find();
     const dataHouseLocation = {
       type: 'FeatureCollection',
-      features: [
-      ],
+      features: [],
     };
 
     houses.forEach((e) => {
@@ -84,37 +82,6 @@ router.get('/busqueda', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const houses = await House.find();
-    const dataHouseLocation = {
-      type: 'FeatureCollection',
-      features: [
-      ],
-    };
-
-    houses.forEach((e) => {
-      dataHouseLocation.features.push({
-        type: 'Feature',
-        geometry: {
-          type: 'Point',
-          coordinates: [-77.034084142948,
-            38.909671288923,
-          ],
-        },
-        properties: {
-          title: e.title,
-          phoneFormatted: '(202) 234-7336',
-          phone: '2022347336',
-          address: e.address.street,
-          city: e.address.city,
-          country: e.address.country,
-          crossStreet: '',
-          postalCode: e.address.postalCode,
-          state: 'D.C.',
-        },
-      });
-    });
-
-
     res.render('map');
   } catch (error) {
     next(error);
