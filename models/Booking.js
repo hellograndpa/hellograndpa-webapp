@@ -16,8 +16,8 @@ const BookingSchema = new Schema(
       ref: 'House',
       required: true,
     },
-    dateIn: Date,
-    dateOut: Date,
+    dateIn: String,
+    dateOut: String,
     status: {
       type: String,
       enum: ['pending', 'reserve', 'pay', 'cancel'],
@@ -27,7 +27,7 @@ const BookingSchema = new Schema(
     priceEnd: Number,
     sevicestoHosterCompromise: [
       {
-        typesevice: String,
+        serviceType: String,
         points: Number,
       },
     ],
