@@ -21,6 +21,7 @@ const map = new mapboxgl.Map({
   center: [2, 40],
   // initial zoom
   zoom: 5,
+  hash: true,
 
 });
 
@@ -185,12 +186,24 @@ function createPopUp(currentFeature) {
 
   const popup = new mapboxgl.Popup({ closeOnClick: false })
     .setLngLat(currentFeature.geometry.coordinates)
-    .setHTML(`<h5>Sweetgreen</h5>
-            <h4>${currentFeature.properties.address}</h4>`)
-
+    .setHTML(`<div class="card">
+                    <div class="card-image">
+                     <a href="/houses/${currentFeature.properties.houseId}">
+                       <img src="${currentFeature.properties.photo}">
+                      </a>
+                      
+                       <a class="btn-floating halfway-fab waves-effect waves-light white" href="/user/${currentFeature.properties.userId}">
+                      <img src="${currentFeature.properties.avatar}" class="circle center-align">
+                    </a>
+                    </div>
+                    <span class="card-title">${currentFeature.properties.title}</span>
+                    <div class="card-content">
+                     <p class="street">${currentFeature.properties.address} ${currentFeature.properties.city}</p> <br>
+                      <p class="price">${currentFeature.properties.price}€/month</p> <br>
+                    </div>
+                  </div>`)
     .addTo(map);
 }
-
 
 function buildLocationList(data) {
   for (let i = 0; i < data.features.length; i++) {
@@ -208,22 +221,22 @@ function buildLocationList(data) {
                   <div class="card horizontal">
                     <div class="card-image">
                       <img src="${prop.photo}">
-                    </div>
-                  <div class="card-stacked">
-                    <div class="card-content">
-                    <a class="btn-floating halfway-fab waves-effect waves-light white" href="/user/${prop.userId}">
-                      <img src="${prop.avatar}" class="circle center-align">
-                    </a>
-                      <div id="contcard-${i}"></div>
-                    <div>
-                      <p class="street">${prop.address} ${prop.city}</p> <br>
-                      <p class="price">${prop.price}€/month</p> <br>
-                      <p class="extra">${prop.roomm2} m2</p>
-                    </div>
-                  </div>
-                  <div class="card-action">
-                    <a href="/houses/${prop.houseId}"> See the house </a>
-                  </div>
+                      </div>
+                      <div class="card-stacked">
+                      <div id="content-card" class="card-content">
+                        <div id="contcard-${i}">
+                        <a class="btn-floating halfway-fab waves-effect waves-light white" href="/user/${prop.userId}">
+                          <img src="${prop.avatar}" class="circle center-align">
+                        </a>
+                        </div>
+                        <div  class="content-card">
+                        < class="street">${prop.address} ${prop.city} <br>
+                        ${prop.price}€/month <br>
+                        ${prop.roomm2} m2 <br>
+                        <a href="/houses/${prop.houseId}"> See the house </a>
+                        </p>
+                        </div>
+                      </div>
                 </div>
               </div>`;
 
