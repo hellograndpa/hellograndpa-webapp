@@ -104,7 +104,18 @@
 
 .mapboxgl-popup-close-button {
   display: block;
+  z-index: 10;
+  border: 1px grey solid;
+  background-color: white;
+  top: 10px;
 }
+.mapboxgl-popup-close-button:hover {
+  display: block;
+  z-index: 10;
+  border: 1px grey solid;
+  background-color: red;
+}
+
 .mapboxgl-popup-content {
   padding: 0;
   width: 250px;
@@ -117,7 +128,7 @@
   padding: 0px;
 }
 .mapboxgl-popup-content .card {
-  padding: 0px;
+  padding: 0px !important;
 }
 .mapboxgl-popup-content .card-title {
   font-size: 14px;
