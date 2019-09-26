@@ -133,7 +133,9 @@ router.post('/update', async (req, res, next) => {
       grandpaUser,
       mentorUser,
     });
-    req.flash('info', `user ${req.session.currentUser._id} has been update`);
+
+
+    req.flash('info', `Your profile has been update`);
     res.redirect('/user/step-1');
   } catch (error) {
     req.flash('error', 'Some error happen - Please try again');
@@ -192,8 +194,11 @@ router.post('/update-type', async (req, res, next) => {
       grandpaUser,
       mentorUser,
     });
-    req.flash('info', `user ${req.session.currentUser._id} has been update`);
+    req.session.currentUser.grandpaUser = grandpaUser;
+
+    req.flash('info', `Your user type has been update`);
     res.redirect('/user/step-1');
+    
   } catch (error) {
     req.flash('error', 'Some error happen - Please try again');
     res.redirect('/user/step-1');

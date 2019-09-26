@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('hellograndpa:server');
 var http = require('http');
-
+const { socketsUsers } = require('../middlewares/enumerables');
 /**
  * Get port from environment and store in Express.
  */
@@ -20,10 +20,17 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
+var io = require('socket.io')(server);
 /**
  * Listen on provided port, on all network interfaces.
  */
+global.io = io;
+
+io.sockets.on('connect', function(socket) {
+  if (app.locals.currentUser) {
+    socketsUsers[app.locals.currentUser._id] = socket.id;
+  }
+});
 
 server.listen(port);
 server.on('error', onError);
@@ -58,9 +65,7 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -83,8 +88,6 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
