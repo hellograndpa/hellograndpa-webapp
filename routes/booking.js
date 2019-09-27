@@ -39,8 +39,8 @@ router.get('/:id', isLogged, async (req, res, next) => {
 
       sumPointsMandatory *= 2;
       const finalFisrtPrice = house.rentroom.costpermonth - sumPointsMandatory;
-      const dateInText = new Date(dateIn.substring(0, 4), dateIn.substring(4, 6) - 1, '01').toDateString();
-      const dateOutText = new Date(dateOut.substring(0, 4), dateOut.substring(4, 6) - 1, '01').toDateString();
+      const dateInText = new Date(dateIn.substring(0, 4), dateIn.substring(4, 6)-1, '01').toDateString();
+      const dateOutText = new Date(dateOut.substring(0, 4), dateOut.substring(4, 6), '01').toDateString();
 
       res.render('bookings/create', {
         house,
@@ -99,10 +99,8 @@ router.post('/:id', isLogged, async (req, res, next) => {
     today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
   const dateTime = date + ' ' + time;
 
-  const houseSelected = await House.findById(house).populate('user');
-
   const newMessage = {
-    userTo: houseSelected.user._id,
+    userTo: houseSearch.user._id,
     userFrom: user,
     booking: bookingCreated._id,
     message: 'SomeOne wants to join you!',
@@ -112,7 +110,7 @@ router.post('/:id', isLogged, async (req, res, next) => {
 
   await Message.create(newMessage);
 
-  const socketId = socketsUsers[houseSelected.user._id];
+  const socketId = socketsUsers[houseSearch.user._id];
   global.io.to(socketId).emit('newMessage', 'You have a new message!<br/> <a href="/user/messages/inbox">View my Inbox</a>');
 
   res.redirect('/user/bookings');

@@ -107,12 +107,9 @@ router.post('/create/step-1', checkUserTypeGranpa, async (req, res, next) => {
     title, street, city, state, country, zip, geo1, geo2,
   } = req.body;
 
-  console.log(`uno que va${geo1} ${geo2}`);
-
   const newGeo1 = parseFloat(geo1);
   const newGeo2 = parseFloat(geo2);
 
-  console.log(newGeo1, newGeo2);
 
   try {
     const user = req.session.currentUser._id;
@@ -385,7 +382,7 @@ router.post('/create/delete-images', isLogged, checkUserTypeGranpa, async (req, 
       }
       
     }
-    req.flash('info', 'removed image');
+    req.flash('info', 'Image removed');
     res.redirect('/houses/create/step-upload');
   } catch (err) {
     res.redirect('/houses/create/step-upload');
@@ -403,7 +400,6 @@ router.get('/create/step-1', isLogged, checkUserTypeGranpa, async (req, res, nex
   const house = await House.findOne({
     user: req.session.currentUser._id,
   });
-  req.flash('info', 'house created step 1');
   res.render('houses/create/step-1', {
     house,
   });
@@ -413,7 +409,6 @@ router.get('/create/step-2', isLogged, checkUserTypeGranpa, async (req, res) => 
   const house = await House.findOne({
     user: req.session.currentUser._id,
   });
-  req.flash('info', 'house created step 2');
   res.render('houses/create/step-2', {
     house,
     featuresArray,
@@ -435,7 +430,6 @@ router.get('/create/step-upload', isLogged, checkUserTypeGranpa, async (req, res
   const house = await House.findOne({
     user: req.session.currentUser._id,
   });
-  req.flash('info', 'photo uploaded');
   res.render('houses/create/step-upload', {
     house,
   });

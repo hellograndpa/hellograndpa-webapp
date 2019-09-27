@@ -105,13 +105,22 @@
                 </span>
                 {{/if_eq}}
               </div>
+              {{#if ../view}}
               <blockquote>
                 <h4>Picture:</h4>
               </blockquote>
               <div>
                 <img src="{{this.house.photos.[0]}}" alt="" width="100%">
               </div>
-
+              {{else}}
+              <blockquote>
+                <h4>From:</h4>
+              </blockquote>
+              <div>
+                <a href="/users/{{this.userFrom._id}}"><img class="circle center-align" width="85%"
+                    src="{{this.userFrom.avatar}}" alt="" width="100%"></a>
+              </div>
+              {{/if}}
             </div>
           </div>
         </div>

@@ -15,7 +15,7 @@ const checkfieldsEmpty = (req, res, next) => {
     || year === ''
     || pass === ''
   ) {
-    req.flash('error', 'los campos con * no pueden estar vacios');
+    req.flash('error', 'Fields with * cann\'t be empty');
     res.redirect('/');
   } else {
     res.locals.auth = req.body;
@@ -27,7 +27,7 @@ const checkfieldsEmpty = (req, res, next) => {
 const checkUploadNotEmpty = (req, res, next) => {
   const { upload } = req.body;
   if (upload === false) {
-    req.flash('error', 'No has seleccioado ningna imagen');
+    req.flash('error', 'Select an image please');
     res.redirect('/houses/create/step-upload');
   } else {
     req.flash('info', 'no están vacios');
@@ -48,7 +48,7 @@ const checkCorretFormatEmail = (req, res, next) => {
     req.flash('info', 'ok email');
     next();
   } else {
-    req.flash('error', 'el emial no tiene formato correcto');
+    req.flash('error', 'Email seems incorrect');
     res.redirect('/signup');
   }
 };
@@ -58,7 +58,7 @@ const checkUserTypeGranpa = async (req, res, next) => {
   if (user.grandpaUser) {
     next();
   } else {
-    req.flash('error', `you are not a grandpa ${user._id} ${user.grandpaUser}`);
+    req.flash('error', `You are not a grandpa ${user._id} ${user.grandpaUser}`);
     res.redirect('/user/step-3');
   }
 };

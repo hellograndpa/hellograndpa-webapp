@@ -67,7 +67,7 @@ router.get('/:id/gest', async (req, res, next) => {
 
 router.get('/inbox', async (req, res, next) => {
   try {
-    // TODO: buscar en bookings todos los que tengan el userId de currentUser
+
 
     const { ObjectId } = require('mongoose').Types;
 
@@ -103,7 +103,7 @@ router.get('/', async (req, res, next) => {
       userFrom: new ObjectId(req.session.currentUser._id)
     }).populate('house userTo userFrom');
     userBookings.forEach((booking) => {
-      const dateInDate = new Date(booking.dateIn.substring(0, 4), booking.dateIn.substring(4, 6), '01')
+      const dateInDate = new Date(booking.dateIn.substring(0, 4), booking.dateIn.substring(4, 6), '01').toDateString();
       
       booking.dateInDate = dateInDate;
 

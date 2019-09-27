@@ -34,7 +34,6 @@ router.get('/step-1', isLogged, async (req, res, next) => {
       male = false;
       female = false;
     }
-    req.flash('info', 'Usuario ok');
     res.render('user/user-step-1', {
       user,
       male,
@@ -56,7 +55,7 @@ router.post('/', checkfieldsEmpty, checkCorretFormatEmail, async (req, res, next
       email,
     });
     if (existEmail) {
-      req.flash('error', 'Usuario ya existe');
+      req.flash('error', 'User already exists');
       res.redirect('/');
     } else {
       const birthday = `${year}-${month}-${day}`;
@@ -73,7 +72,7 @@ router.post('/', checkfieldsEmpty, checkCorretFormatEmail, async (req, res, next
         hashpass,
         birthday,
       });
-      req.flash('info', 'user created');
+      req.flash('info', 'User created');
       res.redirect('/');
     }
   } catch (error) {
@@ -207,7 +206,6 @@ router.post('/update-type', async (req, res, next) => {
 
 router.get('/avatar-upload', isLogged, async (req, res) => {
   const user = await User.findById(req.session.currentUser._id);
-  req.flash('info', 'photo uploaded');
   res.render('user/avatar-upload', {
     user,
   });
@@ -215,7 +213,6 @@ router.get('/avatar-upload', isLogged, async (req, res) => {
 
 router.get('/step-3', isLogged, async (req, res) => {
   const user = await User.findById(req.session.currentUser._id);
-  req.flash('info', 'photo uploaded');
   res.render('user/user-step-3', {
     user,
   });

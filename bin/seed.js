@@ -30,7 +30,7 @@ mongoose.connect(process.env.DB_HOST, {
 });
 
 const users = Array.from({
-  length: 50,
+  length: 10,
 }, () => ({
   username: {
     firstname: faker.name.firstName(),
@@ -76,11 +76,16 @@ User.collection
             rooms: faker.random.number({
               max: 9,
             }),
-            title: faker.lorem.sentences(),
+            title: u.username.firstName + ' House',
             m2: faker.random.number({
               min: 50,
               max: 500,
             }),
+            photos:['/images/img/una.jpg',
+            '/images/img/2.jpg',
+            '/images/img/5.jpg',
+            '/images/img/4.jpg',
+            '/images/img/5.jpg',],
             description: faker.lorem.paragraph(2),
             address: {
               street: faker.address.streetName(),

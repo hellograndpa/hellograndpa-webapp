@@ -261,15 +261,18 @@
             </div>
             <div class="col s12 m12 l12">
               <div class="col s12 m12 l6">
-                <input type="text" class="dateIn" value="Date  IN ">
+                <input type="hidden" class="dateIn">
+                <input type="text" class="dateInText" value="Date  IN ">
               </div>
               <div class="col s12 m12 l6">
-                <input type="text" class="dateOut" value="Date OUT">
+                <input type="hidden" class="dateOut">
+                <input type="text" class="dateOutText" value="Date OUT">
               </div>
 
             </div>
 
             <div class="center-align">
+              <span class="red-text text-darken-4" id="msgErr"></span>
               <button class="btn waves-effect waves-light" type="submit" style="margin-top: 15px" name="action">
                 BOOKING
               </button>

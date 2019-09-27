@@ -71,16 +71,7 @@ const HouseSchema = new Schema(
         description: String,
       },
     ],
-    photos: {
-      type: [String],
-      default: [
-        '/images/img/una.jpg',
-        '/images/img/2.jpg',
-        '/images/img/5.jpg',
-        '/images/img/4.jpg',
-        '/images/img/5.jpg',
-      ],
-    },
+    photos: [String],
     restricciones: String,
     rentroom: {
       m2: Number,

@@ -5,6 +5,8 @@ function pad(num, size) {
 }
 
 function selectDate(e) {
+  document.getElementById('msgErr').innerText='';
+
   const selectedDates = [];
   const checks = document.querySelectorAll('.chkDate');
 
@@ -17,20 +19,26 @@ function selectDate(e) {
   });
 
   if (countChecked === 3) {
-    alert('No puedes seleccionar mas de 2');
+    document.getElementById('msgErr').innerText='Please, uncheck a selected date please';
     e.preventDefault();
   } else {
     selectedDates.sort();
 
     if (selectedDates.length > 0) {
+      const dateInDate = new Date(selectedDates[0].substring(0, 4), selectedDates[0].substring(4, 6)-1).toDateString();
+      document.querySelector('.dateInText').value = dateInDate;
       document.querySelector('.dateIn').value = selectedDates[0];
     } else {
       document.querySelector('.dateIn').value = '';
+      document.querySelector('.dateInText').value = '';
     }
     if (selectedDates.length > 1) {
+      const dateOutDate = new Date(selectedDates[1].substring(0, 4), selectedDates[1].substring(4, 6)).toDateString();
+      document.querySelector('.dateOutText').value = dateOutDate;
       document.querySelector('.dateOut').value = selectedDates[1];
     } else {
       document.querySelector('.dateOut').value = '';
+      document.querySelector('.dateOutText').value = '';
     }
   }
 }
