@@ -12,6 +12,8 @@
 
 .mapboxgl-ctrl-geocoder {
   width: 100%;
+  padding-left: 10px;
+  padding-right: 30px;
 }
 .btn {
   height: 55px !important;

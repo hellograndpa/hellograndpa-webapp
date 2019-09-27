@@ -4,8 +4,8 @@
   <div class="col s12 m6 l4">
     <div class='sidebar'>
       <div id='geocoder' class='geocoder'></div>
-      <div class=''>
-        <h5>Results</h5>
+      <div id="result">
+
       </div>
       <pre id="json-response" class="txt-xs px12">Search for a place. Your results will be displayed here!
       <div class="progress">
@@ -18,19 +18,19 @@
     </div>
   </div>
   <div class="col s12  m6 l8 ">
-    <div class="col s12  m12 l12 filter-padding">
-      <div class="input-field col s4 m2 l2  ">
+    <div class="col s12  m12 l12 filter-padding" id="input-money">
+      <div class="input-field col s4 m2 l2" id="input1">
         <i class="material-icons prefix">euro_symbol</i>
         <input type="text" name="" id="priceMin">
         <label>Price Min</label>
       </div>
-      <div class="input-field col s4 m2 l2">
+      <div class="input-field col s4 m2 l2" id="input2">
         <i class="material-icons prefix">euro_symbol</i>
         <input type="text" name="" id="priceMax">
         <label>Price Max</label>
       </div>
 
-      <div class="col s4 m2 l2 filter-padding">
+      <div class="col s4 m2 l2 filter-padding" id="input3">
         <button class="btn waves-effect waves-light" id="filter" name="action">FILTER
         </button>
       </div>
