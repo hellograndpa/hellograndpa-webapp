@@ -5,7 +5,7 @@ const router = express.Router();
 const House = require('../models/House');
 
 
-router.get('/houses', async (req, res) => {
+router.get('/houses', async (req, res, next) => {
   try {
     const houses = await House.find().populate('user');
     const dataHouseLocation = {
@@ -17,8 +17,8 @@ router.get('/houses', async (req, res) => {
         type: 'Feature',
         geometry: {
           type: 'Point',
-          coordinates: [e.featuresGeo.geometry.coordinates[0],
-            e.featuresGeo.geometry.coordinates[1],
+          coordinates: [e.featuresGeo.geometry[0],
+            e.featuresGeo.geometry[1],
           ],
         },
         properties: {
