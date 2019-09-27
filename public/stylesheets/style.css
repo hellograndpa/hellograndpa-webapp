@@ -23,10 +23,9 @@ main {
 
 .brand-logo-footer img {
   width: 200px;
-
 }
 
-.footer_container{
+.footer_container {
   display: flex;
   align-items: center;
 }
@@ -189,4 +188,22 @@ a:hover {
 
 .margin-50px {
   margin: 50px 0 0 0;
+}
+
+.menu .fixed-action-btn ul {
+  left: 10px;
+  right: auto;
+  position: absolute;
+  bottom: auto;
+  margin: 0;
+  visibility: visible;
+}
+.menu .fixed-action-btn {
+  position: relative;
+  right: auto;
+  /* bottom: 23px; */
+  /* padding-top: 15px; */
+  /* margin-bottom: 0; */
+  z-index: 997;
+  margin-top: 10px;
 }

@@ -6,7 +6,12 @@ const { sevicesArray } = require('../middlewares/enumerables');
 
 const BookingSchema = new Schema(
   {
-    user: {
+    userFrom: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+    userTo: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
@@ -20,7 +25,7 @@ const BookingSchema = new Schema(
     dateOut: String,
     status: {
       type: String,
-      enum: ['pending', 'reserve', 'pay', 'cancel'],
+      enum: ['pending', 'reserved', 'payed', 'cancelled'],
     },
     priceInit: Number,
     discount: Number,
