@@ -46,16 +46,42 @@
           <a id="logo-container" href="/" class="brand-logo"><img src="/images/logo/nav-new-logo.png" alt=""></a>
 
 
-          <ul class="right hide-on-med-and-down">
-            <li><a href="/">Home</a></li>
+          <ul class="menu right hide-on-med-and-down">
             <li><a href="/map">Mapa</a></li>
 
             {{#if currentUser}}
-            <li><a href="/user/step-1">{{currentUser.username.firstname}}</a></li>
+            <li>Hi, Victor</li>
+            <li>
+              <div class="fixed-action-btn">
+
+                <a class="">
+                  <img src="{{currentUser.avatar}}" class="circle center-align" width="55">
+                </a>
+                <ul>
+                  <li>
+                    <a class="btn-floating red" href="/user/step-1"><i title="My Profile"
+                        class="material-icons">account_box</i></a>
+                  </li>
+                  {{#if currentUser.grandpaUser}}
+                  <li><a class="btn-floating yellow darken-1" href="/houses/create/step-1"><i title="Create a house"
+                        class="material-icons">house</i></a></li>
+                  {{/if}}
+                  <li><a class="btn-floating green" href="/user/bookings"><i title="My Bookings"
+                        class="material-icons">book</i></a></li>
+                  <li><a class="btn-floating green" href="/user/messages/inbox"><i title="My Inbox"
+                        class="material-icons">mail</i></a></li>
+
+                  <li><a class="btn-floating blue" href="/logout"><i title="logout"
+                        class="material-icons">exit_to_app</i></a></li>
+                </ul>
+              </div>
+            </li>
+
+            <!--<li><a href="/user/step-1">{{currentUser.username.firstname}}</a></li>
             <li><a href="/houses/create/step-1">Create a House</a></li>
             <li><a href="/user/messages/inbox">My Inbox</a></li>
             <li><a href="/user/bookings/">Bookings</a></li>
-            <li><a href="/logout">Log Out</a></li>
+            <li><a href="/logout">Log Out</a></li>-->
             {{else}}
             <li><a class="waves-effect waves-light btn modal-trigger" href="#login">LogIn</a></li>
             <li><a class="waves-effect waves-light btn modal-trigger" href="#signup">Sign Up</a></li>
@@ -254,10 +280,15 @@
   <script src="/js/bookings.js"></script>
   <script src="/js/modals.js"></script>
   <script src="/js/search.js"></script>
+  <script src="/js/houseslist.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
 
-
-
-
+    socket.on('newMessage', function (msg) {
+      M.toast({ html: msg })
+    });
+  </script>
 </body>
 
 </html>

@@ -18,7 +18,6 @@ const logIn = async (email, password, req, res) => {
 };
 
 const isLogged = (req, res, next) => {
-  console.log('user', req.session.currentUser);
   if (req.session.currentUser) {
     next();
   } else {

@@ -62,7 +62,6 @@ function printCalendar() {
   if(document
     .querySelector('.carousel')){
       const houseId = document.getElementById('houseId').value;
-
     axios
       .get('/booking/calendar/' + houseId)
       .then((response) => {
