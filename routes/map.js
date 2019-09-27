@@ -50,6 +50,15 @@ router.get('/houses', async (req, res, next) => {
       features: [],
     };
     houses.forEach((e) => {
+      let newPrice = 0;
+
+      e.priceDiscounted = e.sevicestohoster
+        .filter((service) => service.mandatory === true)
+        .forEach((service) => (newPrice += service.points));
+
+      e.priceDiscounted = e.rentroom.costpermonth - newPrice * 2;
+
+
       dataHouseLocation.features.push({
         type: 'Feature',
         geometry: {
@@ -70,7 +79,7 @@ router.get('/houses', async (req, res, next) => {
           name: e.user.username.firstname,
           lastname: e.user.username.lastname,
           phone: e.user.phone[0],
-          price: e.rentroom.costpermonth,
+          price: e.priceDiscounted, // e.rentroom.costpermonth,
           room2: e.rentroom.m2,
           photo: e.photos[0],
           userId: e.user._id,
