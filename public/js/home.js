@@ -42,6 +42,6 @@ map.on('load', () => {
     console.log('TCL: ev', ev.result);
 
     const [geo1Value, geo2Value] = styleSpec.geometry.coordinates;
-    window.open(`map#7/${geo2Value}/${geo1Value}`, '_self');
+    window.open(`map?priceMax=100000&priceMin=0#10/${geo2Value}/${geo1Value}`, '_self');
   });
 });

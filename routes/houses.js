@@ -26,18 +26,9 @@ const {
 // Get a list of houses available
 router.get('/', async (req, res, next) => {
   const {
-    city,
-    calefaccion,
-    ac,
-    piscina,
-    terraza,
-    ascensor,
-    wifi,
     priceMin,
-    priceMax,
-    dateIn,
   } = req.query;
-
+  console.log(priceMin);
   try {
     let houses;
     let minPrice = 0;
@@ -59,8 +50,8 @@ router.get('/', async (req, res, next) => {
     }
 
     if (dateIn) {
-      const dateInNumber = parseInt( dateIn.replace('-','') );
-      houses = houses.filter((house) => house.bookedDates.includes(dateInNumber) === false);   
+      const dateInNumber = parseInt(dateIn.replace('-', ''));
+      houses = houses.filter((house) => house.bookedDates.includes(dateInNumber) === false);
     }
 
     if (calefaccion) { houses = houses.filter((house) => house.features.calefaccion === true); }
@@ -82,7 +73,7 @@ router.get('/', async (req, res, next) => {
       const mandatoryServices = el.sevicestohoster.filter(
         (service) => service && service.mandatory === true,
       );
-      
+
       mandatoryServices.forEach((service) => {
         const newLogo = servicesArray.find((element) => element.serviceType === service.serviceType).logo;
         service.logo = newLogo;
@@ -458,7 +449,6 @@ router.get('/:id', async (req, res, next) => {
   try {
     const house = await HouseDetails.findById(id).populate('user');
     if (house) {
-
       const mandatoryServices = house.sevicestohoster.filter((service) => service.mandatory === true);
       let points = 0;
       mandatoryServices.forEach((service) => points += service.points);
