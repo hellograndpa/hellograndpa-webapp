@@ -87,11 +87,19 @@
             </div>
             <div class="col s6 m4 l3">
               WARDROBES
-              <h4>{{house.rentroom.wardrobes}}</h4>
+              {{#if_eq house.rentroom.wardrobes 'uno'}}
+              <h4>One</h4>
+              {{else}}
+              <h4>Two</h4>
+              {{/if_eq}}
             </div>
             <div class="col s6 m4 l3">
               WINDOWS
-              <h4>{{house.rentroom.window}}</h4>
+              {{#if_eq house.rentroom.window 'uno'}}
+              <h4>One</h4>
+              {{else}}
+              <h4>Two</h4>
+              {{/if_eq}}
             </div>
           </div>
 
@@ -109,13 +117,13 @@
         <div class="col s12 m12 l12 margin-bottom20 center-align"><strong>MANDATORY</strong></div>
         {{#each house.sevicestohoster}}
         {{#if this.mandatory}}
-        <divc class="col s12 m6 l4 center-align">
+        <div class="services-max col s12 m6 l4 center-align">
           <i class="medium material-icons teal-text text-lighten-2">
             beenhere
           </i><br>
           <strong>{{this.serviceType}}</strong> <br>
           {{this.description}}
-        </divc>
+        </div>
         {{/if}}
         {{/each}}
       </div>
@@ -125,13 +133,13 @@
         {{#each house.sevicestohoster}}
         {{#if this.mandatory}}
         {{else}}
-        <divc class="col s12 m6 l4 center-align">
+        <div class="services-max col s12 m6 l4 center-align">
           <i class="medium material-icons teal-text text-lighten-2">
             mood
           </i><br>
           <strong>{{this.serviceType}}</strong> <br>
           {{this.description}}
-        </divc>
+        </div>
         {{/if}}
         {{/each}}
       </div>

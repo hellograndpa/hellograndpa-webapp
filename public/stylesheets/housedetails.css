@@ -51,3 +51,7 @@
 #price {
   margin-top: 0px !important;
 }
+.services-max {
+  max-height: 175px;
+  min-height: 175px !important;
+}

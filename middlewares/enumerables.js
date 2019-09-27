@@ -13,7 +13,7 @@ const servicesArray = [{
   {
     serviceType: 'Dine with me',
     points: 30,
-    description: 'yami yamiI would like you to accompany me at dinner at least once a week',
+    description: 'I would like you to accompany me at dinner at least once a week',
     logo: 'restaurant',
   },
   {
