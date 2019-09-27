@@ -54,4 +54,9 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// about
+router.get('/about', (req, res) => {
+  res.render('about');
+});
+
 module.exports = router;
