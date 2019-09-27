@@ -6,8 +6,45 @@ const House = require('../models/House');
 
 
 router.get('/houses', async (req, res, next) => {
+  const {
+    calefaccion,
+    ac,
+    piscina,
+    terraza,
+    ascensor,
+    wifi,
+    priceMin,
+    priceMax,
+  } = req.query;
+
+
   try {
-    const houses = await House.find().populate('user');
+    console.log(
+      priceMin,
+      priceMax,
+    );
+    // const houses = await House.find().populate('user');
+    let houses;
+    let minPrice = 0;
+    let maxPrice = 100000;
+
+    if (priceMin) {
+      minPrice = priceMin;
+    }
+    if (priceMax) {
+      maxPrice = priceMax;
+    }
+
+    houses = await House.find({ $and: [{ 'rentroom.costpermonth': { $gt: minPrice } }, { 'rentroom.costpermonth': { $lt: maxPrice } }] }).populate('mentor user');
+    console.log(houses);
+    if (calefaccion) { houses = houses.filter((house) => house.features.calefaccion === true); }
+    if (wifi) { houses = houses.filter((house) => house.features.wifi === true); }
+    if (ac) { houses = houses.filter((house) => house.features.ac === true); }
+    if (piscina) { houses = houses.filter((house) => house.features.piscina === true); }
+    if (terraza) { houses = houses.filter((house) => house.features.terraza === true); }
+    if (ascensor) { houses = houses.filter((house) => house.features.ascensor === true); }
+
+
     const dataHouseLocation = {
       type: 'FeatureCollection',
       features: [],

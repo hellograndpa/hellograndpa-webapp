@@ -17,17 +17,26 @@ const map = new mapboxgl.Map({
   // style URL
   style: 'mapbox://styles/mapbox/light-v10',
   // initial position in [long, lat] format
-  center: [2, 40],
+  center: [2.16, 41.38],
   // initial zoom
-  zoom: 5,
+  zoom: 11,
   hash: true,
 
 });
 
 let stores;
+let geo1Value;
+let geo2Value;
+const urlString = window.location.href;
+const url = new URL(urlString);
+const px = url.searchParams.get('priceMax');
+const pn = url.searchParams.get('priceMin');
+const ac = url.searchParams.get('ac');
+if (px === false) { px = 100000; }
+if (pn === false) { pn = 0; }
 
 axios
-  .get('/map/houses')
+  .get(`/map/houses?priceMax=${px}&priceMin=${pn}&${ac}`)
   .then((response) => {
     // handle success
     const {
@@ -300,6 +309,13 @@ function buildLocationList(data) {
         activeItem[0].classList.remove('active');
       }
       this.parentNode.classList.add('active');
+    });
+
+    document.getElementById('filter').addEventListener('click', (e) => {
+      const px = document.getElementById('priceMax').value;
+      const pn = document.getElementById('priceMin').value;
+      console.log(px, pn);
+      window.open(`/map?priceMax=${px}&priceMin=${pn}`, '_self');
     });
   }
 }
