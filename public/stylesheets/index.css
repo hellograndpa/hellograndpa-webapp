@@ -1,0 +1,18 @@
+.geocoder {
+  margin-top: 0px;
+  width: 100% !important;
+}
+
+.mapboxgl-ctrl-geocoder--icon-search {
+  left: 90%;
+  width: 20px;
+  margin-right: 20px;
+  height: 20px;
+}
+
+.mapboxgl-ctrl-geocoder {
+  width: 100%;
+}
+.btn {
+  height: 55px !important;
+}

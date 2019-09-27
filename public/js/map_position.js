@@ -36,7 +36,6 @@ axios
     stores = data;
   })
   .then(() => {
-    console.log('TCL: stores', stores);
     map.on('load', (e) => {
       // This is where your '.addLayer()' used to be, instead add only the source without styling a layer
       map.addSource('places', {

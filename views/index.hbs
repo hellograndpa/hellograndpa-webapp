@@ -1,10 +1,9 @@
-{{!-- <style>
-    main {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-</style> --}}
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet'
+    href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.1/mapbox-gl-geocoder.css'
+    type='text/css' />
+
+<link rel="stylesheet" href="/stylesheets/index.css">
 
 {{!-- SEARCH  --}}
 <div class="row">
@@ -13,27 +12,26 @@
             {{!-- <span class="white-text"> <h3> Find your GrandPa Roomate!</h3></span> --}}
         </div>
     </div>
+
     <div class="row">
-        <div class="col s4 m6 offset-m2 l4 offset-l4 card-panel  search-home ">
-            <form method="GET" action="/houses">
-                <div class=" panel-search">
-                    <div class="input-field imputfield-search-margin ">
-                        <select name="city">
-                            <option value="" disabled selected>Where?</option>
-                            {{#each cities}}
-                            <option value="{{this}}">{{this}}</option>
-                            {{/each}}
-                            </option>
-                        </select>
-                    </div>
-                    <button class="btn waves-effect waves-light btm-search-margin" type="submit" name="action">Look!
+        <div class="col s4 m6 offset-m2 l4 offset-l4 ">
+            <div class='sidebar'>
+                <div id='map' calss="maps"></div>
+                <div class="col l8">
+                    <div id='geocoder' class='geocoder'></div>
+                </div>
+                <div class="col l4">
+                    <button class="btn waves-effect waves-light btn-search" name="action">FIND IT!
                         <i class="material-icons right">send</i>
                     </button>
-                </div>
 
-            </form>
+                </div>
+            </div>
         </div>
+
+        </form>
     </div>
+</div>
 </div>
 </div>
 
@@ -79,3 +77,5 @@
     </div>
 
 </div>
+
+<script src="/js/home.js"></script>
