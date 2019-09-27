@@ -1,4 +1,3 @@
-
 mapboxgl.accessToken = 'pk.eyJ1IjoiaXR0ZW5lcyIsImEiOiJjazB0eGg5NmkwOHR4M2hwZGhxemtoeHRiIn0.A8MkCxfecgxrjj-hYODfjA';
 
 // This will let you use the .remove() function later on
@@ -31,7 +30,9 @@ axios
   .get('/map/houses')
   .then((response) => {
     // handle success
-    const { data } = response;
+    const {
+      data,
+    } = response;
     console.log('TCL: data', data);
     stores = data;
   })
@@ -79,7 +80,9 @@ axios
         const searchResult = ev.result.geometry;
         map.getSource('single-point').setData(searchResult);
 
-        const options = { units: 'miles' };
+        const options = {
+          units: 'miles',
+        };
         stores.features.forEach((store) => {
           Object.defineProperty(store.properties, 'distance', {
             value: turf.distance(searchResult, store.geometry, options),
@@ -112,13 +115,21 @@ axios
           const lons = [stores.features[storeIdentifier].geometry.coordinates[0], searchResult.coordinates[0]];
 
           const sortedLons = lons.sort((a, b) => {
-            if (a > b) { return 1; }
-            if (a.distance < b.distance) { return -1; }
+            if (a > b) {
+              return 1;
+            }
+            if (a.distance < b.distance) {
+              return -1;
+            }
             return 0;
           });
           const sortedLats = lats.sort((a, b) => {
-            if (a > b) { return 1; }
-            if (a.distance < b.distance) { return -1; }
+            if (a > b) {
+              return 1;
+            }
+            if (a.distance < b.distance) {
+              return -1;
+            }
             return 0;
           });
 
@@ -141,7 +152,9 @@ axios
       el.className = 'marker';
 
       // Add markers to the map at all points
-      new mapboxgl.Marker(el, { offset: [0, -23] })
+      new mapboxgl.Marker(el, {
+        offset: [0, -23],
+      })
         .setLngLat(marker.geometry.coordinates)
         .addTo(map);
 
@@ -183,7 +196,9 @@ function createPopUp(currentFeature) {
   if (popUps[0]) popUps[0].remove();
 
 
-  const popup = new mapboxgl.Popup({ closeOnClick: false })
+  const popup = new mapboxgl.Popup({
+    closeOnClick: false,
+  })
     .setLngLat(currentFeature.geometry.coordinates)
     .setHTML(`<div class="card">
                     <div class="card-image">
@@ -195,10 +210,10 @@ function createPopUp(currentFeature) {
                       <img src="${currentFeature.properties.avatar}" class="circle center-align">
                     </a>
                     </div>
-                    <span class="card-title">${currentFeature.properties.title}</span>
                     <div class="card-content">
-                     <p class="street">${currentFeature.properties.address} ${currentFeature.properties.city}</p> <br>
-                      <p class="price">${currentFeature.properties.price}€/month</p> <br>
+                    <span class="title">${currentFeature.properties.title}</span><br>
+                    <b>Adress: </b>${currentFeature.properties.address}<br>
+                    <b>Price: </b><span class="price-list">${currentFeature.properties.price}</span> €/month <br>
                     </div>
                   </div>`)
     .addTo(map);
@@ -220,20 +235,35 @@ function buildLocationList(data) {
                   <div class="card horizontal">
                     <div class="card-image">
                       <img src="${prop.photo}">
-                      </div>
+                    </div>
                       <div class="card-stacked">
-                      <div id="content-card" class="card-content">
+                      <div id="content-card" class="card-content-list">
                         <div id="contcard-${i}">
                         <a class="btn-floating halfway-fab waves-effect waves-light white" href="/user/${prop.userId}">
                           <img src="${prop.avatar}" class="circle center-align">
                         </a>
                         </div>
                         <div  class="content-card">
-                        < class="street">${prop.address} ${prop.city} <br>
-                        ${prop.price}€/month <br>
-                        ${prop.roomm2} m2 <br>
-                        <a href="/houses/${prop.houseId}"> See the house </a>
-                        </p>
+                          <ul>
+                            <li>
+                            <p>
+                            <br>
+                            <class="street"> <b>Adress: </b>${prop.address}<br>
+                            <class="street"> <b>City: </b>${prop.city} <br>
+                            </p>
+                            </li>
+                            <li>
+                            <p>
+                            <b>Room: </b> ${prop.roomm2} m2 <br>
+                            </p>
+                            </li>
+                            <li>
+                            <p>
+                            <b>Price: </b> <span class="price-list"> ${prop.price}</span>€/month <br>
+                            </p>
+                            </li>
+                          </ul>
+                        <a class="waves-effect waves-light btn"" href="/houses/${prop.houseId}"> See the house </a>
                         </div>
                       </div>
                 </div>
@@ -242,7 +272,7 @@ function buildLocationList(data) {
     const cardTitle = document.getElementById(`contcard-${i}`);
     const link = cardTitle.appendChild(document.createElement('a'));
     link.href = '#';
-    link.className = 'title card-title';
+    link.className = 'title';
     link.dataPosition = i;
     link.innerHTML = prop.title;
 
