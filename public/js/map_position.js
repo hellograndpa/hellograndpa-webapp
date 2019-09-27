@@ -249,7 +249,7 @@ function buildLocationList(data) {
                       <div id="content-card" class="card-content-list">
                         <div id="contcard-${i}">
                         <a class="btn-floating halfway-fab waves-effect waves-light white" href="/user/${prop.userId}">
-                          <img src="${prop.avatar}" class="circle center-align">
+                          <img src="${prop.avatar}" class="circle center-align img-lis">
                         </a>
                         </div>
                         <div  class="content-card">
@@ -263,7 +263,7 @@ function buildLocationList(data) {
                             </li>
                             <li>
                             <p>
-                            <b>Room: </b> ${prop.roomm2} m2 <br>
+                            <b>Room: </b> ${prop.room2} m2 <br>
                             </p>
                             </li>
                             <li>
@@ -310,12 +310,46 @@ function buildLocationList(data) {
       }
       this.parentNode.classList.add('active');
     });
-
-    document.getElementById('filter').addEventListener('click', (e) => {
-      const px = document.getElementById('priceMax').value;
-      const pn = document.getElementById('priceMin').value;
-      console.log(px, pn);
-      window.open(`/map?priceMax=${px}&priceMin=${pn}`, '_self');
-    });
   }
+
+  const alertData = document.getElementById('json-response');
+  alertData.parentNode.removeChild(alertData);
+  const result = document.getElementById('result');
+  const title = result.appendChild(document.createElement('h5'));
+  if (px == 100000 && pn == 0) {
+    title.innerHTML = `${data.features.length} Results`;
+  } else {
+    let imputMoney = document.getElementById('input1');
+    imputMoney.parentNode.removeChild(imputMoney);
+    imputMoney = document.getElementById('input2');
+    imputMoney.parentNode.removeChild(imputMoney);
+    imputMoney = document.getElementById('input3');
+    imputMoney.parentNode.removeChild(imputMoney);
+
+    imputMoney = document.getElementById('input-money');
+    const inputMinMax = imputMoney.appendChild(document.createElement('div'));
+    inputMinMax.innerHTML = `<div class="input-field col s4 m2 l2  ">
+        <i class="material-icons prefix">euro_symbol</i>
+        <input type="text" name="" id="priceMin" value="${pn}">
+        <label class="active">Price Min</label>
+      </div>
+      <div class="input-field col s4 m2 l2">
+        <i class="material-icons prefix">euro_symbol</i>
+        <input type="text" name="" id="priceMax" value="${px}">
+        <label class="active">Price Max</label>
+      </div>
+
+      <div class="col s4 m2 l2 filter-padding">
+        <button class="btn waves-effect waves-light" id="filter" name="action">FILTER
+        </button>
+      </div>`;
+
+    title.innerHTML = `${data.features.length} Results from ${pn}€ to ${px}€`;
+  }
+  document.getElementById('filter').addEventListener('click', (e) => {
+    const px = document.getElementById('priceMax').value;
+    const pn = document.getElementById('priceMin').value;
+    console.log(px, pn);
+    window.open(`/map?priceMax=${px}&priceMin=${pn}`, '_self');
+  });
 }

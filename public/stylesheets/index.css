@@ -12,7 +12,9 @@
 
 .mapboxgl-ctrl-geocoder {
   width: 100%;
+  padding-left: 10px;
+  padding-right: 30px;
 }
-.btn {
+.btn-home-search {
   height: 55px !important;
 }
