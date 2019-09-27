@@ -18,13 +18,14 @@
         {{#if house.canActive }}
         {{#each house.sevicestohoster}}
         <div class="col s12 m12 l12">
-          <h6>{{this.serviceType}} - {{this.points}} puntos de descuento</h6>
+          <h6>{{this.serviceType}} - {{this.points}} discount points</h6>
           <div class="col s12 m3 l6">
             <label><input type="radio" name="{{this.serviceType}}" value="none"> <span>none</span></label>
             {{#if this.requirement}}
-            <label><input type="radio" name="{{this.serviceType}}" value="req" checked> <span>requirement</span></label>
+            <label><input type="radio" name="{{this.serviceType}}" value="req" checked>
+              <span>optative</span></label>
             {{else}}
-            <label><input type="radio" name="{{this.serviceType}}" value="req"> <span>requirement</span></label>
+            <label><input type="radio" name="{{this.serviceType}}" value="req"> <span>optative</span></label>
             {{/if}}
             {{#if this.mandatory}}
             <label><input type="radio" name="{{this.serviceType}}" value="mandatory" checked>
@@ -41,13 +42,13 @@
         {{else}}
         {{#each servicesArray}}
         <div class="col s12 m12 l12">
-          <h6>{{this.serviceType}} - {{this.points}} puntos de descuento</h6>
+          <h6>{{this.serviceType}} ({{this.points}} discount points</h6>
           <div class="col s12 m6 l4">
             <label><input type="radio" name="{{this.serviceType}}" value="none"> <span>none</span></label>
             {{#if this.requirement}}
-            <label><input type="radio" name="{{this.serviceType}}" value="req" ckecked> <span>requirement</span></label>
+            <label><input type="radio" name="{{this.serviceType}}" value="req" ckecked> <span>optative</span></label>
             {{else}}
-            <label><input type="radio" name="{{this.serviceType}}" value="req"> <span>requirement</span></label>
+            <label><input type="radio" name="{{this.serviceType}}" value="req"> <span>optative</span></label>
             {{/if}}
             {{#if this.mandatory}}
             <label><input type="radio" name="{{this.serviceType}}" value="mandatory" checked>
@@ -64,12 +65,12 @@
         {{/if}}
         <div class="col s12 m12 l12">
           <br>
-          <label for="restricciones">Restricciones</label><br>
+          <label for="restricciones">Restriccions</label><br>
           <textarea class="materialize-textarea" name="restricciones"></textarea><br>
         </div>
 
         <div class="col s12 m12 l12">
-          <h5>START AVAILABLE</h5>
+          <h5>START AVAILABLE FROM</h5>
           <div class="input-field col s12 m4 l3">
             <label for="monthStart">Month Start</label><br>
             <select name="month">

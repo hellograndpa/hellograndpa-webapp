@@ -103,7 +103,8 @@ router.get('/', async (req, res, next) => {
       userFrom: new ObjectId(req.session.currentUser._id)
     }).populate('house userTo userFrom');
     userBookings.forEach((booking) => {
-      const dateInDate = new Date(booking.dateIn.substring(0, 4), booking.dateIn.substring(4, 6), '01').toDateString();
+      const dateInDate = new Date(booking.dateIn.substring(0, 4), booking.dateIn.substring(4, 6), '01')
+      
       booking.dateInDate = dateInDate;
 
       const dateOutDate = new Date(booking.dateOut.substring(0, 4), booking.dateOut.substring(4, 6), '01').toDateString();
