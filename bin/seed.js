@@ -63,18 +63,28 @@ const users = Array.from({
   active: true,
 }));
 
-User.insertMany(users)
+User.collection.drop()
+  .then(()=>{
+    console.log('data deleted')
+  })
+  .catch((err)=>{
+    console.log(err)
+  })
+  .then(()=>
+    User.insertMany(users)
+  )
   .then(() => {
     console.log('inserted data');
     User.find()
       .then((usersBd) => {
+        House.collection.drop();
         for (const u of usersBd) {
           House.create({
             user: u._id,
             rooms: faker.random.number({
               max: 9,
             }),
-            title: u.username.firstName + ' House',
+            title: u.username.firstname + ' House',
             m2: faker.random.number({
               min: 50,
               max: 500,
@@ -122,22 +132,22 @@ User.insertMany(users)
             sevicestohoster: [{
               serviceType: 'Walking the dog',
               points: 10,
-              requirement: true,
+              requirement: false,
               mandatory: true,
               description: 'Try to walk the dog at least 2 times a day',
             },
             {
               serviceType: 'Accompany me to the doctor',
               points: 20,
-              requirement: true,
+              requirement: false,
               mandatory: true,
               description: 'I have to visit the doctor at least once a week',
             },
             {
               serviceType: 'Go to the supermarket',
               points: 50,
-              requirement: true,
-              mandatory: false,
+              requirement: false,
+              mandatory: true,
               description:'I find it very difficult to go shopping because I can\'t with the bags, once a week',
             },
             {
@@ -154,6 +164,13 @@ User.insertMany(users)
               mandatory: false,
               description: 'It is very difficult for me to hang clothes, can you help at least 2 times a week?',
             },
+            {
+              serviceType: 'Take a walk',
+              points: 20,
+              requirement: true,
+              mandatory: false,
+              description: 'I love to walk around the neighborhood and see people, would you accompany me once a week?',
+            },
             ],
             restricciones: faker.lorem.paragraph(1),
             rentroom: {
@@ -167,7 +184,7 @@ User.insertMany(users)
               tv: true,
               table: true,
               chair: true,
-              costpermonth: 500,
+              costpermonth: Math.floor(Math.random() * (900 - 400) + 400),
               deposit: 500,
               othersThings: faker.lorem.paragraph(2),
             },
