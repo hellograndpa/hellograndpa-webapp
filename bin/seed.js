@@ -19,6 +19,13 @@ const {
   seviciosIncludedArray,
 } = require('../middlewares/enumerables');
 
+
+const photosArr =['/images/img/1.jpg',
+'/images/img/2.jpg',
+'/images/img/5.jpg',
+'/images/img/4.jpg',
+'/images/img/5.jpg']
+
 // mongoose.connect(
 //   'mongodb+srv://grandPa:hellohello@grandpacluster-qrflq.gcp.mongodb.net/test?retryWrites=true&w=majority',
 //   { useNewUrlParser: true },
@@ -42,7 +49,7 @@ const users = Array.from({
   gender: 'male',
   address: {
     street: faker.address.streetName(),
-    city: faker.address.city(),
+    city: 'Barcelona',
     state: faker.address.state(),
     country: 'España',
     zip: faker.address.zipCode(),
@@ -56,20 +63,11 @@ const users = Array.from({
   active: true,
 }));
 
-User.collection
-  .drop()
-  .then(() => {
-    console.log('deleted db');
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-  .then(() => User.insertMany(users))
+User.insertMany(users)
   .then(() => {
     console.log('inserted data');
     User.find()
       .then((usersBd) => {
-        House.collection.drop();
         for (const u of usersBd) {
           House.create({
             user: u._id,
@@ -81,11 +79,7 @@ User.collection
               min: 50,
               max: 500,
             }),
-            photos:['/images/img/una.jpg',
-            '/images/img/2.jpg',
-            '/images/img/5.jpg',
-            '/images/img/4.jpg',
-            '/images/img/5.jpg',],
+            photos: photosArr.sort(() => Math.random() - 0.5),
             description: faker.lorem.paragraph(2),
             address: {
               street: faker.address.streetName(),
@@ -126,39 +120,39 @@ User.collection
               cama: true,
             },
             sevicestohoster: [{
-              serviceType: 'Pasear al Perro',
+              serviceType: 'Walking the dog',
               points: 10,
               requirement: true,
               mandatory: true,
-              description: faker.lorem.paragraph(2),
+              description: 'Try to walk the dog at least 2 times a day',
             },
             {
-              serviceType: 'Llevar al médico',
+              serviceType: 'Accompany me to the doctor',
               points: 20,
               requirement: true,
               mandatory: true,
-              description: faker.lorem.paragraph(2),
+              description: 'I have to visit the doctor at least once a week',
             },
             {
-              serviceType: 'Preparar la cena',
-              points: 30,
-              requirement: true,
-              mandatory: false,
-              description: faker.lorem.paragraph(2),
-            },
-            {
-              serviceType: 'Hacer la colada',
-              points: 40,
-              requirement: true,
-              mandatory: false,
-              description: faker.lorem.paragraph(2),
-            },
-            {
-              serviceType: 'Acompañar a la plaza',
+              serviceType: 'Go to the supermarket',
               points: 50,
               requirement: true,
               mandatory: false,
-              description: faker.lorem.paragraph(2),
+              description:'I find it very difficult to go shopping because I can\'t with the bags, once a week',
+            },
+            {
+              serviceType: 'Dine with me',
+              points: 30,
+              requirement: true,
+              mandatory: false,
+              description: 'I would like you to accompany me at dinner at least once a week',
+            },
+            {
+              serviceType: 'Help me do the laundry',
+              points: 40,
+              requirement: true,
+              mandatory: false,
+              description: 'It is very difficult for me to hang clothes, can you help at least 2 times a week?',
             },
             ],
             restricciones: faker.lorem.paragraph(1),
@@ -184,6 +178,7 @@ User.collection
             visibleByUsers: true,
             active: true,
             canActive: true,
+            featuresGeo:{geometry:[Math.random() * (2.22 - 2.10) + 2.10, Math.random() * (41.44 - 41.38) + 41.38]}
           })
             .then(() => {
               console.log('house inserted', u._id);
