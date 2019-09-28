@@ -8,10 +8,6 @@ const logIn = async (email, password, req, res) => {
     if (bcrypt.compareSync(password, user.hashpass)) {
       req.session.currentUser = user;
 
-      global.io.sockets.on('connect', function(socket) {
-          socketsUsers[user._id] = socket.id;
-      });
-
       res.redirect('/');
     } else {
       req.flash('error', 'User or password incorrect');
